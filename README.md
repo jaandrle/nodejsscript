@@ -1,9 +1,9 @@
 # NodeJSScript – write cross-platform scripts with ease
-This package provides very similar functionality such as [google/zx](https://github.com/google/zx#chalk-package).
+This package provides very similar functionality such as [google/zx](https://github.com/google/zx).
 Tke key difference is to provide unix shell commands in cross-platform commpatible way.
 This is done by using [shelljs/shelljs](https://github.com/shelljs/shelljs) library.
 
-You can compare the final script code similar to `zx`:
+You can compare the final script code to `zx` example:
 ```javascript
 #!/usr/bin/env nodejsscript
 import { exec, grep, echo, mkdir, tempdir } from "nodejsscript";
@@ -42,7 +42,7 @@ Write your scripts in a file with an `.mjs` extension in order to
 use `await` at the top level. If you prefer the `.js` extension,
 wrap your scripts in something like `(async function () {...})()`.
 
-Add the following shebang to the beginning of your `zx` scripts:
+Add the following shebang to the beginning of your `nodejsscript` scripts:
 ```bash
 #!/usr/bin/env nodejsscript
 ```
@@ -99,3 +99,5 @@ The [chalk](https://www.npmjs.com/package/chalk) package. Also as shorthand **s*
 echo(chalk.blue('Hello world!'));
 echo(s.blue('Hello world!'));
 ```
+
+[^node]: Alternatively `curl -sL install-node.vercel.app/17.0.1 | bash`
