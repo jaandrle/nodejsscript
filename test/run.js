@@ -1,9 +1,17 @@
 #!/usr/bin/env nodejsscript
 /* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true */
-import { cd, exec, echo, s } from "nodejsscript";
+import { exec, grep, echo, mkdir, tempdir } from "nodejsscript";
 
 (async function main(){
-	cd("../../jaaJSU");
-	const git= exec("git status", { silent: true });
-	echo(s.hex("#fc0")(git.trim()));
+	echo(grep("name", "../package.json").trim());
+	
+	const branch= exec("git branch --show-current").trim();
+	exec(`echo deploy --branch=${branch}`);
+
+	exec("sleep 1; echo 1");
+	exec("sleep 2; echo 2");
+	exec("sleep 3; echo 3");
+
+	const name= "foo bar";
+	echo(mkdir(tempdir()+"/"+name));
 })();
