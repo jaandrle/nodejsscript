@@ -1,4 +1,4 @@
-# NodeJSScript – write cross-platform scripts with ease
+# NodeJS Script – write cross-platform scripts with ease
 This package provides very similar functionality such as [google/zx](https://github.com/google/zx).
 Tke key difference is to provide unix shell commands in cross-platform commpatible way.
 This is done by using [shelljs/shelljs](https://github.com/shelljs/shelljs) library.
