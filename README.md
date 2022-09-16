@@ -152,12 +152,17 @@ const content= JSON.parse(await stdin());
 ### `config`
 Read/write global configuration.
 
-- `verbose`: Will print each executed command to the screen.
-- `fatal`: If true the script will die on errors.
-- `noglob`: Disable filename expansion (globbing)
+- `silent` [`false`]: Suppresses all command output if `true`, except for `echo()` call.
+- `verbose` [`false`]: Will print each executed command to the screen.
+- `fatal` [`false`]: If `true`, the script will throw a JavaScript error when any `shell.js` command encounters an error. This is analogous to Bash's `set -e`.
+- `noglob` [`false`]: Disable filename expansion (globbing)
+- `globOptions` [`{}`]: Options for [`glob.sync()`](https://github.com/isaacs/node-glob/tree/af57da21c7722bb6edb687ccd4ad3b99d3e7a333#options).
 
 ```js
 const { verbose, fatal, noglob }= config;
+config.silent= true;
+const config.assign({ verbose: true, silent: false });
+
 ```
 
 ### `chalk` package

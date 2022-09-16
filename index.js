@@ -48,19 +48,39 @@ export function exec$(command, options= {}){
 
 const _config= shelljs.config;
 export const config= {
-    /** Will print each executed command to the screen.
-     * @default false
-     */
+	/**
+	 * Suppresses all command output if `true`, except for `echo()` call.
+	 * @default false
+	 * */
+	get silent(){ return _config.silent; },
+	set silent(v){ _config.silent= v; },
+    /**
+	 * Will print each executed command to the screen.
+	 * @default false
+	 * */
 	get verbose(){ return _config.verbose; },
-	set verbose(v){ return (_config.verbose = v); },
-    /** If true the script will die on errors. Default is false. */
+	set verbose(v){ return (_config.verbose= v); },
+    /**
+	 * If `true`, the script will throw a JavaScript error when any `shell.js` command encounters an error. This is analogous to Bash's `set -e`.
+	 * @default false
+	 * */
 	get fatal(){ return _config.fatal; },
-	set fatal(v){ return (_config.fatal = v); },
-    /** Disable filename expansion (globbing) */
+	set fatal(v){ return (_config.fatal= v); },
+    /**
+	 * Disable filename expansion (globbing)
+	 * @default false
+	 * */
 	get noglob(){ return _config.noglob; },
-	set noglob(v){ return (_config.noglob = v); },
+	set noglob(v){ return (_config.noglob= v); },
+    /**
+	 * Options for [`glob.sync()`](https://github.com/isaacs/node-glob/tree/af57da21c7722bb6edb687ccd4ad3b99d3e7a333#options).
+	 * @default {}
+	 * */
+	get globOptions(){ return _config.globOptions; },
+	set globOptions(v){ return (_config.globOptions= v); },
+	
 	/** Set multiple options with one command.
-	 * @param {...Record<"verbose"|"fatal"|"noglob",boolean>} c
+	 * @param {...Record<"verbose"|"fatal"|"noglob"|"silent",boolean>} c
 	 * */
 	assign(...c){ return Object.assign(this, ...c); }
 };
