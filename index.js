@@ -50,8 +50,17 @@ export function exec$(command, options= {}){
 import chalk from "chalk";
 export { chalk, chalk as s };
 
-import fetch from 'node-fetch';
-export { fetch };
+import nodeFetch from 'node-fetch';
+/**
+ * Fetch function
+ * @param   {import('node-fetch').RequestInfo} url - Absolute url or Request instance
+ * @param   {import('node-fetch').RequestInit} [init] - Fetch options
+ * @return  {Promise<import('node-fetch').Response>}
+ */
+export function fetch(url, init){
+	if(config.verbose) echo("fetch(", url, ",", init, ")");
+	return nodeFetch(url, init);
+}
 
 import { log } from "node:console";
 export function echo(...messages){
