@@ -6,19 +6,20 @@ This is done by using [shelljs/shelljs](https://github.com/shelljs/shelljs) libr
 You can compare the final script code to `zx` example:
 ```javascript
 #!/usr/bin/env nodejsscript
-import { exec, grep, echo, mkdir, tempdir } from "nodejsscript";
-
+import { exec, exec$, grep, echo } from "nodejsscript";
 echo(grep("name", "../package.json").trim());
 
-const branch= exec("git branch --show-current").trim();
+const branch= exec$("git branch --show-current");
 exec(`dep deploy --branch=${branch}`);
 
 exec("sleep 1; echo 1");
 exec("sleep 2; echo 2");
 exec("sleep 3; echo 3");
 
+import { mkdir, tempdir } from "nodejsscript";
+import { join } from "node:path";
 const name= "foo bar";
-mkdir(tempdir()+"/"+name);
+mkdir(join(tempdir(), name));
 ```
 
 ## Installation

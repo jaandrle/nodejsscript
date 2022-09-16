@@ -2,6 +2,7 @@
 /* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true */
 import * as s from "/home/jaandrle/.nvm/versions/node/v17.0.1/lib/node_modules/nodejsscript/index.js";
 // from "nodejsscript";
+import { join } from "node:path";
 
 s.cli("", true)
 	.version("0.1.0")
@@ -16,7 +17,7 @@ s.cli("", true)
 		s.exec("sleep 2; echo 2");
 		s.exec("sleep 3; echo 3");
 
-		const name= s.tempdir()+"/foo bar";
+		const name= join(s.tempdir(), "foo bar");
 		s.pipe(s.mkdir, s.echo)(name);
 		s.echo(s.test("-d", name));
 		if(clear)
