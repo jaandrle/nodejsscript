@@ -1,3 +1,26 @@
+export const pipe= (...funs)=> input=> Array.prototype.reduce.call(funs, (out, f)=> f(out), input);
+function parseOptions(candidate, initial= {}){
+	if(typeof candidate!=="string") return Object.assign({}, initial, candidate);
+	return candidate.split(" -").reduce(function parse(out, curr, i){
+		const space_i= curr.indexOf(" ");
+		const name= ( i ? "-" : "" )+curr.slice(0, space_i);
+		Reflect.set(out, name, curr.slice(space_i+1));
+		return out;
+	}, initial);
+}
+export function xarg(...params){
+	const options_default= { "-I": "{}" };
+	const options= typeof params[0]!=="function" ? parseOptions(params.shift()) : options_default;
+	const needle= options["-I"];
+	const [ cmd, ...args ]= params;
+	return function call(arg){
+		let replaced= 0;
+		const args_final= args.map(a=> a.replaceAll(needle, ()=> ( replaced+= 1, arg )));
+		if(!replaced) args.push(arg);
+		return cmd.apply(null, args_final);
+	};
+}
+
 import shelljs from "shelljs";
 export const {
 	ls, find, dirs,
@@ -11,6 +34,18 @@ export const {
 	exec,
 	config
 }= shelljs;
+/**
+ * Silent execution of {@link exec} to be used with pipeing or as variable.
+ * @param {string} command The command to execute.
+ * @param {object} options 
+ * @param {boolean} [options.fatal] Exit when command return code is non-zero.
+ * @param {string} [options.encoding] Character encoding to use.
+ * @example
+ * const out= exec$("cmd");
+ */
+export function exec$(command, options= {}){
+	return exec(command, Object.assign({}, options, { async: false, silent: true })).replace(/\n$/g, "");
+}
 
 import chalk from "chalk";
 export { chalk, chalk as s };
@@ -25,41 +60,19 @@ export function echo(...messages){
 		( String(v)==="[object Object]" ? v : String(v).replaceAll("\t", "    ") )));
 }
 
+import sade from "sade";
 /**
- * Returns object representation of given arguments. Script name is under `_name` key, arguments without `-`/`--` are under `_` key.
- * @param {NodeJS.Process.argv} argv
- * @param {Record<string, any>} initial Initial values
- * @returns {{ _name: string, _: string[] } & Record<string, any>}
- * @example
- * script arg1 --arg2=val -arg3 val --arg4
- * => { _name: "script", _: [ "arg1" ], arg2: "val", arg3: "val", arg4: true }
+ * @param {string} usage The script name and usage (`[optional]`/`<required>`). If no `name`, then the script file name will be used.
+ * @param {boolean} [is_single] See {@link sade}
+ * @returns {sade.Sade}
  * */
-export function parseArgsMinimal(initial= {}, argv= process.argv){
-	const out= Object.create(initial);
-	out._name= argv[1].slice(argv[1].lastIndexOf("/")+1);
-	out._= [];
-	const args= argv.slice(2);
-	for(let i= 0, { length }= args; i<length; i+= 1){
-		const item= args[i];
-		if(0===item.indexOf("--")){
-			const [ name, value= true ]= item.slice(2).split("=");
-			Reflect.set(out, name, value);
-			continue;
-		}
-		if(0!==item.indexOf("-")){
-			out._.push(item);
-			continue;
-		}
-		let next= args[i+1];
-		if(!next || !next.indexOf("-"))
-			next= true;
-		Reflect.set(out, item.slice(1), next);
-		if(next!==true)
-			i+= 1;
-	}
-	if(!out._.length && initial._ && initial._.length)
-		out._= initial._;
-	return out;
+export function cli(usage, is_single= false){
+	if(usage && !/^[\[<]/.test(usage))
+		return sade(usage, is_single);
+
+	const script= process.argv[1];
+	const name= script.slice(script.lastIndexOf("/")+1);
+	return sade(name+(usage ? " "+usage : ""), is_single);
 }
 
 import { createInterface } from 'node:readline';

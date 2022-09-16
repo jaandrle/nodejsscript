@@ -1,6 +1,6 @@
 {
 	"name": "nodejsscript",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"author": "Jan Andrle <andrle.jan@centrum.cz>",
 	"license": "MIT",
 	"description": "A tool for writing better scripts",
@@ -24,6 +24,14 @@
 		"bin/cli.mjs",
 		"index.js"
 	],
+	"types": "types/index.d.ts",
+	"typesVersions": {
+		"*": {
+			".": [
+				"./types/index.d.ts"
+			]
+		}
+	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -45,9 +53,11 @@
 		"maxcomplexity": 11
 	},
 	"dependencies": {
+		"@types/sade": "^1.7.4",
 		"@types/shelljs": "^0.8.11",
 		"chalk": "^5.0.1",
 		"node-fetch": "^3.2.10",
+		"sade": "^1.8.1",
 		"shelljs": ">=v0.8.5"
 	}
 }

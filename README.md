@@ -28,10 +28,21 @@ mkdir(tempdir()+"/"+name);
 1. `npm install https://github.com/jaandrle/nodejsscript --global`
 
 ## Goods
-[shelljs/shelljs: ls, find, dirs, cd, pwd, pushd, popd, cp, rm, mv, mkdir, ln, touch, tempdir, chmod, test, error, cat, sed, grep, sort, head, tail, uniq, which, exit, env, set, exec, config](https://github.com/shelljs/shelljs#tempdir)
+ · [shelljs/shelljs:](https://github.com/shelljs/shelljs)
+[cat](https://github.com/shelljs/shelljs#catoptions-file--file-) · [cd](https://github.com/shelljs/shelljs#cddir) · [chmod](https://github.com/shelljs/shelljs#chmodoptions-octal_mode--octal_string-file) · [cp](https://github.com/shelljs/shelljs#cpoptions-source--source--dest)
+ · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n) · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n) · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n) · [exec](https://github.com/shelljs/shelljs#execcommand--options--callback)
+ · [find](https://github.com/shelljs/shelljs#findpath--path-) · [grep](https://github.com/shelljs/shelljs#grepoptions-regex_filter-file--file-) · [head](https://github.com/shelljs/shelljs#head-n-num-file--file-) · [ln](https://github.com/shelljs/shelljs#lnoptions-source-dest)
+ · [ls](https://github.com/shelljs/shelljs#lsoptions-path-) · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-) · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest) · [pwd](https://github.com/shelljs/shelljs#pwd)
+ · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [set](https://github.com/shelljs/shelljs#setoptions) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
+ · [tail](https://github.com/shelljs/shelljs#tail-n-num-file--file-) · [tempdir](https://github.com/shelljs/shelljs#tempdir) · [test](https://github.com/shelljs/shelljs#testexpression) · [touch](https://github.com/shelljs/shelljs#touchoptions-file--file-)
+ · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output) · [which](https://github.com/shelljs/shelljs#whichcommand) · [exit](https://github.com/shelljs/shelljs#exitcode) · [error](https://github.com/shelljs/shelljs#error) · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
+ · [cli()](#cli)
+ · [xarg()](#xarg)
+ · [pipe()](#pipe)
  · [fetch()](#fetch)
  · [question()](#question)
  · [echo()](#echo)
+ · [exec$()](#exec$)
  · [stdin()](#stdin)
  · [chalk](#chalk-package)
 
@@ -64,6 +75,46 @@ All function (`shelljs`, `fetch`, …) are exported by library, so use:
 import { … } from "nodejsscript";
 ```
 
+### `xarg()`
+Simplify version of `xargs` allowing passing one argument. For now only "-I" argument is allowed.
+By default `{}` will be replaced, if not presented the argument is append as last one.
+
+```js
+pipe(
+	exec$.bind(null, "git branch --show-current"),
+	xarg(exec, "echo deploy --branch={}")
+)();
+pipe(
+	exec$.bind(null, "git branch --show-current"),
+	xarg("-I §", exec, "echo deploy --branch=§")
+)();
+```
+
+### `pipe()`
+Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe)). Provides functional way to combine commands/functions.
+Can be used with [xarg()](#xarg). **Some functions from shelljs also allow you to combine them, see [Pipes](https://github.com/shelljs/shelljs#pipes)**.
+
+```js
+pipe(
+	Number,
+	v=> s.greenBright(v+1),
+	v=> `Result is: ${v}`,
+	echo
+)(await question("Choose number:"));
+
+```
+
+### `cli()`
+A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
+In addition to the origin, `cli()` supports to fill script name from script file name.
+
+```js
+cli("", true)
+	.version("0.1.0")
+	.describe("NodeJS Script cli test")
+	.action(echo);
+```
+
 ### `fetch()`
 A wrapper around the [node-fetch](https://www.npmjs.com/package/node-fetch) package.
 
@@ -77,11 +128,21 @@ A wrapper around the [readline](https://nodejs.org/api/readline.html) package.
 ```js
 const bear= await question('What kind of bear is best? ')
 ```
-### `echo()`
-A `console.log()` alternative optimalozed for scripting.
+
+### `exec$()`
+A wrapper around the [exec](https://github.com/shelljs/shelljs#execcommand--options--callback) function.
+Runs in silent mode and handle text to be used as variables.
 
 ```js
-const branch= exec("git branch --show-current");
+const branch= exec$("git branch --show-current");
+echo('Current branch is', branch);
+```
+
+### `echo()`
+A `console.log()` alternative optimalized for scripting.
+
+```js
+const branch= exec$("git branch --show-current");
 echo('Current branch is', branch);
 ```
 
@@ -89,10 +150,10 @@ echo('Current branch is', branch);
 Returns the stdin as a string.
 
 ```js
-const content= JSON.parse(await stdin())
+const content= JSON.parse(await stdin());
 ```
 
-### `chalk`
+### `chalk` package
 The [chalk](https://www.npmjs.com/package/chalk) package. Also as shorthand **s**.
 
 ```js
