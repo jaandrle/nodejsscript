@@ -16,7 +16,7 @@ export function xarg(...params){
 	return function call(arg){
 		let replaced= 0;
 		const args_final= args.map(a=> a.replaceAll(needle, ()=> ( replaced+= 1, arg )));
-		if(!replaced) args.push(arg);
+		if(!replaced) args_final.push(arg);
 		return cmd.apply(null, args_final);
 	};
 }
