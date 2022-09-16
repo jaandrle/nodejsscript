@@ -30,9 +30,8 @@ export const {
 	test, error,
 	cat, sed, grep, sort, head, tail, uniq,
 	which,
-	exit, env, set,
-	exec,
-	config
+	exit, env,
+	exec
 }= shelljs;
 /**
  * Silent execution of {@link exec} to be used with pipeing or as variable.
@@ -46,6 +45,25 @@ export const {
 export function exec$(command, options= {}){
 	return exec(command, Object.assign({}, options, { async: false, silent: true })).replace(/\n$/g, "");
 }
+
+const _config= shelljs.config;
+export const config= {
+    /** Will print each executed command to the screen.
+     * @default false
+     */
+	get verbose(){ return _config.verbose; },
+	set verbose(v){ return (_config.verbose = v); },
+    /** If true the script will die on errors. Default is false. */
+	get fatal(){ return _config.fatal; },
+	set fatal(v){ return (_config.fatal = v); },
+    /** Disable filename expansion (globbing) */
+	get noglob(){ return _config.noglob; },
+	set noglob(v){ return (_config.noglob = v); },
+	/** Set multiple options with one command.
+	 * @param {...Record<"verbose"|"fatal"|"noglob",boolean>} c
+	 * */
+	assign(...c){ return Object.assign(this, ...c); }
+};
 
 import chalk from "chalk";
 export { chalk, chalk as s };

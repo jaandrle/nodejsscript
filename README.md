@@ -34,11 +34,11 @@ mkdir(join(tempdir(), name));
  · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n) · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n) · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n) · [exec](https://github.com/shelljs/shelljs#execcommand--options--callback)
  · [find](https://github.com/shelljs/shelljs#findpath--path-) · [grep](https://github.com/shelljs/shelljs#grepoptions-regex_filter-file--file-) · [head](https://github.com/shelljs/shelljs#head-n-num-file--file-) · [ln](https://github.com/shelljs/shelljs#lnoptions-source-dest)
  · [ls](https://github.com/shelljs/shelljs#lsoptions-path-) · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-) · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest) · [pwd](https://github.com/shelljs/shelljs#pwd)
- · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [set](https://github.com/shelljs/shelljs#setoptions) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
+ · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
  · [tail](https://github.com/shelljs/shelljs#tail-n-num-file--file-) · [tempdir](https://github.com/shelljs/shelljs#tempdir) · [test](https://github.com/shelljs/shelljs#testexpression) · [touch](https://github.com/shelljs/shelljs#touchoptions-file--file-)
  · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output) · [which](https://github.com/shelljs/shelljs#whichcommand) · [exit](https://github.com/shelljs/shelljs#exitcode) · [error](https://github.com/shelljs/shelljs#error) · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
  | another libs: [cli()](#cli) · [chalk](#chalk-package) · [fetch()](#fetch)
- | this lib: [xarg()](#xarg) · [pipe()](#pipe) · [question()](#question) · [echo()](#echo) · [exec$()](#exec$) · [stdin()](#stdin)
+ | this lib: [xarg()](#xarg) · [pipe()](#pipe) · [question()](#question) · [echo()](#echo) · [exec$()](#exec$) · [stdin()](#stdin) · [config](#config)
 
 
 ## Documentation
@@ -147,6 +147,17 @@ Returns the stdin as a string.
 
 ```js
 const content= JSON.parse(await stdin());
+```
+
+### `config`
+Read/write global configuration.
+
+- `verbose`: Will print each executed command to the screen.
+- `fatal`: If true the script will die on errors.
+- `noglob`: Disable filename expansion (globbing)
+
+```js
+const { verbose, fatal, noglob }= config;
 ```
 
 ### `chalk` package
