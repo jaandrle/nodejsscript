@@ -1,6 +1,6 @@
 # NodeJS Script – write cross-platform scripts with ease
 This package provides very similar functionality such as [google/zx](https://github.com/google/zx).
-The key difference is to provide unix shell commands in cross-platform compatible way.
+The key difference is to provide unix shell commands in cross-platform compatible way and suitable for javascript.
 This is done by using [shelljs/shelljs](https://github.com/shelljs/shelljs) library.
 
 You can compare the final script code to `zx` example:
