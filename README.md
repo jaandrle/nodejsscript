@@ -7,7 +7,7 @@ You can compare the final script code to `zx` example:
 ```javascript
 #!/usr/bin/env nodejsscript
 import { exec, exec$, grep, echo } from "nodejsscript";
-echo(grep("name", "../package.json").trim());
+echo(grep("name", "package.json"));
 
 const branch= exec$("git branch --show-current");
 exec(`dep deploy --branch=${branch}`);
