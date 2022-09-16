@@ -1,6 +1,6 @@
 # NodeJS Script – write cross-platform scripts with ease
 This package provides very similar functionality such as [google/zx](https://github.com/google/zx).
-Tke key difference is to provide unix shell commands in cross-platform commpatible way.
+The key difference is to provide unix shell commands in cross-platform compatible way.
 This is done by using [shelljs/shelljs](https://github.com/shelljs/shelljs) library.
 
 You can compare the final script code to `zx` example:
@@ -21,14 +21,14 @@ const name= "foo bar";
 mkdir(tempdir()+"/"+name);
 ```
 
-## Instalation
+## Installation
 **For now experiment!!!**
 
-1. you need nodejs >=v17.0.1 ⇒ folows [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^node]
+1. you need nodejs >=v17.0.1 ⇒ follow [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^node]
 1. `npm install https://github.com/jaandrle/nodejsscript --global`
 
 ## Goods
- · [shelljs/shelljs:](https://github.com/shelljs/shelljs)
+[shelljs/shelljs](https://github.com/shelljs/shelljs):
 [cat](https://github.com/shelljs/shelljs#catoptions-file--file-) · [cd](https://github.com/shelljs/shelljs#cddir) · [chmod](https://github.com/shelljs/shelljs#chmodoptions-octal_mode--octal_string-file) · [cp](https://github.com/shelljs/shelljs#cpoptions-source--source--dest)
  · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n) · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n) · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n) · [exec](https://github.com/shelljs/shelljs#execcommand--options--callback)
  · [find](https://github.com/shelljs/shelljs#findpath--path-) · [grep](https://github.com/shelljs/shelljs#grepoptions-regex_filter-file--file-) · [head](https://github.com/shelljs/shelljs#head-n-num-file--file-) · [ln](https://github.com/shelljs/shelljs#lnoptions-source-dest)
@@ -36,15 +36,8 @@ mkdir(tempdir()+"/"+name);
  · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [set](https://github.com/shelljs/shelljs#setoptions) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
  · [tail](https://github.com/shelljs/shelljs#tail-n-num-file--file-) · [tempdir](https://github.com/shelljs/shelljs#tempdir) · [test](https://github.com/shelljs/shelljs#testexpression) · [touch](https://github.com/shelljs/shelljs#touchoptions-file--file-)
  · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output) · [which](https://github.com/shelljs/shelljs#whichcommand) · [exit](https://github.com/shelljs/shelljs#exitcode) · [error](https://github.com/shelljs/shelljs#error) · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
- · [cli()](#cli)
- · [xarg()](#xarg)
- · [pipe()](#pipe)
- · [fetch()](#fetch)
- · [question()](#question)
- · [echo()](#echo)
- · [exec$()](#exec$)
- · [stdin()](#stdin)
- · [chalk](#chalk-package)
+ | another libs: [cli()](#cli) · [chalk](#chalk-package) · [fetch()](#fetch)
+ | this lib: [xarg()](#xarg) · [pipe()](#pipe) · [question()](#question) · [echo()](#echo) · [exec$()](#exec$) · [stdin()](#stdin)
 
 
 ## Documentation
@@ -107,6 +100,8 @@ pipe(
 ### `cli()`
 A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
 In addition to the origin, `cli()` supports to fill script name from script file name.
+This should be good balance between [commander - npm](https://www.npmjs.com/package/commander) and parsing arguments and writing help texts by hand.
+For more complex scripts just create full npm package.
 
 ```js
 cli("", true)
@@ -139,7 +134,7 @@ echo('Current branch is', branch);
 ```
 
 ### `echo()`
-A `console.log()` alternative optimalized for scripting.
+A `console.log()` alternative optimized for scripting.
 
 ```js
 const branch= exec$("git branch --show-current");
