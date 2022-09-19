@@ -28,8 +28,8 @@ function xargs({ needle }, ...args){
 	if(!replaced) args_final.push(pipe);
 	return cmd.apply(null, args_final);
 }
-function $(config_next= "-s"){
-	config_next= plugin.parseOptions(config_next, {
+function $(config_next){
+	config_next= !config_next ? Object.assign({}, shelljs.config, { silent: true }) : plugin.parseOptions(config_next, {
 		v: "verbose",
 		f: "fatal",
 		s: "silent"

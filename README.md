@@ -60,7 +60,8 @@ import { … } from "nodejsscript";
 
 ### shelljs
 The `shelljs` extension is available as `s`. For docs visits [shelljs/shelljs](https://github.com/shelljs/shelljs).
-You can pipe commands when make sense by changing see **[Pipes](https://github.com/shelljs/shelljs#pipes)**.
+You can pipe commands when make sense by chaining, see **[Pipes](https://github.com/shelljs/shelljs#pipes)**.
+Available commands: `ls`, `find`, `dirs`, `cd`, `pwd`, `pushd`, `popd`, `cp`, `rm`, `mv`, `mkdir`, `ln`, `touch`, `tempdir`, `chmod`, `test`, `error`, `cat`, `sed`, `grep`, `sort`, `head`, `tail`, `uniq`, `which`, `exit`, `env`, `exec`.
 
 ```js
 s.cat("./package.json").grep("version");
