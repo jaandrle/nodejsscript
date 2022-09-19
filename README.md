@@ -134,7 +134,7 @@ const bear= await question('What kind of bear is best? ')
 A `console.log()` alternative optimized for scripting.
 
 ```js
-const branch= exec$("git branch --show-current");
+const branch= s.$().exec("git branch --show-current");
 echo('Current branch is', branch);
 ```
 
