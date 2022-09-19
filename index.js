@@ -44,6 +44,8 @@ export const config= {
 import style from "ansi-colors";
 export { style };
 
+export { Spinner } from "./src/Spinner.js";
+
 import nodeFetch from 'node-fetch';
 /**
  * Fetch function
