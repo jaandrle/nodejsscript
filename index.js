@@ -41,8 +41,8 @@ export const config= {
 	assign(...c){ return Object.assign(this, ...c); }
 };
 
-import chalk from "chalk";
-export { chalk };
+import style from "ansi-colors";
+export { style };
 
 import nodeFetch from 'node-fetch';
 /**
@@ -86,7 +86,7 @@ import { createInterface } from 'node:readline';
  * */
 export function question(query= "", options= undefined){
 	query= String(query);
-	if(!/\s$/.test(query)) query+= "\n"+chalk.greenBright.bold('❯ ');
+	if(!/\s$/.test(query)) query+= "\n"+style.greenBright.bold('❯ ');
 	
 	const rl= createInterface({
 		input: process.stdin,

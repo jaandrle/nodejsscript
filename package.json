@@ -1,6 +1,6 @@
 {
 	"name": "nodejsscript",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"author": "Jan Andrle <andrle.jan@centrum.cz>",
 	"license": "MIT",
 	"description": "A tool for writing better scripts",
@@ -55,7 +55,7 @@
 	"dependencies": {
 		"@types/sade": "^1.7.4",
 		"@types/shelljs": "^0.8.11",
-		"chalk": "^5.0.1",
+		"ansi-colors": "^4.1.3",
 		"node-fetch": "^3.2.10",
 		"sade": "^1.8.1",
 		"shelljs": ">=v0.8.5"

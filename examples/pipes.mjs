@@ -1,6 +1,7 @@
 #!/usr/bin/env nodejsscript
 /* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true */
-import { s, pipe, echo, chalk, exit } from "nodejsscript";
+import { s, pipe, echo, style, exit } from "nodejsscript";
+style.theme({ pkg: style.magentaBright, version: style.greenBright });
 
 s.$().exec("npm list")
 	.grep("─")
@@ -8,7 +9,7 @@ s.$().exec("npm list")
 	.trim().split("\n")
 	.map(l=> l.slice(l.indexOf(" ")).split("@"))
 	.forEach(pipe(
-		([ pkg, version ])=> chalk.magentaBright(pkg)+"@"+chalk.greenBright(version),
+		([ pkg, version ])=> style.pkg(pkg)+"@"+style.greenBright(version),
 		echo
 	));
 

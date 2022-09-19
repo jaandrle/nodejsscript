@@ -27,7 +27,7 @@ s.mkdir(join(s.tempdir(), name));
 1. `npm install https://github.com/jaandrle/nodejsscript --global`
 
 ## Goods
-[s (shelljs)](#shelljs) · [cli()](#cli) · [chalk](#chalk-package) · [fetch()](#fetch) · [pipe()](#pipe) · [question()](#question) · [echo()](#echo) · [stdin()](#stdin) · [config](#config)
+[s (shelljs)](#shelljs) · [cli()](#cli) · [ansi-colors](#ansi-colors-package) · [fetch()](#fetch) · [pipe()](#pipe) · [question()](#question) · [echo()](#echo) · [stdin()](#stdin) · [config](#config)
 
 
 ## Documentation
@@ -97,11 +97,10 @@ Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe)). Provides 
 ```js
 pipe(
 	Number,
-	v=> chalk.greenBright(v+1),
+	v=> style.greenBright(v+1),
 	v=> `Result is: ${v}`,
 	echo
 )(await question("Choose number:"));
-
 ```
 
 ### `cli()`
@@ -162,11 +161,12 @@ const config.assign({ verbose: true, silent: false });
 
 ```
 
-### `chalk` package
-The [chalk](https://www.npmjs.com/package/chalk) package.
+### `ansi-colors` package
+The [doowb/ansi-colors](https://github.com/doowb/ansi-colors) package as `style`.
 
 ```js
-echo(chalk.blue('Hello world!'));
+style.theme({ info: style.blue });
+echo(style.info('Hello world!'));
 ```
 
 [^node]: Alternatively `curl -sL install-node.vercel.app/17.0.1 | bash`

@@ -1,5 +1,5 @@
 export * from './types/shelljs.d.ts';
 export {
-	chalk, fetch,
+	style, fetch,
 	echo, question, stdin, cli
 } from "./index.js";
