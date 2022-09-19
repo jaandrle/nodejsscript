@@ -77,7 +77,7 @@ s.cat("./package.json").grep("version");
 #### `xargs("-I", pattern, cmd, ...cmd_args)`
 ```js
 s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
-s.exec("git branch --show-current").xargs("-I", "§", s.exec, "dep deploy --branch=§");
+s.exec("git branch --show-current").xargs({ "-I": "§" }, s.exec, "dep deploy --branch=§");
 ```
 
 #### `$()`

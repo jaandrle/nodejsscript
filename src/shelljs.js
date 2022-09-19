@@ -17,7 +17,6 @@ export default shelljs;
 
 function xargs({ needle }, ...args){
 	if(!needle) needle= "{}";
-	else needle= args.shift();
 	const [ cmd, ...cmd_args ]= args;
 	if(typeof cmd!=="function")
 		plugin.error("xargs needs one of the `shelljs` commands as first argument");
