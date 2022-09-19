@@ -1,5 +1,5 @@
 #!/usr/bin/env nodejsscript
-import { cli, echo, mkdir, pipe, rm, tempdir, test, xarg } from "nodejsscript";
+import { cli, s, echo, pipe } from "nodejsscript";
 import { join } from "node:path";
 
 cli("", true)
@@ -7,13 +7,13 @@ cli("", true)
 	.describe("NodeJS Script cli test")
 	.option("--clear", "Clears cerated temp dir")
 	.action(function main({ clear }){
-		const name= join(tempdir(), "foo bar");
-		mkdir("-p", name);
+		const name= join(s.tempdir(), "foo bar");
+		s.mkdir("-p", name);
 		
-		const testDir= pipe(xarg(test, "-d"), echo);
+		const testDir= pipe(s.test.bind(null, "-d"), echo);
 		testDir(name);
 		
-		if(clear) rm("-R", name);
+		if(clear) s.rm("-R", name);
 		testDir(name);
 	})
 	.parse(process.argv);

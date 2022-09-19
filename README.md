@@ -6,20 +6,18 @@ This is done by using [shelljs/shelljs](https://github.com/shelljs/shelljs) libr
 You can compare the final script code to `zx` example:
 ```javascript
 #!/usr/bin/env nodejsscript
-import { exec, exec$, grep, echo } from "nodejsscript";
-echo(grep("name", "package.json"));
+import { s, echo } from "nodejsscript";
+echo(s.grep("name", "package.json"));
 
-const branch= exec$("git branch --show-current");
-exec(`dep deploy --branch=${branch}`);
+s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
 
-exec("sleep 1; echo 1");
-exec("sleep 2; echo 2");
-exec("sleep 3; echo 3");
+s.exec("sleep 1; echo 1");
+s.exec("sleep 2; echo 2");
+s.exec("sleep 3; echo 3");
 
-import { mkdir, tempdir } from "nodejsscript";
 import { join } from "node:path";
 const name= "foo bar";
-mkdir(join(tempdir(), name));
+s.mkdir(join(s.tempdir(), name));
 ```
 
 ## Installation
@@ -29,16 +27,7 @@ mkdir(join(tempdir(), name));
 1. `npm install https://github.com/jaandrle/nodejsscript --global`
 
 ## Goods
-[shelljs/shelljs](https://github.com/shelljs/shelljs):
-[cat](https://github.com/shelljs/shelljs#catoptions-file--file-) · [cd](https://github.com/shelljs/shelljs#cddir) · [chmod](https://github.com/shelljs/shelljs#chmodoptions-octal_mode--octal_string-file) · [cp](https://github.com/shelljs/shelljs#cpoptions-source--source--dest)
- · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n) · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n) · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n) · [exec](https://github.com/shelljs/shelljs#execcommand--options--callback)
- · [find](https://github.com/shelljs/shelljs#findpath--path-) · [grep](https://github.com/shelljs/shelljs#grepoptions-regex_filter-file--file-) · [head](https://github.com/shelljs/shelljs#head-n-num-file--file-) · [ln](https://github.com/shelljs/shelljs#lnoptions-source-dest)
- · [ls](https://github.com/shelljs/shelljs#lsoptions-path-) · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-) · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest) · [pwd](https://github.com/shelljs/shelljs#pwd)
- · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
- · [tail](https://github.com/shelljs/shelljs#tail-n-num-file--file-) · [tempdir](https://github.com/shelljs/shelljs#tempdir) · [test](https://github.com/shelljs/shelljs#testexpression) · [touch](https://github.com/shelljs/shelljs#touchoptions-file--file-)
- · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output) · [which](https://github.com/shelljs/shelljs#whichcommand) · [exit](https://github.com/shelljs/shelljs#exitcode) · [error](https://github.com/shelljs/shelljs#error) · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
- | another libs: [cli()](#cli) · [chalk](#chalk-package) · [fetch()](#fetch)
- | this lib: [xarg()](#xarg) · [pipe()](#pipe) · [question()](#question) · [echo()](#echo) · [exec$()](#exec$) · [stdin()](#stdin) · [config](#config)
+[s (shelljs)](#shelljs) · [cli()](#cli) · [chalk](#chalk-package) · [fetch()](#fetch) · [pipe()](#pipe) · [question()](#question) · [echo()](#echo) · [stdin()](#stdin) · [config](#config)
 
 
 ## Documentation
@@ -69,29 +58,39 @@ All function (`shelljs`, `fetch`, …) are exported by library, so use:
 import { … } from "nodejsscript";
 ```
 
-### `xarg()`
-Simplify version of `xargs` allowing passing one argument. For now only "-I" argument is allowed.
-By default `{}` will be replaced, if not presented the argument is append as last one.
+### shelljs
+The `shelljs` extension is available as `s`. For docs visits [shelljs/shelljs](https://github.com/shelljs/shelljs).
+You can pipe commands when make sense by changing see **[Pipes](https://github.com/shelljs/shelljs#pipes)**.
 
 ```js
-pipe(
-	exec$.bind(null, "git branch --show-current"),
-	xarg(exec, "echo deploy --branch={}")
-)();
-pipe(
-	exec$.bind(null, "git branch --show-current"),
-	xarg("-I §", exec, "echo deploy --branch=§")
-)();
+s.cat("./package.json").grep("version");
+```
+… this library adds two function `xargs` and `$`:
+#### `xargs(cmd, ...cmd_args)`
+#### `xargs("-I", pattern, cmd, ...cmd_args)`
+```js
+s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
+s.exec("git branch --show-current").xargs("-I", "§", s.exec, "dep deploy --branch=§");
+```
+
+#### `$()`
+#### `$("-svf")`
+Modifies config for next command in chain. The `$()` runs next command in silent mode (compare to bash `var=$(echo Hi)`).
+
+```js
+const branch= s.$().exec("git branch --show-current");
+echo(branch);
+
+s.$("-vf").exec("gyt branch --show-current");
 ```
 
 ### `pipe()`
 Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe)). Provides functional way to combine commands/functions.
-Can be used with [xarg()](#xarg). **Some functions from shelljs also allow you to combine them, see [Pipes](https://github.com/shelljs/shelljs#pipes)**.
 
 ```js
 pipe(
 	Number,
-	v=> s.greenBright(v+1),
+	v=> chalk.greenBright(v+1),
 	v=> `Result is: ${v}`,
 	echo
 )(await question("Choose number:"));
@@ -123,15 +122,6 @@ A wrapper around the [readline](https://nodejs.org/api/readline.html) package.
 
 ```js
 const bear= await question('What kind of bear is best? ')
-```
-
-### `exec$()`
-A wrapper around the [exec](https://github.com/shelljs/shelljs#execcommand--options--callback) function.
-Runs in silent mode and handle text to be used as variables.
-
-```js
-const branch= exec$("git branch --show-current");
-echo('Current branch is', branch);
 ```
 
 ### `echo()`
@@ -166,11 +156,10 @@ const config.assign({ verbose: true, silent: false });
 ```
 
 ### `chalk` package
-The [chalk](https://www.npmjs.com/package/chalk) package. Also as shorthand **s**.
+The [chalk](https://www.npmjs.com/package/chalk) package.
 
 ```js
 echo(chalk.blue('Hello world!'));
-echo(s.blue('Hello world!'));
 ```
 
 [^node]: Alternatively `curl -sL install-node.vercel.app/17.0.1 | bash`

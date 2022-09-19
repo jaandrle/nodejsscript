@@ -1,83 +1,39 @@
 export const pipe= (...funs)=> input=> Array.prototype.reduce.call(funs, (out, f)=> f(out), input);
-function parseOptions(candidate, initial= {}){
-	if(typeof candidate!=="string") return Object.assign({}, initial, candidate);
-	return candidate.split(" -").reduce(function parse(out, curr, i){
-		const space_i= curr.indexOf(" ");
-		const name= ( i ? "-" : "" )+curr.slice(0, space_i);
-		Reflect.set(out, name, curr.slice(space_i+1));
-		return out;
-	}, initial);
-}
-export function xarg(...params){
-	const options_default= { "-I": "{}" };
-	const options= typeof params[0]!=="function" ? parseOptions(params.shift()) : options_default;
-	const needle= options["-I"];
-	const [ cmd, ...args ]= params;
-	return function call(arg){
-		let replaced= 0;
-		const args_final= args.map(a=> a.replaceAll(needle, ()=> ( replaced+= 1, arg )));
-		if(!replaced) args_final.push(arg);
-		return cmd.apply(null, args_final);
-	};
-}
 
-import shelljs from "shelljs";
-export const {
-	ls, find, dirs,
-	cd, pwd, pushd, popd,
-	cp, rm, mv, mkdir, ln, touch, tempdir,
-	chmod,
-	test, error,
-	cat, sed, grep, sort, head, tail, uniq,
-	which,
-	exit, env,
-	exec
-}= shelljs;
-/**
- * Silent execution of {@link exec} to be used with pipeing or as variable.
- * @param {string} command The command to execute.
- * @param {object} options 
- * @param {boolean} [options.fatal] Exit when command return code is non-zero.
- * @param {string} [options.encoding] Character encoding to use.
- * @example
- * const out= exec$("cmd");
- */
-export function exec$(command, options= {}){
-	return exec(command, Object.assign({}, options, { async: false, silent: true })).replace(/\n$/g, "");
-}
-
-const _config= shelljs.config;
+import s from "./src/shelljs.js";
+export { s };
+export const exit= s.exit;
 export const config= {
 	/**
 	 * Suppresses all command output if `true`, except for `echo()` call.
 	 * @default false
 	 * */
-	get silent(){ return _config.silent; },
-	set silent(v){ _config.silent= v; },
+	get silent(){ return s.config.silent; },
+	set silent(v){ s.config.silent= v; },
     /**
 	 * Will print each executed command to the screen.
 	 * @default false
 	 * */
-	get verbose(){ return _config.verbose; },
-	set verbose(v){ return (_config.verbose= v); },
+	get verbose(){ return s.config.verbose; },
+	set verbose(v){ return (s.config.verbose= v); },
     /**
 	 * If `true`, the script will throw a JavaScript error when any `shell.js` command encounters an error. This is analogous to Bash's `set -e`.
 	 * @default false
 	 * */
-	get fatal(){ return _config.fatal; },
-	set fatal(v){ return (_config.fatal= v); },
+	get fatal(){ return s.config.fatal; },
+	set fatal(v){ return (s.config.fatal= v); },
     /**
 	 * Disable filename expansion (globbing)
 	 * @default false
 	 * */
-	get noglob(){ return _config.noglob; },
-	set noglob(v){ return (_config.noglob= v); },
+	get noglob(){ return s.config.noglob; },
+	set noglob(v){ return (s.config.noglob= v); },
     /**
 	 * Options for [`glob.sync()`](https://github.com/isaacs/node-glob/tree/af57da21c7722bb6edb687ccd4ad3b99d3e7a333#options).
 	 * @default {}
 	 * */
-	get globOptions(){ return _config.globOptions; },
-	set globOptions(v){ return (_config.globOptions= v); },
+	get globOptions(){ return s.config.globOptions; },
+	set globOptions(v){ return (s.config.globOptions= v); },
 	
 	/** Set multiple options with one command.
 	 * @param {...Record<"verbose"|"fatal"|"noglob"|"silent",boolean>} c
@@ -86,7 +42,7 @@ export const config= {
 };
 
 import chalk from "chalk";
-export { chalk, chalk as s };
+export { chalk };
 
 import nodeFetch from 'node-fetch';
 /**
@@ -96,14 +52,14 @@ import nodeFetch from 'node-fetch';
  * @return  {Promise<import('node-fetch').Response>}
  */
 export function fetch(url, init){
-	if(config.verbose) echo("fetch(", url, ",", init, ")");
+	if(s.config.verbose) echo("fetch(", url, ",", init, ")");
 	return nodeFetch(url, init);
 }
 
 import { log } from "node:console";
 export function echo(...messages){
 	log(...messages.map(v=>
-		v instanceof Error && config.verbose ? v :
+		v instanceof Error && s.config.verbose ? v :
 		( String(v)==="[object Object]" ? v : String(v).replaceAll("\t", "    ") )));
 }
 
