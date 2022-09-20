@@ -27,7 +27,7 @@ s.mkdir(join(s.tempdir(), name));
 1. `npm install https://github.com/jaandrle/nodejsscript --global`
 
 ## Goods
-[s (shelljs)](#shelljs) · [cli (register, question, rewritable, stdin)](#cli) · [ansi-colors](#ansi-colors-package) · [fetch()](#fetch) · [pipe()](#pipe)] · [echo()](#echo) · [config](#config)
+[s (shelljs)](#shelljs) · [cli (register, question, rewritable, stdin)](#cli) · [abortable (controller, timeout, interval)](#abortable) · [ansi-colors](#ansi-colors-package) · [fetch()](#fetch) · [pipe()](#pipe) · [echo()](#echo) · [config](#config)
 
 
 ## Documentation
@@ -129,12 +129,12 @@ Returns functions that rewrite previous terminal output created by this function
 ```js
 const logProgCon= abortable.controller();
 const logProg= cli.rewritable({ signal: logProgCon.signal });
-logProgCon.addEventListener("abort", echo.bind(null, "Task Done"), { signal: logProgCon.signal });
 logProg("Task started");
 // … later
 logProg("1/n Done");
 // … later
 logProgCon.abort();
+echo("Task finished");
 ```
 
 ### `abortable`
@@ -148,9 +148,10 @@ Returns `AbortController` to be used for aborting [fetch()](#fetch), [cli.rewrit
 ```js
 const data_controller= abortable.controller();
 const { signal }= data_controller;
-abortable.timeout(150, signal).catch(()=>{}).then(()=> data_controller.abort());
+abortable.timeout(150, signal).then(()=> data_controller.abort()).catch(()=>{});
 try{
 	const data= await fetch("https://example.com", { signal }).then(r=> r.json());
+	data_controller.abort();
 } catch(e){
 	echo("Error name is AbortError, when aborted – now:", e.name);
 }
