@@ -1,8 +1,8 @@
 #!/usr/bin/env nodejsscript
-import { s, echo, question, fetch } from "/home/jaandrle/.nvm/versions/node/v17.0.1/lib/node_modules/nodejsscript/index.js";
+import { s, echo, cli, fetch } from "nodejsscript";
 
-const username= await question('What is your GitHub username?');
-const token= await question('Do you have GitHub token in env?', {
+const username= await cli.question('What is your GitHub username?');
+const token= await cli.question('Do you have GitHub token in env?', {
 	completions: Object.keys(process.env),
 });
 

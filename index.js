@@ -44,8 +44,36 @@ export const config= {
 import style from "ansi-colors";
 export { style };
 
-export { Spinner } from "./src/Spinner.js";
-
+/* jshint ignore:start */
+const AbortController= globalThis.AbortController || await import('abort-controller');
+/* jshint ignore:end *//* global AbortController */
+export const abortable= {
+	controller(...args){ return new AbortController(...args); },
+	/**
+	 * Abortable `setInterval`.
+	 * @template {any[]} TArgs
+	 * @param {AbortSignal} signal
+	 * @param {(...args: TArgs) => void} callback
+	 * @param {number} [interval] Interval in milliseconds
+	 * @param {...TArgs} [params] Parameters for `callback`
+	 * */
+	interval(signal, callback, interval, ...params){
+		const id= setInterval(callback, interval, ...params);
+		signal.addEventListener("abort", clearInterval.bind(null, id));
+	},
+	/**
+	 * Abortable `setTimeout`.
+	 * @template {any[]} TArgs
+	 * @param {AbortSignal} signal
+	 * @param {(...args: TArgs) => void} callback
+	 * @param {number} [interval] Interval in milliseconds
+	 * @param {...TArgs} [params] Parameters for `callback`
+	 * */
+	timeout(signal, callback, interval, ...params){
+		const id= setTimeout(callback, interval, ...params);
+		signal.addEventListener("abort", clearTimeout.bind(null, id));
+	}
+};
 import nodeFetch from 'node-fetch';
 /**
  * Fetch function
@@ -66,46 +94,60 @@ export function echo(...messages){
 }
 
 import sade from "sade";
-/**
- * @param {string} usage The script name and usage (`[optional]`/`<required>`). If no `name`, then the script file name will be used.
- * @param {boolean} [is_single] See {@link sade}
- * @returns {sade.Sade}
- * */
-export function cli(usage, is_single= false){
-	if(usage && !/^[\[<]/.test(usage))
-		return sade(usage, is_single);
+import { createInterface } from "node:readline";
+import { createLogUpdate } from "log-update";
+export const cli= {
+	/**
+	* @param {string} usage The script name and usage (`[optional]`/`<required>`). If no `name`, then the script file name will be used.
+	* @param {boolean} [is_single] See {@link sade}
+	* @returns {sade.Sade}
+	* */
+	create(usage, is_single= false){
+		if(usage && !/^[\[<]/.test(usage))
+			return sade(usage, is_single);
 
-	const script= process.argv[1];
-	const name= script.slice(script.lastIndexOf("/")+1);
-	return sade(name+(usage ? " "+usage : ""), is_single);
-}
+		const script= process.argv[1];
+		const name= script.slice(script.lastIndexOf("/")+1);
+		return sade(name+(usage ? " "+usage : ""), is_single);
+	},
+	/**
+	* Promt user for answer.
+	* @param {string} query
+	* @param {{ completions: string[] }} options
+	* */
+	question(query= "", options= undefined){
+		query= String(query);
+		if(!/\s$/.test(query)) query+= "\n"+style.greenBright.bold('❯ ');
+		
+		const rl= createInterface({
+			input: process.stdin,
+			output: process.stdout,
+			terminal: true,
+			completer: !options || !Array.isArray(options.completions) ? undefined : 
+				function completer(line){
+					const completions= options.completions;
+					const hits= completions.filter((c) => c.startsWith(line));
+					return [hits.length ? hits : completions, line];
+				},
+		});
 
-import { createInterface } from 'node:readline';
-/**
- * Promt user for answer.
- * @param {string} query
- * @param {{ completions: string[] }} options
- * */
-export function question(query= "", options= undefined){
-	query= String(query);
-	if(!/\s$/.test(query)) query+= "\n"+style.greenBright.bold('❯ ');
-	
-	const rl= createInterface({
-		input: process.stdin,
-		output: process.stdout,
-		terminal: true,
-		completer: !options || !Array.isArray(options.completions) ? undefined : 
-			function completer(line){
-				const completions= options.completions;
-				const hits= completions.filter((c) => c.startsWith(line));
-				return [hits.length ? hits : completions, line];
-			},
-	});
-
-	return new Promise(resolve=>
-		rl.question(query,
-			answer=> { rl.close(); resolve(answer); }));
-}
+		return new Promise(resolve=>
+			rl.question(query,
+				answer=> { rl.close(); resolve(answer); }));
+	},
+	/**
+	 * Overwritable text output. For end use `abort` from {@link AbortController}.
+	 * @param {import("log-update").Options & { stream?: NodeJS.WritableStream, signal?: AbortSignal, end: "done"|"clear" }} params
+	 * */
+	rewritable({ stream= process.stdout, showCursor= false, end= "done", signal }= {}){
+		const log= createLogUpdate(stream, { showCursor });
+		if(signal) signal.addEventListener("abort", log[end].bind(log));
+		return function(...msg){
+			if(signal && signal.aborted) return;
+			return log(...msg);
+		};
+	}
+};
 
 export async function stdin(){
 	let buf = '';
@@ -113,4 +155,18 @@ export async function stdin(){
 	for await (const chunk of process.stdin)
 		buf += chunk;
 	return buf;
+}
+
+/**
+ * Repeatedly loops through the given chars/strings.
+ * Typical usage is to create a spinner.
+ * @param {string|string[]} texts
+ * */
+export function* textsLoop(texts){
+	if(!texts) texts= 'win32'===process.platform ? '|/-\\' : "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏";
+	const { length }= texts;
+	for(let i=0; true; i++){
+		if(i===length) i= 0;
+		yield texts[i];
+	}
 }
