@@ -57,21 +57,31 @@ export const abortable= {
 	 * @param {number} [interval] Interval in milliseconds
 	 * @param {...TArgs} [params] Parameters for `callback`
 	 * */
-	interval(signal, callback, interval, ...params){
+	interval(callback, interval, signal, ...params){
 		const id= setInterval(callback, interval, ...params);
-		signal.addEventListener("abort", clearInterval.bind(null, id));
+		signal.addEventListener("abort", clearInterval.bind(null, id), { once: true });
 	},
 	/**
 	 * Abortable `setTimeout`.
-	 * @template {any[]} TArgs
+	 * @template {any} TArg
 	 * @param {AbortSignal} signal
-	 * @param {(...args: TArgs) => void} callback
 	 * @param {number} [interval] Interval in milliseconds
-	 * @param {...TArgs} [params] Parameters for `callback`
+	 * @param {TArg} [param] Parameters for 'callback'
+	 * @returns {Promise<TArg>}
 	 * */
-	timeout(signal, callback, interval, ...params){
-		const id= setTimeout(callback, interval, ...params);
-		signal.addEventListener("abort", clearTimeout.bind(null, id));
+	timeout(interval, signal, param){
+		if(s.config.verbose) echo("timeout(", interval, ",", signal, ",", param, ")");
+		return new Promise(function(resolve, reject){
+			if(signal && signal.aborted) return reject(param);
+			
+			let id;
+			const onabort= !signal ? false : ()=> { clearTimeout(id); reject(param); };
+			id= setTimeout(param=> {
+				if(onabort) signal.removeEventListener("abort", onabort);
+				resolve(param);
+			}, interval, param);
+			if(onabort) signal.addEventListener("abort", onabort, { once: true });
+		});
 	}
 };
 import nodeFetch from 'node-fetch';
@@ -102,7 +112,7 @@ export const cli= {
 	* @param {boolean} [is_single] See {@link sade}
 	* @returns {sade.Sade}
 	* */
-	create(usage, is_single= false){
+	register(usage, is_single= false){
 		if(usage && !/^[\[<]/.test(usage))
 			return sade(usage, is_single);
 
@@ -141,32 +151,34 @@ export const cli= {
 	 * */
 	rewritable({ stream= process.stdout, showCursor= false, end= "done", signal }= {}){
 		const log= createLogUpdate(stream, { showCursor });
-		if(signal) signal.addEventListener("abort", log[end].bind(log));
+		if(signal) signal.addEventListener("abort", log[end].bind(log), { once: true });
 		return function(...msg){
 			if(signal && signal.aborted) return;
 			return log(...msg);
 		};
+	},
+	async stdin(){
+		let buf = '';
+		process.stdin.setEncoding('utf8');
+		for await (const chunk of process.stdin)
+			buf += chunk;
+		return buf;
 	}
 };
 
-export async function stdin(){
-	let buf = '';
-	process.stdin.setEncoding('utf8');
-	for await (const chunk of process.stdin)
-		buf += chunk;
-	return buf;
-}
 
 /**
- * Repeatedly loops through the given chars/strings.
+ * Repeatedly loops through the given chars/strings/….
  * Typical usage is to create a spinner.
- * @param {string|string[]} texts
+ * @template T
+ * @param {T[]} items
+ * @returns {Generator<T[], any, T>}
  * */
-export function* textsLoop(texts){
-	if(!texts) texts= 'win32'===process.platform ? '|/-\\' : "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏";
-	const { length }= texts;
+export function* cyclicLoop(items){
+	if(!items) items= 'win32'===process.platform ? '|/-\\' : "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏";
+	const { length }= items;
 	for(let i=0; true; i++){
 		if(i===length) i= 0;
-		yield texts[i];
+		yield items[i];
 	}
 }

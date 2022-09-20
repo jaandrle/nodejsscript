@@ -27,7 +27,7 @@ s.mkdir(join(s.tempdir(), name));
 1. `npm install https://github.com/jaandrle/nodejsscript --global`
 
 ## Goods
-[s (shelljs)](#shelljs) · [cli()](#cli) · [ansi-colors](#ansi-colors-package) · [fetch()](#fetch) · [pipe()](#pipe) · [question()](#question) · [echo()](#echo) · [stdin()](#stdin) · [config](#config)
+[s (shelljs)](#shelljs) · [cli (register, question, rewritable, stdin)](#cli) · [ansi-colors](#ansi-colors-package) · [fetch()](#fetch) · [pipe()](#pipe)] · [echo()](#echo) · [config](#config)
 
 
 ## Documentation
@@ -91,6 +91,110 @@ echo(branch);
 s.$("-vf").exec("gyt branch --show-current");
 ```
 
+### `cli`
+Namespace contains helpers for working with command line interface.
+
+[cli.register()](#cliregister) · [cli.question()](#cliquestion) · [cli.rewritable()](#clirewritable)
+
+#### `cli.register()`
+A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
+In addition to the origin, `cli.register()` supports to fill script name from script file name.
+This should be good balance between [commander - npm](https://www.npmjs.com/package/commander) and parsing arguments and writing help texts by hand.
+For more complex scripts just create full npm package.
+
+```js
+cli.register("", true)
+	.version("0.1.0")
+	.describe("NodeJS Script cli test")
+	.action(echo);
+```
+
+#### `cli.question()`
+A wrapper around the [readline](https://nodejs.org/api/readline.html) package.
+
+```js
+const bear= await cli.question('What kind of bear is best?');
+```
+
+#### `cli.stdin()`
+Returns the stdin as a string.
+
+```js
+const content= JSON.parse(await cli.stdin());
+```
+
+#### `cli.rewritable()`
+Returns functions that rewrite previous terminal output created by this function:
+
+```js
+const logProgCon= abortable.controller();
+const logProg= cli.rewritable({ signal: logProgCon.signal });
+logProgCon.addEventListener("abort", echo.bind(null, "Task Done"), { signal: logProgCon.signal });
+logProg("Task started");
+// … later
+logProg("1/n Done");
+// … later
+logProgCon.abort();
+```
+
+### `abortable`
+Namespace contains functions for creating `AbortController` and abortable 'interval'/'timeout'.
+
+[abortable.controller()](#abortablecontroller) · [abortable.timeout()](#abortabletimeout) · [abortable.interval()](#abortableinterval)
+
+#### `abortable.controller()`
+Returns `AbortController` to be used for aborting [fetch()](#fetch), [cli.rewritable()](#clirewritable), [abortable.timeout()](#abortabletimeout), [abortable.interval()](#availableinterval), ….
+
+```js
+const data_controller= abortable.controller();
+const { signal }= data_controller;
+abortable.timeout(150, signal).catch(()=>{}).then(()=> data_controller.abort());
+try{
+	const data= await fetch("https://example.com", { signal }).then(r=> r.json());
+} catch(e){
+	echo("Error name is AbortError, when aborted – now:", e.name);
+}
+```
+
+#### `abortable.timeout()`
+As 'promised' `setTimeout`:
+```js
+abortable.timeout(750)
+.then(echo);
+```
+…with abortion:
+```js
+const t_controller= abortable.controller();
+abortable.timeout(750, t_controller.signal)
+.then(echo.bind(null, "Not aborted"))
+.catch(echo.bind(null, "Aborted"));
+// …
+t_controller.abort();
+```
+
+#### `abortable.interval()`
+```js
+const i_controller= abortable.controller();
+abortable.interval(echo.bind(null, "Interval"), 750, i_controller.signal);
+abortable.timeout(10*750).then(()=> i_controller.abort());
+```
+
+### `cyclicLoop()`
+Repeatedly loops through the given chars/strings/….
+By default uses spinner string:
+```js
+const spin_controller= abortable.controller();
+spinner("Waiting…", spin_controller.signal);
+abortable.timeout(10*750).then(()=> spin_controller.abort());
+
+function spinner(message, signal){
+	const log= cli.rewritable({ signal });
+	const animation= cyclicLoop();
+	abortable.interval(()=> log(`${animation.next().value} ${message}`), 750, signal);
+}
+```
+…also see [spinner example](./examples/spinner.mjs).
+
 ### `pipe()`
 Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe)). Provides functional way to combine commands/functions.
 
@@ -103,31 +207,11 @@ pipe(
 )(await question("Choose number:"));
 ```
 
-### `cli()`
-A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
-In addition to the origin, `cli()` supports to fill script name from script file name.
-This should be good balance between [commander - npm](https://www.npmjs.com/package/commander) and parsing arguments and writing help texts by hand.
-For more complex scripts just create full npm package.
-
-```js
-cli("", true)
-	.version("0.1.0")
-	.describe("NodeJS Script cli test")
-	.action(echo);
-```
-
 ### `fetch()`
 A wrapper around the [node-fetch](https://www.npmjs.com/package/node-fetch) package.
 
 ```js
 const resp= await fetch('https://medv.io')
-```
-
-### `question()`
-A wrapper around the [readline](https://nodejs.org/api/readline.html) package.
-
-```js
-const bear= await question('What kind of bear is best? ')
 ```
 
 ### `echo()`
@@ -136,13 +220,6 @@ A `console.log()` alternative optimized for scripting.
 ```js
 const branch= s.$().exec("git branch --show-current");
 echo('Current branch is', branch);
-```
-
-### `stdin()`
-Returns the stdin as a string.
-
-```js
-const content= JSON.parse(await stdin());
 ```
 
 ### `config`

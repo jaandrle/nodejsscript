@@ -2,7 +2,7 @@
 import { cli, s, echo, pipe } from "nodejsscript";
 import { join } from "node:path";
 
-cli.create("", true)
+cli.register("", true)
 .version("0.1.0")
 .describe("NodeJS Script cli test")
 .option("--clear", "Clears cerated temp dir")
