@@ -2,7 +2,7 @@
 
 # Namespace: cli
 
-Helpers for simplify cli creation.
+Namespace contains helpers for working with command line interface.
 
 ## Table of contents
 
@@ -10,6 +10,7 @@ Helpers for simplify cli creation.
 
 - [register](cli.md#register)
 - [question](cli.md#question)
+- [rewritable](cli.md#rewritable)
 
 ## Functions
 
@@ -41,7 +42,7 @@ cli.register("", true)
 
 #### Defined in
 
-[index.d.ts:126](https://github.com/jaandrle/nodejsscript/blob/0f08352/index.d.ts#L126)
+[index.d.ts:186](https://github.com/jaandrle/nodejsscript/blob/cd34166/index.d.ts#L186)
 
 ___
 
@@ -49,7 +50,10 @@ ___
 
 ▸ **question**(`query?`, `options?`): `Promise`<`string`\>
 
-Promt user for answer.
+Promt user for answer. A wrapper around the [readline](https://nodejs.org/api/readline.html) package.
+```js
+const bear= await cli.question('What kind of bear is best?');
+```
 
 #### Parameters
 
@@ -65,4 +69,43 @@ Promt user for answer.
 
 #### Defined in
 
-[index.d.ts:132](https://github.com/jaandrle/nodejsscript/blob/0f08352/index.d.ts#L132)
+[index.d.ts:195](https://github.com/jaandrle/nodejsscript/blob/cd34166/index.d.ts#L195)
+
+___
+
+### rewritable
+
+▸ **rewritable**<`T`\>(`options?`): `T`
+
+Overwritable text output, returns [Topic](pubsub.md#topic-1).
+So for updating text use [publish](pubsub.md#publish), for end [publishClose](pubsub.md#publishclose).
+```js
+const { pub, pubC }= pubsub;
+const topic= cli.rewritable();
+pub(topic, "Task started");
+// … later
+pub(topic, "1/n Done");
+// … later
+pubC(topic);
+echo("Task finished");
+```
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends [`Topic`](pubsub.md#topic-1) |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options?` | `Options` & { `stream?`: `WritableStream` ; `showCursor`: `boolean` ; `end`: ``"clear"`` \| ``"done"`` ; `topic`: `T`  } |
+
+#### Returns
+
+`T`
+
+#### Defined in
+
+[index.d.ts:210](https://github.com/jaandrle/nodejsscript/blob/cd34166/index.d.ts#L210)

@@ -1,6 +1,7 @@
 #!/usr/bin/env nodejsscript
 /* jshint esversion: 9,-W097, -W040, node: true, expr: true, undef: true */
-import { style, cli, echo, exit, abortable, cyclicLoop } from "nodejsscript";
+import { style, cli, echo, exit, pubsub, cyclicLoop } from "nodejsscript";
+import { setTimeout } from "node:timers/promises";
 style.theme({ spin: style.magentaBright, info: style.blueBright, success: style.greenBright });
 
 longTask(spinner("Long task running…"))
@@ -13,14 +14,13 @@ longTask(spinner("Long task running…"))
 	exit(0);
 });
 
-function longTask(out){ return abortable.timeout(15*750, null, out); }
+function longTask(out){ return setTimeout(15*750, out); }
 function spinner(message= "Waiting", { interval= 750, animation= cyclicLoop() }= {}){
-	const controller= abortable.controller();
-	const { signal }= controller;
-	const log= cli.rewritable({ signal, stream: process.stderr, end: "clear" });
-	abortable.interval(()=> log(`${style.spin(animation.next().value)} ${style.info(message)}`), interval, signal);
+	const topic= pubsub.topicFromInterval(interval,
+		{ mapper: ()=> `${style.spin(animation.next().value)} ${style.info(message)}` });
+	cli.rewritable({ stream: process.stderr, end: "clear", topic });
 	return function(message){
-		controller.abort();
+		pubsub.pubC(topic);
 		echo(message);
 	};
 }

@@ -9,6 +9,7 @@ nodejsscript
 - [pipe](README.md#pipe)
 - [fetch](README.md#fetch)
 - [echo](README.md#echo)
+- [cyclicLoop](README.md#cyclicloop)
 
 ### Internal Functions
 
@@ -17,9 +18,11 @@ nodejsscript
 
 ### Public Namespaces
 
+- [config](modules/config.md)
 - [cli](modules/cli.md)
 - [s](modules/s.md)
 - [style](modules/style.md)
+- [pubsub](modules/pubsub.md)
 
 ### Internal Namespaces
 
@@ -67,7 +70,7 @@ pipe(
 
 #### Defined in
 
-[index.d.ts:14](https://github.com/jaandrle/nodejsscript/blob/0f08352/index.d.ts#L14)
+[index.d.ts:57](https://github.com/jaandrle/nodejsscript/blob/cd34166/index.d.ts#L57)
 
 ___
 
@@ -115,7 +118,7 @@ try{
 
 #### Defined in
 
-[index.d.ts:80](https://github.com/jaandrle/nodejsscript/blob/0f08352/index.d.ts#L80)
+[index.d.ts:123](https://github.com/jaandrle/nodejsscript/blob/cd34166/index.d.ts#L123)
 
 ___
 
@@ -126,7 +129,7 @@ ___
 Prints to `stdout` with newline. Multiple arguments can be passed, with the
 first used as the primary message and all additional used as substitution
 values similar to [`printf(3)`](http://man7.org/linux/man-pages/man3/printf.3.html) (the arguments are all passed to `util.format()`).
-Internally uses [log](README.md#log). Stringifies inputs except objects and errors in case of config.verbose.
+Internally uses [log](README.md#log). Stringifies inputs except objects and errors in case of [verbose](modules/config.md#verbose).
 
 ```js
 const count = 5;
@@ -153,7 +156,51 @@ echo(new Error("Test"));
 
 #### Defined in
 
-[index.d.ts:103](https://github.com/jaandrle/nodejsscript/blob/0f08352/index.d.ts#L103)
+[index.d.ts:146](https://github.com/jaandrle/nodejsscript/blob/cd34166/index.d.ts#L146)
+
+___
+
+### cyclicLoop
+
+▸ **cyclicLoop**<`T`\>(`items`): `Generator`<`T`[], `any`, `T`\>
+
+Repeatedly loops through the given chars/strings/….
+Typical usage is to create a spinner (by default):
+
+```js
+import { setTimeout } from "node:timers/promises";
+const topic= spinner(); //output=> ⠋ Waiting…
+setTimeout(10*750).then(pubsub.pubC.bind(null, topic));
+
+function spinner(message= "Waiting…"){
+	const animation= cyclicLoop();
+	const topic= pubsub.topicFromInterval(750,
+		{ mapper: ()=> `${animation.next().value} ${message}` });
+	cli.rewritable({ topic });
+	return topic;
+}
+```
+…also see [spinner example](../examples/spinner.mjs).
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `items` | `T`[] |
+
+#### Returns
+
+`Generator`<`T`[], `any`, `T`\>
+
+#### Defined in
+
+[index.d.ts:233](https://github.com/jaandrle/nodejsscript/blob/cd34166/index.d.ts#L233)
 
 ___
 

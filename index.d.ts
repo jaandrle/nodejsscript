@@ -1,3 +1,46 @@
+import { IOptions } from 'glob';
+/**
+ * Read/write global configuration.
+ * @category Public
+ */
+export namespace config {
+	/**
+	 * Suppresses all command output if `true`, except for `echo()` call.
+	 * @default false
+	 * */
+	const silent: boolean;
+    /**
+	 * Will print each executed command to the screen.
+	 * @default false
+	 * */
+	const verbose: boolean;
+    /**
+	 * If `true`, the script will throw a JavaScript error when any `shell.js` command encounters an error. This is analogous to Bash's `set -e`.
+	 * @default false
+	 * */
+	const fatal: boolean;
+    /**
+	 * Disable filename expansion (globbing)
+	 * @default false
+	 * */
+	const noglob: boolean;
+    /**
+	 * Options for [`glob.sync()`](https://github.com/isaacs/node-glob/tree/af57da21c7722bb6edb687ccd4ad3b99d3e7a333#options).
+	 * @default {}
+	 * */
+	const globOptions: IOptions;
+
+	/**
+	 *  Set multiple options with one command.
+	 * ```js
+	 * const { verbose, fatal, noglob }= config;
+	 * config.silent= true;
+	 * const config.assign({ verbose: true, silent: false });
+	 * ```
+	 * */
+	function assign(...c: Record<"verbose"|"fatal"|"noglob"|"silent",boolean>[]): typeof config;
+}
+
 /**
  * Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe). Provides functional way to combine commands/functions.
  * 
@@ -102,10 +145,27 @@ export { log } from 'node:console';
  */
 export function echo(message?: any, ...optionalParams: any[]): void;
 
+import * as pubsub from "./src/pubsub.d";
+/**
+ * Handles async code with [Publish–subscribe pattern - Wikipedia](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
+ * ```js
+ * import { setTimeout } from "node:timers/promises";
+ * const topic= pubsub.topic();
+ * pubsub.subscribe(topic, echo.bind(null, "1"));
+ * setTimeout(750).then(pubsub.publish.bind(null, "Message"));
+ * pubsub.subscribe(topic, echo.bind(null, "2"));
+ * // output 750ms later
+ * // 1 Message
+ * // 2 Message
+ * ```
+ * @category Public
+ */
+export { pubsub };
+
 import * as __sade from "sade";
 export { __sade };
 /**
- * Helpers for simplify cli creation.
+ * Namespace contains helpers for working with command line interface.
  * @category Public
  */
 export namespace cli {
@@ -125,9 +185,49 @@ export namespace cli {
 	 * */
 	function register(usage: string, is_single?: boolean): __sade.Sade
 	/**
-	 * Promt user for answer.
+	 * Promt user for answer. A wrapper around the [readline](https://nodejs.org/api/readline.html) package.
+	 * ```js
+	 * const bear= await cli.question('What kind of bear is best?');
+	 * ```
 	 * @param query Question
 	 * @param  options The optional `completions` is array of options to be suggested when `tab` key is pressed.
 	 * */
 	function question(query?: string, options?: { completions: string[] }): Promise<string>
+	/**
+	 * Overwritable text output, returns {@link pubsub.Topic}.
+	 * So for updating text use {@link pubsub.publish}, for end {@link pubsub.publishClose}.
+	 * ```js
+	 * const { pub, pubC }= pubsub;
+	 * const topic= cli.rewritable();
+	 * pub(topic, "Task started");
+	 * // … later
+	 * pub(topic, "1/n Done");
+	 * // … later
+	 * pubC(topic);
+	 * echo("Task finished");
+	 * ```
+	 * */
+	function rewritable<T extends pubsub.Topic>(options?: import("log-update").Options & { stream?: NodeJS.WritableStream, showCursor: boolean, end: "done"|"clear", topic: T }): T
 }
+
+/**
+ * Repeatedly loops through the given chars/strings/….
+ * Typical usage is to create a spinner (by default):
+ *
+ * ```js
+ * import { setTimeout } from "node:timers/promises";
+ * const topic= spinner(); //output=> ⠋ Waiting…
+ * setTimeout(10*750).then(pubsub.pubC.bind(null, topic));
+ * 
+ * function spinner(message= "Waiting…"){
+ * 	const animation= cyclicLoop();
+ * 	const topic= pubsub.topicFromInterval(750,
+ * 		{ mapper: ()=> `${animation.next().value} ${message}` });
+ * 	cli.rewritable({ topic });
+ * 	return topic;
+ * }
+ * ```
+ * …also see [spinner example](../examples/spinner.mjs).
+ * @category Public
+ * */
+export function cyclicLoop<T>(items: T[]): Generator<T[], any, T>
