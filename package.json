@@ -24,16 +24,17 @@
 		"bin/cli.mjs",
 		"index.js"
 	],
-	"types": "types/index.d.ts",
+	"types": "index.d.ts",
 	"typesVersions": {
 		"*": {
 			".": [
-				"./types/index.d.ts"
+				"./index.d.ts"
 			]
 		}
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"doc": "npx typedoc index.d.ts --readme none"
 	},
 	"engines": {
 		"node": ">= 16.0.0"
@@ -61,5 +62,9 @@
 		"node-fetch": "^3.2.10",
 		"sade": "^1.8.1",
 		"shelljs": ">=v0.8.5"
+	},
+	"devDependencies": {
+		"typedoc": "^0.23.15",
+		"typedoc-plugin-markdown": "^3.13.6"
 	}
 }
