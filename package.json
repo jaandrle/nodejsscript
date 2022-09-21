@@ -34,7 +34,7 @@
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"doc": "npx typedoc index.d.ts --readme none"
+		"doc": "npx typedoc index.d.ts --readme none --defaultCategory 'Internal' --categoryOrder 'Public' --categoryOrder 'Internal' --sort visibility"
 	},
 	"engines": {
 		"node": ">= 16.0.0"

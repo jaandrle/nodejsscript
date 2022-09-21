@@ -8,7 +8,7 @@
 
 ### MoveFunction
 
-▸ **MoveFunction**(`options`, `source`, `dest`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **MoveFunction**(`options`, `source`, `dest`): [`ShellString`](../modules/s.md#shellstring)
 
 Moves files. The wildcard `*` is accepted.
 
@@ -22,7 +22,7 @@ Moves files. The wildcard `*` is accepted.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 
@@ -32,7 +32,7 @@ node_modules/@types/shelljs/index.d.ts:181
 
 ### MoveFunction
 
-▸ **MoveFunction**(`source`, `dest`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **MoveFunction**(`source`, `dest`): [`ShellString`](../modules/s.md#shellstring)
 
 Moves files. The wildcard `*` is accepted.
 
@@ -45,7 +45,7 @@ Moves files. The wildcard `*` is accepted.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 

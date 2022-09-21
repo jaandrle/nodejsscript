@@ -27,7 +27,14 @@ s.mkdir(join(s.tempdir(), name));
 1. `npm install https://github.com/jaandrle/nodejsscript --global`
 
 ## Goods
-[s (shelljs)](#shelljs) · [cli (register, question, rewritable, stdin)](#cli) · [abortable (controller, timeout, interval)](#abortable) · [ansi-colors](#ansi-colors-package) · [fetch()](#fetch) · [pipe()](#pipe) · [echo()](#echo) · [config](#config)
+[s (shelljs)](./docs/modules/s.md)
+· [cli (register, question, rewritable, stdin)](./docs/modules/cli.md)
+· [style (ansi-colors)](./docs/modules/style.md)
+· [fetch()](./docs/README.md#fetch)
+· [pipe()](./docs/README.md#pipe)
+· [echo()](./docs/README.md#echo)
+· [abortable (controller, timeout, interval)](#abortable)
+· [config](#config)
 
 
 ## Documentation
@@ -58,38 +65,6 @@ All function (`shelljs`, `fetch`, …) are exported by library, so use:
 import { … } from "nodejsscript";
 ```
 
-### shelljs
-The `shelljs` extension is available as `s`. For docs visits [shelljs/shelljs](https://github.com/shelljs/shelljs).
-You can pipe commands when make sense by chaining, see [**Pipes**](https://github.com/shelljs/shelljs#pipes).
-Available commands: [cat](https://github.com/shelljs/shelljs#catoptions-file--file-) · [cd](https://github.com/shelljs/shelljs#cddir) · [chmod](https://github.com/shelljs/shelljs#chmodoptions-octal_mode--octal_string-file) · [cp](https://github.com/shelljs/shelljs#cpoptions-source--source--dest)
- · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n) · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n) · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n) · [exec](https://github.com/shelljs/shelljs#execcommand--options--callback)
- · [find](https://github.com/shelljs/shelljs#findpath--path-) · [grep](https://github.com/shelljs/shelljs#grepoptions-regex_filter-file--file-) · [head](https://github.com/shelljs/shelljs#head-n-num-file--file-) · [ln](https://github.com/shelljs/shelljs#lnoptions-source-dest)
- · [ls](https://github.com/shelljs/shelljs#lsoptions-path-) · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-) · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest) · [pwd](https://github.com/shelljs/shelljs#pwd)
- · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
- · [tail](https://github.com/shelljs/shelljs#tail-n-num-file--file-) · [tempdir](https://github.com/shelljs/shelljs#tempdir) · [test](https://github.com/shelljs/shelljs#testexpression) · [touch](https://github.com/shelljs/shelljs#touchoptions-file--file-)
- · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output) · [which](https://github.com/shelljs/shelljs#whichcommand) · [exit](https://github.com/shelljs/shelljs#exitcode) · [error](https://github.com/shelljs/shelljs#error) · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
-
-```js
-s.cat("./package.json").grep("version");
-```
-… this library adds two function `xargs` and `$`:
-#### `xargs(cmd, ...cmd_args)`
-#### `xargs("-I", pattern, cmd, ...cmd_args)`
-```js
-s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
-s.exec("git branch --show-current").xargs({ "-I": "§" }, s.exec, "dep deploy --branch=§");
-```
-
-#### `$()`
-#### `$("-svf")`
-Modifies config for next command in chain. The `$()` runs next command in silent mode (compare to bash `var=$(echo Hi)`).
-
-```js
-const branch= s.$().exec("git branch --show-current");
-echo(branch);
-
-s.$("-vf").exec("gyt branch --show-current");
-```
 
 ### `cli`
 Namespace contains helpers for working with command line interface.
@@ -196,33 +171,6 @@ function spinner(message, signal){
 ```
 …also see [spinner example](./examples/spinner.mjs).
 
-### `pipe()`
-Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe)). Provides functional way to combine commands/functions.
-
-```js
-pipe(
-	Number,
-	v=> style.greenBright(v+1),
-	v=> `Result is: ${v}`,
-	echo
-)(await question("Choose number:"));
-```
-
-### `fetch()`
-A wrapper around the [node-fetch](https://www.npmjs.com/package/node-fetch) package.
-
-```js
-const resp= await fetch('https://medv.io')
-```
-
-### `echo()`
-A `console.log()` alternative optimized for scripting.
-
-```js
-const branch= s.$().exec("git branch --show-current");
-echo('Current branch is', branch);
-```
-
 ### `config`
 Read/write global configuration.
 
@@ -238,13 +186,3 @@ config.silent= true;
 const config.assign({ verbose: true, silent: false });
 
 ```
-
-### `ansi-colors` package
-The [doowb/ansi-colors](https://github.com/doowb/ansi-colors) package as `style`.
-
-```js
-style.theme({ info: style.blue });
-echo(style.info('Hello world!'));
-```
-
-[^node]: Alternatively `curl -sL install-node.vercel.app/17.0.1 | bash`

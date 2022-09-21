@@ -8,7 +8,7 @@
 
 ### RemoveFunction
 
-▸ **RemoveFunction**(`options`, `files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **RemoveFunction**(`options`, `files`): [`ShellString`](../modules/s.md#shellstring)
 
 Removes files. The wildcard `*` is accepted.
 
@@ -21,7 +21,7 @@ Removes files. The wildcard `*` is accepted.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 
@@ -31,7 +31,7 @@ node_modules/@types/shelljs/index.d.ts:146
 
 ### RemoveFunction
 
-▸ **RemoveFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **RemoveFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -42,7 +42,7 @@ node_modules/@types/shelljs/index.d.ts:146
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -50,7 +50,7 @@ node_modules/@types/shelljs/index.d.ts:147
 
 ### RemoveFunction
 
-▸ **RemoveFunction**(`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **RemoveFunction**(`files`): [`ShellString`](../modules/s.md#shellstring)
 
 Removes files. The wildcard `*` is accepted.
 
@@ -62,7 +62,7 @@ Removes files. The wildcard `*` is accepted.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 
@@ -72,7 +72,7 @@ node_modules/@types/shelljs/index.d.ts:155
 
 ### RemoveFunction
 
-▸ **RemoveFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **RemoveFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -82,7 +82,7 @@ node_modules/@types/shelljs/index.d.ts:155
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 

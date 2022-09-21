@@ -8,7 +8,7 @@
 
 ### CatFunction
 
-▸ **CatFunction**(`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **CatFunction**(`files`): [`ShellString`](../modules/s.md#shellstring)
 
 Returns a string containing the given file, or a concatenated string
 containing the files if more than one file is given (a new line character
@@ -22,7 +22,7 @@ is introduced between each file).
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 A string containing the given file, or a concatenated string
         containing the files if more than one file is given
@@ -34,7 +34,7 @@ node_modules/@types/shelljs/index.d.ts:267
 
 ### CatFunction
 
-▸ **CatFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **CatFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -44,7 +44,7 @@ node_modules/@types/shelljs/index.d.ts:267
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 

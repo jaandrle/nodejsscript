@@ -1,5 +1,5 @@
 #!/usr/bin/env nodejsscript
-import { s, echo, cli, fetch } from "nodejsscript";
+import { s, cli, fetch } from "nodejsscript";
 
 const username= await cli.question('What is your GitHub username?');
 const token= await cli.question('Do you have GitHub token in env?', {

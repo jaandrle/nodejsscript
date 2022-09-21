@@ -14,30 +14,28 @@
 
 ### Properties
 
-- [async](s.ExecOptions.md#async)
-- [cwd](s.ExecOptions.md#cwd)
-- [encoding](s.ExecOptions.md#encoding)
-- [env](s.ExecOptions.md#env)
+- [silent](s.ExecOptions.md#silent)
 - [fatal](s.ExecOptions.md#fatal)
-- [gid](s.ExecOptions.md#gid)
-- [killSignal](s.ExecOptions.md#killsignal)
-- [maxBuffer](s.ExecOptions.md#maxbuffer)
+- [async](s.ExecOptions.md#async)
+- [encoding](s.ExecOptions.md#encoding)
 - [shell](s.ExecOptions.md#shell)
 - [signal](s.ExecOptions.md#signal)
-- [silent](s.ExecOptions.md#silent)
+- [maxBuffer](s.ExecOptions.md#maxbuffer)
+- [killSignal](s.ExecOptions.md#killsignal)
+- [windowsHide](s.ExecOptions.md#windowshide)
 - [timeout](s.ExecOptions.md#timeout)
 - [uid](s.ExecOptions.md#uid)
-- [windowsHide](s.ExecOptions.md#windowshide)
+- [gid](s.ExecOptions.md#gid)
+- [cwd](s.ExecOptions.md#cwd)
+- [env](s.ExecOptions.md#env)
 
 ## Properties
 
-### async
+### silent
 
-• `Optional` **async**: `boolean`
+• `Optional` **silent**: `boolean`
 
-Asynchronous execution.
-
-If a callback is provided, it will be set to `true`, regardless of the passed value.
+Do not echo program output to the console.
 
 **`Default`**
 
@@ -45,54 +43,7 @@ false
 
 #### Defined in
 
-node_modules/@types/shelljs/index.d.ts:819
-
-___
-
-### cwd
-
-• `Optional` **cwd**: `string` \| `URL`
-
-#### Inherited from
-
-child.ExecOptions.cwd
-
-#### Defined in
-
-node_modules/@types/node/child_process.d.ts:622
-
-___
-
-### encoding
-
-• `Optional` **encoding**: `string`
-
-Character encoding to use.
-
-Affects the values returned by `stdout` and `stderr`,
-and what is written to `stdout` and `stderr` when not in silent mode
-
-**`Default`**
-
-"utf8"
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:829
-
-___
-
-### env
-
-• `Optional` **env**: `ProcessEnv`
-
-#### Inherited from
-
-child.ExecOptions.env
-
-#### Defined in
-
-node_modules/@types/node/child_process.d.ts:623
+node_modules/@types/shelljs/index.d.ts:803
 
 ___
 
@@ -112,45 +63,40 @@ node_modules/@types/shelljs/index.d.ts:810
 
 ___
 
-### gid
+### async
 
-• `Optional` **gid**: `number`
+• `Optional` **async**: `boolean`
 
-#### Inherited from
+Asynchronous execution.
 
-child.ExecOptions.gid
+If a callback is provided, it will be set to `true`, regardless of the passed value.
+
+**`Default`**
+
+false
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:621
+node_modules/@types/shelljs/index.d.ts:819
 
 ___
 
-### killSignal
+### encoding
 
-• `Optional` **killSignal**: `number` \| `Signals`
+• `Optional` **encoding**: `string`
 
-#### Inherited from
+Character encoding to use.
 
-child.ExecOptions.killSignal
+Affects the values returned by `stdout` and `stderr`,
+and what is written to `stdout` and `stderr` when not in silent mode
 
-#### Defined in
+**`Default`**
 
-node_modules/@types/node/child_process.d.ts:797
-
-___
-
-### maxBuffer
-
-• `Optional` **maxBuffer**: `number`
-
-#### Inherited from
-
-child.ExecOptions.maxBuffer
+"utf8"
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:796
+node_modules/@types/shelljs/index.d.ts:829
 
 ___
 
@@ -182,19 +128,49 @@ node_modules/@types/node/child_process.d.ts:795
 
 ___
 
-### silent
+### maxBuffer
 
-• `Optional` **silent**: `boolean`
+• `Optional` **maxBuffer**: `number`
 
-Do not echo program output to the console.
+#### Inherited from
 
-**`Default`**
-
-false
+child.ExecOptions.maxBuffer
 
 #### Defined in
 
-node_modules/@types/shelljs/index.d.ts:803
+node_modules/@types/node/child_process.d.ts:796
+
+___
+
+### killSignal
+
+• `Optional` **killSignal**: `number` \| `Signals`
+
+#### Inherited from
+
+child.ExecOptions.killSignal
+
+#### Defined in
+
+node_modules/@types/node/child_process.d.ts:797
+
+___
+
+### windowsHide
+
+• `Optional` **windowsHide**: `boolean`
+
+**`Default`**
+
+true
+
+#### Inherited from
+
+child.ExecOptions.windowsHide
+
+#### Defined in
+
+node_modules/@types/node/child_process.d.ts:629
 
 ___
 
@@ -230,18 +206,42 @@ node_modules/@types/node/child_process.d.ts:620
 
 ___
 
-### windowsHide
+### gid
 
-• `Optional` **windowsHide**: `boolean`
-
-**`Default`**
-
-true
+• `Optional` **gid**: `number`
 
 #### Inherited from
 
-child.ExecOptions.windowsHide
+child.ExecOptions.gid
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:629
+node_modules/@types/node/child_process.d.ts:621
+
+___
+
+### cwd
+
+• `Optional` **cwd**: `string` \| `URL`
+
+#### Inherited from
+
+child.ExecOptions.cwd
+
+#### Defined in
+
+node_modules/@types/node/child_process.d.ts:622
+
+___
+
+### env
+
+• `Optional` **env**: `ProcessEnv`
+
+#### Inherited from
+
+child.ExecOptions.env
+
+#### Defined in
+
+node_modules/@types/node/child_process.d.ts:623

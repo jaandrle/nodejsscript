@@ -8,7 +8,7 @@
 
 ### LinkFunction
 
-▸ **LinkFunction**(`options`, `source`, `dest`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **LinkFunction**(`options`, `source`, `dest`): [`ShellString`](../modules/s.md#shellstring)
 
 Links source to dest. Use `-f` to force the link, should dest already exist.
 
@@ -22,7 +22,7 @@ Links source to dest. Use `-f` to force the link, should dest already exist.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 
@@ -32,7 +32,7 @@ node_modules/@types/shelljs/index.d.ts:680
 
 ### LinkFunction
 
-▸ **LinkFunction**(`source`, `dest`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **LinkFunction**(`source`, `dest`): [`ShellString`](../modules/s.md#shellstring)
 
 Links source to dest. Use `-f` to force the link, should dest already exist.
 
@@ -45,7 +45,7 @@ Links source to dest. Use `-f` to force the link, should dest already exist.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 

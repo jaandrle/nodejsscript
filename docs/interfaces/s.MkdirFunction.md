@@ -8,7 +8,7 @@
 
 ### MkdirFunction
 
-▸ **MkdirFunction**(`options`, `dir`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **MkdirFunction**(`options`, `dir`): [`ShellString`](../modules/s.md#shellstring)
 
 Creates directories.
 
@@ -21,7 +21,7 @@ Creates directories.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 
@@ -31,7 +31,7 @@ node_modules/@types/shelljs/index.d.ts:214
 
 ### MkdirFunction
 
-▸ **MkdirFunction**(`options`, ...`dir`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **MkdirFunction**(`options`, ...`dir`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -42,7 +42,7 @@ node_modules/@types/shelljs/index.d.ts:214
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -50,7 +50,7 @@ node_modules/@types/shelljs/index.d.ts:215
 
 ### MkdirFunction
 
-▸ **MkdirFunction**(`dir`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **MkdirFunction**(`dir`): [`ShellString`](../modules/s.md#shellstring)
 
 Creates directories.
 
@@ -62,7 +62,7 @@ Creates directories.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 
@@ -72,7 +72,7 @@ node_modules/@types/shelljs/index.d.ts:223
 
 ### MkdirFunction
 
-▸ **MkdirFunction**(...`dir`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **MkdirFunction**(...`dir`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -82,7 +82,7 @@ node_modules/@types/shelljs/index.d.ts:223
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 

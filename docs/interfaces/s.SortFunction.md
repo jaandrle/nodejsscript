@@ -8,7 +8,7 @@
 
 ### SortFunction
 
-▸ **SortFunction**(`options`, `files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **SortFunction**(`options`, `files`): [`ShellString`](../modules/s.md#shellstring)
 
 Return the contents of the files, sorted line-by-line.
 Sorting multiple files mixes their content (just as unix sort does).
@@ -22,7 +22,7 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -30,7 +30,7 @@ node_modules/@types/shelljs/index.d.ts:1111
 
 ### SortFunction
 
-▸ **SortFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **SortFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -41,7 +41,7 @@ node_modules/@types/shelljs/index.d.ts:1111
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -49,7 +49,7 @@ node_modules/@types/shelljs/index.d.ts:1112
 
 ### SortFunction
 
-▸ **SortFunction**(`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **SortFunction**(`files`): [`ShellString`](../modules/s.md#shellstring)
 
 Return the contents of the files, sorted line-by-line.
 Sorting multiple files mixes their content (just as unix sort does).
@@ -62,7 +62,7 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -70,7 +70,7 @@ node_modules/@types/shelljs/index.d.ts:1118
 
 ### SortFunction
 
-▸ **SortFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **SortFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -80,7 +80,7 @@ node_modules/@types/shelljs/index.d.ts:1118
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 

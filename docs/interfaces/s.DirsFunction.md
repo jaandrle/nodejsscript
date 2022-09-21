@@ -30,7 +30,7 @@ node_modules/@types/shelljs/index.d.ts:622
 
 ### DirsFunction
 
-▸ **DirsFunction**(`options`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **DirsFunction**(`options`): [`ShellString`](../modules/s.md#shellstring)
 
 Displays the list of currently remembered directories.
 
@@ -42,7 +42,7 @@ Displays the list of currently remembered directories.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Returns an array of paths in the stack, or a single path if +N or -N was specified.
 
@@ -52,7 +52,7 @@ node_modules/@types/shelljs/index.d.ts:631
 
 ### DirsFunction
 
-▸ **DirsFunction**(`options`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **DirsFunction**(`options`): [`ShellString`](../modules/s.md#shellstring)
 
 Displays the list of currently remembered directories.
 
@@ -64,7 +64,7 @@ Displays the list of currently remembered directories.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Returns an array of paths in the stack, or a single path if +N or -N was specified.
 
@@ -74,7 +74,7 @@ node_modules/@types/shelljs/index.d.ts:640
 
 ### DirsFunction
 
-▸ **DirsFunction**(`options`): [`ShellString`](../modules/s.md#shellstring-1) \| [`ShellArray`](../modules/s.md#shellarray)
+▸ **DirsFunction**(`options`): [`ShellString`](../modules/s.md#shellstring) \| [`ShellArray`](../modules/s.md#shellarray)
 
 Displays the list of currently remembered directories.
 
@@ -86,7 +86,7 @@ Displays the list of currently remembered directories.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1) \| [`ShellArray`](../modules/s.md#shellarray)
+[`ShellString`](../modules/s.md#shellstring) \| [`ShellArray`](../modules/s.md#shellarray)
 
 Returns an array of paths in the stack, or a single path if +N or -N was specified.
 

@@ -8,7 +8,7 @@
 
 ### ShellStringConstructor
 
-▸ **ShellStringConstructor**(`value`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **ShellStringConstructor**(`value`): [`ShellString`](../modules/s.md#shellstring)
 
 Wraps a string (or array) value. This has all the string (or array) methods,
 but also exposes extra methods: `.to()`, `.toEnd()`, and all the pipe-able
@@ -28,7 +28,7 @@ respectively.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 A string-like object with special methods.
 

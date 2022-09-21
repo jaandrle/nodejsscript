@@ -8,7 +8,7 @@
 
 ### GrepFunction
 
-▸ **GrepFunction**(`options`, `regex_filter`, `files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **GrepFunction**(`options`, `regex_filter`, `files`): [`ShellString`](../modules/s.md#shellstring)
 
 Reads input string from given files and returns a string containing all lines
 of the file that match the given `regex_filter`. Wildcard `*` accepted.
@@ -23,7 +23,7 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Returns a string containing all lines of the file that match the given regex_filter.
 
@@ -33,7 +33,7 @@ node_modules/@types/shelljs/index.d.ts:337
 
 ### GrepFunction
 
-▸ **GrepFunction**(`options`, `regex_filter`, ...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **GrepFunction**(`options`, `regex_filter`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -45,7 +45,7 @@ node_modules/@types/shelljs/index.d.ts:337
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -53,7 +53,7 @@ node_modules/@types/shelljs/index.d.ts:338
 
 ### GrepFunction
 
-▸ **GrepFunction**(`regex_filter`, `files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **GrepFunction**(`regex_filter`, `files`): [`ShellString`](../modules/s.md#shellstring)
 
 Reads input string from given files and returns a string containing all lines
 of the file that match the given `regex_filter`. Wildcard `*` accepted.
@@ -67,7 +67,7 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Returns a string containing all lines of the file that match the given `regex_filter`.
 
@@ -77,7 +77,7 @@ node_modules/@types/shelljs/index.d.ts:348
 
 ### GrepFunction
 
-▸ **GrepFunction**(`regex_filter`, ...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **GrepFunction**(`regex_filter`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -88,7 +88,7 @@ node_modules/@types/shelljs/index.d.ts:348
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 

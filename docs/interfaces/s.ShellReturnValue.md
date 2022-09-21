@@ -8,20 +8,10 @@
 
 ### Properties
 
-- [$](s.ShellReturnValue.md#$)
 - [xargs](s.ShellReturnValue.md#xargs)
+- [$](s.ShellReturnValue.md#$)
 
 ## Properties
-
-### $
-
-• **$**: [`DollarFunction`](s.DollarFunction.md)
-
-#### Defined in
-
-[src/shelljs.d.ts:38](https://github.com/jaandrle/nodejsscript/blob/fe6a3a4/src/shelljs.d.ts#L38)
-
-___
 
 ### xargs
 
@@ -29,4 +19,14 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:37](https://github.com/jaandrle/nodejsscript/blob/fe6a3a4/src/shelljs.d.ts#L37)
+[src/shelljs.d.ts:52](https://github.com/jaandrle/nodejsscript/blob/0f08352/src/shelljs.d.ts#L52)
+
+___
+
+### $
+
+• **$**: [`DollarFunction`](s.DollarFunction.md)
+
+#### Defined in
+
+[src/shelljs.d.ts:53](https://github.com/jaandrle/nodejsscript/blob/0f08352/src/shelljs.d.ts#L53)

@@ -85,12 +85,6 @@ export const abortable= {
 	}
 };
 import nodeFetch from 'node-fetch';
-/**
- * Fetch function
- * @param   {import('node-fetch').RequestInfo} url - Absolute url or Request instance
- * @param   {import('node-fetch').RequestInit} [init] - Fetch options
- * @return  {Promise<import('node-fetch').Response>}
- */
 export function fetch(url, init){
 	if(s.config.verbose) echo("fetch(", url, ",", init, ")");
 	return nodeFetch(url, init);
@@ -107,11 +101,6 @@ import sade from "sade";
 import { createInterface } from "node:readline";
 import { createLogUpdate } from "log-update";
 export const cli= {
-	/**
-	* @param {string} usage The script name and usage (`[optional]`/`<required>`). If no `name`, then the script file name will be used.
-	* @param {boolean} [is_single] See {@link sade}
-	* @returns {sade.Sade}
-	* */
 	register(usage, is_single= false){
 		if(usage && !/^[\[<]/.test(usage))
 			return sade(usage, is_single);
@@ -120,11 +109,6 @@ export const cli= {
 		const name= script.slice(script.lastIndexOf("/")+1);
 		return sade(name+(usage ? " "+usage : ""), is_single);
 	},
-	/**
-	* Promt user for answer.
-	* @param {string} query
-	* @param {{ completions: string[] }} options
-	* */
 	question(query= "", options= undefined){
 		query= String(query);
 		if(!/\s$/.test(query)) query+= "\n"+style.greenBright.bold('❯ ');

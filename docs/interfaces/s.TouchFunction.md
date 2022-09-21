@@ -8,7 +8,7 @@
 
 ### TouchFunction
 
-▸ **TouchFunction**(`options`, `files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **TouchFunction**(`options`, `files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -19,7 +19,7 @@
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -27,7 +27,7 @@ node_modules/@types/shelljs/index.d.ts:1071
 
 ### TouchFunction
 
-▸ **TouchFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **TouchFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -38,7 +38,7 @@ node_modules/@types/shelljs/index.d.ts:1071
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -46,7 +46,7 @@ node_modules/@types/shelljs/index.d.ts:1072
 
 ### TouchFunction
 
-▸ **TouchFunction**(`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **TouchFunction**(`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -56,7 +56,7 @@ node_modules/@types/shelljs/index.d.ts:1072
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -64,7 +64,7 @@ node_modules/@types/shelljs/index.d.ts:1074
 
 ### TouchFunction
 
-▸ **TouchFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **TouchFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -74,7 +74,7 @@ node_modules/@types/shelljs/index.d.ts:1074
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 

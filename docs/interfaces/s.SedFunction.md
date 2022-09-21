@@ -8,7 +8,7 @@
 
 ### SedFunction
 
-▸ **SedFunction**(`options`, `searchRegex`, `replacement`, `files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **SedFunction**(`options`, `searchRegex`, `replacement`, `files`): [`ShellString`](../modules/s.md#shellstring)
 
 Reads an input string from file and performs a JavaScript `replace()`
 on the input using the given search regex and replacement string or function.
@@ -24,7 +24,7 @@ on the input using the given search regex and replacement string or function.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 The new string after replacement.
 
@@ -34,7 +34,7 @@ node_modules/@types/shelljs/index.d.ts:295
 
 ### SedFunction
 
-▸ **SedFunction**(`options`, `searchRegex`, `replacement`, ...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **SedFunction**(`options`, `searchRegex`, `replacement`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -47,7 +47,7 @@ node_modules/@types/shelljs/index.d.ts:295
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -55,7 +55,7 @@ node_modules/@types/shelljs/index.d.ts:296
 
 ### SedFunction
 
-▸ **SedFunction**(`searchRegex`, `replacement`, `files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **SedFunction**(`searchRegex`, `replacement`, `files`): [`ShellString`](../modules/s.md#shellstring)
 
 Reads an input string from file and performs a JavaScript `replace()`
 on the input using the given search regex and replacement string or function.
@@ -70,7 +70,7 @@ on the input using the given search regex and replacement string or function.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 The new string after replacement.
 
@@ -80,7 +80,7 @@ node_modules/@types/shelljs/index.d.ts:307
 
 ### SedFunction
 
-▸ **SedFunction**(`searchRegex`, `replacement`, ...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **SedFunction**(`searchRegex`, `replacement`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -92,7 +92,7 @@ node_modules/@types/shelljs/index.d.ts:307
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 

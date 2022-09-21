@@ -8,7 +8,7 @@
 
 ### EchoFunction
 
-▸ **EchoFunction**(`options`, ...`text`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **EchoFunction**(`options`, ...`text`): [`ShellString`](../modules/s.md#shellstring)
 
 Prints string to stdout, and returns string with additional utility methods like .to().
 
@@ -21,7 +21,7 @@ Prints string to stdout, and returns string with additional utility methods like
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Returns the string that was passed as argument.
 
@@ -31,7 +31,7 @@ node_modules/@types/shelljs/index.d.ts:384
 
 ### EchoFunction
 
-▸ **EchoFunction**(...`text`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **EchoFunction**(...`text`): [`ShellString`](../modules/s.md#shellstring)
 
 Prints string to stdout, and returns string with additional utility methods like .to().
 
@@ -43,7 +43,7 @@ Prints string to stdout, and returns string with additional utility methods like
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Returns the string that was passed as argument.
 

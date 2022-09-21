@@ -8,7 +8,7 @@
 
 ### ChmodFunction
 
-▸ **ChmodFunction**(`options`, `mode`, `file`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **ChmodFunction**(`options`, `mode`, `file`): [`ShellString`](../modules/s.md#shellstring)
 
 Alters the permissions of a file or directory by either specifying the absolute
 permissions in octal form or expressing the changes in symbols.
@@ -29,7 +29,7 @@ Notable exceptions:
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 
@@ -39,7 +39,7 @@ node_modules/@types/shelljs/index.d.ts:1007
 
 ### ChmodFunction
 
-▸ **ChmodFunction**(`mode`, `file`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **ChmodFunction**(`mode`, `file`): [`ShellString`](../modules/s.md#shellstring)
 
 Alters the permissions of a file or directory by either specifying the absolute
 permissions in octal form or expressing the changes in symbols.
@@ -59,7 +59,7 @@ Notable exceptions:
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 

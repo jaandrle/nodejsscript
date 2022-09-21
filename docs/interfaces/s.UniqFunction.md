@@ -8,7 +8,7 @@
 
 ### UniqFunction
 
-▸ **UniqFunction**(`options`, `input`, `output?`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **UniqFunction**(`options`, `input`, `output?`): [`ShellString`](../modules/s.md#shellstring)
 
 Filter adjacent matching lines from input.
 
@@ -22,7 +22,7 @@ Filter adjacent matching lines from input.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -30,7 +30,7 @@ node_modules/@types/shelljs/index.d.ts:1159
 
 ### UniqFunction
 
-▸ **UniqFunction**(`input`, `output?`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **UniqFunction**(`input`, `output?`): [`ShellString`](../modules/s.md#shellstring)
 
 Filter adjacent matching lines from input.
 
@@ -43,7 +43,7 @@ Filter adjacent matching lines from input.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 

@@ -8,7 +8,7 @@
 
 ### CopyFunction
 
-▸ **CopyFunction**(`options`, `source`, `dest`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **CopyFunction**(`options`, `source`, `dest`): [`ShellString`](../modules/s.md#shellstring)
 
 Copies files. The wildcard `*` is accepted.
 
@@ -22,7 +22,7 @@ Copies files. The wildcard `*` is accepted.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 
@@ -32,7 +32,7 @@ node_modules/@types/shelljs/index.d.ts:108
 
 ### CopyFunction
 
-▸ **CopyFunction**(`source`, `dest`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **CopyFunction**(`source`, `dest`): [`ShellString`](../modules/s.md#shellstring)
 
 Copies files. The wildcard `*` is accepted.
 
@@ -45,7 +45,7 @@ Copies files. The wildcard `*` is accepted.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
 

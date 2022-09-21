@@ -8,7 +8,7 @@
 
 ### TailFunction
 
-▸ **TailFunction**(`options`, `files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **TailFunction**(`options`, `files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -19,7 +19,7 @@
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -27,7 +27,7 @@ node_modules/@types/shelljs/index.d.ts:1138
 
 ### TailFunction
 
-▸ **TailFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **TailFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -38,7 +38,7 @@ node_modules/@types/shelljs/index.d.ts:1138
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -46,7 +46,7 @@ node_modules/@types/shelljs/index.d.ts:1139
 
 ### TailFunction
 
-▸ **TailFunction**(`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **TailFunction**(`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -56,7 +56,7 @@ node_modules/@types/shelljs/index.d.ts:1139
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
@@ -64,7 +64,7 @@ node_modules/@types/shelljs/index.d.ts:1141
 
 ### TailFunction
 
-▸ **TailFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **TailFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -74,7 +74,7 @@ node_modules/@types/shelljs/index.d.ts:1141
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 

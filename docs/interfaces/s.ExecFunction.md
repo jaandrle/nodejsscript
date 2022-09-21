@@ -8,7 +8,7 @@
 
 ### ExecFunction
 
-▸ **ExecFunction**(`command`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **ExecFunction**(`command`): [`ShellString`](../modules/s.md#shellstring)
 
 Executes the given command synchronously.
 
@@ -20,7 +20,7 @@ Executes the given command synchronously.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Returns an object containing the return code and output as string.
 
@@ -30,7 +30,7 @@ node_modules/@types/shelljs/index.d.ts:725
 
 ### ExecFunction
 
-▸ **ExecFunction**(`command`, `options`): [`ShellString`](../modules/s.md#shellstring-1)
+▸ **ExecFunction**(`command`, `options`): [`ShellString`](../modules/s.md#shellstring)
 
 Executes the given command synchronously.
 
@@ -43,7 +43,7 @@ Executes the given command synchronously.
 
 #### Returns
 
-[`ShellString`](../modules/s.md#shellstring-1)
+[`ShellString`](../modules/s.md#shellstring)
 
 Returns an object containing the return code and output as string,
                or if `{async: true}` was passed, a `ChildProcess`.
@@ -78,7 +78,7 @@ node_modules/@types/shelljs/index.d.ts:745
 
 ### ExecFunction
 
-▸ **ExecFunction**(`command`, `options`): `ChildProcess` \| [`ShellString`](../modules/s.md#shellstring-1)
+▸ **ExecFunction**(`command`, `options`): `ChildProcess` \| [`ShellString`](../modules/s.md#shellstring)
 
 Executes the given command.
 
@@ -91,7 +91,7 @@ Executes the given command.
 
 #### Returns
 
-`ChildProcess` \| [`ShellString`](../modules/s.md#shellstring-1)
+`ChildProcess` \| [`ShellString`](../modules/s.md#shellstring)
 
 Returns an object containing the return code and output as string,
                or if `{async: true}` was passed, a `ChildProcess`.

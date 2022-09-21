@@ -8,19 +8,23 @@
 
 ### DollarFunction
 
-▸ **DollarFunction**(`options`): [`ShellReturnValue`](s.ShellReturnValue.md)
+▸ **DollarFunction**(`options`): [`ShellString`](../modules/s.md#shellstring)
 
-Modifies [config](../modules/s.md#config) for next command. By default `silent= true`
-
-**`Example`**
-
-```ts
+Modifies [config](../modules/s.md#config) for next command in chain. The `$()` runs next command in silent mode:
+```bash
 // comapre bash
 var=$(echo Hi)
 echo $var
 // with
 const var= s.$().echo("Hi");
 echo(var);
+```
+…examples:
+```js
+const branch= s.$().exec("git branch --show-current");
+echo(branch);
+
+s.$("-vf").exec("gyt branch --show-current");
 ```
 
 #### Parameters
@@ -31,20 +35,20 @@ echo(var);
 
 #### Returns
 
-[`ShellReturnValue`](s.ShellReturnValue.md)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
-[src/shelljs.d.ts:33](https://github.com/jaandrle/nodejsscript/blob/fe6a3a4/src/shelljs.d.ts#L33)
+[src/shelljs.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/0f08352/src/shelljs.d.ts#L46)
 
 ### DollarFunction
 
-▸ **DollarFunction**(): [`ShellReturnValue`](s.ShellReturnValue.md)
+▸ **DollarFunction**(): [`ShellString`](../modules/s.md#shellstring)
 
 #### Returns
 
-[`ShellReturnValue`](s.ShellReturnValue.md)
+[`ShellString`](../modules/s.md#shellstring)
 
 #### Defined in
 
-[src/shelljs.d.ts:34](https://github.com/jaandrle/nodejsscript/blob/fe6a3a4/src/shelljs.d.ts#L34)
+[src/shelljs.d.ts:47](https://github.com/jaandrle/nodejsscript/blob/0f08352/src/shelljs.d.ts#L47)

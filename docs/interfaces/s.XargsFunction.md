@@ -8,9 +8,14 @@
 
 ### XargsFunction
 
-▸ **XargsFunction**<`T`\>(`options`, `I_arg`, `cmd`, ...`cmd_args`): `ReturnType`<`T`\>
+▸ **XargsFunction**<`T`\>(`options`, `cmd`, ...`cmd_args`): `ReturnType`<`T`\>
 
 Works as `xargs` in bash, only `-I` option is supported.
+```js
+s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
+s.exec("git branch --show-current").xargs({ "-I": "§" }, s.exec, "dep deploy --branch=§");
+```
+ *
 
 #### Type parameters
 
@@ -22,10 +27,9 @@ Works as `xargs` in bash, only `-I` option is supported.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:     - `-I`: Next parameter represents to be replaced in `cmd_args`. |
-| `I_arg` | `string` | Defaults to `{}` |
-| `cmd` | `T` | ShellJS method from [ShellReturnValue](s.ShellReturnValue.md) |
-| `...cmd_args` | `Parameters`<`T`\> | Arguments for `cmd` |
+| `options` | [`XargsOptions`](s.XargsOptions.md) | Defaults to `-I {}`  * |
+| `cmd` | `T` | ShellJS method from [ShellReturnValue](s.ShellReturnValue.md)  * |
+| `...cmd_args` | `Parameters`<`T`\> | Arguments for `cmd`  * |
 
 #### Returns
 
@@ -35,7 +39,7 @@ Result of `cmd`
 
 #### Defined in
 
-[src/shelljs.d.ts:14](https://github.com/jaandrle/nodejsscript/blob/fe6a3a4/src/shelljs.d.ts#L14)
+[src/shelljs.d.ts:20](https://github.com/jaandrle/nodejsscript/blob/0f08352/src/shelljs.d.ts#L20)
 
 ### XargsFunction
 
@@ -60,4 +64,4 @@ Result of `cmd`
 
 #### Defined in
 
-[src/shelljs.d.ts:15](https://github.com/jaandrle/nodejsscript/blob/fe6a3a4/src/shelljs.d.ts#L15)
+[src/shelljs.d.ts:21](https://github.com/jaandrle/nodejsscript/blob/0f08352/src/shelljs.d.ts#L21)
