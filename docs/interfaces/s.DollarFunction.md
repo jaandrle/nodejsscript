@@ -35,7 +35,7 @@ echo(var);
 
 #### Defined in
 
-src/shelljs.d.ts:33
+[src/shelljs.d.ts:33](https://github.com/jaandrle/nodejsscript/blob/fe6a3a4/src/shelljs.d.ts#L33)
 
 ### DollarFunction
 
@@ -47,4 +47,4 @@ src/shelljs.d.ts:33
 
 #### Defined in
 
-src/shelljs.d.ts:34
+[src/shelljs.d.ts:34](https://github.com/jaandrle/nodejsscript/blob/fe6a3a4/src/shelljs.d.ts#L34)

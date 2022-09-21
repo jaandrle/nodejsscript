@@ -19,7 +19,7 @@
 
 #### Defined in
 
-src/shelljs.d.ts:38
+[src/shelljs.d.ts:38](https://github.com/jaandrle/nodejsscript/blob/fe6a3a4/src/shelljs.d.ts#L38)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-src/shelljs.d.ts:37
+[src/shelljs.d.ts:37](https://github.com/jaandrle/nodejsscript/blob/fe6a3a4/src/shelljs.d.ts#L37)

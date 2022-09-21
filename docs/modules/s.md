@@ -189,7 +189,7 @@ node_modules/@types/shelljs/index.d.ts:716
 
 #### Defined in
 
-src/shelljs.d.ts:41
+[src/shelljs.d.ts:41](https://github.com/jaandrle/nodejsscript/blob/fe6a3a4/src/shelljs.d.ts#L41)
 
 ___
 
