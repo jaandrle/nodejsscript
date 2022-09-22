@@ -14,7 +14,7 @@ class EchoOptions extends String{
 
 export function echo(options, ...messages){
 	let target= "stdout";
-	if(!options){
+	if(!arguments.length){
 		process[target].write("\n");
 		return ShellString("\n");
 	}
@@ -46,6 +46,6 @@ function rewritableEnd(type= "clear"){
 	rewritableCurr= false;
 }
 function prepareTexts(v){
-	if(v instanceof Error && config.verbose) return v;
-	return  String(v)==="[object Object]" ? v : String(v).replaceAll("\t", "    ");
+	if(v instanceof Error && !config.verbose) return String(v);
+	return v;
 }
