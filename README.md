@@ -65,3 +65,5 @@ import { setTimeout } from "node:timers/promises";
 import { join, resolve } from "node:path";
 ```
 …and more, see [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
+
+[^node]: Alternatively `curl -sL install-node.vercel.app/17.0.1 | bash`
