@@ -8,7 +8,6 @@ export interface EchoFunction {
 	 * - `-c`: Don’t **c**olorize output (e.g. objects)
 	 * - `-P`: Outputs objects in **p**rettier format
 	 * - `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
-	 * - `--`: Off options processing, e.g.: `echo("--", "- the list item.");`
 	 *
 	 * ```js
 	 * echo.use("-R", "0%");
@@ -54,7 +53,6 @@ export interface EchoFunction {
  * - `-c`: Don’t **c**olorize output (e.g. objects)
  * - `-P`: Outputs objects in **p**rettier format
  * - `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
- * - `--`: Off options processing, e.g.: `echo("--", "- the list item.");`
  *
  * ```js
  * echo.use("-R", "0%");

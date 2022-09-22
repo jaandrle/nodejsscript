@@ -70,7 +70,7 @@ pipe(
 
 #### Defined in
 
-[index.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L59)
+[index.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L59)
 
 ___
 
@@ -118,7 +118,7 @@ try{
 
 #### Defined in
 
-[index.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L125)
+[index.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L125)
 
 ___
 
@@ -150,7 +150,7 @@ cli("", true)
 
 #### Defined in
 
-[index.d.ts:145](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L145)
+[index.d.ts:145](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L145)
 
 ___
 
@@ -177,7 +177,7 @@ const bear= await question('What kind of bear is best?');
 
 #### Defined in
 
-[index.d.ts:155](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L155)
+[index.d.ts:155](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L155)
 
 ___
 
@@ -191,7 +191,7 @@ ___
 
 #### Defined in
 
-[index.d.ts:158](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L158)
+[index.d.ts:158](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L158)
 
 ___
 
@@ -237,7 +237,7 @@ function spinner(message= "Waiting…"){
 
 #### Defined in
 
-[index.d.ts:182](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L182)
+[index.d.ts:182](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L182)
 
 ___
 
@@ -252,7 +252,6 @@ The `console.log` alternative with method `use` similar to [echo](modules/s.md#e
 - `-c`: Don’t **c**olorize output (e.g. objects)
 - `-P`: Outputs objects in **p**rettier format
 - `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
-- `--`: Off options processing, e.g.: `echo("--", "- the list item.");`
 
 ```js
 echo.use("-R", "0%");
@@ -289,7 +288,7 @@ Returns processed string with additional utility methods like .to().
 
 #### Defined in
 
-[src/echo.d.ts:47](https://github.com/jaandrle/nodejsscript/blob/002debc/src/echo.d.ts#L47)
+[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/574f62d/src/echo.d.ts#L46)
 
 ___
 
