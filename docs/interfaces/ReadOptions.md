@@ -22,7 +22,7 @@ Promt mode, value is used as question. It is possible to cobine with other optio
 
 #### Defined in
 
-[index.d.ts:148](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L148)
+[index.d.ts:179](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L179)
 
 ___
 
@@ -34,7 +34,7 @@ Make sence to combine only with `-p` to not show pressed keys (e.g. to prompt pa
 
 #### Defined in
 
-[index.d.ts:150](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L150)
+[index.d.ts:181](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L181)
 
 ___
 
@@ -46,7 +46,7 @@ Make sence to combine only with `-p` to provide tab suggestion/completions.
 
 #### Defined in
 
-[index.d.ts:152](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L152)
+[index.d.ts:183](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L183)
 
 ___
 
@@ -58,7 +58,7 @@ Returns the `stdin` till given needle.
 
 #### Defined in
 
-[index.d.ts:154](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L154)
+[index.d.ts:185](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L185)
 
 ___
 
@@ -70,4 +70,4 @@ Choose given number of chars from `stdin`.
 
 #### Defined in
 
-[index.d.ts:156](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L156)
+[index.d.ts:187](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L187)

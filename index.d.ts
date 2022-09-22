@@ -129,14 +129,45 @@ import * as __sade from "sade";
 export { __sade };
 /**
  * A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
- * In addition to the origin, `cli.register()` supports to fill script name from script file name.
+ * In addition to the origin, `cli()` supports to fill script name from script file name.
  * This should be good balance between [commander - npm](https://www.npmjs.com/package/commander) and parsing arguments and writing help texts by hand.
  * For more complex scripts just create full npm package.
  * ```js
  * cli("", true)
- * 	.version("0.1.0")
- * 	.describe("NodeJS Script cli test")
- * 	.action(echo);
+ * .version("0.1.0")
+ * .describe("NodeJS Script cli test")
+ * .action(echo)
+ * .parse(process.argv);
+ * ```
+ * 	
+ * ```js
+ * cli("copy <file> <destination>", true)
+ * .version("0.1.0")
+ * .describe("copy file simpulation")
+ * .option("--force", "Overwrite file in destination.")
+ * .action(function(file, destination, { force }){
+ * 	// copy file logic
+ * })
+ * .parse(process.argv);
+ * ```
+ * 
+ * ```js
+ * const prog= cli('my-cli');
+ * prog
+ *   .version('1.0.5')
+ *   .option('--global, -g', 'An example global flag')
+ *   .option('-c, --config', 'Provide path to custom config', 'foo.config.js');
+ * prog
+ *   .command('build <src> <dest>')
+ *   .describe('Build the source directory. Expects an `index.js` entry file.')
+ *   .option('-o, --output', 'Change the name of the output file', 'bundle.js')
+ *   .example('build src build --global --config my-conf.js')
+ *   .example('build app public -o main.js')
+ *   .action((src, dest, opts) => {
+ *     echo(`> building from ${src} to ${dest}`);
+ *     echo('> these are extra opts', opts);
+ *   });
+ * prog.parse(process.argv);
  * ```
  * @param usage The script name and usage (`[optional]`/`<required>`). If no `name`, then the script file name will be used.
  * @param is_single See {@link __sade}

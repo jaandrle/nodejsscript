@@ -45,3 +45,7 @@ export const is_piped= {
 	get left(){ return fstatSync(0).isFIFO(); },
 	get right(){ return fstatSync(1).isFIFO(); }
 };
+
+/* jshint ignore:start */
+if(!globalThis.AbortController) globalThis.AbortController= await import('abort-controller');
+/* jshint ignore:end *//* global AbortController */

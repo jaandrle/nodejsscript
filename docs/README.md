@@ -77,7 +77,7 @@ pipe(
 
 #### Defined in
 
-[index.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L59)
+[index.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L59)
 
 ___
 
@@ -125,7 +125,7 @@ try{
 
 #### Defined in
 
-[index.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L125)
+[index.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L125)
 
 ___
 
@@ -134,14 +134,45 @@ ___
 ▸ **cli**(`usage`, `is_single?`): [`Sade`](interfaces/sade.Sade.md)
 
 A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
-In addition to the origin, `cli.register()` supports to fill script name from script file name.
+In addition to the origin, `cli()` supports to fill script name from script file name.
 This should be good balance between [commander - npm](https://www.npmjs.com/package/commander) and parsing arguments and writing help texts by hand.
 For more complex scripts just create full npm package.
 ```js
 cli("", true)
-	.version("0.1.0")
-	.describe("NodeJS Script cli test")
-	.action(echo);
+.version("0.1.0")
+.describe("NodeJS Script cli test")
+.action(echo)
+.parse(process.argv);
+```
+	
+```js
+cli("copy <file> <destination>", true)
+.version("0.1.0")
+.describe("copy file simpulation")
+.option("--force", "Overwrite file in destination.")
+.action(function(file, destination, { force }){
+	// copy file logic
+})
+.parse(process.argv);
+```
+
+```js
+const prog= cli('my-cli');
+prog
+  .version('1.0.5')
+  .option('--global, -g', 'An example global flag')
+  .option('-c, --config', 'Provide path to custom config', 'foo.config.js');
+prog
+  .command('build <src> <dest>')
+  .describe('Build the source directory. Expects an `index.js` entry file.')
+  .option('-o, --output', 'Change the name of the output file', 'bundle.js')
+  .example('build src build --global --config my-conf.js')
+  .example('build app public -o main.js')
+  .action((src, dest, opts) => {
+    echo(`> building from ${src} to ${dest}`);
+    echo('> these are extra opts', opts);
+  });
+prog.parse(process.argv);
 ```
 
 #### Parameters
@@ -157,7 +188,7 @@ cli("", true)
 
 #### Defined in
 
-[index.d.ts:145](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L145)
+[index.d.ts:176](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L176)
 
 ___
 
@@ -185,7 +216,7 @@ if(is_piped.left) await read().then(echo.bind(null, "E.g. for reading received i
 
 #### Defined in
 
-[index.d.ts:168](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L168)
+[index.d.ts:199](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L199)
 
 ___
 
@@ -231,7 +262,7 @@ function spinner(message= "Waiting…"){
 
 #### Defined in
 
-[index.d.ts:201](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L201)
+[index.d.ts:232](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L232)
 
 ___
 
@@ -248,11 +279,6 @@ The `console.log` alternative with method `use` similar to [echo](modules/s.md#e
 - `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
 
 ```js
-echo.use("-R", "0%");
-// …
-echo.use("-r", "100%");
-// combination
-echo.use("-2cP", { a: "A" });
 // as console.log
 const count = 5;
 echo('count: %d', count);
@@ -263,6 +289,15 @@ echo({ count });
 // Prints: { count: 5 }, to stdout
 echo(new Error("Test"));
 // Prints: 'Error: Test', when `config.verbose= false`
+```
+```js
+echo.use("-R", "0%");
+// …
+echo.use("-r", "100%");
+// combination
+echo.use("-2cP", { a: "A" });
+```
+```js
 echo("Hi").to("./test.txt");
 // Prints: 'Hi' & save to file 'test.txt'
 ```
@@ -282,7 +317,7 @@ Returns processed string with additional utility methods like .to().
 
 #### Defined in
 
-[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/5d995a1/src/echo.d.ts#L46)
+[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/2dce906/src/echo.d.ts#L46)
 
 ___
 
@@ -328,4 +363,4 @@ node pipes.js | … # — test by is_piped.right
 
 #### Defined in
 
-[index.d.ts:178](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L178)
+[index.d.ts:209](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L209)

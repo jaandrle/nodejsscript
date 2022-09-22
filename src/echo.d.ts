@@ -55,11 +55,6 @@ export interface EchoFunction {
  * - `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
  *
  * ```js
- * echo.use("-R", "0%");
- * // …
- * echo.use("-r", "100%");
- * // combination
- * echo.use("-2cP", { a: "A" });
  * // as console.log
  * const count = 5;
  * echo('count: %d', count);
@@ -70,6 +65,15 @@ export interface EchoFunction {
  * // Prints: { count: 5 }, to stdout
  * echo(new Error("Test"));
  * // Prints: 'Error: Test', when `config.verbose= false`
+ * ```
+ * ```js
+ * echo.use("-R", "0%");
+ * // …
+ * echo.use("-r", "100%");
+ * // combination
+ * echo.use("-2cP", { a: "A" });
+ * ```
+ * ```js
  * echo("Hi").to("./test.txt");
  * // Prints: 'Hi' & save to file 'test.txt'
  * ```
