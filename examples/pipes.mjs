@@ -3,14 +3,20 @@
 import { s, pipe, echo, style, exit } from "nodejsscript";
 style.theme({ pkg: style.magentaBright, version: style.greenBright });
 
-s.$().exec("npm list")
+const printPackage= pipe(
+	l=> l.slice(l.indexOf(" ")).split("@"),
+	([ pkg, version ])=> style.pkg(pkg)+"@"+style.version(version),
+	echo
+);
+const getPackages= is_global=> 
+	s.$().exec("npm list"+(is_global ? " --location=global" : ""))
 	.grep("─")
 	.grep("-v", "types")
-	.trim().split("\n")
-	.map(l=> l.slice(l.indexOf(" ")).split("@"))
-	.forEach(pipe(
-		([ pkg, version ])=> style.pkg(pkg)+"@"+style.greenBright(version),
-		echo
-	));
+	.sed(/->.*$/, '') //trim aliases
+	.trim().split("\n");
 
+echo("Local packages:");
+getPackages(false).forEach(printPackage);
+echo("Global packages:");
+getPackages(true).forEach(printPackage);
 exit(0);
