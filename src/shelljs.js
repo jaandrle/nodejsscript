@@ -1,4 +1,4 @@
-import shelljs, {ShellString} from "shelljs";
+import shelljs, { ShellString } from "shelljs";
 import plugin from "shelljs/plugin.js";
 
 plugin.register("xargs", xargs, {

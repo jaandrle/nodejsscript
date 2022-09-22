@@ -70,7 +70,7 @@ pipe(
 
 #### Defined in
 
-[index.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L59)
+[index.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L59)
 
 ___
 
@@ -118,7 +118,7 @@ try{
 
 #### Defined in
 
-[index.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L125)
+[index.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L125)
 
 ___
 
@@ -150,7 +150,7 @@ cli("", true)
 
 #### Defined in
 
-[index.d.ts:145](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L145)
+[index.d.ts:145](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L145)
 
 ___
 
@@ -177,7 +177,7 @@ const bear= await question('What kind of bear is best?');
 
 #### Defined in
 
-[index.d.ts:155](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L155)
+[index.d.ts:155](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L155)
 
 ___
 
@@ -191,7 +191,7 @@ ___
 
 #### Defined in
 
-[index.d.ts:158](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L158)
+[index.d.ts:158](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L158)
 
 ___
 
@@ -209,11 +209,11 @@ setTimeout(10*750).then(spinEnd);
 
 function spinner(message= "Waiting…"){
 	const animation= cyclicLoop();
-	const echoSpin= ()=> echo("-R", `${animation.next().value} ${message}`);
+	const echoSpin= ()=> echo.use("-R", `${animation.next().value} ${message}`);
 	const id= setInterval(echoSpin, 750);
 	return function(){
 		clearInterval(id);
-		echo("-r");
+		echo.use("-r");
 	};
 }
 ```
@@ -237,61 +237,16 @@ function spinner(message= "Waiting…"){
 
 #### Defined in
 
-[index.d.ts:182](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L182)
+[index.d.ts:182](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L182)
 
 ___
 
 ### echo
 
-▸ **echo**(`options`, `message?`, ...`optionalParams`): [`ShellString`](modules/s.md#shellstring)
-
-Similarly to [echo](modules/s.md#echo), the first argument accepts options string starting with `-`:
-- `-n`: Don’t append **n**ew line
-- `-1`/`-2`: Outputs to `stdout`/`stderr`
-- `-c`: Don’t **c**olorize output (e.g. objects)
-- `-P`: Outputs objects in **p**rettier format
-- `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
-- `--`: Off options processing, e.g.: `echo("--", "- the list item.");`
-
-```js
-echo("-R", "0%");
-// …
-echo("-r", "100%");
-// combination
-echo("-2cP", { a: "A" });
-// as console.log
-const count = 5;
-echo('count: %d', count);
-// Prints: count: 5, to stdout
-echo('count:', count);
-// Prints: count: 5, to stdout
-echo({ count });
-// Prints: { count: 5 }, to stdout
-echo(new Error("Test"));
-// Prints: 'Error: Test', when `config.verbose= false`
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `options` | \`-${string}\` | Available options: `-n`, `-1`/`-2`, `-c`, `-P`, `-R`/`-r` and `--`. |
-| `message?` | `any` | The text to print. |
-| `...optionalParams` | `any`[] | - |
-
-#### Returns
-
-[`ShellString`](modules/s.md#shellstring)
-
-Returns processed string with additional utility methods like .to().
-
-#### Defined in
-
-src/echo.d.ts:24
-
 ▸ **echo**(`message?`, ...`optionalParams`): [`ShellString`](modules/s.md#shellstring)
 
-Similarly to [echo](modules/s.md#echo), the first argument accepts options string starting with `-`:
+The `console.log` alternative with method `use` similar to [echo](modules/s.md#echo),
+ the first argument accepts options string starting with `-`:
 - `-n`: Don’t append **n**ew line
 - `-1`/`-2`: Outputs to `stdout`/`stderr`
 - `-c`: Don’t **c**olorize output (e.g. objects)
@@ -300,11 +255,11 @@ Similarly to [echo](modules/s.md#echo), the first argument accepts options strin
 - `--`: Off options processing, e.g.: `echo("--", "- the list item.");`
 
 ```js
-echo("-R", "0%");
+echo.use("-R", "0%");
 // …
-echo("-r", "100%");
+echo.use("-r", "100%");
 // combination
-echo("-2cP", { a: "A" });
+echo.use("-2cP", { a: "A" });
 // as console.log
 const count = 5;
 echo('count: %d', count);
@@ -315,6 +270,8 @@ echo({ count });
 // Prints: { count: 5 }, to stdout
 echo(new Error("Test"));
 // Prints: 'Error: Test', when `config.verbose= false`
+echo("Hi").to("./test.txt");
+// Prints: 'Hi' & save to file 'test.txt'
 ```
 
 #### Parameters
@@ -332,7 +289,7 @@ Returns processed string with additional utility methods like .to().
 
 #### Defined in
 
-src/echo.d.ts:47
+[src/echo.d.ts:47](https://github.com/jaandrle/nodejsscript/blob/002debc/src/echo.d.ts#L47)
 
 ___
 

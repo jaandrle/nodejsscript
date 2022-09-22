@@ -168,11 +168,11 @@ export function stdin(): Promise<string>;
  * 
  * function spinner(message= "Waiting…"){
  * 	const animation= cyclicLoop();
- * 	const echoSpin= ()=> echo("-R", `${animation.next().value} ${message}`);
+ * 	const echoSpin= ()=> echo.use("-R", `${animation.next().value} ${message}`);
  * 	const id= setInterval(echoSpin, 750);
  * 	return function(){
  * 		clearInterval(id);
- * 		echo("-r");
+ * 		echo.use("-r");
  * 	};
  * }
  * ```

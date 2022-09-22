@@ -17,7 +17,7 @@ longTask(spinner("Long task running…"))
 function longTask(out){ return setTimeout(15*750, out); }
 
 function spinner(message= "Waiting", { interval= 750, animation= cyclicLoop() }= {}){
-	const echoSpin= ()=> echo("-R", `${style.spin(animation.next().value)} ${style.info(message)}`);
+	const echoSpin= ()=> echo.use("-R", `${style.spin(animation.next().value)} ${style.info(message)}`);
 	const id= setInterval(echoSpin, interval);
 	return function(message){
 		clearInterval(id);

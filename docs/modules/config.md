@@ -43,7 +43,7 @@ typeof [`config`](config.md)
 
 #### Defined in
 
-[index.d.ts:41](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L41)
+[index.d.ts:41](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L41)
 
 ## Variables
 
@@ -59,7 +59,7 @@ false
 
 #### Defined in
 
-[index.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L11)
+[index.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L11)
 
 ___
 
@@ -75,7 +75,7 @@ false
 
 #### Defined in
 
-[index.d.ts:16](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L16)
+[index.d.ts:16](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L16)
 
 ___
 
@@ -91,7 +91,7 @@ false
 
 #### Defined in
 
-[index.d.ts:21](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L21)
+[index.d.ts:21](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L21)
 
 ___
 
@@ -107,7 +107,7 @@ false
 
 #### Defined in
 
-[index.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L26)
+[index.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L26)
 
 ___
 
@@ -121,4 +121,4 @@ Options for [`glob.sync()`](https://github.com/isaacs/node-glob/tree/af57da21c77
 
 #### Defined in
 
-[index.d.ts:31](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L31)
+[index.d.ts:31](https://github.com/jaandrle/nodejsscript/blob/002debc/index.d.ts#L31)
