@@ -9,8 +9,7 @@ nodejsscript
 - [pipe](README.md#pipe)
 - [fetch](README.md#fetch)
 - [cli](README.md#cli)
-- [question](README.md#question)
-- [stdin](README.md#stdin)
+- [read](README.md#read)
 - [cyclicLoop](README.md#cyclicloop)
 - [echo](README.md#echo)
 
@@ -28,6 +27,14 @@ nodejsscript
 
 - [\_\_fetch](modules/_fetch.md)
 - [\_\_sade](modules/_sade.md)
+
+### Interfaces
+
+- [ReadOptions](interfaces/ReadOptions.md)
+
+### Public Variables
+
+- [is\_piped](README.md#is_piped)
 
 ## Public Functions
 
@@ -70,7 +77,7 @@ pipe(
 
 #### Defined in
 
-[index.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L59)
+[index.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L59)
 
 ___
 
@@ -118,7 +125,7 @@ try{
 
 #### Defined in
 
-[index.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L125)
+[index.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L125)
 
 ___
 
@@ -150,26 +157,27 @@ cli("", true)
 
 #### Defined in
 
-[index.d.ts:145](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L145)
+[index.d.ts:145](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L145)
 
 ___
 
-### question
+### read
 
-▸ **question**(`query?`, `options?`): `Promise`<`string`\>
+▸ **read**(`options`): `Promise`<`string`\>
 
-Promt user for answer. A wrapper around the [readline](https://nodejs.org/api/readline.html) package.
+This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
+So, the function purpose is reading from `stdin`.
 ```js
-const bear= await question('What kind of bear is best?');
+const answer= await read({ "-p": "Question" });
+const color= await read({ "-p": "Your color", completions: [ "red", "green" ] });
+if(is_piped.left) await read().then(echo.bind(null, "E.g. for reading received input:"));
 ```
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `query?` | `string` | Question |
-| `options?` | `Object` | The optional `completions` is array of options to be suggested when `tab` key is pressed. |
-| `options.completions` | `string`[] | - |
+| Name | Type |
+| :------ | :------ |
+| `options` | [`ReadOptions`](interfaces/ReadOptions.md) |
 
 #### Returns
 
@@ -177,21 +185,7 @@ const bear= await question('What kind of bear is best?');
 
 #### Defined in
 
-[index.d.ts:155](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L155)
-
-___
-
-### stdin
-
-▸ **stdin**(): `Promise`<`string`\>
-
-#### Returns
-
-`Promise`<`string`\>
-
-#### Defined in
-
-[index.d.ts:158](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L158)
+[index.d.ts:168](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L168)
 
 ___
 
@@ -237,7 +231,7 @@ function spinner(message= "Waiting…"){
 
 #### Defined in
 
-[index.d.ts:182](https://github.com/jaandrle/nodejsscript/blob/574f62d/index.d.ts#L182)
+[index.d.ts:201](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L201)
 
 ___
 
@@ -288,7 +282,7 @@ Returns processed string with additional utility methods like .to().
 
 #### Defined in
 
-[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/574f62d/src/echo.d.ts#L46)
+[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/5d995a1/src/echo.d.ts#L46)
 
 ___
 
@@ -312,3 +306,26 @@ ___
 #### Defined in
 
 node_modules/sade/index.d.ts:5
+
+## Public Variables
+
+### is\_piped
+
+• `Const` **is\_piped**: `Object`
+
+Contains `true`/`false` values to find out if script is running through a shell pipe.
+```bash
+node pipes.js | … # — test by is_piped.right
+… | node pipes.js # — test by is_piped.left
+```
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `left` | `boolean` |
+| `right` | `boolean` |
+
+#### Defined in
+
+[index.d.ts:178](https://github.com/jaandrle/nodejsscript/blob/5d995a1/index.d.ts#L178)

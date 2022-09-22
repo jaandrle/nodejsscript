@@ -1,10 +1,8 @@
 #!/usr/bin/env nodejsscript
-import { s, question, fetch } from "nodejsscript";
+import { s, read, fetch } from "nodejsscript";
 
-const username= await question('What is your GitHub username?');
-const token= await question('Do you have GitHub token in env?', {
-	completions: Object.keys(process.env),
-});
+const username= await read({ "-p": "What is your GitHub username?" });
+const token= await read({ "-p": 'Do you have GitHub token in env?', completions: Object.keys(process.env) });
 
 let headers= {};
 if (process.env[token]) {

@@ -143,20 +143,39 @@ export { __sade };
  * @category Public
  * */
 export function cli(usage: string, is_single?: boolean): __sade.Sade
+export interface ReadOptions{
+	/** Promt mode, value is used as question. It is possible to cobine with other options. */
+	"-p": string;
+	/** Make sence to combine only with `-p` to not show pressed keys (e.g. to prompt password). */
+	"-s": boolean;
+	/** Make sence to combine only with `-p` to provide tab suggestion/completions. */
+	"completions": string[];
+	/** Returns the `stdin` till given needle. */
+	"-d": string;
+	/** Choose given number of chars from `stdin`. */
+	"-n": number;
+}
 /**
- * Promt user for answer. A wrapper around the [readline](https://nodejs.org/api/readline.html) package.
+ * This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
+ * So, the function purpose is reading from `stdin`.
  * ```js
- * const bear= await question('What kind of bear is best?');
+ * const answer= await read({ "-p": "Question" });
+ * const color= await read({ "-p": "Your color", completions: [ "red", "green" ] });
+ * if(is_piped.left) await read().then(echo.bind(null, "E.g. for reading received input:"));
  * ```
- * @param query Question
- * @param  options The optional `completions` is array of options to be suggested when `tab` key is pressed.
  * @category Public
  * */
-export function question(query?: string, options?: { completions: string[] }): Promise<string>
+export function read(options: ReadOptions): Promise<string>
 
-/** @category Public */
-export function stdin(): Promise<string>;
-
+/**
+ * Contains `true`/`false` values to find out if script is running through a shell pipe.
+ * ```bash
+ * node pipes.js | … # — test by is_piped.right
+ * … | node pipes.js # — test by is_piped.left
+ * ```
+ * @category Public
+ */
+export const is_piped: { left: boolean; right: boolean; }
 /**
  * Repeatedly loops through the given chars/strings/….
  * Typical usage is to create a spinner (by default):

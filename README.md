@@ -27,15 +27,9 @@ s.mkdir(join(s.tempdir(), name));
 1. `npm install https://github.com/jaandrle/nodejsscript --global`
 
 ## Goods
-[s #shelljs](./docs/modules/s.md) · [style #ansi-colors](./docs/modules/style.md) · [config](./docs/modules/config.md)
- · [echo()](./docs/README.md#echo)
- · [cli() #sade](./docs/README.md#cli)
- · [fetch() #node-fetch](./docs/README.md#fetch)
- · [question()](./docs/README.md#question)
- · [stdin()](./docs/README.md#stdin)
- · [pipe()](./docs/README.md#pipe)
+[s #shelljs](./docs/modules/s.md) · [style #ansi-colors](./docs/modules/style.md) · [config](./docs/modules/config.md) · [is\_piped()](./docs/README.md#is_piped)
+ · [echo()](./docs/README.md#echo) · [cli() #sade](./docs/README.md#cli) · [fetch() #node-fetch](./docs/README.md#fetch) · [read()](./docs/README.md#read) · [pipe()](./docs/README.md#pipe)
  · [cyclicLoop()](./docs/README.md#cyclicloop)
-
 
 ## Documentation
 Write your scripts in a file with an `.mjs` extension in order to

@@ -1,5 +1,5 @@
 #!/usr/bin/env nodejsscript
-import { cli, s, echo, pipe } from "/home/jaandrle/.nvm/versions/node/current/lib/node_modules/nodejsscript/index.js";
+import { cli, s, echo, pipe } from "nodejsscript";
 import { join } from "node:path";
 
 cli("", true)
