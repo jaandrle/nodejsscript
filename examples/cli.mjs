@@ -1,8 +1,8 @@
 #!/usr/bin/env nodejsscript
-import { cli, s, echo, pipe } from "nodejsscript";
+import { cli, s, echo, pipe } from "/home/jaandrle/.nvm/versions/node/current/lib/node_modules/nodejsscript/index.js";
 import { join } from "node:path";
 
-cli.register("", true)
+cli("", true)
 .version("0.1.0")
 .describe("NodeJS Script cli test")
 .option("--clear", "Clears cerated temp dir")

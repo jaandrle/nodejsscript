@@ -137,7 +137,7 @@ s.$("-vf").exec("gyt branch --show-current");
 
 #### Defined in
 
-[src/shelljs.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/cd34166/src/shelljs.d.ts#L46)
+[src/shelljs.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/src/shelljs.d.ts#L46)
 
 ▸ **$**(): [`ShellString`](s.md#shellstring)
 
@@ -147,7 +147,7 @@ s.$("-vf").exec("gyt branch --show-current");
 
 #### Defined in
 
-[src/shelljs.d.ts:47](https://github.com/jaandrle/nodejsscript/blob/cd34166/src/shelljs.d.ts#L47)
+[src/shelljs.d.ts:47](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/src/shelljs.d.ts#L47)
 
 ___
 

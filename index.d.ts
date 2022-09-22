@@ -41,6 +41,8 @@ export namespace config {
 	function assign(...c: Record<"verbose"|"fatal"|"noglob"|"silent",boolean>[]): typeof config;
 }
 
+/** @category Public */
+export { echo } from './src/echo.d';
 /**
  * Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe). Provides functional way to combine commands/functions.
  * 
@@ -123,92 +125,37 @@ import * as __fetch from 'node-fetch';
 export function fetch(url: string | __fetch.Request, init?: __fetch.RequestInit): __fetch.Response;
 export { __fetch };
 
-export { log } from 'node:console';
-/**
- * Prints to `stdout` with newline. Multiple arguments can be passed, with the
- * first used as the primary message and all additional used as substitution
- * values similar to [`printf(3)`](http://man7.org/linux/man-pages/man3/printf.3.html) (the arguments are all passed to `util.format()`).
- * Internally uses {@link log}. Stringifies inputs except objects and errors in case of {@link config.verbose}.
- *
- * ```js
- * const count = 5;
- * echo('count: %d', count);
- * // Prints: count: 5, to stdout
- * echo('count:', count);
- * // Prints: count: 5, to stdout
- * echo({ count });
- * // Prints: { count: 5 }, to stdout
- * echo(new Error("Test"));
- * // Prints: 'Error: Test', when `config.verbose= false`
- * ```
- * @category Public
- */
-export function echo(message?: any, ...optionalParams: any[]): void;
-
-import * as pubsub from "./src/pubsub.d";
-/**
- * Handles async code with [Publish–subscribe pattern - Wikipedia](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
- * ```js
- * import { setTimeout } from "node:timers/promises";
- * const topic= pubsub.topic();
- * pubsub.subscribe(topic, echo.bind(null, "1"));
- * setTimeout(750).then(pubsub.publish.bind(null, "Message"));
- * pubsub.subscribe(topic, echo.bind(null, "2"));
- * // output 750ms later
- * // 1 Message
- * // 2 Message
- * ```
- * @category Public
- */
-export { pubsub };
-
 import * as __sade from "sade";
 export { __sade };
 /**
- * Namespace contains helpers for working with command line interface.
+ * A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
+ * In addition to the origin, `cli.register()` supports to fill script name from script file name.
+ * This should be good balance between [commander - npm](https://www.npmjs.com/package/commander) and parsing arguments and writing help texts by hand.
+ * For more complex scripts just create full npm package.
+ * ```js
+ * cli("", true)
+ * 	.version("0.1.0")
+ * 	.describe("NodeJS Script cli test")
+ * 	.action(echo);
+ * ```
+ * @param usage The script name and usage (`[optional]`/`<required>`). If no `name`, then the script file name will be used.
+ * @param is_single See {@link __sade}
  * @category Public
- */
-export namespace cli {
-	/**
-	 * A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
-	 * In addition to the origin, `cli.register()` supports to fill script name from script file name.
-	 * This should be good balance between [commander - npm](https://www.npmjs.com/package/commander) and parsing arguments and writing help texts by hand.
-	 * For more complex scripts just create full npm package.
-	 * ```js
-	 * cli.register("", true)
-	 * 	.version("0.1.0")
-	 * 	.describe("NodeJS Script cli test")
-	 * 	.action(echo);
-	 * ```
-	 * @param usage The script name and usage (`[optional]`/`<required>`). If no `name`, then the script file name will be used.
-	 * @param is_single See {@link __sade}
-	 * */
-	function register(usage: string, is_single?: boolean): __sade.Sade
-	/**
-	 * Promt user for answer. A wrapper around the [readline](https://nodejs.org/api/readline.html) package.
-	 * ```js
-	 * const bear= await cli.question('What kind of bear is best?');
-	 * ```
-	 * @param query Question
-	 * @param  options The optional `completions` is array of options to be suggested when `tab` key is pressed.
-	 * */
-	function question(query?: string, options?: { completions: string[] }): Promise<string>
-	/**
-	 * Overwritable text output, returns {@link pubsub.Topic}.
-	 * So for updating text use {@link pubsub.publish}, for end {@link pubsub.publishClose}.
-	 * ```js
-	 * const { pub, pubC }= pubsub;
-	 * const topic= cli.rewritable();
-	 * pub(topic, "Task started");
-	 * // … later
-	 * pub(topic, "1/n Done");
-	 * // … later
-	 * pubC(topic);
-	 * echo("Task finished");
-	 * ```
-	 * */
-	function rewritable<T extends pubsub.Topic>(options?: import("log-update").Options & { stream?: NodeJS.WritableStream, showCursor: boolean, end: "done"|"clear", topic: T }): T
-}
+ * */
+export function cli(usage: string, is_single?: boolean): __sade.Sade
+/**
+ * Promt user for answer. A wrapper around the [readline](https://nodejs.org/api/readline.html) package.
+ * ```js
+ * const bear= await question('What kind of bear is best?');
+ * ```
+ * @param query Question
+ * @param  options The optional `completions` is array of options to be suggested when `tab` key is pressed.
+ * @category Public
+ * */
+export function question(query?: string, options?: { completions: string[] }): Promise<string>
+
+/** @category Public */
+export function stdin(): Promise<string>;
 
 /**
  * Repeatedly loops through the given chars/strings/….
@@ -216,15 +163,17 @@ export namespace cli {
  *
  * ```js
  * import { setTimeout } from "node:timers/promises";
- * const topic= spinner(); //output=> ⠋ Waiting…
- * setTimeout(10*750).then(pubsub.pubC.bind(null, topic));
+ * const spinEnd= spinner(); //output=> ⠋ Waiting…
+ * setTimeout(10*750).then(spinEnd);
  * 
  * function spinner(message= "Waiting…"){
  * 	const animation= cyclicLoop();
- * 	const topic= pubsub.topicFromInterval(750,
- * 		{ mapper: ()=> `${animation.next().value} ${message}` });
- * 	cli.rewritable({ topic });
- * 	return topic;
+ * 	const echoSpin= ()=> echo("-R", `${animation.next().value} ${message}`);
+ * 	const id= setInterval(echoSpin, 750);
+ * 	return function(){
+ * 		clearInterval(id);
+ * 		echo("-r");
+ * 	};
  * }
  * ```
  * …also see [spinner example](../examples/spinner.mjs).

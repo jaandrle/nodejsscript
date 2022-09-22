@@ -8,21 +8,21 @@ nodejsscript
 
 - [pipe](README.md#pipe)
 - [fetch](README.md#fetch)
-- [echo](README.md#echo)
+- [cli](README.md#cli)
+- [question](README.md#question)
+- [stdin](README.md#stdin)
 - [cyclicLoop](README.md#cyclicloop)
+- [echo](README.md#echo)
 
 ### Internal Functions
 
-- [log](README.md#log)
 - [\_\_sade](README.md#__sade)
 
 ### Public Namespaces
 
 - [config](modules/config.md)
-- [cli](modules/cli.md)
 - [s](modules/s.md)
 - [style](modules/style.md)
-- [pubsub](modules/pubsub.md)
 
 ### Internal Namespaces
 
@@ -70,7 +70,7 @@ pipe(
 
 #### Defined in
 
-[index.d.ts:57](https://github.com/jaandrle/nodejsscript/blob/cd34166/index.d.ts#L57)
+[index.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L59)
 
 ___
 
@@ -118,45 +118,80 @@ try{
 
 #### Defined in
 
-[index.d.ts:123](https://github.com/jaandrle/nodejsscript/blob/cd34166/index.d.ts#L123)
+[index.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L125)
 
 ___
 
-### echo
+### cli
 
-▸ **echo**(`message?`, ...`optionalParams`): `void`
+▸ **cli**(`usage`, `is_single?`): [`Sade`](interfaces/sade.Sade.md)
 
-Prints to `stdout` with newline. Multiple arguments can be passed, with the
-first used as the primary message and all additional used as substitution
-values similar to [`printf(3)`](http://man7.org/linux/man-pages/man3/printf.3.html) (the arguments are all passed to `util.format()`).
-Internally uses [log](README.md#log). Stringifies inputs except objects and errors in case of [verbose](modules/config.md#verbose).
-
+A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
+In addition to the origin, `cli.register()` supports to fill script name from script file name.
+This should be good balance between [commander - npm](https://www.npmjs.com/package/commander) and parsing arguments and writing help texts by hand.
+For more complex scripts just create full npm package.
 ```js
-const count = 5;
-echo('count: %d', count);
-// Prints: count: 5, to stdout
-echo('count:', count);
-// Prints: count: 5, to stdout
-echo({ count });
-// Prints: { count: 5 }, to stdout
-echo(new Error("Test"));
-// Prints: 'Error: Test', when `config.verbose= false`
+cli("", true)
+	.version("0.1.0")
+	.describe("NodeJS Script cli test")
+	.action(echo);
 ```
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `message?` | `any` |
-| `...optionalParams` | `any`[] |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `usage` | `string` | The script name and usage (`[optional]`/`<required>`). If no `name`, then the script file name will be used. |
+| `is_single?` | `boolean` | See [__sade](README.md#__sade) |
 
 #### Returns
 
-`void`
+[`Sade`](interfaces/sade.Sade.md)
 
 #### Defined in
 
-[index.d.ts:146](https://github.com/jaandrle/nodejsscript/blob/cd34166/index.d.ts#L146)
+[index.d.ts:145](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L145)
+
+___
+
+### question
+
+▸ **question**(`query?`, `options?`): `Promise`<`string`\>
+
+Promt user for answer. A wrapper around the [readline](https://nodejs.org/api/readline.html) package.
+```js
+const bear= await question('What kind of bear is best?');
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `query?` | `string` | Question |
+| `options?` | `Object` | The optional `completions` is array of options to be suggested when `tab` key is pressed. |
+| `options.completions` | `string`[] | - |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[index.d.ts:155](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L155)
+
+___
+
+### stdin
+
+▸ **stdin**(): `Promise`<`string`\>
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[index.d.ts:158](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L158)
 
 ___
 
@@ -169,15 +204,17 @@ Typical usage is to create a spinner (by default):
 
 ```js
 import { setTimeout } from "node:timers/promises";
-const topic= spinner(); //output=> ⠋ Waiting…
-setTimeout(10*750).then(pubsub.pubC.bind(null, topic));
+const spinEnd= spinner(); //output=> ⠋ Waiting…
+setTimeout(10*750).then(spinEnd);
 
 function spinner(message= "Waiting…"){
 	const animation= cyclicLoop();
-	const topic= pubsub.topicFromInterval(750,
-		{ mapper: ()=> `${animation.next().value} ${message}` });
-	cli.rewritable({ topic });
-	return topic;
+	const echoSpin= ()=> echo("-R", `${animation.next().value} ${message}`);
+	const id= setInterval(echoSpin, 750);
+	return function(){
+		clearInterval(id);
+		echo("-r");
+	};
 }
 ```
 …also see [spinner example](../examples/spinner.mjs).
@@ -200,66 +237,106 @@ function spinner(message= "Waiting…"){
 
 #### Defined in
 
-[index.d.ts:233](https://github.com/jaandrle/nodejsscript/blob/cd34166/index.d.ts#L233)
+[index.d.ts:182](https://github.com/jaandrle/nodejsscript/blob/cb16a3a/index.d.ts#L182)
+
+___
+
+### echo
+
+▸ **echo**(`options`, `message?`, ...`optionalParams`): [`ShellString`](modules/s.md#shellstring)
+
+Similarly to [echo](modules/s.md#echo), the first argument accepts options string starting with `-`:
+- `-n`: Don’t append **n**ew line
+- `-1`/`-2`: Outputs to `stdout`/`stderr`
+- `-c`: Don’t **c**olorize output (e.g. objects)
+- `-P`: Outputs objects in **p**rettier format
+- `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
+- `--`: Off options processing, e.g.: `echo("--", "- the list item.");`
+
+```js
+echo("-R", "0%");
+// …
+echo("-r", "100%");
+// combination
+echo("-2cP", { a: "A" });
+// as console.log
+const count = 5;
+echo('count: %d', count);
+// Prints: count: 5, to stdout
+echo('count:', count);
+// Prints: count: 5, to stdout
+echo({ count });
+// Prints: { count: 5 }, to stdout
+echo(new Error("Test"));
+// Prints: 'Error: Test', when `config.verbose= false`
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options` | \`-${string}\` | Available options: `-n`, `-1`/`-2`, `-c`, `-P`, `-R`/`-r` and `--`. |
+| `message?` | `any` | The text to print. |
+| `...optionalParams` | `any`[] | - |
+
+#### Returns
+
+[`ShellString`](modules/s.md#shellstring)
+
+Returns processed string with additional utility methods like .to().
+
+#### Defined in
+
+src/echo.d.ts:24
+
+▸ **echo**(`message?`, ...`optionalParams`): [`ShellString`](modules/s.md#shellstring)
+
+Similarly to [echo](modules/s.md#echo), the first argument accepts options string starting with `-`:
+- `-n`: Don’t append **n**ew line
+- `-1`/`-2`: Outputs to `stdout`/`stderr`
+- `-c`: Don’t **c**olorize output (e.g. objects)
+- `-P`: Outputs objects in **p**rettier format
+- `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
+- `--`: Off options processing, e.g.: `echo("--", "- the list item.");`
+
+```js
+echo("-R", "0%");
+// …
+echo("-r", "100%");
+// combination
+echo("-2cP", { a: "A" });
+// as console.log
+const count = 5;
+echo('count: %d', count);
+// Prints: count: 5, to stdout
+echo('count:', count);
+// Prints: count: 5, to stdout
+echo({ count });
+// Prints: { count: 5 }, to stdout
+echo(new Error("Test"));
+// Prints: 'Error: Test', when `config.verbose= false`
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `message?` | `any` | The text to print. |
+| `...optionalParams` | `any`[] | - |
+
+#### Returns
+
+[`ShellString`](modules/s.md#shellstring)
+
+Returns processed string with additional utility methods like .to().
+
+#### Defined in
+
+src/echo.d.ts:47
 
 ___
 
 ## Internal Functions
-
-### log
-
-▸ **log**(...`data`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `...data` | `any`[] |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-node_modules/typescript/lib/lib.dom.d.ts:17095
-
-▸ **log**(`message?`, ...`optionalParams`): `void`
-
-Prints to `stdout` with newline. Multiple arguments can be passed, with the
-first used as the primary message and all additional used as substitution
-values similar to [`printf(3)`](http://man7.org/linux/man-pages/man3/printf.3.html) (the arguments are all passed to `util.format()`).
-
-```js
-const count = 5;
-console.log('count: %d', count);
-// Prints: count: 5, to stdout
-console.log('count:', count);
-// Prints: count: 5, to stdout
-```
-
-See `util.format()` for more information.
-
-**`Since`**
-
-v0.1.100
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message?` | `any` |
-| `...optionalParams` | `any`[] |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-node_modules/@types/node/console.d.ts:221
-
-___
 
 ### \_\_sade
 

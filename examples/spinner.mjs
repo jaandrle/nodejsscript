@@ -1,6 +1,6 @@
 #!/usr/bin/env nodejsscript
 /* jshint esversion: 9,-W097, -W040, node: true, expr: true, undef: true */
-import { style, cli, echo, exit, pubsub, cyclicLoop } from "nodejsscript";
+import { style, echo, exit, cyclicLoop } from "nodejsscript";
 import { setTimeout } from "node:timers/promises";
 style.theme({ spin: style.magentaBright, info: style.blueBright, success: style.greenBright });
 
@@ -15,12 +15,12 @@ longTask(spinner("Long task running…"))
 });
 
 function longTask(out){ return setTimeout(15*750, out); }
+
 function spinner(message= "Waiting", { interval= 750, animation= cyclicLoop() }= {}){
-	const topic= pubsub.topicFromInterval(interval,
-		{ mapper: ()=> `${style.spin(animation.next().value)} ${style.info(message)}` });
-	cli.rewritable({ stream: process.stderr, end: "clear", topic });
+	const echoSpin= ()=> echo("-R", `${style.spin(animation.next().value)} ${style.info(message)}`);
+	const id= setInterval(echoSpin, interval);
 	return function(message){
-		pubsub.pubC(topic);
+		clearInterval(id);
 		echo(message);
 	};
 }
