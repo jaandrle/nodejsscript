@@ -1,9 +1,10 @@
 {
 	"name": "nodejsscript",
-	"version": "0.5.1",
+	"version": "0.6.0",
 	"author": "Jan Andrle <andrle.jan@centrum.cz>",
 	"license": "MIT",
 	"description": "A tool for writing better scripts",
+	"homepage": "https://github.com/jaandrle/nodejsscript",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/jaandrle/nodejsscript.git"
@@ -11,7 +12,6 @@
 	"bugs": {
 		"url": "https://github.com/jaandrle/nodejsscript/issues"
 	},
-	"homepage": "https://github.com/jaandrle/nodejsscript",
 	"main": "index.js",
 	"type": "module",
 	"bin": {
@@ -22,7 +22,8 @@
 	},
 	"files": [
 		"bin/cli.mjs",
-		"index.js"
+		"index.js",
+		"src"
 	],
 	"types": "index.d.ts",
 	"typesVersions": {
@@ -34,7 +35,8 @@
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"doc": "npx typedoc index.d.ts --readme none --defaultCategory 'Internal' --categoryOrder 'Public' --categoryOrder 'Internal' --sort visibility"
+		"doc": "npx typedoc index.d.ts --readme none --defaultCategory 'Internal' --categoryOrder 'Public' --categoryOrder 'Internal' --sort visibility",
+		"lint": "npx jshint **/*.js --show-non-errors"
 	},
 	"engines": {
 		"node": ">= 16.0.0"
@@ -48,6 +50,7 @@
 		"node": "true",
 		"module": true,
 		"undef": "true",
+		"unused": true,
 		"latedef": "true",
 		"maxparams": 4,
 		"maxdepth": 4,
@@ -64,6 +67,7 @@
 		"shelljs": ">=v0.8.5"
 	},
 	"devDependencies": {
+		"jshint": "^2.13.5",
 		"typedoc": "^0.23.15",
 		"typedoc-plugin-markdown": "^3.13.6"
 	}

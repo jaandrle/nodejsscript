@@ -2,7 +2,7 @@
 /* jshint esversion: 9,-W097, -W040, node: true, expr: true, undef: true */
 import { style, echo, exit, cyclicLoop } from "nodejsscript";
 import { setTimeout } from "node:timers/promises";
-style.theme({ spin: style.magentaBright, info: style.blueBright, success: style.greenBright });
+style.theme({ spin: style.magentaBright, info: style.blueBright, success: msg=> style.greenBright("✓ "+msg) });
 
 longTask(spinner("Long task running…"))
 .then(function(spinEnd){

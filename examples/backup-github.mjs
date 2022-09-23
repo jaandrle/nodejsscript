@@ -1,8 +1,8 @@
 #!/usr/bin/env nodejsscript
-import { s, read, fetch, exit } from "nodejsscript";
+import { s, cli, fetch, exit } from "/home/jaandrle/.nvm/versions/node/current/lib/node_modules/nodejsscript/index.js";
 (async function main(){
-	const username= await read({ "-p": "What is your GitHub username?" });
-	const token= await read({ "-p": 'Do you have GitHub token in env?', completions: Object.keys(process.env) });
+	const username= await cli.read({ "-p": "What is your GitHub username?" });
+	const token= await cli.read({ "-p": 'Do you have GitHub token in env?', completions: Object.keys(process.env) });
 
 	const headers= !Reflect.has(process.env, token) ? {} : { //not ideal, just because others Reflect.*
 		Authorization: `token ${Reflect.get(process.env, token)}`,

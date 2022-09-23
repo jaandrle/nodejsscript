@@ -1,6 +1,5 @@
-import { config } from "./config.js";
+import { config, ShellString } from "shelljs";
 import { formatWithOptions } from "node:util";
-import { ShellString } from "shelljs";
 import __log from 'log-update-async-hook';
 const { create: createLogUpdate }= __log;
 /** @type {(arr: any[]|string, item: any)=> boolean} */

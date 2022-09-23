@@ -8,7 +8,6 @@ nodejsscript
 
 - [pipe](README.md#pipe)
 - [fetch](README.md#fetch)
-- [cli](README.md#cli)
 - [read](README.md#read)
 - [cyclicLoop](README.md#cyclicloop)
 - [echo](README.md#echo)
@@ -17,24 +16,20 @@ nodejsscript
 
 - [\_\_sade](README.md#__sade)
 
+### Interfaces
+
+- [ReadOptions](interfaces/ReadOptions.md)
+
 ### Public Namespaces
 
-- [config](modules/config.md)
+- [cli](modules/cli.md)
+- [\_\_sade](modules/_sade.md)
 - [s](modules/s.md)
 - [style](modules/style.md)
 
 ### Internal Namespaces
 
 - [\_\_fetch](modules/_fetch.md)
-- [\_\_sade](modules/_sade.md)
-
-### Interfaces
-
-- [ReadOptions](interfaces/ReadOptions.md)
-
-### Public Variables
-
-- [is\_piped](README.md#is_piped)
 
 ## Public Functions
 
@@ -77,7 +72,7 @@ pipe(
 
 #### Defined in
 
-[index.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L59)
+[index.d.ts:18](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L18)
 
 ___
 
@@ -125,70 +120,7 @@ try{
 
 #### Defined in
 
-[index.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L125)
-
-___
-
-### cli
-
-▸ **cli**(`usage`, `is_single?`): [`Sade`](interfaces/sade.Sade.md)
-
-A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
-In addition to the origin, `cli()` supports to fill script name from script file name.
-This should be good balance between [commander - npm](https://www.npmjs.com/package/commander) and parsing arguments and writing help texts by hand.
-For more complex scripts just create full npm package.
-```js
-cli("", true)
-.version("0.1.0")
-.describe("NodeJS Script cli test")
-.action(echo)
-.parse(process.argv);
-```
-	
-```js
-cli("copy <file> <destination>", true)
-.version("0.1.0")
-.describe("copy file simpulation")
-.option("--force", "Overwrite file in destination.")
-.action(function(file, destination, { force }){
-	// copy file logic
-})
-.parse(process.argv);
-```
-
-```js
-const prog= cli('my-cli');
-prog
-  .version('1.0.5')
-  .option('--global, -g', 'An example global flag')
-  .option('-c, --config', 'Provide path to custom config', 'foo.config.js');
-prog
-  .command('build <src> <dest>')
-  .describe('Build the source directory. Expects an `index.js` entry file.')
-  .option('-o, --output', 'Change the name of the output file', 'bundle.js')
-  .example('build src build --global --config my-conf.js')
-  .example('build app public -o main.js')
-  .action((src, dest, opts) => {
-    echo(`> building from ${src} to ${dest}`);
-    echo('> these are extra opts', opts);
-  });
-prog.parse(process.argv);
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `usage` | `string` | The script name and usage (`[optional]`/`<required>`). If no `name`, then the script file name will be used. |
-| `is_single?` | `boolean` | See [__sade](README.md#__sade) |
-
-#### Returns
-
-[`Sade`](interfaces/sade.Sade.md)
-
-#### Defined in
-
-[index.d.ts:176](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L176)
+[index.d.ts:84](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L84)
 
 ___
 
@@ -216,7 +148,7 @@ if(is_piped.left) await read().then(echo.bind(null, "E.g. for reading received i
 
 #### Defined in
 
-[index.d.ts:199](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L199)
+[index.d.ts:109](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L109)
 
 ___
 
@@ -262,7 +194,7 @@ function spinner(message= "Waiting…"){
 
 #### Defined in
 
-[index.d.ts:232](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L232)
+[index.d.ts:133](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L133)
 
 ___
 
@@ -317,7 +249,7 @@ Returns processed string with additional utility methods like .to().
 
 #### Defined in
 
-[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/2dce906/src/echo.d.ts#L46)
+[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/c1132cc/src/echo.d.ts#L46)
 
 ___
 
@@ -341,26 +273,3 @@ ___
 #### Defined in
 
 node_modules/sade/index.d.ts:5
-
-## Public Variables
-
-### is\_piped
-
-• `Const` **is\_piped**: `Object`
-
-Contains `true`/`false` values to find out if script is running through a shell pipe.
-```bash
-node pipes.js | … # — test by is_piped.right
-… | node pipes.js # — test by is_piped.left
-```
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `left` | `boolean` |
-| `right` | `boolean` |
-
-#### Defined in
-
-[index.d.ts:209](https://github.com/jaandrle/nodejsscript/blob/2dce906/index.d.ts#L209)

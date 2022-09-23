@@ -5,7 +5,7 @@ export const pipe= (...funs)=> input=> Array.prototype.reduce.call(funs, (out, f
 import s from "./src/shelljs.js";
 export { s };
 export const exit= s.exit;
-export { config } from "./src/config.js";
+export { cli } from "./src/cli.js";
 
 import style from "ansi-colors";
 export { style };
@@ -21,15 +21,6 @@ export function fetch(url, init){
 
 export { read } from "./src/read.js";
 
-import sade from "sade";
-export function cli(usage, is_single= false){
-	if(usage && !/^[\[<]/.test(usage))
-		return sade(usage, is_single);
-
-	const script= process.argv[1];
-	const name= script.slice(script.lastIndexOf("/")+1);
-	return sade(name+(usage ? " "+usage : ""), is_single);
-}
 
 export function* cyclicLoop(items){
 	if(!items) items= 'win32'===process.platform ? '|/-\\' : "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏";
@@ -40,11 +31,6 @@ export function* cyclicLoop(items){
 	}
 }
 
-import { fstatSync } from "node:fs";
-export const is_piped= {
-	get left(){ return fstatSync(0).isFIFO(); },
-	get right(){ return fstatSync(1).isFIFO(); }
-};
 
 /* jshint ignore:start */
 if(!globalThis.AbortController) globalThis.AbortController= await import('abort-controller');

@@ -1,7 +1,9 @@
-# NodeJS Script – write cross-platform scripts with ease
-This package provides very similar functionality such as [google/zx](https://github.com/google/zx).
-The key difference is to provide unix shell commands in cross-platform compatible way and suitable for javascript.
-This is done by using [shelljs/shelljs](https://github.com/shelljs/shelljs) library.
+**The package is in early stage, some changes (in API) may be made until version 1.0.0.!**
+
+# NodeJS Script – Easy cross-platform scripting
+This package serves as an alternative to [google/zx](https://github.com/google/zx) for example.
+The key difference is to provide Unix shell commands in a cross-platform compatible way and usable inside JavaScript.
+This is primarily achieved by using [shelljs/shelljs](https://github.com/shelljs/shelljs) library.
 
 You can compare the final script code to `zx` example:
 ```javascript
@@ -21,14 +23,17 @@ s.mkdir(join(s.tempdir(), name));
 ```
 
 ## Installation
-**For now experiment!!!**
 
-1. you need nodejs >=v17.0.1 ⇒ follow [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^node]
+1. tested/used on *NodeJS*: `node@v16.13.0` and `node@v17.9.1` ⇒ for installation follow [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^OR]
 1. `npm install https://github.com/jaandrle/nodejsscript --global`
 
 ## Goods
-[s #shelljs](./docs/modules/s.md) · [style #ansi-colors](./docs/modules/style.md) · [config](./docs/modules/config.md) · [is\_piped()](./docs/README.md#is_piped)
- · [echo()](./docs/README.md#echo) · [cli() #sade](./docs/README.md#cli) · [fetch() #node-fetch](./docs/README.md#fetch) · [read()](./docs/README.md#read) · [pipe()](./docs/README.md#pipe)
+[s #shelljs](./docs/modules/s.md)
+ · [cli](./docs/modules/cli.md) ([cli.api() #sade](./docs/modules/cli.md#api), [cli.read()](./docs/modules/cli.md#read), …)
+ · [echo()](./docs/README.md#echo)
+ · [fetch() #node-fetch](./docs/README.md#fetch)
+ · [style #ansi-colors](./docs/modules/style.md)
+ · [pipe()](./docs/README.md#pipe)
  · [cyclicLoop()](./docs/README.md#cyclicloop)
 
 ## Documentation
@@ -59,11 +64,11 @@ import { … } from "nodejsscript";
 ```
 … *The entry point for documentation of all exported (**Public**) items is in the* [**docs/**](./docs/README.md).
 
-Don’t forgot there are also build-in `'node:*'` modules:
+Note that there are also built-in `'node:*'` modules:
 ```js
 import { setTimeout } from "node:timers/promises";
 import { join, resolve } from "node:path";
 ```
 …and more, see [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
 
-[^node]: Alternatively `curl -sL install-node.vercel.app/17.0.1 | bash`
+[^OR]: Alternatively `curl -sL install-node.vercel.app/16.13.0 | bash`

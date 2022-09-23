@@ -1,16 +1,18 @@
-[nodejsscript](../README.md) / ReadOptions
+[nodejsscript](../README.md) / [cli](../modules/cli.md) / ReadOptions
 
 # Interface: ReadOptions
+
+[cli](../modules/cli.md).ReadOptions
 
 ## Table of contents
 
 ### Properties
 
-- [-p](ReadOptions.md#-p)
-- [-s](ReadOptions.md#-s)
-- [completions](ReadOptions.md#completions)
-- [-d](ReadOptions.md#-d)
-- [-n](ReadOptions.md#-n)
+- [-p](cli.ReadOptions.md#-p)
+- [-s](cli.ReadOptions.md#-s)
+- [completions](cli.ReadOptions.md#completions)
+- [-d](cli.ReadOptions.md#-d)
+- [-n](cli.ReadOptions.md#-n)
 
 ## Properties
 
@@ -22,7 +24,7 @@ Promt mode, value is used as question. It is possible to cobine with other optio
 
 #### Defined in
 
-[index.d.ts:89](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L89)
+src/cli.d.ts:113
 
 ___
 
@@ -34,7 +36,7 @@ Make sence to combine only with `-p` to not show pressed keys (e.g. to prompt pa
 
 #### Defined in
 
-[index.d.ts:91](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L91)
+src/cli.d.ts:115
 
 ___
 
@@ -46,7 +48,7 @@ Make sence to combine only with `-p` to provide tab suggestion/completions.
 
 #### Defined in
 
-[index.d.ts:93](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L93)
+src/cli.d.ts:117
 
 ___
 
@@ -58,7 +60,7 @@ Returns the `stdin` till given needle.
 
 #### Defined in
 
-[index.d.ts:95](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L95)
+src/cli.d.ts:119
 
 ___
 
@@ -70,4 +72,4 @@ Choose given number of chars from `stdin`.
 
 #### Defined in
 
-[index.d.ts:97](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L97)
+src/cli.d.ts:121
