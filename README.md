@@ -26,7 +26,7 @@ s.mkdir(join(s.tempdir(), name));
 ## Installation
 
 1. tested/used on *NodeJS*: `node@v16.13.0` and `node@v17.9.1` ⇒ for installation follow [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^OR]
-1. `npm install https://github.com/jaandrle/nodejsscript --global`
+1. `npm install https://github.com/jaandrle/nodejsscript --global` (**will be moved to npm repository**)
 
 ## Goods
 [s #shelljs](./docs/modules/s.md)
