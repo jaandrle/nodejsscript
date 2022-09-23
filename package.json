@@ -22,6 +22,7 @@
 	},
 	"files": [
 		"bin/cli.mjs",
+		"index.d.ts",
 		"index.js",
 		"src"
 	],
