@@ -1,5 +1,5 @@
 #!/usr/bin/env nodejsscript
-import { s, cli, fetch, exit } from "/home/jaandrle/.nvm/versions/node/current/lib/node_modules/nodejsscript/index.js";
+import { s, cli, fetch, exit } from "nodejsscript";
 (async function main(){
 	const username= await cli.read({ "-p": "What is your GitHub username?" });
 	const token= await cli.read({ "-p": 'Do you have GitHub token in env?', completions: Object.keys(process.env) });

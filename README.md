@@ -21,6 +21,7 @@ import { join } from "node:path";
 const name= "foo bar";
 s.mkdir(join(s.tempdir(), name));
 ```
+…also see [examples](./examples).
 
 ## Installation
 
