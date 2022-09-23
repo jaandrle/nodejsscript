@@ -1,22 +1,19 @@
 #!/usr/bin/env nodejsscript
-import { s, echo, question, fetch } from "/home/jaandrle/.nvm/versions/node/v17.0.1/lib/node_modules/nodejsscript/index.js";
+import { s, cli, fetch, exit } from "/home/jaandrle/.nvm/versions/node/current/lib/node_modules/nodejsscript/index.js";
+(async function main(){
+	const username= await cli.read({ "-p": "What is your GitHub username?" });
+	const token= await cli.read({ "-p": 'Do you have GitHub token in env?', completions: Object.keys(process.env) });
 
-const username= await question('What is your GitHub username?');
-const token= await question('Do you have GitHub token in env?', {
-	completions: Object.keys(process.env),
-});
+	const headers= !Reflect.has(process.env, token) ? {} : { //not ideal, just because others Reflect.*
+		Authorization: `token ${Reflect.get(process.env, token)}`,
+	};
 
-let headers= {};
-if (process.env[token]) {
-  headers= {
-    Authorization: `token ${process.env[token]}`,
-  };
-}
-const data= await fetch(`https://api.github.com/users/${username}/repos?per_page=1000`, { headers }).then(res=> res.json());
-const urls= data.map(x=> x.git_url.replace('git://github.com/', 'git@github.com:'));
+	const data= await fetch(`https://api.github.com/users/${username}/repos?per_page=1000`, { headers }).then(res=> res.json());
+	const urls= data.map(x=> x.git_url.replace('git://github.com/', 'git@github.com:'));
 
-s.mkdir("-p", "backups");
-s.cd("./backups");
-
-for(const url of urls)
-	s.exec(`git clone ${url}`);
+	s.mkdir("-p", "backups");
+	s.cd("./backups");
+	for(const url of urls)
+		s.exec(`git clone ${url}`);
+	exit(0);
+})();
