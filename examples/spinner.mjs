@@ -1,6 +1,5 @@
 #!/usr/bin/env nodejsscript
-/* jshint esversion: 9,-W097, -W040, node: true, expr: true, undef: true */
-import { style, echo, exit, cyclicLoop } from "nodejsscript";
+/* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true *//* global echo, exit, style, cyclicLoop */
 import { setTimeout } from "node:timers/promises";
 style.theme({ spin: style.magentaBright, info: style.blueBright, success: msg=> style.greenBright("✓ "+msg) });
 

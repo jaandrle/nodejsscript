@@ -1,6 +1,5 @@
 #!/usr/bin/env nodejsscript
-/* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true */
-import { s, pipe, echo, style, exit } from "nodejsscript";
+/* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true *//* global echo, exit, pipe, s, style */
 style.theme({ pkg: style.magentaBright, version: style.greenBright });
 
 const printPackage= pipe(

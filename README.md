@@ -8,7 +8,6 @@ This is primarily achieved by using [shelljs/shelljs](https://github.com/shelljs
 You can compare the final script code to `zx` example:
 ```javascript
 #!/usr/bin/env nodejsscript
-import { s, echo } from "nodejsscript";
 echo(s.grep("name", "package.json"));
 
 s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
@@ -59,11 +58,8 @@ Or via the `nodejsscript` executable:
 nodejsscript ./script.mjs
 ```
 
-All function (`shelljs`, `fetch`, …) are exported by library, so use:
-```javascript
-import { … } from "nodejsscript";
-```
-… *The entry point for documentation of all exported (**Public**) items is in the* [**docs/**](./docs/README.md).
+All function (`shelljs`, `fetch`, …) are registered as global namespaces/functions:
+… *The entry point for documentation of all **Public** items is in the* [**docs/**](./docs/README.md).
 
 Note that there are also built-in `'node:*'` modules:
 ```js

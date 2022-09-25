@@ -1,10 +1,8 @@
 #!/usr/bin/env node
-// import { dirname, basename } from 'node:path';
-// import { existsSync, readFile } from "node:fs";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { argv } from "node:process";
 import url from "node:url";
-import { echo, exit, style, s, cli } from "../index.js";
+import "../index.js";/* global echo, exit, cli, s, style */
 
 (async function main(){
 	const candidate= argv.splice(2, 1)[0];
@@ -50,6 +48,6 @@ function printUsage(){
 	exit(0);
 }
 function info(...keys){
-	const info= s.cat("package.json").xargs(JSON.parse);
+	const info= s.cat(url.fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse);
 	return keys.map(key=> Reflect.get(info, key));
 }

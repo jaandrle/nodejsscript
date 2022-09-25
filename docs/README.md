@@ -8,17 +8,12 @@ nodejsscript
 
 - [pipe](README.md#pipe)
 - [fetch](README.md#fetch)
-- [read](README.md#read)
 - [cyclicLoop](README.md#cyclicloop)
 - [echo](README.md#echo)
 
 ### Internal Functions
 
 - [\_\_sade](README.md#__sade)
-
-### Interfaces
-
-- [ReadOptions](interfaces/ReadOptions.md)
 
 ### Public Namespaces
 
@@ -72,7 +67,7 @@ pipe(
 
 #### Defined in
 
-[index.d.ts:18](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L18)
+_index.d.ts:18
 
 ___
 
@@ -120,35 +115,7 @@ try{
 
 #### Defined in
 
-[index.d.ts:84](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L84)
-
-___
-
-### read
-
-▸ **read**(`options`): `Promise`<`string`\>
-
-This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
-So, the function purpose is reading from `stdin`.
-```js
-const answer= await read({ "-p": "Question" });
-const color= await read({ "-p": "Your color", completions: [ "red", "green" ] });
-if(is_piped.left) await read().then(echo.bind(null, "E.g. for reading received input:"));
-```
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `options` | [`ReadOptions`](interfaces/ReadOptions.md) |
-
-#### Returns
-
-`Promise`<`string`\>
-
-#### Defined in
-
-[index.d.ts:109](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L109)
+_index.d.ts:84
 
 ___
 
@@ -194,7 +161,7 @@ function spinner(message= "Waiting…"){
 
 #### Defined in
 
-[index.d.ts:133](https://github.com/jaandrle/nodejsscript/blob/c1132cc/index.d.ts#L133)
+_index.d.ts:109
 
 ___
 
@@ -249,7 +216,7 @@ Returns processed string with additional utility methods like .to().
 
 #### Defined in
 
-[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/c1132cc/src/echo.d.ts#L46)
+[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/echo.d.ts#L46)
 
 ___
 

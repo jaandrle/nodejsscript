@@ -47,7 +47,7 @@ const cli.configAssign({ verbose: true, silent: false });
 
 #### Defined in
 
-src/cli.d.ts:52
+[src/cli.d.ts:51](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L51)
 
 ___
 
@@ -73,7 +73,7 @@ node pipes.js | … # — test by cli.isFIFO(1)
 
 #### Defined in
 
-src/cli.d.ts:62
+[src/cli.d.ts:61](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L61)
 
 ___
 
@@ -136,13 +136,13 @@ prog.parse(process.argv);
 
 #### Defined in
 
-src/cli.d.ts:109
+[src/cli.d.ts:108](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L108)
 
 ___
 
 ### read
 
-▸ **read**(`options`): `Promise`<[`ShellString`](s.md#shellstring)\>
+▸ **read**(`options`): `Promise`<`string`\>
 
 This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
 So, the function purpose is reading from `stdin`.
@@ -160,11 +160,11 @@ if(cli.isFIFO(0)) await cli.read().then(echo.bind(null, "E.g. for reading receiv
 
 #### Returns
 
-`Promise`<[`ShellString`](s.md#shellstring)\>
+`Promise`<`string`\>
 
 #### Defined in
 
-src/cli.d.ts:133
+[src/cli.d.ts:132](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L132)
 
 ## Public Variables
 
@@ -180,7 +180,7 @@ false
 
 #### Defined in
 
-src/cli.d.ts:15
+[src/cli.d.ts:14](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L14)
 
 ___
 
@@ -196,7 +196,7 @@ false
 
 #### Defined in
 
-src/cli.d.ts:21
+[src/cli.d.ts:20](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L20)
 
 ___
 
@@ -212,7 +212,7 @@ false
 
 #### Defined in
 
-src/cli.d.ts:27
+[src/cli.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L26)
 
 ___
 
@@ -229,4 +229,4 @@ ___
 
 #### Defined in
 
-src/cli.d.ts:30
+[src/cli.d.ts:29](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L29)
