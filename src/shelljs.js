@@ -1,11 +1,13 @@
 import shelljs from "shelljs";
 import plugin from "shelljs/plugin.js";
+import escape from "shell-escape-tag";
 
 plugin.register("xargs", xargs, {
 	canReceivePipe: true,
 	wrapOutput: false,
 	cmdOptions: {
-		I: 'needle'
+		I: 'needle',
+		R: 'is_raw'
 	}
 });
 plugin.register("$", $, {
@@ -15,23 +17,29 @@ plugin.register("$", $, {
 
 export default shelljs;
 
-function xargs({ needle }, ...args){
+function xargs({ needle, is_raw }, ...args){
 	if(!needle) needle= "{}";
 	const [ cmd, ...cmd_args ]= args;
 	if(typeof cmd!=="function")
 		plugin.error("xargs needs one of the `shelljs` commands as first argument");
 
-	const pipe= plugin.readFromPipe();
+	const pipe= readFromPipe(is_raw);
 	let replaced= 0;
 	const args_final= cmd_args.map(a=> typeof a !== "string" ? a : a.replaceAll(needle, ()=> ( replaced+= 1, pipe )));
 	if(!replaced) args_final.push(pipe);
 	return cmd.apply(null, args_final);
 }
+function readFromPipe(is_raw){
+	const candidate= plugin.readFromPipe();
+	if(is_raw || typeof candidate !== "string") return candidate;
+	return escape(["", ""], plugin.readFromPipe());
+}
 function $(config_next){
 	config_next= !config_next ? Object.assign({}, shelljs.config, { silent: true }) : plugin.parseOptions(config_next, {
-		v: "verbose",
-		f: "fatal",
-		s: "silent"
+		V: "verbose",
+		F: "fatal",
+		S: "silent",
+		g: "noglob"
 	});
 	return new Proxy(this, {
 		get(target, p){

@@ -3,15 +3,18 @@ export * from "shelljs";
 
 export interface XargsOptions{
 	/** Next parameter represents to be replaced in `cmd_args`. */
-	"-I": string
+	"-I": string,
+	/** Raw piped string ⇒ turn off escaping piped string (by default). */
+	"-R": boolean
 }
 export interface XargsFunction {
 	/**
-	* Works as `xargs` in bash, only `-I` option is supported.
-	* ```js
-	* s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
-	* s.exec("git branch --show-current").xargs({ "-I": "§" }, s.exec, "dep deploy --branch=§");
-	* ```
+	 * Works as `xargs` in bash, only `-I` option is supported.
+	 * ```js
+	 * s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
+	 * s.exec("git branch --show-current").xargs({ "-I": "§" }, s.exec, "dep deploy --branch=§");
+	 * ```
+	 * *xarg() by default escapes piped string, this can be off by passing `-R` option.*
 	 * @param options	Defaults to `-I {}`
 	 * @param cmd		ShellJS method from {@link ShellReturnValue}
 	 * @param cmd_args	Arguments for `cmd`
@@ -36,14 +39,17 @@ export interface DollarFunction{
 	 * const branch= s.$().exec("git branch --show-current");
 	 * echo(branch);
 	 * 
-	 * s.$("-vf").exec("gyt branch --show-current");
+	 * s.$("-VF").exec("gyt branch --show-current");
+	 *
+	 * s.$("-g").rm("*.tx"); //remove only "*.txt" file
 	 * ```
 	 * @param options Options
-	 *	- "-v":  verbose
-	 *	- "-s": silent (default)
-	 *	- "-f": fatal
+	 *	- "-V": verbose
+	 *	- "-S": silent (default)
+	 *	- "-F": fatal
+	 *	- "-g": noglob
 	 */
-	(options: "-v"|"-s"|"-f"): ShellString;
+	(options: "-V"|"-S"|"-F"|"-g"): ShellString;
 	(): ShellString;
 }
 export const $: DollarFunction;

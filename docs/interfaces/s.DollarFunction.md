@@ -24,14 +24,16 @@ echo(var);
 const branch= s.$().exec("git branch --show-current");
 echo(branch);
 
-s.$("-vf").exec("gyt branch --show-current");
+s.$("-VF").exec("gyt branch --show-current");
+
+s.$("-g").rm("*.tx"); //remove only "*.txt" file
 ```
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | ``"-f"`` \| ``"-v"`` \| ``"-s"`` | Options  - "-v":  verbose  - "-s": silent (default)  - "-f": fatal |
+| `options` | ``"-S"`` \| ``"-V"`` \| ``"-F"`` \| ``"-g"`` | Options  - "-V": verbose  - "-S": silent (default)  - "-F": fatal  - "-g": noglob |
 
 #### Returns
 
@@ -39,7 +41,7 @@ s.$("-vf").exec("gyt branch --show-current");
 
 #### Defined in
 
-[src/shelljs.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/shelljs.d.ts#L46)
+[src/shelljs.d.ts:52](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/shelljs.d.ts#L52)
 
 ### DollarFunction
 
@@ -51,4 +53,4 @@ s.$("-vf").exec("gyt branch --show-current");
 
 #### Defined in
 
-[src/shelljs.d.ts:47](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/shelljs.d.ts#L47)
+[src/shelljs.d.ts:53](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/shelljs.d.ts#L53)

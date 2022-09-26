@@ -26,11 +26,14 @@ s.mkdir(join(s.tempdir(), name));
 
 1. tested/used on *NodeJS*: `node@v16.13.0` and `node@v17.9.1` ⇒ for installation follow [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^OR]
 1. `npm install https://github.com/jaandrle/nodejsscript --global` (**will be registered also in npm repository**)
+1. alternatively install locally
 
 ## Goods
 [s #shelljs](./docs/modules/s.md)
  · [cli](./docs/modules/cli.md) ([cli.api() #sade](./docs/modules/cli.md#api), [cli.read()](./docs/modules/cli.md#read), …)
  · [echo()](./docs/README.md#echo)
+ · [xdg()](./docs/README.md#xdg)
+ · [$\`\`](./docs/README.md#$)
  · [fetch() #node-fetch](./docs/README.md#fetch)
  · [style #ansi-colors](./docs/modules/style.md)
  · [pipe()](./docs/README.md#pipe)
@@ -58,6 +61,18 @@ Or via the `nodejsscript` executable:
 nodejsscript ./script.mjs
 ```
 
+<details>
+<summary>Alternatively when installed locally</summary>
+
+```bash
+#!/usr/bin/env -S npx nodejsscript
+```
+```bash
+npx nodejsscript ./script.mjs
+```
+
+</details>
+
 All function (`shelljs`, `fetch`, …) are registered as global namespaces/functions:
 … *The entry point for documentation of all **Public** items is in the* [**docs/**](./docs/README.md).
 
@@ -65,7 +80,40 @@ Note that there are also built-in `'node:*'` modules:
 ```js
 import { setTimeout } from "node:timers/promises";
 import { join, resolve } from "node:path";
+
+//current file url
+import.meta.url;
+//url to path
+import { fileURLToPath } from "node:url";
+const file_path= fileURLToPath(import.meta.url);
 ```
 …and more, see [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
+
+## Security guidelines
+**`exec()` command injection**: this advice applies to `child_process.exec()` just as
+much as it applies to `s.exec()`. It is potentially risky to run commands passed
+for example by user input:
+```js
+function curlUnsafe(urlToDownload){ return s.exec('curl ' + urlToDownload); }
+curlUnsafe('https://some/url ; rm -rf $HOME'); //=> curl https://some/url ; rm -rf $HOME
+```
+Therefore, `nodejsscript` provide [$\`\`](./docs/README.md#$) function for escaping shell commands:
+```js
+function curl(urlToDownload){ return s.exec($`curl ${urlToDownload}`); }
+curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'
+```
+…*Note: The ['xargs()'](../interfaces/s.XargsFunction.md) by default also escapes piped strings.*
+
+*…Note 2: `$`` is also helpul for escaping parameters passed as variables (e.g. arrays).*
+
+**Glob injection (all commands)**: Most ShellJS commands support [glob](https://github.com/isaacs/node-glob) expansion,
+expanding wildcards such as `*` to match files. While this is very powerful,
+dependent modules should exercise caution. Unsanitized user input may contain
+wildcard characters. Consider for example that the `*.txt` is valid file name,
+however the `s.rm("*.txt")` by default (using the globbing) delete all `txt` files.
+Keep in mind that you can always turn off this for next command by using:
+```js
+s.$("-g").rm("*.txt");
+```
 
 [^OR]: Alternatively `curl -sL install-node.vercel.app/16.13.0 | bash`

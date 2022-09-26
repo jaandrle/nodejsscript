@@ -1,8 +1,5 @@
 import { echo } from "./src/echo.js";
 import s from "./src/shelljs.js";
-import { cli } from "./src/cli.js";
-import style from "ansi-colors";
-import { read } from "./src/read.js";
 import nodeFetch from 'node-fetch';
 function fetch(url, init){
 	if(s.config.verbose) echo("fetch(", url, ",", init, ")");
@@ -18,7 +15,14 @@ function* cyclicLoop(items){
 	}
 }
 
+import { cli } from "./src/cli.js";
+import style from "ansi-colors";
+import { read } from "./src/read.js";
+import $ from "shell-escape-tag";
+import xdg from "@folder/xdg";
 Object.assign(globalThis, {
+	xdg,
+	$,
 	echo,
 	exit: s.exit,
 	pipe,

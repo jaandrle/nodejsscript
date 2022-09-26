@@ -107,3 +107,24 @@ export { __fetch };
  * @category Public
  * */
 export function cyclicLoop<T>(items: T[]): Generator<T[], any, T>
+
+/**
+ * Returns escaped string for using as shell command (typically in {@link s.exec}).
+ * ```js
+ * const filenames = glob('Holiday Snaps/*.jpg');
+ * const title     = 'Holiday Snaps';
+ * echo($`compress --title ${title} ${filenames}`)
+ * //=> compress --title 'Holiday Snaps' 'Holiday Snaps/Pic 1.jpg' 'Holiday Snaps/Pic 2.jpg'
+ * ```
+ * **You should use this always when the {@link s.exec} runs with uncontrolled input.**
+ * ```js
+ * function curlUnsafe(urlToDownload){ return s.exec('curl ' + urlToDownload); }
+ * function curl(urlToDownload){ return s.exec($`curl ${urlToDownload}`); }
+ * curlUnsafe('https://some/url ; rm -rf $HOME'); //=> curl https://some/url ; rm -rf $HOME
+ * curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'
+ * ```
+ * @category Public
+ */
+export function $(pieces: TemplateStringsArray, ...args: any[]): string;
+
+export { xdg, XdgOptions, XdgReturn } from "./src/xdg.d";

@@ -47,7 +47,7 @@ const cli.configAssign({ verbose: true, silent: false });
 
 #### Defined in
 
-[src/cli.d.ts:51](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L51)
+[src/cli.d.ts:51](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/cli.d.ts#L51)
 
 ___
 
@@ -73,7 +73,7 @@ node pipes.js | … # — test by cli.isFIFO(1)
 
 #### Defined in
 
-[src/cli.d.ts:61](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L61)
+[src/cli.d.ts:61](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/cli.d.ts#L61)
 
 ___
 
@@ -136,7 +136,7 @@ prog.parse(process.argv);
 
 #### Defined in
 
-[src/cli.d.ts:108](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L108)
+[src/cli.d.ts:108](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/cli.d.ts#L108)
 
 ___
 
@@ -164,7 +164,7 @@ if(cli.isFIFO(0)) await cli.read().then(echo.bind(null, "E.g. for reading receiv
 
 #### Defined in
 
-[src/cli.d.ts:132](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L132)
+[src/cli.d.ts:132](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/cli.d.ts#L132)
 
 ## Public Variables
 
@@ -180,7 +180,7 @@ false
 
 #### Defined in
 
-[src/cli.d.ts:14](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L14)
+[src/cli.d.ts:14](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/cli.d.ts#L14)
 
 ___
 
@@ -196,7 +196,7 @@ false
 
 #### Defined in
 
-[src/cli.d.ts:20](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L20)
+[src/cli.d.ts:20](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/cli.d.ts#L20)
 
 ___
 
@@ -212,7 +212,7 @@ false
 
 #### Defined in
 
-[src/cli.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L26)
+[src/cli.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/cli.d.ts#L26)
 
 ___
 
@@ -229,4 +229,4 @@ ___
 
 #### Defined in
 
-[src/cli.d.ts:29](https://github.com/jaandrle/nodejsscript/blob/b9d4525/src/cli.d.ts#L29)
+[src/cli.d.ts:29](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/cli.d.ts#L29)

@@ -46,5 +46,6 @@ function rewritableEnd(type= "clear"){
 }
 function prepareTexts(v){
 	if(v instanceof Error && !config.verbose) return String(v);
+	if(v instanceof String && v.hasOwnProperty("stdout") && !config.verbose) return v.stdout.replace(/\n$/g, "");
 	return v;
 }
