@@ -1,5 +1,5 @@
 #!/usr/bin/env nodejsscript
-/* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true *//* global echo, cli, pipe, s, xdg */
+/* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true *//* global echo, cli, pipe, s */
 import { join } from "node:path";
 
 cli.api("", true)
@@ -7,7 +7,6 @@ cli.api("", true)
 .describe("NodeJS Script cli test")
 .option("--clear", "Clears cerated temp dir")
 .action(function main({ clear }){
-	echo(xdg({ subdir: "TestSubDir" }));
 	const name= join(s.tempdir(), "foo bar");
 	s.mkdir("-p", name);
 	
