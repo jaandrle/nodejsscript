@@ -23,7 +23,7 @@
 
 #### Defined in
 
-[src/xdg.d.ts:1](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/xdg.d.ts#L1)
+[src/xdg.d.ts:1](https://github.com/jaandrle/nodejsscript/blob/df02570/src/xdg.d.ts#L1)
 
 ___
 
@@ -36,9 +36,12 @@ ___
 ▸ (...`path`): `string`
 
 Returns the directory/file path based on the passed tag string.
-```
+```js
+cli.xdg.home() //=> (on my linux) /home/jaandrle
 cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
+cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 ```
+…similarly for `temp`, `data`, `config` ans `cache`.
 
 ##### Parameters
 
@@ -52,7 +55,7 @@ cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:8](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/xdg.d.ts#L8)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/df02570/src/xdg.d.ts#L11)
 
 ___
 
@@ -70,7 +73,7 @@ ___
 
 #### Defined in
 
-[src/xdg.d.ts:9](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/xdg.d.ts#L9)
+[src/xdg.d.ts:12](https://github.com/jaandrle/nodejsscript/blob/df02570/src/xdg.d.ts#L12)
 
 ___
 
@@ -80,4 +83,4 @@ ___
 
 #### Defined in
 
-[src/xdg.d.ts:10](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/xdg.d.ts#L10)
+[src/xdg.d.ts:13](https://github.com/jaandrle/nodejsscript/blob/df02570/src/xdg.d.ts#L13)

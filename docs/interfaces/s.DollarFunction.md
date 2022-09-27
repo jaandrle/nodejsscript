@@ -41,7 +41,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/shelljs.d.ts#L54)
+[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L54)
 
 ### DollarFunction
 
@@ -53,4 +53,4 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/shelljs.d.ts#L55)
+[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L55)

@@ -30,7 +30,7 @@ s.mkdir(join(s.tempdir(), name));
 
 ## Goods
 [s #shelljs](./docs/modules/s.md)
- · [cli](./docs/modules/cli.md) ([cli.api() #sade](./docs/modules/cli.md#api), [cli.read()](./docs/modules/cli.md#read), …)
+ · [cli](./docs/modules/cli.md) ([cli.api() #sade](./docs/modules/cli.md#api), [cli.read()](./docs/modules/cli.md#read), [cli.xdg](./docs/modules/xdg_.xdg.md), …)
  · [echo()](./docs/README.md#echo)
  · [fetch() #node-fetch](./docs/README.md#fetch)
  · [style #ansi-colors](./docs/modules/style.md)

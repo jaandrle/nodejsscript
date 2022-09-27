@@ -28,7 +28,7 @@ function xargs({ needle, is_raw }, ...args){
 	if(typeof cmd!=="function")
 		plugin.error("xargs needs one of the `shelljs` commands as first argument");
 
-	const pipe= readFromPipe(is_raw);
+	const pipe= readFromPipe(is_raw || cmd!==shelljs.run);
 	let replaced= 0;
 	const args_final= cmd_args.map(a=> typeof a !== "string" ? a : a.replaceAll(needle, ()=> ( replaced+= 1, pipe )));
 	if(!replaced) args_final.push(pipe);
@@ -61,7 +61,7 @@ function $(config_next){
 /** @this {shelljs} */
 function run(command, vars, options){
 	/* jshint ignore:start */
-	const s= this;
+	const s= this || shelljs;
 	/* jshint ignore:end *//* global s */
 	vars= vars || {};
 	options= options || {};

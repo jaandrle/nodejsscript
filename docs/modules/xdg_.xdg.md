@@ -24,9 +24,12 @@ It tryies to use [xdg-user-dirs](https://www.freedesktop.org/wiki/Software/xdg-u
 ▸ **home**(...`path`): `string`
 
 Returns the directory/file path based on the passed tag string.
-```
+```js
+cli.xdg.home() //=> (on my linux) /home/jaandrle
 cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
+cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 ```
+…similarly for `temp`, `data`, `config` ans `cache`.
 
 #### Parameters
 
@@ -40,7 +43,7 @@ cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:8](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/xdg.d.ts#L8)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/df02570/src/xdg.d.ts#L11)
 
 ___
 
@@ -49,9 +52,12 @@ ___
 ▸ **temp**(...`path`): `string`
 
 Returns the directory/file path based on the passed tag string.
-```
+```js
+cli.xdg.home() //=> (on my linux) /home/jaandrle
 cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
+cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 ```
+…similarly for `temp`, `data`, `config` ans `cache`.
 
 #### Parameters
 
@@ -65,7 +71,7 @@ cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:8](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/xdg.d.ts#L8)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/df02570/src/xdg.d.ts#L11)
 
 ___
 
@@ -74,9 +80,12 @@ ___
 ▸ **data**(...`path`): `string`
 
 Returns the directory/file path based on the passed tag string.
-```
+```js
+cli.xdg.home() //=> (on my linux) /home/jaandrle
 cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
+cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 ```
+…similarly for `temp`, `data`, `config` ans `cache`.
 
 #### Parameters
 
@@ -90,7 +99,7 @@ cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:8](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/xdg.d.ts#L8)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/df02570/src/xdg.d.ts#L11)
 
 ___
 
@@ -99,9 +108,12 @@ ___
 ▸ **config**(...`path`): `string`
 
 Returns the directory/file path based on the passed tag string.
-```
+```js
+cli.xdg.home() //=> (on my linux) /home/jaandrle
 cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
+cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 ```
+…similarly for `temp`, `data`, `config` ans `cache`.
 
 #### Parameters
 
@@ -115,7 +127,7 @@ cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:8](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/xdg.d.ts#L8)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/df02570/src/xdg.d.ts#L11)
 
 ___
 
@@ -124,9 +136,12 @@ ___
 ▸ **cache**(...`path`): `string`
 
 Returns the directory/file path based on the passed tag string.
-```
+```js
+cli.xdg.home() //=> (on my linux) /home/jaandrle
 cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
+cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 ```
+…similarly for `temp`, `data`, `config` ans `cache`.
 
 #### Parameters
 
@@ -140,4 +155,4 @@ cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:8](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/xdg.d.ts#L8)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/df02570/src/xdg.d.ts#L11)
