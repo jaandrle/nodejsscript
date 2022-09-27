@@ -39,6 +39,4 @@ declare global{
 	 */
 	function fetch(url: string | _.__fetch.Request, init?: _.__fetch.RequestInit): _.__fetch.Response;
 	var cyclicLoop: typeof _.cyclicLoop;
-	var $: typeof _.$;
-	var xdg: typeof _.xdg;
 }

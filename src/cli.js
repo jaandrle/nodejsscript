@@ -1,5 +1,6 @@
 import { config } from "shelljs";
 import { fstatSync } from "node:fs";
+import * as xdg from "./xdg.js";
 export const cli= {
 	get is_silent(){ return config.silent; },
 	set is_silent(v){ config.silent= v; },
@@ -25,7 +26,9 @@ export const cli= {
 	isFIFO(stream_id= 0){ return fstatSync(stream_id).isFIFO(); },
 	
 	Error: class extends Error{},
-	error(message){ throw new cli.Error(message); }
+	error(message){ throw new cli.Error(message); },
+
+	xdg
 };
 
 import sade from "sade";

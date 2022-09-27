@@ -1,7 +1,7 @@
 /** @category Public */
 export { echo } from './src/echo.d';
 /** @category Public */
-export { cli, __sade } from './src/cli.d';
+export { cli, xdg_, __sade } from './src/cli.d';
 /**
  * Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe). Provides functional way to combine commands/functions.
  * 
@@ -110,5 +110,3 @@ export { __fetch };
  * @category Public
  * */
 export function cyclicLoop<T>(items: T[]): Generator<T[], any, T>
-
-export { xdg, XdgOptions, XdgReturn } from "./src/xdg.d";

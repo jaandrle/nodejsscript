@@ -59,7 +59,6 @@
 		"maxcomplexity": 11
 	},
 	"dependencies": {
-		"@folder/xdg": "^3.1.2",
 		"@types/sade": "^1.7.4",
 		"@types/shelljs": "^0.8.11",
 		"abort-controller": "^3.0.0",

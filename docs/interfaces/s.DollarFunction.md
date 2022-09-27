@@ -21,10 +21,10 @@ echo(var);
 ```
 …examples:
 ```js
-const branch= s.$().exec("git branch --show-current");
+const branch= s.$().run("git branch --show-current");
 echo(branch);
 
-s.$("-VF").exec("gyt branch --show-current");
+s.$("-VF").run("gyt branch --show-current");
 
 s.$("-g").rm("*.tx"); //remove only "*.txt" file
 ```
@@ -41,7 +41,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/shelljs.d.ts#L54)
+[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/shelljs.d.ts#L54)
 
 ### DollarFunction
 
@@ -53,4 +53,4 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/shelljs.d.ts#L55)
+[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/shelljs.d.ts#L55)

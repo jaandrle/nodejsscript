@@ -9,17 +9,16 @@ nodejsscript
 - [pipe](README.md#pipe)
 - [fetch](README.md#fetch)
 - [cyclicLoop](README.md#cyclicloop)
-- [$](README.md#$)
 - [echo](README.md#echo)
 
 ### Internal Functions
 
 - [\_\_sade](README.md#__sade)
-- [xdg](README.md#xdg)
 
 ### Public Namespaces
 
 - [cli](modules/cli.md)
+- [xdg\_](modules/xdg_.md)
 - [\_\_sade](modules/_sade.md)
 - [s](modules/s.md)
 - [style](modules/style.md)
@@ -27,11 +26,6 @@ nodejsscript
 ### Internal Namespaces
 
 - [\_\_fetch](modules/_fetch.md)
-
-### Interfaces
-
-- [XdgOptions](interfaces/XdgOptions.md)
-- [XdgReturn](interfaces/XdgReturn.md)
 
 ## Public Functions
 
@@ -74,7 +68,7 @@ pipe(
 
 #### Defined in
 
-[_index.d.ts:18](https://github.com/jaandrle/nodejsscript/blob/23d39a7/_index.d.ts#L18)
+[_index.d.ts:18](https://github.com/jaandrle/nodejsscript/blob/a6e3251/_index.d.ts#L18)
 
 ___
 
@@ -122,7 +116,7 @@ try{
 
 #### Defined in
 
-[_index.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/23d39a7/_index.d.ts#L87)
+[_index.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/a6e3251/_index.d.ts#L87)
 
 ___
 
@@ -168,43 +162,7 @@ function spinner(message= "Waiting…"){
 
 #### Defined in
 
-[_index.d.ts:112](https://github.com/jaandrle/nodejsscript/blob/23d39a7/_index.d.ts#L112)
-
-___
-
-### $
-
-▸ **$**(`pieces`, ...`args`): `string`
-
-Returns escaped string for using as shell command (typically in [exec](modules/s.md#exec)).
-```js
-const filenames = glob('Holiday Snaps/*.jpg');
-const title     = 'Holiday Snaps';
-echo($`compress --title ${title} ${filenames}`)
-//=> compress --title 'Holiday Snaps' 'Holiday Snaps/Pic 1.jpg' 'Holiday Snaps/Pic 2.jpg'
-```
-**You should use this always when the [exec](modules/s.md#exec) runs with uncontrolled input.**
-```js
-function curlUnsafe(urlToDownload){ return s.exec('curl ' + urlToDownload); }
-function curl(urlToDownload){ return s.exec($`curl ${urlToDownload}`); }
-curlUnsafe('https://some/url ; rm -rf $HOME'); //=> curl https://some/url ; rm -rf $HOME
-curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'
-```
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `pieces` | `TemplateStringsArray` |
-| `...args` | `any`[] |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[_index.d.ts:131](https://github.com/jaandrle/nodejsscript/blob/23d39a7/_index.d.ts#L131)
+[_index.d.ts:112](https://github.com/jaandrle/nodejsscript/blob/a6e3251/_index.d.ts#L112)
 
 ___
 
@@ -259,7 +217,7 @@ Returns processed string with additional utility methods like .to().
 
 #### Defined in
 
-[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/echo.d.ts#L46)
+[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/echo.d.ts#L46)
 
 ___
 
@@ -283,53 +241,3 @@ ___
 #### Defined in
 
 node_modules/sade/index.d.ts:5
-
-___
-
-### xdg
-
-▸ **xdg**(`options?`): [`XdgReturn`](interfaces/XdgReturn.md)
-
-Namespace/function represents [folder/xdg: Get cross-platform XDG Base Directories or their equivalents. Works with Linux, Windows, or MacOS.](https://github.com/folder/xdg).
-```js
-echo(xdg({ subdir: "TestSubDir" }));
-```
-…output:
-```json
-{
-	"cache": "/home/jaandrle/.cache/testsubdir",
-	"config": "/home/jaandrle/.config/testsubdir",
-	"config_dirs": [
-		"/home/jaandrle/.config/testsubdir",
-		"/home/jaandrle/.config/kdedefaults",
-		"/etc/xdg/xdg-plasma",
-		"/etc/xdg"
-],
-	"data": "/home/jaandrle/.local/share/testsubdir",
-	"data_dirs": [
-		"/home/jaandrle/.local/share/testsubdir",
-		"/usr/share/plasma",
-		"/home/jaandrle/.local/share/flatpak/exports/share",
-		"/var/lib/flatpak/exports/share",
-		"/usr/local/share",
-		"/usr/share",
-		"/var/lib/snapd/desktop"
-],
-	"runtime": "/run/user/1000/testsubdir",
-	"logs": "/home/jaandrle/.cache/testsubdir/logs"
-}
-```
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `options?` | [`XdgOptions`](interfaces/XdgOptions.md) |
-
-#### Returns
-
-[`XdgReturn`](interfaces/XdgReturn.md)
-
-#### Defined in
-
-[src/xdg.d.ts:38](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L38)

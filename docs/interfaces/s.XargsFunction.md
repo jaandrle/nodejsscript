@@ -12,8 +12,8 @@
 
 Works as `xargs` in bash, only `-I` option is supported.
 ```js
-s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
-s.exec("git branch --show-current").xargs({ "-I": "§" }, s.exec, "dep deploy --branch=§");
+s.run("git branch --show-current").xargs(s.run, "dep deploy --branch={}");
+s.run("git branch --show-current").xargs({ "-I": "§" }, s.run, "dep deploy --branch=§");
 ```
 *xarg() by default escapes piped string, this can be off by passing `-R` option.*
 
@@ -39,7 +39,7 @@ Result of `cmd`
 
 #### Defined in
 
-[src/shelljs.d.ts:25](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/shelljs.d.ts#L25)
+[src/shelljs.d.ts:25](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/shelljs.d.ts#L25)
 
 ### XargsFunction
 
@@ -64,4 +64,4 @@ Result of `cmd`
 
 #### Defined in
 
-[src/shelljs.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/shelljs.d.ts#L26)
+[src/shelljs.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/shelljs.d.ts#L26)

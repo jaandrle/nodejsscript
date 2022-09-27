@@ -17,6 +17,7 @@
 - [is\_verbose](cli.md#is_verbose)
 - [is\_fatal](cli.md#is_fatal)
 - [glob\_options](cli.md#glob_options)
+- [xdg](cli.md#xdg)
 
 ### Interfaces
 
@@ -47,7 +48,7 @@ const cli.configAssign({ verbose: true, silent: false });
 
 #### Defined in
 
-[src/cli.d.ts:51](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/cli.d.ts#L51)
+[src/cli.d.ts:53](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/cli.d.ts#L53)
 
 ___
 
@@ -73,7 +74,7 @@ node pipes.js | … # — test by cli.isFIFO(1)
 
 #### Defined in
 
-[src/cli.d.ts:61](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/cli.d.ts#L61)
+[src/cli.d.ts:63](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/cli.d.ts#L63)
 
 ___
 
@@ -136,7 +137,7 @@ prog.parse(process.argv);
 
 #### Defined in
 
-[src/cli.d.ts:108](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/cli.d.ts#L108)
+[src/cli.d.ts:110](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/cli.d.ts#L110)
 
 ___
 
@@ -164,7 +165,7 @@ if(cli.isFIFO(0)) await cli.read().then(echo.bind(null, "E.g. for reading receiv
 
 #### Defined in
 
-[src/cli.d.ts:132](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/cli.d.ts#L132)
+[src/cli.d.ts:134](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/cli.d.ts#L134)
 
 ## Public Variables
 
@@ -180,7 +181,7 @@ false
 
 #### Defined in
 
-[src/cli.d.ts:14](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/cli.d.ts#L14)
+[src/cli.d.ts:16](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/cli.d.ts#L16)
 
 ___
 
@@ -196,7 +197,7 @@ false
 
 #### Defined in
 
-[src/cli.d.ts:20](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/cli.d.ts#L20)
+[src/cli.d.ts:22](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/cli.d.ts#L22)
 
 ___
 
@@ -212,7 +213,7 @@ false
 
 #### Defined in
 
-[src/cli.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/cli.d.ts#L26)
+[src/cli.d.ts:28](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/cli.d.ts#L28)
 
 ___
 
@@ -229,4 +230,14 @@ ___
 
 #### Defined in
 
-[src/cli.d.ts:29](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/cli.d.ts#L29)
+[src/cli.d.ts:31](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/cli.d.ts#L31)
+
+___
+
+### xdg
+
+• `Const` **xdg**: typeof [`xdg`](xdg_.xdg.md)
+
+#### Defined in
+
+[src/cli.d.ts:139](https://github.com/jaandrle/nodejsscript/blob/a6e3251/src/cli.d.ts#L139)
