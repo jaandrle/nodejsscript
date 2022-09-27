@@ -21,6 +21,11 @@ s.cat("./package.json").grep("version");
 - ['xargs()'](../interfaces/s.XargsFunction.md)
 - ['$()'](../interfaces/s.DollarFunction.md)
 
+**Changes/recommenctions:**
+- use [echo](s.md#echo) instead of `s.echo`, this was changed to `s.ShellString` for easy file writing without logging to console `s.echo("Data").to("file.txt")`.
+- use ['run()'](../interfaces/s.RunFunction.md) instead of `s.exec`, because of options for passing arguments in secure way.
+- use ['$()'](../interfaces/s.DollarFunction.md) instead of `s.set()`, because `$()` allows chaining (you can also access config with [cli](cli.md)s `.is_*` keys).
+
 ## Table of contents
 
 ### Namespaces
@@ -149,7 +154,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L54)
+[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L54)
 
 ▸ **$**(): [`ShellString`](s.md#shellstring)
 
@@ -159,7 +164,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L55)
+[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L55)
 
 ___
 
@@ -185,7 +190,7 @@ Returns an object containing the return code and output as string,
 
 #### Defined in
 
-[src/shelljs.d.ts:93](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L93)
+[src/shelljs.d.ts:93](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L93)
 
 ▸ **run**(`command`, `vars`, `options`): [`ShellString`](s.md#shellstring)
 
@@ -208,7 +213,7 @@ Returns an object containing the return code and output as string,
 
 #### Defined in
 
-[src/shelljs.d.ts:110](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L110)
+[src/shelljs.d.ts:110](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L110)
 
 ▸ **run**(`command`, `vars`, `options`): `Promise`<`string`\>
 
@@ -231,7 +236,7 @@ Returns an object containing the return code and output as string,
 
 #### Defined in
 
-[src/shelljs.d.ts:126](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L126)
+[src/shelljs.d.ts:126](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L126)
 
 ▸ **run**(`command`, `vars`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -254,7 +259,7 @@ Returns an object containing the return code and output as string,
 
 #### Defined in
 
-[src/shelljs.d.ts:141](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L141)
+[src/shelljs.d.ts:141](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L141)
 
 ___
 
@@ -2180,7 +2185,7 @@ node_modules/@types/shelljs/index.d.ts:1164
 
 #### Defined in
 
-[src/shelljs.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L59)
+[src/shelljs.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L59)
 
 ___
 

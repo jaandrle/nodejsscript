@@ -116,4 +116,8 @@ Keep in mind that you can always turn off this for next command by using:
 s.$("-g").rm("*.txt");
 ```
 
+## Contribute
+- [Contributor Covenant Code of Conduc](./CODE_OF_CONDUCT.md)
+- [How to contribute](./CONTRIBUTING.md)
+
 [^OR]: Alternatively `curl -sL install-node.vercel.app/16.13.0 | bash`

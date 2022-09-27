@@ -36,6 +36,11 @@ export function pipe(...funs: Function[]): (input: any)=> any;
  * - {@link s.RunFunction 'run()'}
  * - {@link s.XargsFunction 'xargs()'}
  * - {@link s.DollarFunction '$()'}
+ *
+ * **Changes/recommenctions:**
+ * - use {@link echo} instead of `s.echo`, this was changed to `s.ShellString` for easy file writing without logging to console `s.echo("Data").to("file.txt")`.
+ * - use {@link s.RunFunction 'run()'} instead of `s.exec`, because of options for passing arguments in secure way.
+ * - use {@link s.DollarFunction '$()'} instead of `s.set()`, because `$()` allows chaining (you can also access config with {@link cli}s `.is_*` keys).
  * @category Public
  */
 export * as s from './src/shelljs.d';

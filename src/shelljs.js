@@ -2,6 +2,8 @@ import shelljs from "shelljs";
 import plugin from "shelljs/plugin.js";
 import escape from "shell-escape-tag";
 
+shelljs.echo= shelljs.ShellString;
+
 plugin.register("xargs", xargs, {
 	canReceivePipe: true,
 	wrapOutput: false,
@@ -68,6 +70,11 @@ function run(command, vars, options){
 	command= command.replace(options.needle || /::([^:]+)::/g, function replace(_, key){
 		return escape([ "" ], [ vars[key] ]);
 	});
+	if(command[command.length-1]==="&"){
+		if(!Reflect.has(options, "async"))
+			Reflect.set(options, "async", true);
+		command= command.slice(0, command.length-1);
+	}
 	Reflect.deleteProperty(options, "needle");
 	if(options.async !== true){
 		if(typeof options.async === "string") options.async= true;

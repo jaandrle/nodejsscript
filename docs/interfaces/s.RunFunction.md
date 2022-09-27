@@ -38,7 +38,7 @@ Returns an object containing the return code and output as string.
 
 #### Defined in
 
-[src/shelljs.d.ts:93](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L93)
+[src/shelljs.d.ts:93](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L93)
 
 ### RunFunction
 
@@ -69,7 +69,7 @@ Returns an object containing the return code and output as string,
 
 #### Defined in
 
-[src/shelljs.d.ts:110](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L110)
+[src/shelljs.d.ts:110](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L110)
 
 ### RunFunction
 
@@ -99,7 +99,7 @@ Returns an object containing the return code and output as string,
 
 #### Defined in
 
-[src/shelljs.d.ts:126](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L126)
+[src/shelljs.d.ts:126](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L126)
 
 ### RunFunction
 
@@ -128,4 +128,4 @@ Returns an object containing the return code and output as string,
 
 #### Defined in
 
-[src/shelljs.d.ts:141](https://github.com/jaandrle/nodejsscript/blob/df02570/src/shelljs.d.ts#L141)
+[src/shelljs.d.ts:141](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L141)
