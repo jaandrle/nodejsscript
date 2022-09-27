@@ -18,11 +18,9 @@ function* cyclicLoop(items){
 import { cli } from "./src/cli.js";
 import style from "ansi-colors";
 import { read } from "./src/read.js";
-import $ from "shell-escape-tag";
 import xdg from "@folder/xdg";
 Object.assign(globalThis, {
 	xdg,
-	$,
 	echo,
 	exit: s.exit,
 	pipe,

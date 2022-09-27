@@ -1,4 +1,6 @@
-import { ShellString } from "shelljs";
+import { ShellString, ExecOptions, ExecCallback } from "shelljs";
+import child= require('child_process');
+export { child };
 export * from "shelljs";
 
 export interface XargsOptions{
@@ -11,8 +13,8 @@ export interface XargsFunction {
 	/**
 	 * Works as `xargs` in bash, only `-I` option is supported.
 	 * ```js
-	 * s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
-	 * s.exec("git branch --show-current").xargs({ "-I": "§" }, s.exec, "dep deploy --branch=§");
+	 * s.run("git branch --show-current").xargs(s.run, "dep deploy --branch={}");
+	 * s.run("git branch --show-current").xargs({ "-I": "§" }, s.run, "dep deploy --branch=§");
 	 * ```
 	 * *xarg() by default escapes piped string, this can be off by passing `-R` option.*
 	 * @param options	Defaults to `-I {}`
@@ -36,10 +38,10 @@ export interface DollarFunction{
 	 * ```
 	 * …examples:
 	 * ```js
-	 * const branch= s.$().exec("git branch --show-current");
+	 * const branch= s.$().run("git branch --show-current");
 	 * echo(branch);
 	 * 
-	 * s.$("-VF").exec("gyt branch --show-current");
+	 * s.$("-VF").run("gyt branch --show-current");
 	 *
 	 * s.$("-g").rm("*.tx"); //remove only "*.txt" file
 	 * ```
@@ -54,7 +56,103 @@ export interface DollarFunction{
 }
 export const $: DollarFunction;
 
+export type RunOptions=  ExecOptions & {
+	/**
+	 * Asynchronous execution.
+	 *
+	 *
+	 * @default false
+	 */
+	async?: "child" | boolean | undefined;
+	/**
+	 * Pattern in `command` to be replacced by variables.
+	 *
+	 * @default /::([^:]+)::/g
+	 */
+	needle?: RegExp;
+}
+export interface RunFunction {
+	/**
+	 * Executes the given command synchronously.
+	 *
+	 * *Synchronous simple examples*:
+	 * ```js
+	 * s.run("node --version");
+	 * const version= s.$().run("node --version").stdout;
+	 * ```
+	 * *Passing variables*:
+	 * ```js
+	 * const branch= s.$().run("git branch --show-current").stdout;
+	 * s.run("echo ::branch::", { branch });
+	 * ```
+	 *
+	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
+	 * @param vars Arguments for `command`.
+	 * @return		  Returns an object containing the return code and output as string.
+	 */
+	(command: string, vars?: {}): ShellString;
+
+	/**
+	 * Executes the given command synchronously.
+	 *
+	 * *Passing variables*:
+	 * ```js
+	 * const branch= s.$().run("git branch --show-current").stdout;
+	 * s.run("echo ::branch::", { branch });
+	 * ```
+	 *
+	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
+	 * @param vars Arguments for `command`.
+	 * @param options Silence and synchronous options.
+	 * @return		  Returns an object containing the return code and output as string,
+	 *				  or if `{async: true}` was passed, a `ChildProcess`.
+	 */
+	(command: string, vars: {} | false, options: RunOptions & { async?: false | undefined }): ShellString;
+
+	/**
+	 * Executes the given command asynchronously.
+	 * ```js
+	 * s.$().run("git branch --show-current", false, { async: true })
+	 * .then(echo.bind(echo, "success:"))
+	 * .catch(echo.bind(echo, "error:"))
+	 * ```
+	 *
+	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
+	 * @param vars Arguments for `command`.
+	 * @param options Silence and synchronous options.
+	 * @return		  Returns an object containing the return code and output as string,
+	 *				  or if `{async: true}` was passed, a `Promise`.
+	 */
+	(command: string, vars: {} | false, options: RunOptions & { async: true }): Promise<string>;
+
+	/**
+	 * Executes the given command asynchronously. *Get the {@link child}*:
+	 * ```js
+	 * const ch= s.$().run("git branch --show-current", false, { async: "child" });
+	 * ch.on("data", echo);
+	 * ```
+	 *
+	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
+	 * @param vars Arguments for `command`.
+	 * @param options Silence and synchronous options.
+	 * @return		  Returns an object containing the return code and output as string,
+	 *				  or if `{async: "child"}` was passed, a `ChildProcess`.
+	 */
+	(command: string, vars: {} | false, options: RunOptions & { async: "child" }): child.ChildProcess;
+}
+/**
+ * Executes the given command.
+ *
+ * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
+ * @param vars Arguments for `command`.
+ * @param options Silence and synchronous options.
+ * @return Returns an object containing the return code and output as string,
+ *         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
+ */
+export const run: RunFunction;
+
 export interface ShellReturnValue{
 	xargs: XargsFunction
-	$: DollarFunction
+	$: DollarFunction,
+	run: RunFunction
 }

@@ -74,7 +74,7 @@ pipe(
 
 #### Defined in
 
-[_index.d.ts:18](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/_index.d.ts#L18)
+[_index.d.ts:18](https://github.com/jaandrle/nodejsscript/blob/23d39a7/_index.d.ts#L18)
 
 ___
 
@@ -122,7 +122,7 @@ try{
 
 #### Defined in
 
-[_index.d.ts:84](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/_index.d.ts#L84)
+[_index.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/23d39a7/_index.d.ts#L87)
 
 ___
 
@@ -168,7 +168,7 @@ function spinner(message= "Waiting…"){
 
 #### Defined in
 
-[_index.d.ts:109](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/_index.d.ts#L109)
+[_index.d.ts:112](https://github.com/jaandrle/nodejsscript/blob/23d39a7/_index.d.ts#L112)
 
 ___
 
@@ -204,7 +204,7 @@ curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $H
 
 #### Defined in
 
-[_index.d.ts:128](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/_index.d.ts#L128)
+[_index.d.ts:131](https://github.com/jaandrle/nodejsscript/blob/23d39a7/_index.d.ts#L131)
 
 ___
 
@@ -259,7 +259,7 @@ Returns processed string with additional utility methods like .to().
 
 #### Defined in
 
-[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/echo.d.ts#L46)
+[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/echo.d.ts#L46)
 
 ___
 
@@ -332,4 +332,4 @@ echo(xdg({ subdir: "TestSubDir" }));
 
 #### Defined in
 
-src/xdg.d.ts:38
+[src/xdg.d.ts:38](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L38)

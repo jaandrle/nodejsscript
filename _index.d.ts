@@ -22,7 +22,7 @@ export function pipe(...funs: Function[]): (input: any)=> any;
  * You can pipe commands when make sense by chaining, see [**Pipes**](https://github.com/shelljs/shelljs#pipes).
  * 
  * Available commands: [cat](https://github.com/shelljs/shelljs#catoptions-file--file-) · [cd](https://github.com/shelljs/shelljs#cddir) · [chmod](https://github.com/shelljs/shelljs#chmodoptions-octal_mode--octal_string-file) · [cp](https://github.com/shelljs/shelljs#cpoptions-source--source--dest)
- *  · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n) · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n) · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n) · [exec](https://github.com/shelljs/shelljs#execcommand--options--callback)
+ *  · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n) · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n) · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n)
  *  · [find](https://github.com/shelljs/shelljs#findpath--path-) · [grep](https://github.com/shelljs/shelljs#grepoptions-regex_filter-file--file-) · [head](https://github.com/shelljs/shelljs#head-n-num-file--file-) · [ln](https://github.com/shelljs/shelljs#lnoptions-source-dest)
  *  · [ls](https://github.com/shelljs/shelljs#lsoptions-path-) · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-) · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest) · [pwd](https://github.com/shelljs/shelljs#pwd)
  *  · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
@@ -32,7 +32,10 @@ export function pipe(...funs: Function[]): (input: any)=> any;
  * ```js
  * s.cat("./package.json").grep("version");
  * ```
- * … this library adds two function {@link s.XargsFunction 'xargs()'} and {@link s.DollarFunction '$()'}.
+ * … this library adds:
+ * - {@link s.RunFunction 'run()'}
+ * - {@link s.XargsFunction 'xargs()'}
+ * - {@link s.DollarFunction '$()'}
  * @category Public
  */
 export * as s from './src/shelljs.d';
@@ -107,24 +110,5 @@ export { __fetch };
  * @category Public
  * */
 export function cyclicLoop<T>(items: T[]): Generator<T[], any, T>
-
-/**
- * Returns escaped string for using as shell command (typically in {@link s.exec}).
- * ```js
- * const filenames = glob('Holiday Snaps/*.jpg');
- * const title     = 'Holiday Snaps';
- * echo($`compress --title ${title} ${filenames}`)
- * //=> compress --title 'Holiday Snaps' 'Holiday Snaps/Pic 1.jpg' 'Holiday Snaps/Pic 2.jpg'
- * ```
- * **You should use this always when the {@link s.exec} runs with uncontrolled input.**
- * ```js
- * function curlUnsafe(urlToDownload){ return s.exec('curl ' + urlToDownload); }
- * function curl(urlToDownload){ return s.exec($`curl ${urlToDownload}`); }
- * curlUnsafe('https://some/url ; rm -rf $HOME'); //=> curl https://some/url ; rm -rf $HOME
- * curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'
- * ```
- * @category Public
- */
-export function $(pieces: TemplateStringsArray, ...args: any[]): string;
 
 export { xdg, XdgOptions, XdgReturn } from "./src/xdg.d";

@@ -39,7 +39,7 @@ Result of `cmd`
 
 #### Defined in
 
-[src/shelljs.d.ts:23](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/shelljs.d.ts#L23)
+[src/shelljs.d.ts:25](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/shelljs.d.ts#L25)
 
 ### XargsFunction
 
@@ -64,4 +64,4 @@ Result of `cmd`
 
 #### Defined in
 
-[src/shelljs.d.ts:24](https://github.com/jaandrle/nodejsscript/blob/30ef3ce/src/shelljs.d.ts#L24)
+[src/shelljs.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/shelljs.d.ts#L26)

@@ -3,12 +3,12 @@
 style.theme({ pkg: style.magentaBright, version: style.greenBright });
 
 const printPackage= pipe(
-	l=> l.slice(l.indexOf(" ")).split("@"),
+	l=> l.slice(l.indexOf(" ")).split(/@(?:\d)/),
 	([ pkg, version ])=> style.pkg(pkg)+"@"+style.version(version),
 	echo
 );
 const getPackages= is_global=> 
-	s.$().exec("npm list"+(is_global ? " --location=global" : ""))
+	s.$().run("npm list ::g::", { g: is_global ? "--location=global" : "" })
 	.grep("─")
 	.grep("-v", "types")
 	.sed(/->.*$/, '') //trim aliases

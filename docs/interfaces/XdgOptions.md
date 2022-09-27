@@ -28,7 +28,7 @@ Override the default cachedir
 
 #### Defined in
 
-src/xdg.d.ts:3
+[src/xdg.d.ts:3](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L3)
 
 ___
 
@@ -40,7 +40,7 @@ Override the default configdir
 
 #### Defined in
 
-src/xdg.d.ts:5
+[src/xdg.d.ts:5](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L5)
 
 ___
 
@@ -52,7 +52,7 @@ Override the default datadir
 
 #### Defined in
 
-src/xdg.d.ts:7
+[src/xdg.d.ts:7](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L7)
 
 ___
 
@@ -64,7 +64,7 @@ The env object to use for getting paths.
 
 #### Defined in
 
-src/xdg.d.ts:9
+[src/xdg.d.ts:9](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L9)
 
 ___
 
@@ -76,7 +76,7 @@ Expand paths into an object. See the Expanded Paths example for more details.
 
 #### Defined in
 
-src/xdg.d.ts:11
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L11)
 
 ___
 
@@ -88,7 +88,7 @@ The user's home directory.
 
 #### Defined in
 
-src/xdg.d.ts:13
+[src/xdg.d.ts:13](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L13)
 
 ___
 
@@ -100,7 +100,7 @@ The platform to use: darwin, linux, win32
 
 #### Defined in
 
-src/xdg.d.ts:15
+[src/xdg.d.ts:15](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L15)
 
 ___
 
@@ -112,7 +112,7 @@ Custom function for resolving paths to each directory. The default function atte
 
 #### Defined in
 
-src/xdg.d.ts:17
+[src/xdg.d.ts:17](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L17)
 
 ___
 
@@ -124,7 +124,7 @@ Override the default runtimedir
 
 #### Defined in
 
-src/xdg.d.ts:19
+[src/xdg.d.ts:19](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L19)
 
 ___
 
@@ -136,7 +136,7 @@ A sub-directory to join to the path, typically the name of your application. Thi
 
 #### Defined in
 
-src/xdg.d.ts:21
+[src/xdg.d.ts:21](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L21)
 
 ___
 
@@ -148,4 +148,4 @@ The temp directory to use.
 
 #### Defined in
 
-src/xdg.d.ts:23
+[src/xdg.d.ts:23](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L23)

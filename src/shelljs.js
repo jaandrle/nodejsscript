@@ -14,6 +14,11 @@ plugin.register("$", $, {
 	canReceivePipe: true,
 	wrapOutput: false
 });
+plugin.register('run', run, {
+	unix: false,
+	canReceivePipe: true,
+	wrapOutput: false
+});
 
 export default shelljs;
 
@@ -51,5 +56,30 @@ function $(config_next){
 				return out instanceof String && Reflect.has(out, "stdout") ? new shelljs.ShellString(out.replace(/\n$/g, ""), out.stderr, out.code) : out;
 			};
 		}
+	});
+}
+/** @this {shelljs} */
+function run(command, vars, options){
+	/* jshint ignore:start */
+	const s= this;
+	/* jshint ignore:end *//* global s */
+	vars= vars || {};
+	options= options || {};
+	command= command.replace(options.needle || /::([^:]+)::/g, function replace(_, key){
+		return escape([ "" ], [ vars[key] ]);
+	});
+	Reflect.deleteProperty(options, "needle");
+	if(options.async !== true){
+		if(typeof options.async === "string") options.async= true;
+		return s.exec(command, options);
+	}
+	return new Promise(function(resolve, reject){
+		const callback= function(code, stdout, stderr){
+			if(!code) return resolve(stdout);
+			const e= new Error(stderr);
+			e.code= code;
+			reject(e);
+		};
+		return s.exec(command, options, callback);
 	});
 }

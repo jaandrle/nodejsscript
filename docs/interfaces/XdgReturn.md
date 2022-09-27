@@ -21,7 +21,7 @@
 
 #### Defined in
 
-src/xdg.d.ts:26
+[src/xdg.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L26)
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 #### Defined in
 
-src/xdg.d.ts:27
+[src/xdg.d.ts:27](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L27)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 #### Defined in
 
-src/xdg.d.ts:28
+[src/xdg.d.ts:28](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L28)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 #### Defined in
 
-src/xdg.d.ts:29
+[src/xdg.d.ts:29](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L29)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-src/xdg.d.ts:30
+[src/xdg.d.ts:30](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L30)
 
 ___
 
@@ -71,4 +71,4 @@ ___
 
 #### Defined in
 
-src/xdg.d.ts:31
+[src/xdg.d.ts:31](https://github.com/jaandrle/nodejsscript/blob/23d39a7/src/xdg.d.ts#L31)

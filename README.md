@@ -10,11 +10,11 @@ You can compare the final script code to `zx` example:
 #!/usr/bin/env nodejsscript
 echo(s.grep("name", "package.json"));
 
-s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
+s.run("git branch --show-current").xargs(s.run, "dep deploy --branch={}");
 
-s.exec("sleep 1; echo 1");
-s.exec("sleep 2; echo 2");
-s.exec("sleep 3; echo 3");
+s.run("sleep 1; echo 1");
+s.run("sleep 2; echo 2");
+s.run("sleep 3; echo 3");
 
 import { join } from "node:path";
 const name= "foo bar";
@@ -90,21 +90,23 @@ const file_path= fileURLToPath(import.meta.url);
 …and more, see [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
 
 ## Security guidelines
-**`exec()` command injection**: this advice applies to `child_process.exec()` just as
-much as it applies to `s.exec()`. It is potentially risky to run commands passed
+**`run()` command injection**: this advice applies to `child_process.exec()` just as
+much as it applies to `s.run()`. It is potentially risky to run commands passed
 for example by user input:
 ```js
-function curlUnsafe(urlToDownload){ return s.exec('curl ' + urlToDownload); }
+function curlUnsafe(urlToDownload){ return s.run('curl ' + urlToDownload); }
 curlUnsafe('https://some/url ; rm -rf $HOME'); //=> curl https://some/url ; rm -rf $HOME
 ```
-Therefore, `nodejsscript` provide [$\`\`](./docs/README.md#$) function for escaping shell commands:
+Therefore, `nodejsscript`s `s.run()` provide way to escapes untrusted parameters:
 ```js
-function curl(urlToDownload){ return s.exec($`curl ${urlToDownload}`); }
+function curl(url){ return s.run("run ::url::", { url }); }
 curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'
 ```
 …*Note: The ['xargs()'](../interfaces/s.XargsFunction.md) by default also escapes piped strings.*
 
-*…Note 2: `$`` is also helpul for escaping parameters passed as variables (e.g. arrays).*
+*…Note 2: `s.run(…cmd, …vars)` is also helpul for escaping parameters passed as variables (e.g. arrays).*
+
+*…Note 3: ShellJS also provides `s.exec`, but `s.run` should be prefered way to execute commands.*
 
 **Glob injection (all commands)**: Most ShellJS commands support [glob](https://github.com/isaacs/node-glob) expansion,
 expanding wildcards such as `*` to match files. While this is very powerful,

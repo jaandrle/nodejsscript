@@ -54,7 +54,7 @@ node_modules/@types/shelljs/index.d.ts:735
 
 ### ExecFunction
 
-▸ **ExecFunction**(`command`, `options`): `ChildProcess`
+▸ **ExecFunction**(`command`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 Executes the given command asynchronously.
 
@@ -67,7 +67,7 @@ Executes the given command asynchronously.
 
 #### Returns
 
-`ChildProcess`
+[`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 Returns an object containing the return code and output as string,
                or if `{async: true}` was passed, a `ChildProcess`.
@@ -78,7 +78,7 @@ node_modules/@types/shelljs/index.d.ts:745
 
 ### ExecFunction
 
-▸ **ExecFunction**(`command`, `options`): `ChildProcess` \| [`ShellString`](../modules/s.md#shellstring)
+▸ **ExecFunction**(`command`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md) \| [`ShellString`](../modules/s.md#shellstring)
 
 Executes the given command.
 
@@ -91,7 +91,7 @@ Executes the given command.
 
 #### Returns
 
-`ChildProcess` \| [`ShellString`](../modules/s.md#shellstring)
+[`ChildProcess`](../classes/s.child.ChildProcess.md) \| [`ShellString`](../modules/s.md#shellstring)
 
 Returns an object containing the return code and output as string,
                or if `{async: true}` was passed, a `ChildProcess`.
@@ -102,7 +102,7 @@ node_modules/@types/shelljs/index.d.ts:755
 
 ### ExecFunction
 
-▸ **ExecFunction**(`command`, `options`, `callback`): `ChildProcess`
+▸ **ExecFunction**(`command`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 Executes the given command synchronously.
 
@@ -116,7 +116,7 @@ Executes the given command synchronously.
 
 #### Returns
 
-`ChildProcess`
+[`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Defined in
 
@@ -124,7 +124,7 @@ node_modules/@types/shelljs/index.d.ts:764
 
 ### ExecFunction
 
-▸ **ExecFunction**(`command`, `callback`): `ChildProcess`
+▸ **ExecFunction**(`command`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 Executes the given command synchronously.
 
@@ -137,7 +137,7 @@ Executes the given command synchronously.
 
 #### Returns
 
-`ChildProcess`
+[`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Defined in
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env nodejsscript
-/* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true *//* global exit, cli, s, fetch, $ */
+/* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true *//* global exit, cli, s, fetch */
 (async function main(){
 	const username= await cli.read({ "-p": "What is your GitHub username?" });
 	const token= await cli.read({ "-p": 'Do you have GitHub token in env?', completions: Object.keys(process.env) });
@@ -14,6 +14,6 @@
 	s.mkdir("-p", "backups");
 	s.cd("./backups");
 	for(const url of urls)
-		s.exec($`git clone ${url}`);
+		s.run("git clone ::url::", { url });
 	exit(0);
 })();
