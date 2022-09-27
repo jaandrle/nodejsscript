@@ -33,7 +33,6 @@ s.mkdir(join(s.tempdir(), name));
  · [cli](./docs/modules/cli.md) ([cli.api() #sade](./docs/modules/cli.md#api), [cli.read()](./docs/modules/cli.md#read), …)
  · [echo()](./docs/README.md#echo)
  · [xdg()](./docs/README.md#xdg)
- · [$\`\`](./docs/README.md#$)
  · [fetch() #node-fetch](./docs/README.md#fetch)
  · [style #ansi-colors](./docs/modules/style.md)
  · [pipe()](./docs/README.md#pipe)
