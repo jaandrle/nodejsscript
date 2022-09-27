@@ -71,6 +71,7 @@ export type RunOptions=  ExecOptions & {
 	 */
 	needle?: RegExp;
 }
+export type AsyncCommandString= `${string} &`;
 export interface RunFunction {
 	/**
 	 * Executes the given command synchronously.
@@ -126,6 +127,22 @@ export interface RunFunction {
 	(command: string, vars: {} | false, options: RunOptions & { async: true }): Promise<string>;
 
 	/**
+	 * Executes the given command asynchronously.
+	 * ```js
+	 * s.$().run("git branch --show-current", false, { async: true })
+	 * .then(echo.bind(echo, "success:"))
+	 * .catch(echo.bind(echo, "error:"))
+	 * ```
+	 *
+	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
+	 * @param vars Arguments for `command`.
+	 * @param options Silence and synchronous options.
+	 * @return		  Returns an object containing the return code and output as string,
+	 *				  or if `{async: true}` was passed, a `Promise`.
+	 */
+	(command: AsyncCommandString, vars?: {} | false, options?: RunOptions): Promise<string>;
+
+	/**
 	 * Executes the given command asynchronously. *Get the {@link child}*:
 	 * ```js
 	 * const ch= s.$().run("git branch --show-current", false, { async: "child" });
@@ -141,7 +158,7 @@ export interface RunFunction {
 	(command: string, vars: {} | false, options: RunOptions & { async: "child" }): child.ChildProcess;
 }
 /**
- * Executes the given command.
+ * Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
  *
  * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
  * @param vars Arguments for `command`.

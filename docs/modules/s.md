@@ -106,6 +106,7 @@ s.cat("./package.json").grep("version");
 ### Type Aliases
 
 - [RunOptions](s.md#runoptions)
+- [AsyncCommandString](s.md#asynccommandstring)
 - [TestOptions](s.md#testoptions)
 - [ExecCallback](s.md#execcallback)
 - [ShellString](s.md#shellstring-1)
@@ -154,7 +155,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L54)
+[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L54)
 
 ▸ **$**(): [`ShellString`](s.md#shellstring)
 
@@ -164,7 +165,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L55)
+[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L55)
 
 ___
 
@@ -172,7 +173,7 @@ ___
 
 ▸ **run**(`command`, `vars?`): [`ShellString`](s.md#shellstring)
 
-Executes the given command.
+Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
 
 #### Parameters
 
@@ -190,11 +191,11 @@ Returns an object containing the return code and output as string,
 
 #### Defined in
 
-[src/shelljs.d.ts:93](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L93)
+[src/shelljs.d.ts:94](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L94)
 
 ▸ **run**(`command`, `vars`, `options`): [`ShellString`](s.md#shellstring)
 
-Executes the given command.
+Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
 
 #### Parameters
 
@@ -213,11 +214,11 @@ Returns an object containing the return code and output as string,
 
 #### Defined in
 
-[src/shelljs.d.ts:110](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L110)
+[src/shelljs.d.ts:111](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L111)
 
 ▸ **run**(`command`, `vars`, `options`): `Promise`<`string`\>
 
-Executes the given command.
+Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
 
 #### Parameters
 
@@ -236,11 +237,34 @@ Returns an object containing the return code and output as string,
 
 #### Defined in
 
-[src/shelljs.d.ts:126](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L126)
+[src/shelljs.d.ts:127](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L127)
+
+▸ **run**(`command`, `vars?`, `options?`): `Promise`<`string`\>
+
+Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | \`${string} &\` | String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value. |
+| `vars?` | ``false`` \| {} | Arguments for `command`. |
+| `options?` | [`RunOptions`](s.md#runoptions) | Silence and synchronous options. |
+
+#### Returns
+
+`Promise`<`string`\>
+
+Returns an object containing the return code and output as string,
+        or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
+
+#### Defined in
+
+[src/shelljs.d.ts:143](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L143)
 
 ▸ **run**(`command`, `vars`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-Executes the given command.
+Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
 
 #### Parameters
 
@@ -259,7 +283,7 @@ Returns an object containing the return code and output as string,
 
 #### Defined in
 
-[src/shelljs.d.ts:141](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L141)
+[src/shelljs.d.ts:158](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L158)
 
 ___
 
@@ -2185,7 +2209,17 @@ node_modules/@types/shelljs/index.d.ts:1164
 
 #### Defined in
 
-[src/shelljs.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/shelljs.d.ts#L59)
+[src/shelljs.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L59)
+
+___
+
+### AsyncCommandString
+
+Ƭ **AsyncCommandString**: \`${string} &\`
+
+#### Defined in
+
+[src/shelljs.d.ts:74](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L74)
 
 ___
 

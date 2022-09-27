@@ -43,7 +43,7 @@ cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/xdg.d.ts#L11)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/xdg.d.ts#L11)
 
 ___
 
@@ -71,7 +71,7 @@ cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/xdg.d.ts#L11)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/xdg.d.ts#L11)
 
 ___
 
@@ -99,7 +99,7 @@ cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/xdg.d.ts#L11)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/xdg.d.ts#L11)
 
 ___
 
@@ -127,7 +127,7 @@ cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/xdg.d.ts#L11)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/xdg.d.ts#L11)
 
 ___
 
@@ -155,4 +155,4 @@ cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/ac9fcc4/src/xdg.d.ts#L11)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/xdg.d.ts#L11)
