@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `ExecOptions`
+- [`ExecOptions`](s.child.ExecOptions.md)
 
   ↳ **`ExecOptions`**
 
@@ -106,11 +106,11 @@ ___
 
 #### Inherited from
 
-child.ExecOptions.shell
+[ExecOptions](s.child.ExecOptions.md).[shell](s.child.ExecOptions.md#shell)
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:794
+node_modules/@types/node/ts4.8/child_process.d.ts:794
 
 ___
 
@@ -120,11 +120,11 @@ ___
 
 #### Inherited from
 
-child.ExecOptions.signal
+[ExecOptions](s.child.ExecOptions.md).[signal](s.child.ExecOptions.md#signal)
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:795
+node_modules/@types/node/ts4.8/child_process.d.ts:795
 
 ___
 
@@ -134,11 +134,11 @@ ___
 
 #### Inherited from
 
-child.ExecOptions.maxBuffer
+[ExecOptions](s.child.ExecOptions.md).[maxBuffer](s.child.ExecOptions.md#maxbuffer)
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:796
+node_modules/@types/node/ts4.8/child_process.d.ts:796
 
 ___
 
@@ -148,11 +148,11 @@ ___
 
 #### Inherited from
 
-child.ExecOptions.killSignal
+[ExecOptions](s.child.ExecOptions.md).[killSignal](s.child.ExecOptions.md#killsignal)
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:797
+node_modules/@types/node/ts4.8/child_process.d.ts:797
 
 ___
 
@@ -166,11 +166,11 @@ true
 
 #### Inherited from
 
-child.ExecOptions.windowsHide
+[ExecOptions](s.child.ExecOptions.md).[windowsHide](s.child.ExecOptions.md#windowshide)
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:629
+node_modules/@types/node/ts4.8/child_process.d.ts:629
 
 ___
 
@@ -184,11 +184,11 @@ ___
 
 #### Inherited from
 
-child.ExecOptions.timeout
+[ExecOptions](s.child.ExecOptions.md).[timeout](s.child.ExecOptions.md#timeout)
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:633
+node_modules/@types/node/ts4.8/child_process.d.ts:633
 
 ___
 
@@ -198,11 +198,11 @@ ___
 
 #### Inherited from
 
-child.ExecOptions.uid
+[ExecOptions](s.child.ExecOptions.md).[uid](s.child.ExecOptions.md#uid)
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:620
+node_modules/@types/node/ts4.8/child_process.d.ts:620
 
 ___
 
@@ -212,11 +212,11 @@ ___
 
 #### Inherited from
 
-child.ExecOptions.gid
+[ExecOptions](s.child.ExecOptions.md).[gid](s.child.ExecOptions.md#gid)
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:621
+node_modules/@types/node/ts4.8/child_process.d.ts:621
 
 ___
 
@@ -226,11 +226,11 @@ ___
 
 #### Inherited from
 
-child.ExecOptions.cwd
+[ExecOptions](s.child.ExecOptions.md).[cwd](s.child.ExecOptions.md#cwd)
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:622
+node_modules/@types/node/ts4.8/child_process.d.ts:622
 
 ___
 
@@ -240,8 +240,8 @@ ___
 
 #### Inherited from
 
-child.ExecOptions.env
+[ExecOptions](s.child.ExecOptions.md).[env](s.child.ExecOptions.md#env)
 
 #### Defined in
 
-node_modules/@types/node/child_process.d.ts:623
+node_modules/@types/node/ts4.8/child_process.d.ts:623

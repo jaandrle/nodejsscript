@@ -1,5 +1,5 @@
 #!/usr/bin/env nodejsscript
-import { pipe, echo, cli,  exit } from "nodejsscript";
+/* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true *//* global echo, exit, cli, pipe */
 (async function main(){
 	if(cli.isFIFO(0)) await cli.read().then(pipe(
 		str=> str.split("\n").filter(line=> line.indexOf("needle")!==-1),

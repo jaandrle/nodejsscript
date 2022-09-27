@@ -1,8 +1,6 @@
 #!/usr/bin/env nodejsscript
-/* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true */
-import { echo, s, fetch, exit } from "nodejsscript";
-
-const serve= s.exec("npx serve", { async: true });
+/* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true *//* global echo, exit, s, fetch */
+const serve= s.run("npx serve", false, { async: "child" });
 for await (const chunk of serve.stdout)
 	if (chunk.includes('Accepting connections')) break;
 

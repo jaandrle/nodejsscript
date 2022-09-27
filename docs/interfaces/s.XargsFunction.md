@@ -12,10 +12,10 @@
 
 Works as `xargs` in bash, only `-I` option is supported.
 ```js
-s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
-s.exec("git branch --show-current").xargs({ "-I": "§" }, s.exec, "dep deploy --branch=§");
+s.run("git branch --show-current").xargs(s.run, "dep deploy --branch={}");
+s.run("git branch --show-current").xargs({ "-I": "§" }, s.run, "dep deploy --branch=§");
 ```
- *
+*xarg() by default escapes piped string, this can be off by passing `-R` option.*
 
 #### Type parameters
 
@@ -27,9 +27,9 @@ s.exec("git branch --show-current").xargs({ "-I": "§" }, s.exec, "dep deploy --
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | [`XargsOptions`](s.XargsOptions.md) | Defaults to `-I {}`  * |
-| `cmd` | `T` | ShellJS method from [ShellReturnValue](s.ShellReturnValue.md)  * |
-| `...cmd_args` | `Parameters`<`T`\> | Arguments for `cmd`  * |
+| `options` | [`XargsOptions`](s.XargsOptions.md) | Defaults to `-I {}` |
+| `cmd` | `T` | ShellJS method from [ShellReturnValue](s.ShellReturnValue.md) |
+| `...cmd_args` | `Parameters`<`T`\> | Arguments for `cmd` |
 
 #### Returns
 
@@ -39,7 +39,7 @@ Result of `cmd`
 
 #### Defined in
 
-[src/shelljs.d.ts:20](https://github.com/jaandrle/nodejsscript/blob/c1132cc/src/shelljs.d.ts#L20)
+[src/shelljs.d.ts:25](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L25)
 
 ### XargsFunction
 
@@ -64,4 +64,4 @@ Result of `cmd`
 
 #### Defined in
 
-[src/shelljs.d.ts:21](https://github.com/jaandrle/nodejsscript/blob/c1132cc/src/shelljs.d.ts#L21)
+[src/shelljs.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L26)

@@ -1,10 +1,8 @@
 #!/usr/bin/env node
-// import { dirname, basename } from 'node:path';
-// import { existsSync, readFile } from "node:fs";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { argv } from "node:process";
 import url from "node:url";
-import { echo, exit, style, s, cli } from "../index.js";
+import "../index.js";/* global echo, exit, cli, s, style, pipe */
 
 (async function main(){
 	const candidate= argv.splice(2, 1)[0];
@@ -29,6 +27,8 @@ function handleMyArgvs(candidate){
 	}
 	if(['--help', '-h'].includes(candidate))
 		return printUsage();
+	if("--global-jsconfig"===candidate)
+		return jsconfigTypes();
 }
 function printUsage(){
 	style.theme({ n: style.blueBright, v: style.greenBright, info: style.yellow, code: style.italic });
@@ -39,8 +39,9 @@ function printUsage(){
  ${style.info("Usage")}:
 	${n} [options] <script>
  ${style.info('Options')}:
-	--version, -v       print current zx version
-	--help, -h          print help
+            --version, -v    print current zx version
+               --help, -h    print help
+  --global-jsconfig [add]    woraround for type checking of non-package scripts
  ${style.info('Examples')}:
 	${n} script.js
 	${n} --help
@@ -50,6 +51,24 @@ function printUsage(){
 	exit(0);
 }
 function info(...keys){
-	const info= s.cat("package.json").xargs(JSON.parse);
+	const info= s.cat(url.fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse);
 	return keys.map(key=> Reflect.get(info, key));
+}
+function jsconfigTypes(){
+	const jsconfig_file= pipe(
+		f=> f ? f : '{"include":[]}',
+		JSON.parse
+	)(s.$().cat("jsconfig.json").stdout);
+	const include= new Set(jsconfig_file.include.filter(v=> v.indexOf("nodejsscript")===-1));
+	argv.slice(3).forEach(f=> include.add(f));
+	jsconfig_file.include= Array.from(include);
+	if(argv[2]==="add")
+		jsconfig_file.include.unshift(join(argv[1], "../../lib/node_modules/nodejsscript/index.d.ts"));
+	echo.use("-P", jsconfig_file);
+	pipe(
+		o=> JSON.stringify(o, undefined, 2),
+		s.ShellString,
+		s=> s.to("jsconfig.json")
+	)(jsconfig_file);
+	exit(0);
 }

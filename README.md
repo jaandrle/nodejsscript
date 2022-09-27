@@ -8,14 +8,13 @@ This is primarily achieved by using [shelljs/shelljs](https://github.com/shelljs
 You can compare the final script code to `zx` example:
 ```javascript
 #!/usr/bin/env nodejsscript
-import { s, echo } from "nodejsscript";
 echo(s.grep("name", "package.json"));
 
-s.exec("git branch --show-current").xargs(s.exec, "dep deploy --branch={}");
+s.run("git branch --show-current").xargs(s.run, "dep deploy --branch={}");
 
-s.exec("sleep 1; echo 1");
-s.exec("sleep 2; echo 2");
-s.exec("sleep 3; echo 3");
+s.run("sleep 1; echo 1");
+s.run("sleep 2; echo 2");
+s.run("sleep 3; echo 3");
 
 import { join } from "node:path";
 const name= "foo bar";
@@ -27,10 +26,11 @@ s.mkdir(join(s.tempdir(), name));
 
 1. tested/used on *NodeJS*: `node@v16.13.0` and `node@v17.9.1` ⇒ for installation follow [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^OR]
 1. `npm install https://github.com/jaandrle/nodejsscript --global` (**will be registered also in npm repository**)
+1. alternatively install locally
 
 ## Goods
 [s #shelljs](./docs/modules/s.md)
- · [cli](./docs/modules/cli.md) ([cli.api() #sade](./docs/modules/cli.md#api), [cli.read()](./docs/modules/cli.md#read), …)
+ · [cli](./docs/modules/cli.md) ([cli.api() #sade](./docs/modules/cli.md#api), [cli.read()](./docs/modules/cli.md#read), [cli.xdg](./docs/modules/xdg_.xdg.md), …)
  · [echo()](./docs/README.md#echo)
  · [fetch() #node-fetch](./docs/README.md#fetch)
  · [style #ansi-colors](./docs/modules/style.md)
@@ -59,17 +59,65 @@ Or via the `nodejsscript` executable:
 nodejsscript ./script.mjs
 ```
 
-All function (`shelljs`, `fetch`, …) are exported by library, so use:
-```javascript
-import { … } from "nodejsscript";
+<details>
+<summary>Alternatively when installed locally</summary>
+
+```bash
+#!/usr/bin/env -S npx nodejsscript
 ```
-… *The entry point for documentation of all exported (**Public**) items is in the* [**docs/**](./docs/README.md).
+```bash
+npx nodejsscript ./script.mjs
+```
+
+</details>
+
+All function (`shelljs`, `fetch`, …) are registered as global namespaces/functions:
+… *The entry point for documentation of all **Public** items is in the* [**docs/**](./docs/README.md).
 
 Note that there are also built-in `'node:*'` modules:
 ```js
 import { setTimeout } from "node:timers/promises";
 import { join, resolve } from "node:path";
+
+//current file url
+import.meta.url;
+//url to path
+import { fileURLToPath } from "node:url";
+const file_path= fileURLToPath(import.meta.url);
 ```
 …and more, see [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
+
+## Security guidelines
+**`run()` command injection**: this advice applies to `child_process.exec()` just as
+much as it applies to `s.run()`. It is potentially risky to run commands passed
+for example by user input:
+```js
+function curlUnsafe(urlToDownload){ return s.run('curl ' + urlToDownload); }
+curlUnsafe('https://some/url ; rm -rf $HOME'); //=> curl https://some/url ; rm -rf $HOME
+```
+Therefore, `nodejsscript`s `s.run()` provide way to escapes untrusted parameters:
+```js
+function curl(url){ return s.run("run ::url::", { url }); }
+curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'
+```
+…*Note: The ['xargs()'](../interfaces/s.XargsFunction.md) by default also escapes piped strings.*
+
+*…Note 2: `s.run(…cmd, …vars)` is also helpul for escaping parameters passed as variables (e.g. arrays).*
+
+*…Note 3: ShellJS also provides `s.exec`, but `s.run` should be prefered way to execute commands.*
+
+**Glob injection (all commands)**: Most ShellJS commands support [glob](https://github.com/isaacs/node-glob) expansion,
+expanding wildcards such as `*` to match files. While this is very powerful,
+dependent modules should exercise caution. Unsanitized user input may contain
+wildcard characters. Consider for example that the `*.txt` is valid file name,
+however the `s.rm("*.txt")` by default (using the globbing) delete all `txt` files.
+Keep in mind that you can always turn off this for next command by using:
+```js
+s.$("-g").rm("*.txt");
+```
+
+## Contribute
+- [Contributor Covenant Code of Conduc](./CODE_OF_CONDUCT.md)
+- [How to contribute](./CONTRIBUTING.md)
 
 [^OR]: Alternatively `curl -sL install-node.vercel.app/16.13.0 | bash`

@@ -6,7 +6,7 @@ This namespace refers to `shelljs`, for docs visits [shelljs/shelljs](https://gi
 You can pipe commands when make sense by chaining, see [**Pipes**](https://github.com/shelljs/shelljs#pipes).
 
 Available commands: [cat](https://github.com/shelljs/shelljs#catoptions-file--file-) · [cd](https://github.com/shelljs/shelljs#cddir) · [chmod](https://github.com/shelljs/shelljs#chmodoptions-octal_mode--octal_string-file) · [cp](https://github.com/shelljs/shelljs#cpoptions-source--source--dest)
- · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n) · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n) · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n) · [exec](https://github.com/shelljs/shelljs#execcommand--options--callback)
+ · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n) · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n) · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n)
  · [find](https://github.com/shelljs/shelljs#findpath--path-) · [grep](https://github.com/shelljs/shelljs#grepoptions-regex_filter-file--file-) · [head](https://github.com/shelljs/shelljs#head-n-num-file--file-) · [ln](https://github.com/shelljs/shelljs#lnoptions-source-dest)
  · [ls](https://github.com/shelljs/shelljs#lsoptions-path-) · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-) · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest) · [pwd](https://github.com/shelljs/shelljs#pwd)
  · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
@@ -16,15 +16,28 @@ Available commands: [cat](https://github.com/shelljs/shelljs#catoptions-file--fi
 ```js
 s.cat("./package.json").grep("version");
 ```
-… this library adds two function ['xargs()'](../interfaces/s.XargsFunction.md) and ['$()'](../interfaces/s.DollarFunction.md).
+… this library adds:
+- ['run()'](../interfaces/s.RunFunction.md)
+- ['xargs()'](../interfaces/s.XargsFunction.md)
+- ['$()'](../interfaces/s.DollarFunction.md)
+
+**Changes/recommenctions:**
+- use [echo](s.md#echo) instead of `s.echo`, this was changed to `s.ShellString` for easy file writing without logging to console `s.echo("Data").to("file.txt")`.
+- use ['run()'](../interfaces/s.RunFunction.md) instead of `s.exec`, because of options for passing arguments in secure way.
+- use ['$()'](../interfaces/s.DollarFunction.md) instead of `s.set()`, because `$()` allows chaining (you can also access config with [cli](cli.md)s `.is_*` keys).
 
 ## Table of contents
+
+### Namespaces
+
+- [child](s.child.md)
 
 ### Interfaces
 
 - [XargsOptions](../interfaces/s.XargsOptions.md)
 - [XargsFunction](../interfaces/s.XargsFunction.md)
 - [DollarFunction](../interfaces/s.DollarFunction.md)
+- [RunFunction](../interfaces/s.RunFunction.md)
 - [ShellReturnValue](../interfaces/s.ShellReturnValue.md)
 - [ListFunction](../interfaces/s.ListFunction.md)
 - [FindFunction](../interfaces/s.FindFunction.md)
@@ -58,6 +71,7 @@ s.cat("./package.json").grep("version");
 ### Functions
 
 - [$](s.md#$)
+- [run](s.md#run)
 - [cd](s.md#cd)
 - [pwd](s.md#pwd)
 - [test](s.md#test)
@@ -91,6 +105,8 @@ s.cat("./package.json").grep("version");
 
 ### Type Aliases
 
+- [RunOptions](s.md#runoptions)
+- [AsyncCommandString](s.md#asynccommandstring)
 - [TestOptions](s.md#testoptions)
 - [ExecCallback](s.md#execcallback)
 - [ShellString](s.md#shellstring-1)
@@ -119,17 +135,19 @@ echo(var);
 ```
 …examples:
 ```js
-const branch= s.$().exec("git branch --show-current");
+const branch= s.$().run("git branch --show-current");
 echo(branch);
 
-s.$("-vf").exec("gyt branch --show-current");
+s.$("-VF").run("gyt branch --show-current");
+
+s.$("-g").rm("*.tx"); //remove only "*.txt" file
 ```
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | ``"-f"`` \| ``"-v"`` \| ``"-s"`` | Options  - "-v":  verbose  - "-s": silent (default)  - "-f": fatal |
+| `options` | ``"-S"`` \| ``"-V"`` \| ``"-F"`` \| ``"-g"`` | Options  - "-V": verbose  - "-S": silent (default)  - "-F": fatal  - "-g": noglob |
 
 #### Returns
 
@@ -137,7 +155,7 @@ s.$("-vf").exec("gyt branch --show-current");
 
 #### Defined in
 
-[src/shelljs.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/c1132cc/src/shelljs.d.ts#L46)
+[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L54)
 
 ▸ **$**(): [`ShellString`](s.md#shellstring)
 
@@ -147,7 +165,125 @@ s.$("-vf").exec("gyt branch --show-current");
 
 #### Defined in
 
-[src/shelljs.d.ts:47](https://github.com/jaandrle/nodejsscript/blob/c1132cc/src/shelljs.d.ts#L47)
+[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L55)
+
+___
+
+### run
+
+▸ **run**(`command`, `vars?`): [`ShellString`](s.md#shellstring)
+
+Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | `string` | String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value. |
+| `vars?` | `Object` | Arguments for `command`. |
+
+#### Returns
+
+[`ShellString`](s.md#shellstring)
+
+Returns an object containing the return code and output as string,
+        or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
+
+#### Defined in
+
+[src/shelljs.d.ts:94](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L94)
+
+▸ **run**(`command`, `vars`, `options`): [`ShellString`](s.md#shellstring)
+
+Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | `string` | String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value. |
+| `vars` | ``false`` \| {} | Arguments for `command`. |
+| `options` | [`ExecOptions`](../interfaces/s.ExecOptions.md) & { `async?`: `boolean` \| ``"child"`` ; `needle?`: `RegExp`  } & { `async?`: ``false``  } | Silence and synchronous options. |
+
+#### Returns
+
+[`ShellString`](s.md#shellstring)
+
+Returns an object containing the return code and output as string,
+        or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
+
+#### Defined in
+
+[src/shelljs.d.ts:111](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L111)
+
+▸ **run**(`command`, `vars`, `options`): `Promise`<`string`\>
+
+Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | `string` | String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value. |
+| `vars` | ``false`` \| {} | Arguments for `command`. |
+| `options` | [`ExecOptions`](../interfaces/s.ExecOptions.md) & { `async?`: `boolean` \| ``"child"`` ; `needle?`: `RegExp`  } & { `async`: ``true``  } | Silence and synchronous options. |
+
+#### Returns
+
+`Promise`<`string`\>
+
+Returns an object containing the return code and output as string,
+        or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
+
+#### Defined in
+
+[src/shelljs.d.ts:127](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L127)
+
+▸ **run**(`command`, `vars?`, `options?`): `Promise`<`string`\>
+
+Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | \`${string} &\` | String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value. |
+| `vars?` | ``false`` \| {} | Arguments for `command`. |
+| `options?` | [`RunOptions`](s.md#runoptions) | Silence and synchronous options. |
+
+#### Returns
+
+`Promise`<`string`\>
+
+Returns an object containing the return code and output as string,
+        or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
+
+#### Defined in
+
+[src/shelljs.d.ts:143](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L143)
+
+▸ **run**(`command`, `vars`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
+
+Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | `string` | String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value. |
+| `vars` | ``false`` \| {} | Arguments for `command`. |
+| `options` | `never` | Silence and synchronous options. |
+
+#### Returns
+
+[`ChildProcess`](../classes/s.child.ChildProcess.md)
+
+Returns an object containing the return code and output as string,
+        or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
+
+#### Defined in
+
+[src/shelljs.d.ts:158](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L158)
 
 ___
 
@@ -1504,7 +1640,7 @@ Returns an object containing the return code and output as string,
 
 node_modules/@types/shelljs/index.d.ts:735
 
-▸ **exec**(`command`, `options`): `ChildProcess`
+▸ **exec**(`command`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 Executes the given command.
 
@@ -1517,7 +1653,7 @@ Executes the given command.
 
 #### Returns
 
-`ChildProcess`
+[`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 Returns an object containing the return code and output as string,
         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
@@ -1526,7 +1662,7 @@ Returns an object containing the return code and output as string,
 
 node_modules/@types/shelljs/index.d.ts:745
 
-▸ **exec**(`command`, `options`): `ChildProcess` \| [`ShellString`](s.md#shellstring)
+▸ **exec**(`command`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md) \| [`ShellString`](s.md#shellstring)
 
 Executes the given command.
 
@@ -1539,7 +1675,7 @@ Executes the given command.
 
 #### Returns
 
-`ChildProcess` \| [`ShellString`](s.md#shellstring)
+[`ChildProcess`](../classes/s.child.ChildProcess.md) \| [`ShellString`](s.md#shellstring)
 
 Returns an object containing the return code and output as string,
         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
@@ -1548,7 +1684,7 @@ Returns an object containing the return code and output as string,
 
 node_modules/@types/shelljs/index.d.ts:755
 
-▸ **exec**(`command`, `options`, `callback`): `ChildProcess`
+▸ **exec**(`command`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 Executes the given command.
 
@@ -1562,7 +1698,7 @@ Executes the given command.
 
 #### Returns
 
-`ChildProcess`
+[`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 Returns an object containing the return code and output as string,
         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
@@ -1571,7 +1707,7 @@ Returns an object containing the return code and output as string,
 
 node_modules/@types/shelljs/index.d.ts:764
 
-▸ **exec**(`command`, `callback`): `ChildProcess`
+▸ **exec**(`command`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 Executes the given command.
 
@@ -1584,7 +1720,7 @@ Executes the given command.
 
 #### Returns
 
-`ChildProcess`
+[`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 Returns an object containing the return code and output as string,
         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
@@ -2066,6 +2202,26 @@ Filter adjacent matching lines from input.
 node_modules/@types/shelljs/index.d.ts:1164
 
 ## Type Aliases
+
+### RunOptions
+
+Ƭ **RunOptions**: [`ExecOptions`](../interfaces/s.ExecOptions.md) & { `async?`: ``"child"`` \| `boolean` ; `needle?`: `RegExp`  }
+
+#### Defined in
+
+[src/shelljs.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L59)
+
+___
+
+### AsyncCommandString
+
+Ƭ **AsyncCommandString**: \`${string} &\`
+
+#### Defined in
+
+[src/shelljs.d.ts:74](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L74)
+
+___
 
 ### TestOptions
 

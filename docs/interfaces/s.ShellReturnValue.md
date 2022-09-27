@@ -10,6 +10,7 @@
 
 - [xargs](s.ShellReturnValue.md#xargs)
 - [$](s.ShellReturnValue.md#$)
+- [run](s.ShellReturnValue.md#run)
 
 ## Properties
 
@@ -19,7 +20,7 @@
 
 #### Defined in
 
-[src/shelljs.d.ts:52](https://github.com/jaandrle/nodejsscript/blob/c1132cc/src/shelljs.d.ts#L52)
+[src/shelljs.d.ts:172](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L172)
 
 ___
 
@@ -29,4 +30,14 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:53](https://github.com/jaandrle/nodejsscript/blob/c1132cc/src/shelljs.d.ts#L53)
+[src/shelljs.d.ts:173](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L173)
+
+___
+
+### run
+
+• **run**: [`RunFunction`](s.RunFunction.md)
+
+#### Defined in
+
+[src/shelljs.d.ts:174](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L174)

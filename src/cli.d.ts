@@ -1,6 +1,8 @@
 import { IOptions } from 'glob';
 import * as __sade from "sade";
 export { __sade };
+import * as xdg_ from "./xdg.d";
+export { xdg_ };
 /**
  * Contains configuration for current script and methods
  * for managing arguments.
@@ -120,14 +122,19 @@ export namespace cli{
 		"-n": number;
 	}
 	/**
-	* This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
-	* So, the function purpose is reading from `stdin`.
-	* ```js
-	* const answer= await cli.read({ "-p": "Question" });
-	* const color= await cli.read({ "-p": "Your color", completions: [ "red", "green" ] });
-	* if(cli.isFIFO(0)) await cli.read().then(echo.bind(null, "E.g. for reading received input:"));
-	* ```
-	* @category Public
-	* */
+	 * This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
+	 * So, the function purpose is reading from `stdin`.
+	 * ```js
+	 * const answer= await cli.read({ "-p": "Question" });
+	 * const color= await cli.read({ "-p": "Your color", completions: [ "red", "green" ] });
+	 * if(cli.isFIFO(0)) await cli.read().then(echo.bind(null, "E.g. for reading received input:"));
+	 * ```
+	 * @category Public
+	 * */
 	function read(options: ReadOptions): Promise<string>;
+	
+	/**
+	 * @category Public
+	 */
+	const xdg: typeof xdg_.xdg;
 }

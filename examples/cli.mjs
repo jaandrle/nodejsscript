@@ -1,5 +1,5 @@
 #!/usr/bin/env nodejsscript
-import { cli, s, echo, pipe } from "nodejsscript";
+/* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true *//* global echo, cli, pipe, s */
 import { join } from "node:path";
 
 cli.api("", true)
