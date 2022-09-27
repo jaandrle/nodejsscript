@@ -8,25 +8,25 @@ This is primarily achieved by using [shelljs/shelljs](https://github.com/shelljs
 You can compare the final script code to `zx` example:
 ```javascript
 #!/usr/bin/env nodejsscript
+
 echo(s.grep("name", "package.json"));
 
-s.run("git branch --show-current").xargs(s.run, "dep deploy --branch={}");
+s.run("git branch --show-current")
+.xargs(s.run, "dep deploy --branch={}");
 
 s.run("sleep 1; echo 1");
 s.run("sleep 2; echo 2");
 s.run("sleep 3; echo 3");
 
-import { join } from "node:path";
 const name= "foo bar";
-s.mkdir(join(s.tempdir(), name));
+s.mkdir(cli.xdg.temp(name));
 ```
 …also see [examples](./examples).
 
 ## Installation
 
-1. tested/used on *NodeJS*: `node@v16.13.0` and `node@v17.9.1` ⇒ for installation follow [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^OR]
-1. `npm install https://github.com/jaandrle/nodejsscript --global` (**will be registered also in npm repository**)
-1. alternatively install locally
+1. tested/used on *NodeJS*: `node@v16.13.0` and `node@v17.9.1` ⇒ for installation follow [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^ORnpm]
+1. `npm install nodejsscript --location=global` … alternatively install locally: `npm install nodejsscript`[^ORnjs]
 
 ## Goods
 [s #shelljs](./docs/modules/s.md)
@@ -120,4 +120,5 @@ s.$("-g").rm("*.txt");
 - [Contributor Covenant Code of Conduc](./CODE_OF_CONDUCT.md)
 - [How to contribute](./CONTRIBUTING.md)
 
-[^OR]: Alternatively `curl -sL install-node.vercel.app/16.13.0 | bash`
+[^ORnpm]: Alternatively `curl -sL install-node.vercel.app/16.13.0 | bash`
+[^ORnjs]: Or: `npm install https://github.com/jaandrle/nodejsscript --global`
