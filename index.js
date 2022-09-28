@@ -18,7 +18,9 @@ function* cyclicLoop(items){
 import { cli } from "./src/cli.js";
 import style from "ansi-colors";
 import { read } from "./src/read.js";
+import { run, ProcessOutput } from "./src/run.js";
 Object.assign(globalThis, {
+	run, ProcessOutput,
 	echo,
 	exit: s.exit,
 	pipe,
