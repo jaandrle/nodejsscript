@@ -3,9 +3,8 @@ import { spawn } from "node:child_process";
 import assert from "node:assert";
 import { inspect } from 'node:util';
 import { AsyncLocalStorage, createHook } from 'node:async_hooks';
-import escape from "shell-escape-tag";
-import shelljs from "./shelljs.js";
-const { which, pwd }= shelljs;
+import shelljs from "shelljs";
+const { which }= shelljs;
 
 const exit_codes= { 2: 'Misuse of shell builtins', 126: 'Invoked command cannot execute', 127: 'Command not found', 128: 'Invalid exit argument', 129: 'Hangup', 130: 'Interrupt', 131: 'Quit and dump core', 132: 'Illegal instruction', 133: 'Trace/breakpoint trap', 134: 'Process aborted', 135: 'Bus error: "access to undefined portion of memory object"', 136: 'Floating point exception: "erroneous arithmetic operation"', 137: 'Kill (terminate immediately)', 138: 'User-defined 1', 139: 'Segmentation violation', 140: 'User-defined 2', 141: 'Write to pipe with no one reading', 142: 'Signal raised by alarm', 143: 'Termination (request to terminate)', 145: 'Child process terminated, stopped (or continued*)', 146: 'Continue if stopped', 147: 'Stop executing temporarily', 148: 'Terminal stop signal', 149: 'Background process attempting to read from tty ("in")', 150: 'Background process attempting to write to tty ("out")', 151: 'Urgent data available on socket', 152: 'CPU time limit exceeded', 153: 'File size limit exceeded', 154: 'Signal raised by timer counting virtual time: "virtual timer expired"', 155: 'Profiling timer expired', 157: 'Pollable event', 159: 'Bad syscall', };
 const processCwd= Symbol('processCwd');
@@ -17,26 +16,9 @@ createHook({
 	after: syncCwd,
 	destroy: syncCwd,
 }).enable();
-
-const defaults= {
-	[processCwd]: process.cwd(),
-	verbose: true,
-	env: process.env,
-	shell: true,
-	prefix: '',
-	spawn
-};
-try {
-	if (process.platform !== 'win32') {
-		defaults.shell= which("bash").stdout;
-		defaults.prefix= 'set -euo pipefail;';
-	}
-}
-catch (err) {
-	// ¯\_(ツ)_/¯
-}
+const defaults= getDefaults();
 function getStore(){ return storage.getStore() || defaults; }
-const process_store= getProcesStore(()=> ({
+export const process_store= getProcesStore(()=> ({
 	command: '', from: '',
 	resolve: noop, reject: noop,
 	stdio: ['inherit', 'pipe', 'pipe'],
@@ -45,40 +27,44 @@ const process_store= getProcesStore(()=> ({
 	prerun: noop, postrun: noop
 }));
 export class ProcessOutput extends Error {
-	constructor({ code, signal, stdout, stderr, combined, message }){
+	constructor({ message, code, combined, ...rest }){
 		super(message);
-		process_store.set(this, { code, signal, stdout, stderr, combined });
+		for(const [ k, value ] of Object.entries(rest))
+			Reflect.defineProperty(this, k, { value, writable: false });
+		Reflect.defineProperty(this, "exitCode", { value: code, writable: false });
+		Reflect.defineProperty(this, "toString", { value: ()=> combined, writable: false });
 	}
-	toString(){ return process_store.get(this).combined; }
-	get stdout(){ return process_store.get(this).stdout; }
-	get stderr(){ return process_store.get(this).stderr; }
-	get exitCode(){ return process_store.get(this).code; }
-	get signal(){ return process_store.get(this).signal; }
 	[inspect.custom]() {
-		   let stringify = (s, c) => s.length === 0 ? "''" : c(inspect(s));
-		   return `ProcessOutput {
-	 stdout: ${stringify(this.stdout, chalk.green)},
-	 stderr: ${stringify(this.stderr, chalk.red)},
-	 signal: ${inspect(this.signal)},
-	 exitCode: ${(this.exitCode === 0 ? chalk.green : chalk.red)(this.exitCode)}${exitCodeInfo(this.exitCode) ?
-			 chalk.grey(' (' + exitCodeInfo(this.exitCode) + ')') :
-			 ''}
- }`;
-	   }
+		let stringify = (s, c) => s.length === 0 ? "''" : c(inspect(s));
+		return [
+			"ProcessOutput {",
+			`	 stdout: ${stringify(this.stdout, chalk.green)},`,
+			`	 stderr: ${stringify(this.stderr, chalk.red)},`,
+			`	 signal: ${inspect(this.signal)},`,
+			"	 exitCode: " + (this.exitCode === 0 ? chalk.green : chalk.red)(this.exitCode) + " " +
+					exitCodeInfo(this.exitCode) ?  chalk.grey(' (' + exitCodeInfo(this.exitCode) + ')') : '',
+			"}"
+		].join("\n");
+	}
 }
 export class ProcessPromise extends Promise{
+	static create(command, from, options){
+		let resolve, reject;
+		const i= new this((...args) => ([resolve, reject] = args));
+		process_store.assign(i, { resolve, reject, command, from, options });
+		setImmediate(()=> i._run()); // Postpone run to allow promise configuration.
+		return i;
+	}
 	_run(){
 		if(this.child) return; // The _run() can be called from a few places.
-		const { prerun, command, stdio }= process_store.get(this);
+		const { prerun, command, options, stdio }= process_store.get(this);
 		prerun(); // In case $1.pipe($2), the $2 returned, and on $2._run() invoke $1._run().
 		const { spawn, prefix, shell, [processCwd]: cwd, env }= getStore();
-		this.child= spawn(prefix + command, {
-			cwd: pwd().stdout ?? cwd,
-			shell: typeof shell === 'string' ? shell : true,
-			windowsHide: true,
-			env: env,
-			stdio
-		});
+		if(!Reflect.has(options, "cwd")) options.cwd= cwd;
+		if(Reflect.has(options, "pipe")) stdio[0]= "pipe";
+		this.child= spawn(prefix + command,
+			Object.assign({ shell: typeof shell === 'string' ? shell : true, windowsHide: true, env, stdio }, options));
+		if(Reflect.has(options, "pipe")) this.child.stdin.end(options.pipe);
 		let stdout = '', stderr = '', combined = '';
 		const { from, resolve, reject }= process_store.get(this);
 		this.child.on('close', (code, signal)=> {
@@ -172,28 +158,6 @@ export class ProcessPromise extends Promise{
 		return this;
 	}
 }
-export function run(pieces, ...args){
-	const from= new Error().stack.split(/^\s*at\s/m)[2].trim();
-	let command;
-	if(typeof pieces === "string"){
-		const [ vars= {}, options= {} ]= args;
-		if(Object.keys(vars).length)
-			command= pieces.replace(options.needle || /::([^:]+)::/g, function replace(_, key){
-				return escape([ "" ], [ vars[key] ]);
-			});
-		else
-			command= pieces;
-	} else if(pieces.some((p)=> p == undefined)) {
-		throw new Error(`Malformed command at ${from}`);
-	} else {
-		command= escape(pieces, args);
-	}
-	let resolve, reject;
-	const promise= new ProcessPromise((...args) => ([resolve, reject] = args));
-	process_store.assign(promise, { command, from, resolve, reject });
-	setImmediate(() => promise._run()); // Postpone run to allow promise configuration.
-	return promise;
-}
 function stdInOutErr(target, name){
 	target._run();
 	assert(target.child);
@@ -233,4 +197,24 @@ export function parseDuration(d) {
 		return +d.slice(0, -2);
 	}
 	throw new Error(`Unknown duration: "${d}".`);
+}
+function getDefaults(){
+	const defaults= {
+		[processCwd]: process.cwd(),
+		verbose: true,
+		env: process.env,
+		shell: true,
+		prefix: '',
+		spawn
+	};
+	try {
+		if (process.platform !== 'win32') {
+			defaults.shell= which("bash").stdout;
+			defaults.prefix= 'set -euo pipefail;';
+		}
+	}
+	catch (err) {
+		// ¯\_(ツ)_/¯
+	}
+	return defaults;
 }
