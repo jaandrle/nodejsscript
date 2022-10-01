@@ -4,7 +4,7 @@ import assert from "node:assert";
 import { inspect } from 'node:util';
 import { AsyncLocalStorage, createHook } from 'node:async_hooks';
 import shelljs from "shelljs";
-const { which }= shelljs;
+const { which, ShellString }= shelljs;
 
 const exit_codes= { 2: 'Misuse of shell builtins', 126: 'Invoked command cannot execute', 127: 'Command not found', 128: 'Invalid exit argument', 129: 'Hangup', 130: 'Interrupt', 131: 'Quit and dump core', 132: 'Illegal instruction', 133: 'Trace/breakpoint trap', 134: 'Process aborted', 135: 'Bus error: "access to undefined portion of memory object"', 136: 'Floating point exception: "erroneous arithmetic operation"', 137: 'Kill (terminate immediately)', 138: 'User-defined 1', 139: 'Segmentation violation', 140: 'User-defined 2', 141: 'Write to pipe with no one reading', 142: 'Signal raised by alarm', 143: 'Termination (request to terminate)', 145: 'Child process terminated, stopped (or continued*)', 146: 'Continue if stopped', 147: 'Stop executing temporarily', 148: 'Terminal stop signal', 149: 'Background process attempting to read from tty ("in")', 150: 'Background process attempting to write to tty ("out")', 151: 'Urgent data available on socket', 152: 'CPU time limit exceeded', 153: 'File size limit exceeded', 154: 'Signal raised by timer counting virtual time: "virtual timer expired"', 155: 'Profiling timer expired', 157: 'Pollable event', 159: 'Bad syscall', };
 const processCwd= Symbol('processCwd');
@@ -22,17 +22,16 @@ export const process_store= getProcesStore(()=> ({
 	command: '', from: '',
 	resolve: noop, reject: noop,
 	stdio: ['inherit', 'pipe', 'pipe'],
-	nothrow: false, quiet: false,
-	resolved: false, piped: false,
+	resolved: false, piped: 0,
 	prerun: noop, postrun: noop
 }));
 export class ProcessOutput extends Error {
-	constructor({ message, code, combined, ...rest }){
+	constructor({ message, code, ...rest }){
 		super(message);
 		for(const [ k, value ] of Object.entries(rest))
 			Reflect.defineProperty(this, k, { value, writable: false });
 		Reflect.defineProperty(this, "exitCode", { value: code, writable: false });
-		Reflect.defineProperty(this, "toString", { value: ()=> combined, writable: false });
+		Reflect.defineProperty(this, "toString", { value: ()=> rest.stdout+rest.stderr, writable: false });
 	}
 	[inspect.custom]() {
 		let stringify = (s, c) => s.length === 0 ? "''" : c(inspect(s));
@@ -65,7 +64,7 @@ export class ProcessPromise extends Promise{
 		this.child= spawn(prefix + command,
 			Object.assign({ shell: typeof shell === 'string' ? shell : true, windowsHide: true, env, stdio }, options));
 		if(Reflect.has(options, "pipe")) this.child.stdin.end(options.pipe);
-		let stdout = '', stderr = '', combined = '';
+		let stdout = '', stderr = '';
 		const { from, resolve, reject }= process_store.get(this);
 		this.child.on('close', (code, signal)=> {
 			let message= `exit code: ${code}`;
@@ -76,9 +75,9 @@ export class ProcessPromise extends Promise{
 					message += `\n	  signal: ${signal}`;
 				}
 			}
-			const output= new ProcessOutput({ code, signal, stdout, stderr, combined, message });
+			const output= new ProcessOutput({ code, signal, stdout, stderr, message });
 			process_store.get(this).resolved= true;
-			if(code === 0 || process_store.get(this).nothrow)
+			if(code === 0 || !process_store.get(this).options.fatal)
 				return resolve(output);
 			reject(output);
 		});
@@ -88,22 +87,13 @@ export class ProcessPromise extends Promise{
 				`	 errno: ${err.errno}\n` +
 				`	 code: ${err.code}\n` +
 				`	 at ${this._from}`;
-			reject(new ProcessOutput({ stdout, stderr, combined, message }));
+			reject(new ProcessOutput({ stdout, stderr, message }));
 			process_store.get(this).resolved= true;
 		});
-		const onStdout= (data) => {
-			// $.log({ kind: 'stdout', data, verbose: $.verbose && !this._quiet });
-			stdout+= data;
-			combined+= data;
-		};
-		const onStderr= (data) => {
-			// $.log({ kind: 'stderr', data, verbose: $.verbose && !this._quiet });
-			stderr+= data;
-			combined+= data;
-		};
-		const { piped, postrun }= process_store.get(this);
-		if(!piped) this.child.stdout?.on('data', onStdout); // If process is piped, don't collect or print output.
-		this.child.stderr?.on('data', onStderr); // Stderr should be printed regardless of piping.
+		const { piped, postrun, options: { silent } }= process_store.get(this);
+		const log= piped || silent ? ( ()=> ({}) ) : d=> console.log(d.toString());
+		if(piped<2) this.child.stdout?.on('data', d=> ( stdout+= d, log(d) ));
+		this.child.stderr?.on('data', d=> ( stderr+= d, log(d) ));
 		postrun(); // In case $1.pipe($2), after both subprocesses are running, we can pipe $1.stdout to $2.stdin.
 		if(this._timeout && this._timeoutSignal) {
 			const t = setTimeout(() => this.kill(this._timeoutSignal), this._timeout);
@@ -115,7 +105,11 @@ export class ProcessPromise extends Promise{
 			if(dest instanceof ProcessPromise) dest.stdin.end(); // In case of piped stdin, we may want to close stdin of dest as well.
 			throw new Error("The pipe() method shouldn't be called after promise is already resolved!");
 		}
-		process_store.get(this).piped= true;
+		process_store.get(this).piped= 1;
+		if(typeof dest === "function")
+			return this.then(({ stdout, stderr, exitCode })=> dest(ShellString(stdout, stderr, exitCode)));
+
+		process_store.get(this).piped= 2;
 		if(dest instanceof ProcessPromise){
             dest.stdio('pipe');
 			process_store.assign(dest, {
@@ -151,7 +145,6 @@ export class ProcessPromise extends Promise{
 		return stdInOutErr(this, "stdout"); }
 	get stderr(){
 		return stdInOutErr(this, "stderr"); }
-	get exitCode(){ return this.then((p) => p.exitCode, (p) => p.exitCode); }
 	timeout(d, signal = 'SIGTERM') {
 		this._timeout = parseDuration(d);
 		this._timeoutSignal = signal;

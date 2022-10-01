@@ -75,14 +75,19 @@ function run(pieces, ...args){
 	/* jshint ignore:start */
 	const s= this || shelljs;
 	/* jshint ignore:end *//* global s */
-	const from= new Error().stack.split(/^\s*at\s/m)[2].trim();
+	const from= new Error().stack.split(/^\s*at\s/m).find(l=> l.indexOf("main")===0).trim();
 	const [ command, options= {} ]= runArgumentsToCommand(from, pieces, args);
-	return s.exec(command, options);
+	try {
+		return s.exec(command, options);
+	} catch(e){
+		const err= new Error(e.message.split("\n").slice(0, 1).join("\n")+"\n    at "+from);
+		throw err;
+	}
 }
 function runA(pieces, ...args){
-	const from= new Error().stack.split(/^\s*at\s/m)[2].trim();
+	const from= new Error().stack.split(/^\s*at\s/m).find(l=> l.indexOf("main")===0).trim();
 	const [ command, options= {} ]= runArgumentsToCommand(from, pieces, args);
 	const pipe= plugin.readFromPipe();
 	if(pipe) options.pipe= pipe;
-	return ProcessPromise.create(command, from, options);
+	return ProcessPromise.create(command, from, Object.assign({}, shelljs.config, options));
 }
