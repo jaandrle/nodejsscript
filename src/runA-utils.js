@@ -31,7 +31,8 @@ export class ProcessOutput extends Error {
 		for(const [ k, value ] of Object.entries(rest))
 			Reflect.defineProperty(this, k, { value, writable: false });
 		Reflect.defineProperty(this, "exitCode", { value: code, writable: false });
-		Reflect.defineProperty(this, "toString", { value: ()=> rest.stdout+rest.stderr, writable: false });
+		const combined= rest.stdout + ( rest.stderr ? "\n"+rest.stderr : "");
+		Reflect.defineProperty(this, "toString", { value: ()=> combined, writable: false });
 	}
 	[inspect.custom]() {
 		let stringify = (s, c) => s.length === 0 ? "''" : c(inspect(s));
@@ -41,7 +42,7 @@ export class ProcessOutput extends Error {
 			`	 stderr: ${stringify(this.stderr, chalk.red)},`,
 			`	 signal: ${inspect(this.signal)},`,
 			"	 exitCode: " + (this.exitCode === 0 ? chalk.green : chalk.red)(this.exitCode) + " " +
-					exitCodeInfo(this.exitCode) ?  chalk.grey(' (' + exitCodeInfo(this.exitCode) + ')') : '',
+					( exitCodeInfo(this.exitCode) ? chalk.grey(' (' + exitCodeInfo(this.exitCode) + ')') : '' ),
 			"}"
 		].join("\n");
 	}
@@ -86,7 +87,7 @@ export class ProcessPromise extends Promise{
 				//`    errno: ${err.errno} (${errnoMessage(err.errno)})\n` +
 				`	 errno: ${err.errno}\n` +
 				`	 code: ${err.code}\n` +
-				`	 at ${this._from}`;
+				`	 at ${process_store.get(this).from}`;
 			reject(new ProcessOutput({ stdout, stderr, message }));
 			process_store.get(this).resolved= true;
 		});

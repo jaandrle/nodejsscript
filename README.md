@@ -88,7 +88,7 @@ const file_path= fileURLToPath(import.meta.url);
 …and more, see [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
 
 ## Security guidelines
-**`run()` command injection**: this advice applies to `child_process.exec()` just as
+**`run()`/`runA()` command injection**: this advice applies to `child_process.exec()` just as
 much as it applies to `s.run()`. It is potentially risky to run commands passed
 for example by user input:
 ```js
@@ -97,9 +97,15 @@ curlUnsafe('https://some/url ; rm -rf $HOME'); //=> curl https://some/url ; rm -
 ```
 Therefore, `nodejsscript`s `s.run()` provide way to escapes untrusted parameters:
 ```js
-function curl(url){ return s.run("run ::url::", { url }); }
+function curl(url){ return s.run("curl ::url::", { url }); }
 curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'
 ```
+…you can also use template strings:
+```js
+function curl(url){ return s.run`curl ${url}`; }
+curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'
+```
+
 …*Note: The ['xargs()'](../interfaces/s.XargsFunction.md) by default also escapes piped strings.*
 
 *…Note 2: `s.run(…cmd, …vars)` is also helpul for escaping parameters passed as variables (e.g. arrays).*
@@ -114,6 +120,19 @@ however the `s.rm("*.txt")` by default (using the globbing) delete all `txt` fil
 Keep in mind that you can always turn off this for next command by using:
 ```js
 s.$("-g").rm("*.txt");
+```
+
+## Migration from `zx`
+The `runA` is almost identical to `$`:
+```js
+await $`cat package.json | grep name`;
+await s.runA`cat package.json | grep name`;
+```
+…but for `cp`/`mv`/… you need to rewrite code to `s.*`:
+```js
+echo(s.cat("package.json").grep("name"));
+// or
+echo(s.grep("name", "package.json"));
 ```
 
 ## Contribute

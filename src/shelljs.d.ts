@@ -58,20 +58,12 @@ export const $: DollarFunction;
 
 export type RunOptions=  ExecOptions & {
 	/**
-	 * Asynchronous execution.
-	 *
-	 *
-	 * @default false
-	 */
-	async?: "child" | boolean | undefined;
-	/**
 	 * Pattern in `command` to be replacced by variables.
 	 *
 	 * @default /::([^:]+)::/g
 	 */
 	needle?: RegExp;
 }
-export type AsyncCommandString= `${string} &`;
 export interface RunFunction {
 	/**
 	 * Executes the given command synchronously.
@@ -89,7 +81,7 @@ export interface RunFunction {
 	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
-	 * @return		  Returns an object containing the return code and output as string.
+	 * @return		  Returns an object containing the return code and output as {@link ShellString}.
 	 */
 	(command: string, vars?: {}): ShellString;
 
@@ -104,58 +96,63 @@ export interface RunFunction {
 	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
-	 * @param options Silence and synchronous options.
-	 * @return		  Returns an object containing the return code and output as string,
-	 *				  or if `{async: true}` was passed, a `ChildProcess`.
+	 * @param options Silence and options.
+	 * @return		  Returns an object containing the return code and output as {@link ShellString}.
 	 */
-	(command: string, vars: {} | false, options: RunOptions & { async?: false | undefined }): ShellString;
-
+	(command: string, vars: {} | false, options: RunOptions): ShellString;
+}
+import { Readable, Writable } from 'node:stream';
+import { inspect } from 'node:util';
+import { ChildProcess, StdioNull, StdioPipe } from 'node:child_process';
+export declare type IO= StdioPipe | StdioNull;
+export declare class ProcessOutput extends Error {
+    constructor(code: number | null, signal: NodeJS.Signals | null, stdout: string, stderr: string, combined: string, message: string);
+    toString(): string;
+    get stdout(): string;
+    get stderr(): string;
+    get exitCode(): number | null;
+    get signal(): NodeJS.Signals | null;
+    [inspect.custom](): string;
+}
+export declare class ProcessPromise extends Promise<ProcessOutput> {
+    child?: ChildProcess;
+    _run(): void;
+    get stdin(): Writable;
+    get stdout(): Readable;
+    get stderr(): Readable;
+    stdio(stdin: IO, stdout?: IO, stderr?: IO): this;
+    pipe(dest: Writable | ProcessPromise | ((s: ShellString)=> any)): ProcessPromise;
+    // kill(signal?: string): Promise<void>;
+    // timeout(d: Duration, signal?: string): this;
+}
+export interface RunAsyncFunction {
 	/**
 	 * Executes the given command asynchronously.
 	 * ```js
-	 * s.$().run("git branch --show-current", false, { async: true })
-	 * .then(echo.bind(echo, "success:"))
+	 * s.$().runA("git branch --show-current")
+	 * .pipe(echo.bind(echo, "success:"))
 	 * .catch(echo.bind(echo, "error:"))
+	 *
+	 * const ch= s.$().runA("git branch --show-current");
+	 * ch.child.on("data", echo);
+	 *
+	 * const result_a= await s.$().runA("git branch --show-current");
+	 * echo(result_a.toString());
 	 * ```
 	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
-	 * @param options Silence and synchronous options.
-	 * @return		  Returns an object containing the return code and output as string,
-	 *				  or if `{async: true}` was passed, a `Promise`.
 	 */
-	(command: string, vars: {} | false, options: RunOptions & { async: true }): Promise<string>;
+	(command: string, vars: {} | false): ProcessPromise;
 
 	/**
 	 * Executes the given command asynchronously.
-	 * ```js
-	 * s.$().run("git branch --show-current", false, { async: true })
-	 * .then(echo.bind(echo, "success:"))
-	 * .catch(echo.bind(echo, "error:"))
-	 * ```
 	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
-	 * @param options Silence and synchronous options.
-	 * @return		  Returns an object containing the return code and output as string,
-	 *				  or if `{async: true}` was passed, a `Promise`.
+	 * @param options Silence and options.
 	 */
-	(command: AsyncCommandString, vars?: {} | false, options?: RunOptions): Promise<string>;
-
-	/**
-	 * Executes the given command asynchronously. *Get the {@link child}*:
-	 * ```js
-	 * const ch= s.$().run("git branch --show-current", false, { async: "child" });
-	 * ch.on("data", echo);
-	 * ```
-	 *
-	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
-	 * @param vars Arguments for `command`.
-	 * @param options Silence and synchronous options.
-	 * @return		  Returns an object containing the return code and output as string,
-	 *				  or if `{async: "child"}` was passed, a `ChildProcess`.
-	 */
-	(command: string, vars: {} | false, options: RunOptions & { async: "child" }): child.ChildProcess;
+	(command: string, vars: {} | false, options: RunOptions): ProcessPromise;
 }
 /**
  * Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
@@ -163,13 +160,22 @@ export interface RunFunction {
  * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
  * @param vars Arguments for `command`.
  * @param options Silence and synchronous options.
- * @return Returns an object containing the return code and output as string,
- *         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
+ * @return Returns {@link ShellString}.
  */
 export const run: RunFunction;
+/**
+ * Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+ *
+ * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
+ * @param vars Arguments for `command`.
+ * @param options Silence and synchronous options.
+ * @return Returns {@link ProcessPromise}.
+ */
+export const runA: RunAsyncFunction;
 
 export interface ShellReturnValue{
 	xargs: XargsFunction
 	$: DollarFunction,
 	run: RunFunction
+	runA: RunAsyncFunction
 }

@@ -75,7 +75,7 @@ function run(pieces, ...args){
 	/* jshint ignore:start */
 	const s= this || shelljs;
 	/* jshint ignore:end *//* global s */
-	const from= new Error().stack.split(/^\s*at\s/m).find(l=> l.indexOf("main")===0).trim();
+	const from= new Error().stack.split(/^\s*at\s/m).find(l=> l.indexOf("async main")===0 || l.indexOf("main")===0).trim();
 	const [ command, options= {} ]= runArgumentsToCommand(from, pieces, args);
 	try {
 		return s.exec(command, options);
@@ -85,7 +85,7 @@ function run(pieces, ...args){
 	}
 }
 function runA(pieces, ...args){
-	const from= new Error().stack.split(/^\s*at\s/m).find(l=> l.indexOf("main")===0).trim();
+	const from= new Error().stack.split(/^\s*at\s/m).find(l=> l.indexOf("async main")===0 || l.indexOf("main")===0).trim();
 	const [ command, options= {} ]= runArgumentsToCommand(from, pieces, args);
 	const pipe= plugin.readFromPipe();
 	if(pipe) options.pipe= pipe;

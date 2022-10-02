@@ -2,7 +2,7 @@
 import { join, resolve } from "node:path";
 import { argv } from "node:process";
 import url from "node:url";
-import "../index.js";/* global echo, exit, cli, s, style, pipe, ProcessOutput */
+import "../index.js";/* global echo, exit, cli, s, style, pipe */
 
 (async function main(){
 	const candidate= argv.splice(2, 1)[0];
@@ -14,7 +14,7 @@ import "../index.js";/* global echo, exit, cli, s, style, pipe, ProcessOutput */
 		if(!s.test("-f", filepath)) cli.error(`File '${candidate}' not found.`);
 		await import(url.pathToFileURL(filepath).toString());
 	} catch(e){
-		const error= e instanceof cli.Error || e instanceof ProcessOutput ? e.message : e;
+		const error= e instanceof cli.Error ? e.message : e;
 		console.error(error);
 		exit(1);
 	}
