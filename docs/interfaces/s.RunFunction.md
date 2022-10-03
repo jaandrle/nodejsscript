@@ -10,7 +10,8 @@
 
 ▸ **RunFunction**(`command`, `vars?`): [`ShellString`](../modules/s.md#shellstring)
 
-Executes the given command synchronously.
+Executes the given command synchronously, because of that it does not know whether it will be piped,
+so by default prints the command output. You can off that by prepend `….$().run`.
 
 *Synchronous simple examples*:
 ```js
@@ -34,17 +35,18 @@ s.run("echo ::branch::", { branch });
 
 [`ShellString`](../modules/s.md#shellstring)
 
-Returns an object containing the return code and output as string.
+Returns an object containing the return code and output as [ShellString](../modules/s.md#shellstring).
 
 #### Defined in
 
-[src/shelljs.d.ts:94](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L94)
+[src/shelljs.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L87)
 
 ### RunFunction
 
 ▸ **RunFunction**(`command`, `vars`, `options`): [`ShellString`](../modules/s.md#shellstring)
 
-Executes the given command synchronously.
+Executes the given command synchronously, because of that it does not know whether it will be piped,
+so by default prints the command output. You can off that by prepend `….$().run`.
 
 *Passing variables*:
 ```js
@@ -58,104 +60,14 @@ s.run("echo ::branch::", { branch });
 | :------ | :------ | :------ |
 | `command` | `string` | String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value. |
 | `vars` | ``false`` \| {} | Arguments for `command`. |
-| `options` | [`ExecOptions`](s.ExecOptions.md) & { `async?`: `boolean` \| ``"child"`` ; `needle?`: `RegExp`  } & { `async?`: ``false``  } | Silence and synchronous options. |
+| `options` | [`RunOptions`](../modules/s.md#runoptions) | Silence and options. |
 
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
 
-Returns an object containing the return code and output as string,
-				  or if `{async: true}` was passed, a `ChildProcess`.
+Returns an object containing the return code and output as [ShellString](../modules/s.md#shellstring).
 
 #### Defined in
 
-[src/shelljs.d.ts:111](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L111)
-
-### RunFunction
-
-▸ **RunFunction**(`command`, `vars`, `options`): `Promise`<`string`\>
-
-Executes the given command asynchronously.
-```js
-s.$().run("git branch --show-current", false, { async: true })
-.then(echo.bind(echo, "success:"))
-.catch(echo.bind(echo, "error:"))
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `command` | `string` | String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value. |
-| `vars` | ``false`` \| {} | Arguments for `command`. |
-| `options` | [`ExecOptions`](s.ExecOptions.md) & { `async?`: `boolean` \| ``"child"`` ; `needle?`: `RegExp`  } & { `async`: ``true``  } | Silence and synchronous options. |
-
-#### Returns
-
-`Promise`<`string`\>
-
-Returns an object containing the return code and output as string,
-				  or if `{async: true}` was passed, a `Promise`.
-
-#### Defined in
-
-[src/shelljs.d.ts:127](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L127)
-
-### RunFunction
-
-▸ **RunFunction**(`command`, `vars?`, `options?`): `Promise`<`string`\>
-
-Executes the given command asynchronously.
-```js
-s.$().run("git branch --show-current", false, { async: true })
-.then(echo.bind(echo, "success:"))
-.catch(echo.bind(echo, "error:"))
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `command` | \`${string} &\` | String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value. |
-| `vars?` | ``false`` \| {} | Arguments for `command`. |
-| `options?` | [`RunOptions`](../modules/s.md#runoptions) | Silence and synchronous options. |
-
-#### Returns
-
-`Promise`<`string`\>
-
-Returns an object containing the return code and output as string,
-				  or if `{async: true}` was passed, a `Promise`.
-
-#### Defined in
-
-[src/shelljs.d.ts:143](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L143)
-
-### RunFunction
-
-▸ **RunFunction**(`command`, `vars`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-Executes the given command asynchronously. *Get the [child](../modules/s.child.md)*:
-```js
-const ch= s.$().run("git branch --show-current", false, { async: "child" });
-ch.on("data", echo);
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `command` | `string` | String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value. |
-| `vars` | ``false`` \| {} | Arguments for `command`. |
-| `options` | `never` | Silence and synchronous options. |
-
-#### Returns
-
-[`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-Returns an object containing the return code and output as string,
-				  or if `{async: "child"}` was passed, a `ChildProcess`.
-
-#### Defined in
-
-[src/shelljs.d.ts:158](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L158)
+[src/shelljs.d.ts:104](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L104)

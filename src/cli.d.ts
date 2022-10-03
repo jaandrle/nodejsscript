@@ -137,4 +137,13 @@ export namespace cli{
 	 * @category Public
 	 */
 	const xdg: typeof xdg_.xdg;
+
+	/**
+	 * Throws user targeted error
+	 * ```js
+	 * const number= await cli.read({ "-p". "Insert a number:" });
+	 * if(Number.isNaN(Number(number))) cli.error(`Provided text '${number}' is not a number`);
+	 * ```
+	 * */
+	function error(message: string): Error;
 }

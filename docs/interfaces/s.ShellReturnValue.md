@@ -11,6 +11,7 @@
 - [xargs](s.ShellReturnValue.md#xargs)
 - [$](s.ShellReturnValue.md#$)
 - [run](s.ShellReturnValue.md#run)
+- [runA](s.ShellReturnValue.md#runa)
 
 ## Properties
 
@@ -20,7 +21,7 @@
 
 #### Defined in
 
-[src/shelljs.d.ts:172](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L172)
+[src/shelljs.d.ts:202](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L202)
 
 ___
 
@@ -30,7 +31,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:173](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L173)
+[src/shelljs.d.ts:203](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L203)
 
 ___
 
@@ -40,4 +41,14 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:174](https://github.com/jaandrle/nodejsscript/blob/9ae5d73/src/shelljs.d.ts#L174)
+[src/shelljs.d.ts:204](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L204)
+
+___
+
+### runA
+
+• **runA**: [`RunAsyncFunction`](s.RunAsyncFunction.md)
+
+#### Defined in
+
+[src/shelljs.d.ts:205](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L205)

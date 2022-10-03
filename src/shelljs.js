@@ -1,27 +1,20 @@
 import shelljs from "shelljs";
 import plugin from "shelljs/plugin.js";
 import escape from "shell-escape-tag";
+import { ProcessPromise, ProcessOutput } from "./runA-utils.js";
+export { ProcessPromise, ProcessOutput };
 
 shelljs.echo= shelljs.ShellString;
 
-plugin.register("xargs", xargs, {
-	canReceivePipe: true,
-	wrapOutput: false,
+plugin.register("xargs", xargs, { canReceivePipe: true, wrapOutput: false,
 	cmdOptions: {
 		I: 'needle',
 		R: 'is_raw'
 	}
 });
-plugin.register("$", $, {
-	canReceivePipe: true,
-	wrapOutput: false
-});
-plugin.register('run', run, {
-	unix: false,
-	canReceivePipe: true,
-	wrapOutput: false
-});
-
+plugin.register("$", $, { canReceivePipe: true, wrapOutput: false });
+plugin.register('run', run, { unix: false, canReceivePipe: true, wrapOutput: false });
+plugin.register('runA', runA, { unix: false, canReceivePipe: true, wrapOutput: false });
 export default shelljs;
 
 function xargs({ needle, is_raw }, ...args){
@@ -60,33 +53,41 @@ function $(config_next){
 		}
 	});
 }
+function runArgumentsToCommand(from, pieces, args){
+	if(typeof pieces === "string"){
+		const [ vars= {}, options= {} ]= args;
+		const { needle= /::([^:]+)::/g }= options;
+		Reflect.deleteProperty(options, "needle");
+		if(Object.keys(vars).length)
+			return [ pieces.replace(needle, function replace(_, key){
+				return escape([ "" ], [ vars[key] ]);
+			}), options ];
+		else
+			return [ pieces ];
+	} else if(pieces.some((p)=> p == undefined)) {
+		throw new Error(`Malformed command at ${from}`);
+	} else {
+		return [ escape(pieces, args) ];
+	}
+}
 /** @this {shelljs} */
-function run(command, vars, options){
+function run(pieces, ...args){
 	/* jshint ignore:start */
 	const s= this || shelljs;
 	/* jshint ignore:end *//* global s */
-	vars= vars || {};
-	options= options || {};
-	command= command.replace(options.needle || /::([^:]+)::/g, function replace(_, key){
-		return escape([ "" ], [ vars[key] ]);
-	});
-	if(command[command.length-1]==="&"){
-		if(!Reflect.has(options, "async"))
-			Reflect.set(options, "async", true);
-		command= command.slice(0, command.length-1);
-	}
-	Reflect.deleteProperty(options, "needle");
-	if(options.async !== true){
-		if(typeof options.async === "string") options.async= true;
+	const from= new Error().stack.split(/^\s*at\s/m).find(l=> l.indexOf("async main")===0 || l.indexOf("main")===0).trim();
+	const [ command, options= {} ]= runArgumentsToCommand(from, pieces, args);
+	try {
 		return s.exec(command, options);
+	} catch(e){
+		const err= new Error(e.message.split("\n").slice(0, 1).join("\n")+"\n    at "+from);
+		throw err;
 	}
-	return new Promise(function(resolve, reject){
-		const callback= function(code, stdout, stderr){
-			if(!code) return resolve(stdout);
-			const e= new Error(stderr);
-			e.code= code;
-			reject(e);
-		};
-		return s.exec(command, options, callback);
-	});
+}
+function runA(pieces, ...args){
+	const from= new Error().stack.split(/^\s*at\s/m).find(l=> l.indexOf("async main")===0 || l.indexOf("main")===0).trim();
+	const [ command, options= {} ]= runArgumentsToCommand(from, pieces, args);
+	const pipe= plugin.readFromPipe();
+	if(pipe) options.pipe= pipe;
+	return ProcessPromise.create(command, from, Object.assign({}, shelljs.config, options));
 }
