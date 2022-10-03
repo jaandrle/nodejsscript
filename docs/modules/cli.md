@@ -48,7 +48,7 @@ const cli.configAssign({ verbose: true, silent: false });
 
 #### Defined in
 
-[src/cli.d.ts:53](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/cli.d.ts#L53)
+[src/cli.d.ts:53](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/cli.d.ts#L53)
 
 ___
 
@@ -74,7 +74,7 @@ node pipes.js | … # — test by cli.isFIFO(1)
 
 #### Defined in
 
-[src/cli.d.ts:63](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/cli.d.ts#L63)
+[src/cli.d.ts:63](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/cli.d.ts#L63)
 
 ___
 
@@ -137,7 +137,7 @@ prog.parse(process.argv);
 
 #### Defined in
 
-[src/cli.d.ts:110](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/cli.d.ts#L110)
+[src/cli.d.ts:110](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/cli.d.ts#L110)
 
 ___
 
@@ -165,7 +165,7 @@ if(cli.isFIFO(0)) await cli.read().then(echo.bind(null, "E.g. for reading receiv
 
 #### Defined in
 
-[src/cli.d.ts:134](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/cli.d.ts#L134)
+[src/cli.d.ts:134](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/cli.d.ts#L134)
 
 ## Public Variables
 
@@ -181,7 +181,7 @@ false
 
 #### Defined in
 
-[src/cli.d.ts:16](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/cli.d.ts#L16)
+[src/cli.d.ts:16](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/cli.d.ts#L16)
 
 ___
 
@@ -197,7 +197,7 @@ false
 
 #### Defined in
 
-[src/cli.d.ts:22](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/cli.d.ts#L22)
+[src/cli.d.ts:22](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/cli.d.ts#L22)
 
 ___
 
@@ -213,7 +213,7 @@ false
 
 #### Defined in
 
-[src/cli.d.ts:28](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/cli.d.ts#L28)
+[src/cli.d.ts:28](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/cli.d.ts#L28)
 
 ___
 
@@ -230,7 +230,7 @@ ___
 
 #### Defined in
 
-[src/cli.d.ts:31](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/cli.d.ts#L31)
+[src/cli.d.ts:31](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/cli.d.ts#L31)
 
 ___
 
@@ -240,4 +240,4 @@ ___
 
 #### Defined in
 
-[src/cli.d.ts:139](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/cli.d.ts#L139)
+[src/cli.d.ts:139](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/cli.d.ts#L139)

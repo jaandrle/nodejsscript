@@ -21,7 +21,7 @@
 
 #### Defined in
 
-[src/shelljs.d.ts:177](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L177)
+[src/shelljs.d.ts:198](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L198)
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:178](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L178)
+[src/shelljs.d.ts:199](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L199)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:179](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L179)
+[src/shelljs.d.ts:200](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L200)
 
 ___
 
@@ -51,4 +51,4 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:180](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L180)
+[src/shelljs.d.ts:201](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L201)

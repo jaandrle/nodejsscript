@@ -68,7 +68,7 @@ pipe(
 
 #### Defined in
 
-[_index.d.ts:18](https://github.com/jaandrle/nodejsscript/blob/f98d532/_index.d.ts#L18)
+[_index.d.ts:18](https://github.com/jaandrle/nodejsscript/blob/8f31caa/_index.d.ts#L18)
 
 ___
 
@@ -116,7 +116,7 @@ try{
 
 #### Defined in
 
-[_index.d.ts:93](https://github.com/jaandrle/nodejsscript/blob/f98d532/_index.d.ts#L93)
+[_index.d.ts:93](https://github.com/jaandrle/nodejsscript/blob/8f31caa/_index.d.ts#L93)
 
 ___
 
@@ -162,7 +162,7 @@ function spinner(message= "Waiting…"){
 
 #### Defined in
 
-[_index.d.ts:118](https://github.com/jaandrle/nodejsscript/blob/f98d532/_index.d.ts#L118)
+[_index.d.ts:118](https://github.com/jaandrle/nodejsscript/blob/8f31caa/_index.d.ts#L118)
 
 ___
 
@@ -217,7 +217,7 @@ Returns processed string with additional utility methods like .to().
 
 #### Defined in
 
-[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/echo.d.ts#L46)
+[src/echo.d.ts:46](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/echo.d.ts#L46)
 
 ___
 

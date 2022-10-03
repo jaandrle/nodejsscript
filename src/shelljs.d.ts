@@ -66,7 +66,8 @@ export type RunOptions=  ExecOptions & {
 }
 export interface RunFunction {
 	/**
-	 * Executes the given command synchronously.
+	 * Executes the given command synchronously, because of that it does not know whether it will be piped,
+	 * so by default prints the command output. You can off that by prepend `….$().run`.
 	 *
 	 * *Synchronous simple examples*:
 	 * ```js
@@ -86,7 +87,8 @@ export interface RunFunction {
 	(command: string, vars?: {}): ShellString;
 
 	/**
-	 * Executes the given command synchronously.
+	 * Executes the given command synchronously, because of that it does not know whether it will be piped,
+	 * so by default prints the command output. You can off that by prepend `….$().run`.
 	 *
 	 * *Passing variables*:
 	 * ```js
@@ -147,6 +149,10 @@ export interface RunAsyncFunction {
 
 	/**
 	 * Executes the given command asynchronously.
+	 * ```js
+	 * const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
+	 * echo(result_b.toString());
+	 * ```
 	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
@@ -155,7 +161,8 @@ export interface RunAsyncFunction {
 	(command: string, vars: {} | false, options: RunOptions): ProcessPromise;
 }
 /**
- * Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+ * Executes the given command synchronously, because of that it does not know whether it will be piped,
+ * so by default prints the command output. You can off that by prepend `….$().run`.
  *
  * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
  * @param vars Arguments for `command`.
@@ -164,7 +171,21 @@ export interface RunAsyncFunction {
  */
 export const run: RunFunction;
 /**
- * Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+ * Executes the given command asynchronously.
+ * ```js
+ * s.$().runA("git branch --show-current")
+ * .pipe(echo.bind(echo, "success:"))
+ * .catch(echo.bind(echo, "error:"))
+ *
+ * const ch= s.$().runA("git branch --show-current");
+ * ch.child.on("data", echo);
+ *
+ * const result_a= await s.$().runA("git branch --show-current");
+ * echo(result_a.toString());
+ *
+ * const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
+ * echo(result_b.toString());
+ * ```
  *
  * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
  * @param vars Arguments for `command`.

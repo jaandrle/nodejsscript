@@ -10,7 +10,8 @@
 
 ▸ **RunFunction**(`command`, `vars?`): [`ShellString`](../modules/s.md#shellstring)
 
-Executes the given command synchronously.
+Executes the given command synchronously, because of that it does not know whether it will be piped,
+so by default prints the command output. You can off that by prepend `….$().run`.
 
 *Synchronous simple examples*:
 ```js
@@ -38,13 +39,14 @@ Returns an object containing the return code and output as [ShellString](../modu
 
 #### Defined in
 
-[src/shelljs.d.ts:86](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L86)
+[src/shelljs.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L87)
 
 ### RunFunction
 
 ▸ **RunFunction**(`command`, `vars`, `options`): [`ShellString`](../modules/s.md#shellstring)
 
-Executes the given command synchronously.
+Executes the given command synchronously, because of that it does not know whether it will be piped,
+so by default prints the command output. You can off that by prepend `….$().run`.
 
 *Passing variables*:
 ```js
@@ -68,4 +70,4 @@ Returns an object containing the return code and output as [ShellString](../modu
 
 #### Defined in
 
-[src/shelljs.d.ts:102](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L102)
+[src/shelljs.d.ts:104](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L104)

@@ -163,7 +163,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L54)
+[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L54)
 
 ▸ **$**(): [`ShellString`](s.md#shellstring)
 
@@ -173,7 +173,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L55)
+[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L55)
 
 ___
 
@@ -181,7 +181,8 @@ ___
 
 ▸ **run**(`command`, `vars?`): [`ShellString`](s.md#shellstring)
 
-Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+Executes the given command synchronously, because of that it does not know whether it will be piped,
+so by default prints the command output. You can off that by prepend `….$().run`.
 
 #### Parameters
 
@@ -198,11 +199,12 @@ Returns [ShellString](s.md#shellstring).
 
 #### Defined in
 
-[src/shelljs.d.ts:86](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L86)
+[src/shelljs.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L87)
 
 ▸ **run**(`command`, `vars`, `options`): [`ShellString`](s.md#shellstring)
 
-Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+Executes the given command synchronously, because of that it does not know whether it will be piped,
+so by default prints the command output. You can off that by prepend `….$().run`.
 
 #### Parameters
 
@@ -220,7 +222,7 @@ Returns [ShellString](s.md#shellstring).
 
 #### Defined in
 
-[src/shelljs.d.ts:102](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L102)
+[src/shelljs.d.ts:104](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L104)
 
 ___
 
@@ -228,7 +230,21 @@ ___
 
 ▸ **runA**(`command`, `vars`): [`ProcessPromise`](../classes/s.ProcessPromise.md)
 
-Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+Executes the given command asynchronously.
+```js
+s.$().runA("git branch --show-current")
+.pipe(echo.bind(echo, "success:"))
+.catch(echo.bind(echo, "error:"))
+
+const ch= s.$().runA("git branch --show-current");
+ch.child.on("data", echo);
+
+const result_a= await s.$().runA("git branch --show-current");
+echo(result_a.toString());
+
+const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
+echo(result_b.toString());
+```
 
 #### Parameters
 
@@ -245,11 +261,25 @@ Returns [ProcessPromise](../classes/s.ProcessPromise.md).
 
 #### Defined in
 
-[src/shelljs.d.ts:146](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L146)
+[src/shelljs.d.ts:148](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L148)
 
 ▸ **runA**(`command`, `vars`, `options`): [`ProcessPromise`](../classes/s.ProcessPromise.md)
 
-Executes the given command. You can use `&` in `command` to run command asynchronously (but `options.async` has higher priority).
+Executes the given command asynchronously.
+```js
+s.$().runA("git branch --show-current")
+.pipe(echo.bind(echo, "success:"))
+.catch(echo.bind(echo, "error:"))
+
+const ch= s.$().runA("git branch --show-current");
+ch.child.on("data", echo);
+
+const result_a= await s.$().runA("git branch --show-current");
+echo(result_a.toString());
+
+const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
+echo(result_b.toString());
+```
 
 #### Parameters
 
@@ -267,7 +297,7 @@ Returns [ProcessPromise](../classes/s.ProcessPromise.md).
 
 #### Defined in
 
-[src/shelljs.d.ts:155](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L155)
+[src/shelljs.d.ts:161](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L161)
 
 ___
 
@@ -2193,7 +2223,7 @@ node_modules/@types/shelljs/index.d.ts:1164
 
 #### Defined in
 
-[src/shelljs.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L59)
+[src/shelljs.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L59)
 
 ___
 
@@ -2203,7 +2233,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:107](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L107)
+[src/shelljs.d.ts:109](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L109)
 
 ___
 

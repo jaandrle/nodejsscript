@@ -36,13 +36,17 @@ echo(result_a.toString());
 
 #### Defined in
 
-[src/shelljs.d.ts:146](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L146)
+[src/shelljs.d.ts:148](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L148)
 
 ### RunAsyncFunction
 
 ▸ **RunAsyncFunction**(`command`, `vars`, `options`): [`ProcessPromise`](../classes/s.ProcessPromise.md)
 
 Executes the given command asynchronously.
+```js
+const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
+echo(result_b.toString());
+```
 
 #### Parameters
 
@@ -58,4 +62,4 @@ Executes the given command asynchronously.
 
 #### Defined in
 
-[src/shelljs.d.ts:155](https://github.com/jaandrle/nodejsscript/blob/f98d532/src/shelljs.d.ts#L155)
+[src/shelljs.d.ts:161](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L161)
