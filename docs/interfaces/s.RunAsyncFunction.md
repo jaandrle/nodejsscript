@@ -40,7 +40,7 @@ echo(result_a.toString());
 
 #### Defined in
 
-[src/shelljs.d.ts:152](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L152)
+[src/shelljs.d.ts:152](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L152)
 
 ### RunAsyncFunction
 
@@ -66,4 +66,4 @@ echo(result_b.toString());
 
 #### Defined in
 
-[src/shelljs.d.ts:165](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L165)
+[src/shelljs.d.ts:165](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L165)

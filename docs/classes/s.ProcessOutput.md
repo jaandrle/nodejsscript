@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:112](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L112)
+[src/shelljs.d.ts:112](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L112)
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:117](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L117)
+[src/shelljs.d.ts:117](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L117)
 
 ## Properties
 
@@ -206,7 +206,7 @@ Error.constructor
 
 #### Defined in
 
-[src/shelljs.d.ts:111](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L111)
+[src/shelljs.d.ts:111](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L111)
 
 ## Accessors
 
@@ -220,7 +220,7 @@ Error.constructor
 
 #### Defined in
 
-[src/shelljs.d.ts:113](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L113)
+[src/shelljs.d.ts:113](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L113)
 
 ___
 
@@ -234,7 +234,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:114](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L114)
+[src/shelljs.d.ts:114](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L114)
 
 ___
 
@@ -248,7 +248,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:115](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L115)
+[src/shelljs.d.ts:115](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L115)
 
 ___
 
@@ -262,4 +262,4 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:116](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L116)
+[src/shelljs.d.ts:116](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L116)

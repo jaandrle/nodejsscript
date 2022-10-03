@@ -338,7 +338,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:121](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L121)
+[src/shelljs.d.ts:121](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L121)
 
 ___
 
@@ -360,7 +360,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L125)
+[src/shelljs.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L125)
 
 ___
 
@@ -380,7 +380,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:126](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L126)
+[src/shelljs.d.ts:126](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L126)
 
 ___
 
@@ -503,7 +503,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:120](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L120)
+[src/shelljs.d.ts:120](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L120)
 
 ___
 
@@ -553,7 +553,7 @@ node_modules/typescript/lib/lib.es2015.promise.d.ts:33
 
 #### Defined in
 
-[src/shelljs.d.ts:122](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L122)
+[src/shelljs.d.ts:122](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L122)
 
 ___
 
@@ -567,7 +567,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:123](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L123)
+[src/shelljs.d.ts:123](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L123)
 
 ___
 
@@ -581,4 +581,4 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:124](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L124)
+[src/shelljs.d.ts:124](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L124)

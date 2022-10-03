@@ -164,7 +164,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L54)
+[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L54)
 
 ▸ **$**(): [`ShellString`](s.md#shellstring)
 
@@ -174,7 +174,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### Defined in
 
-[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L55)
+[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L55)
 
 ___
 
@@ -200,7 +200,7 @@ Returns [ShellString](s.md#shellstring).
 
 #### Defined in
 
-[src/shelljs.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L87)
+[src/shelljs.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L87)
 
 ▸ **run**(`command`, `vars`, `options`): [`ShellString`](s.md#shellstring)
 
@@ -223,7 +223,7 @@ Returns [ShellString](s.md#shellstring).
 
 #### Defined in
 
-[src/shelljs.d.ts:104](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L104)
+[src/shelljs.d.ts:104](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L104)
 
 ___
 
@@ -262,7 +262,7 @@ Returns [ProcessPromise](../classes/s.ProcessPromise.md).
 
 #### Defined in
 
-[src/shelljs.d.ts:152](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L152)
+[src/shelljs.d.ts:152](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L152)
 
 ▸ **runA**(`command`, `vars`, `options`): [`ProcessPromise`](../classes/s.ProcessPromise.md)
 
@@ -298,7 +298,7 @@ Returns [ProcessPromise](../classes/s.ProcessPromise.md).
 
 #### Defined in
 
-[src/shelljs.d.ts:165](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L165)
+[src/shelljs.d.ts:165](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L165)
 
 ___
 
@@ -2224,7 +2224,7 @@ node_modules/@types/shelljs/index.d.ts:1164
 
 #### Defined in
 
-[src/shelljs.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L59)
+[src/shelljs.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L59)
 
 ___
 
@@ -2234,7 +2234,7 @@ ___
 
 #### Defined in
 
-[src/shelljs.d.ts:109](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L109)
+[src/shelljs.d.ts:109](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L109)
 
 ___
 
