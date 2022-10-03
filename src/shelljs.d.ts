@@ -132,8 +132,12 @@ export interface RunAsyncFunction {
 	 * Executes the given command asynchronously.
 	 * ```js
 	 * s.$().runA("git branch --show-current")
-	 * .pipe(echo.bind(echo, "success:"))
-	 * .catch(echo.bind(echo, "error:"))
+	 * .then(echo.bind(echo, "success:"))
+	 * .catch(echo.bind(echo, "error:"));
+	 *
+	 * s.$().runA("npm list")
+	 * .pipe(s=> echo(s.grep("types")))
+	 * .catch(echo.bind(echo, "error:"));
 	 *
 	 * const ch= s.$().runA("git branch --show-current");
 	 * ch.child.on("data", echo);

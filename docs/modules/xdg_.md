@@ -23,7 +23,7 @@
 
 #### Defined in
 
-[src/xdg.d.ts:1](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/xdg.d.ts#L1)
+[src/xdg.d.ts:1](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/xdg.d.ts#L1)
 
 ___
 
@@ -55,7 +55,7 @@ cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 
 #### Defined in
 
-[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/xdg.d.ts#L11)
+[src/xdg.d.ts:11](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/xdg.d.ts#L11)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-[src/xdg.d.ts:12](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/xdg.d.ts#L12)
+[src/xdg.d.ts:12](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/xdg.d.ts#L12)
 
 ___
 
@@ -83,4 +83,4 @@ ___
 
 #### Defined in
 
-[src/xdg.d.ts:13](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/xdg.d.ts#L13)
+[src/xdg.d.ts:13](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/xdg.d.ts#L13)

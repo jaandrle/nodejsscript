@@ -100,7 +100,7 @@ Therefore, `nodejsscript`s `s.run()` provide way to escapes untrusted parameters
 function curl(url){ return s.run("curl ::url::", { url }); }
 curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'
 ```
-…you can also use template strings:
+…you can also use as template function (but without command specific options):
 ```js
 function curl(url){ return s.run`curl ${url}`; }
 curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'

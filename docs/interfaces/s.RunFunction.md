@@ -39,7 +39,7 @@ Returns an object containing the return code and output as [ShellString](../modu
 
 #### Defined in
 
-[src/shelljs.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L87)
+[src/shelljs.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L87)
 
 ### RunFunction
 
@@ -70,4 +70,4 @@ Returns an object containing the return code and output as [ShellString](../modu
 
 #### Defined in
 
-[src/shelljs.d.ts:104](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L104)
+[src/shelljs.d.ts:104](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L104)

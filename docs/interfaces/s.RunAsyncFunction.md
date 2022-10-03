@@ -13,8 +13,12 @@
 Executes the given command asynchronously.
 ```js
 s.$().runA("git branch --show-current")
-.pipe(echo.bind(echo, "success:"))
-.catch(echo.bind(echo, "error:"))
+.then(echo.bind(echo, "success:"))
+.catch(echo.bind(echo, "error:"));
+
+s.$().runA("npm list")
+.pipe(s=> echo(s.grep("types")))
+.catch(echo.bind(echo, "error:"));
 
 const ch= s.$().runA("git branch --show-current");
 ch.child.on("data", echo);
@@ -36,7 +40,7 @@ echo(result_a.toString());
 
 #### Defined in
 
-[src/shelljs.d.ts:148](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L148)
+[src/shelljs.d.ts:152](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L152)
 
 ### RunAsyncFunction
 
@@ -62,4 +66,4 @@ echo(result_b.toString());
 
 #### Defined in
 
-[src/shelljs.d.ts:161](https://github.com/jaandrle/nodejsscript/blob/8f31caa/src/shelljs.d.ts#L161)
+[src/shelljs.d.ts:165](https://github.com/jaandrle/nodejsscript/blob/8f362e5/src/shelljs.d.ts#L165)
