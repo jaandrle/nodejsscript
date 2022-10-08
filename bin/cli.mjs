@@ -4,16 +4,7 @@ import { argv } from "node:process";
 import url from "node:url";
 import "../index.js";/* global echo, exit, cli, s, style, pipe */
 
-process.on('uncaughtException', e=> {
-	if(e instanceof cli.Error){
-		console.error(e.message);
-		return exit(1);
-	}
-	const { stdout, stderr, name, message, exitCode }= e;
-	console.error(name);
-	console.error(message || stderr || stdout);
-	exit(exitCode);
-});
+process.on('uncaughtException', printError);
 (async function main(){
 	const candidate= argv.splice(2, 1)[0];
 	if(candidate[0]==="-") handleMyArgvs(candidate);
@@ -24,9 +15,7 @@ process.on('uncaughtException', e=> {
 		if(!s.test("-f", filepath)) cli.error(`File '${candidate}' not found.`);
 		await import(url.pathToFileURL(filepath).toString());
 	} catch(e){
-		const error= e instanceof cli.Error ? e.message : e;
-		console.error(error);
-		exit(1);
+		printError(e);
 	}
 })();
 
@@ -39,6 +28,14 @@ function handleMyArgvs(candidate){
 		return printUsage();
 	if("--global-jsconfig"===candidate)
 		return jsconfigTypes();
+}
+function printError(e){
+	if(e instanceof cli.Error){
+		console.error(e.message);
+		return exit(1);
+	}
+	Error.print(e);
+	exit(e.exitCode || 1);
 }
 function printUsage(){
 	style.theme({ n: style.blueBright, v: style.greenBright, info: style.yellow, code: style.italic });

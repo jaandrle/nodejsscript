@@ -1,12 +1,10 @@
-import chalk from "ansi-colors";
+import { ProcessOutput } from "./Error.js";
 import { spawn } from "node:child_process";
 import assert from "node:assert";
-import { inspect } from 'node:util';
 import { AsyncLocalStorage, createHook } from 'node:async_hooks';
 import shelljs from "shelljs";
 const { which, ShellString }= shelljs;
 
-const exit_codes= { 2: 'Misuse of shell builtins', 126: 'Invoked command cannot execute', 127: 'Command not found', 128: 'Invalid exit argument', 129: 'Hangup', 130: 'Interrupt', 131: 'Quit and dump core', 132: 'Illegal instruction', 133: 'Trace/breakpoint trap', 134: 'Process aborted', 135: 'Bus error: "access to undefined portion of memory object"', 136: 'Floating point exception: "erroneous arithmetic operation"', 137: 'Kill (terminate immediately)', 138: 'User-defined 1', 139: 'Segmentation violation', 140: 'User-defined 2', 141: 'Write to pipe with no one reading', 142: 'Signal raised by alarm', 143: 'Termination (request to terminate)', 145: 'Child process terminated, stopped (or continued*)', 146: 'Continue if stopped', 147: 'Stop executing temporarily', 148: 'Terminal stop signal', 149: 'Background process attempting to read from tty ("in")', 150: 'Background process attempting to write to tty ("out")', 151: 'Urgent data available on socket', 152: 'CPU time limit exceeded', 153: 'File size limit exceeded', 154: 'Signal raised by timer counting virtual time: "virtual timer expired"', 155: 'Profiling timer expired', 157: 'Pollable event', 159: 'Bad syscall', };
 const processCwd= Symbol('processCwd');
 const storage= new AsyncLocalStorage();
 createHook({
@@ -25,35 +23,11 @@ export const process_store= getProcesStore(()=> ({
 	resolved: false, piped: 0,
 	prerun: noop, postrun: noop
 }));
-export class AsyncProcessOutput extends Error {
-	constructor({ message, code, caused, ...rest }){
-		super(message, { caused });
-		this.stack= this.stack.split(/^\s*at\s/m)[0]+caused.stack.split("\n").slice(1).join("\n");
-		for(const [ k, value ] of Object.entries(rest))
-			Reflect.defineProperty(this, k, { value, writable: false });
-		Reflect.defineProperty(this, "exitCode", { value: code, writable: false });
-		const combined= rest.stdout + ( rest.stderr ? "\n"+rest.stderr : "");
-		Reflect.defineProperty(this, "toString", { value: ()=> combined, writable: false });
-	}
-	//[inspect.custom]() {
-	//	let stringify = (s, c) => s.length === 0 ? "''" : c(inspect(s));
-	//	return [
-	//		"AsyncProcessOutput {",
-	//		`	 stdout: ${stringify(this.stdout, chalk.green)},`,
-	//		`	 stderr: ${stringify(this.stderr, chalk.red)},`,
-	//		`	 signal: ${inspect(this.signal)},`,
-	//		"	 exitCode: " + (this.exitCode === 0 ? chalk.green : chalk.red)(this.exitCode) + " " +
-	//				( exitCodeInfo(this.exitCode) ? chalk.grey(' (' + exitCodeInfo(this.exitCode) + ')') : '' ),
-	//		`	 at: [${this.stack.split(/^\s*at\s/m).slice(1).map(l=> "\n		"+l.trim())}\n	],`,
-	//		"}"
-	//	].join("\n");
-	//}
-}
 export class ProcessPromise extends Promise{
 	static create(command, options){
 		let resolve, reject;
 		const i= new this((...args) => ([resolve, reject] = args));
-		process_store.assign(i, { resolve, reject, command, options, caused: new Error() });
+		process_store.assign(i, { resolve, reject, command, options, processOutput: ProcessOutput.bind() });
 		setImmediate(()=> i._run()); // Postpone run to allow promise configuration.
 		return i;
 	}
@@ -68,28 +42,18 @@ export class ProcessPromise extends Promise{
 			Object.assign({ shell: typeof shell === 'string' ? shell : true, windowsHide: true, env, stdio }, options));
 		if(Reflect.has(options, "pipe")) this.child.stdin.end(options.pipe);
 		let stdout = '', stderr = '';
-		const { resolve, reject, caused }= process_store.get(this);
+		const { resolve, reject, processOutput }= process_store.get(this);
 		this.child.on('close', (code, signal)=> {
-			let message= `exit code: ${code}`;
-			if (code != 0 || signal != null) {
-				message= stderr.trim();
-				message+= `\n exit code: ${code}${exitCodeInfo(code) ? ' (' + exitCodeInfo(code) + ')' : ''}`;
-				if (signal != null) {
-					message += `\n signal: ${signal}`;
-				}
-			}
-			const output= new AsyncProcessOutput({ code, signal, stdout, stderr, message, caused });
+			let message= stderr.trim();
+			const output= processOutput({ code, signal, stdout, stderr, message });
 			process_store.get(this).resolved= true;
 			if(code === 0 || !process_store.get(this).options.fatal)
 				return resolve(output);
 			reject(output);
 		});
 		this.child.on('error', (err) => {
-			const message = `${err.message}\n` +
-				//` errno: ${err.errno} (${errnoMessage(err.errno)})\n` +
-				` errno: ${err.errno}\n` +
-				` code: ${err.code}\n\n`;
-			reject(new AsyncProcessOutput({ stdout, stderr, message, caused }));
+			const message= err.message;
+			reject(processOutput({ stdout, stderr, message }));
 			process_store.get(this).resolved= true;
 		});
 		const { piped, postrun, options: { silent } }= process_store.get(this);
@@ -178,7 +142,6 @@ function getProcesStore(initial){
 	if(cwd != process.cwd())
 		process.chdir(cwd);
 }
-function exitCodeInfo(exitCode) { return exit_codes[exitCode || -1]; }
 export function parseDuration(d) {
 	if (typeof d == 'number') {
 		if (isNaN(d) || d < 0)

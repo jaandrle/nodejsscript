@@ -1,13 +1,4 @@
-const ErrorOld= global.Error;
-global.Error= class extends ErrorOld{
-	constructor(message, options){
-		super(message, options);
-		const [ lm, ...l ]= this.stack.split(/^\s*at\s/m);
-		const i= l.findIndex(l=> l.indexOf("nodejsscript")===-1 || l.indexOf("nodejsscript/examples")!==-1);
-		this.stack= lm+l.slice(i, l.length-4).map(l=> "    at "+l).join("");
-	}
-};
-
+import "./src/Error.js";
 import { echo } from "./src/echo.js";
 import s from "./src/shelljs.js";
 import nodeFetch from 'node-fetch';

@@ -1,8 +1,9 @@
 import shelljs from "shelljs";
 import plugin from "shelljs/plugin.js";
 import escape from "shell-escape-tag";
-import { ProcessPromise, AsyncProcessOutput } from "./runA-utils.js";
-export { ProcessPromise, AsyncProcessOutput as ProcessOutput };
+import { ProcessPromise } from "./runA-utils.js";
+import { ProcessOutput } from "./Error.js";
+export { ProcessPromise, ProcessOutput };
 
 shelljs.echo= shelljs.ShellString;
 
@@ -76,7 +77,15 @@ function run(pieces, ...args){
 	const s= this || shelljs;
 	/* jshint ignore:end *//* global s */
 	const [ command, options= {} ]= runArgumentsToCommand(pieces, args);
-	return s.exec(command, options);
+	const { fatal }= shelljs.config;
+	const is_fatal= fatal||options.fatal;
+	if(is_fatal) shelljs.config.fatal= false;
+
+	const out= s.exec(command, options);
+	shelljs.config.fatal= fatal;
+	if(!out.code || !is_fatal) return out;
+	const { stderr, stdout, code }= out;
+	throw new ProcessOutput({ is_async: false, message: stderr, stderr, stdout, code });
 }
 function runA(pieces, ...args){
 	const [ command, options= {} ]= runArgumentsToCommand(pieces, args);
