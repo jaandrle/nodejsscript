@@ -25,33 +25,35 @@ export const process_store= getProcesStore(()=> ({
 	resolved: false, piped: 0,
 	prerun: noop, postrun: noop
 }));
-export class ProcessOutput extends Error {
-	constructor({ message, code, ...rest }){
-		super(message);
+export class AsyncProcessOutput extends Error {
+	constructor({ message, code, caused, ...rest }){
+		super(message, { caused });
+		this.stack= this.stack.split(/^\s*at\s/m)[0]+caused.stack.split("\n").slice(1).join("\n");
 		for(const [ k, value ] of Object.entries(rest))
 			Reflect.defineProperty(this, k, { value, writable: false });
 		Reflect.defineProperty(this, "exitCode", { value: code, writable: false });
 		const combined= rest.stdout + ( rest.stderr ? "\n"+rest.stderr : "");
 		Reflect.defineProperty(this, "toString", { value: ()=> combined, writable: false });
 	}
-	[inspect.custom]() {
-		let stringify = (s, c) => s.length === 0 ? "''" : c(inspect(s));
-		return [
-			"ProcessOutput {",
-			`	 stdout: ${stringify(this.stdout, chalk.green)},`,
-			`	 stderr: ${stringify(this.stderr, chalk.red)},`,
-			`	 signal: ${inspect(this.signal)},`,
-			"	 exitCode: " + (this.exitCode === 0 ? chalk.green : chalk.red)(this.exitCode) + " " +
-					( exitCodeInfo(this.exitCode) ? chalk.grey(' (' + exitCodeInfo(this.exitCode) + ')') : '' ),
-			"}"
-		].join("\n");
-	}
+	//[inspect.custom]() {
+	//	let stringify = (s, c) => s.length === 0 ? "''" : c(inspect(s));
+	//	return [
+	//		"AsyncProcessOutput {",
+	//		`	 stdout: ${stringify(this.stdout, chalk.green)},`,
+	//		`	 stderr: ${stringify(this.stderr, chalk.red)},`,
+	//		`	 signal: ${inspect(this.signal)},`,
+	//		"	 exitCode: " + (this.exitCode === 0 ? chalk.green : chalk.red)(this.exitCode) + " " +
+	//				( exitCodeInfo(this.exitCode) ? chalk.grey(' (' + exitCodeInfo(this.exitCode) + ')') : '' ),
+	//		`	 at: [${this.stack.split(/^\s*at\s/m).slice(1).map(l=> "\n		"+l.trim())}\n	],`,
+	//		"}"
+	//	].join("\n");
+	//}
 }
 export class ProcessPromise extends Promise{
-	static create(command, from, options){
+	static create(command, options){
 		let resolve, reject;
 		const i= new this((...args) => ([resolve, reject] = args));
-		process_store.assign(i, { resolve, reject, command, from, options });
+		process_store.assign(i, { resolve, reject, command, options, caused: new Error() });
 		setImmediate(()=> i._run()); // Postpone run to allow promise configuration.
 		return i;
 	}
@@ -66,17 +68,17 @@ export class ProcessPromise extends Promise{
 			Object.assign({ shell: typeof shell === 'string' ? shell : true, windowsHide: true, env, stdio }, options));
 		if(Reflect.has(options, "pipe")) this.child.stdin.end(options.pipe);
 		let stdout = '', stderr = '';
-		const { from, resolve, reject }= process_store.get(this);
+		const { resolve, reject, caused }= process_store.get(this);
 		this.child.on('close', (code, signal)=> {
 			let message= `exit code: ${code}`;
 			if (code != 0 || signal != null) {
-				message = `${stderr || '\n'}	at ${from}`;
-				message += `\n	exit code: ${code}${exitCodeInfo(code) ? ' (' + exitCodeInfo(code) + ')' : ''}`;
+				message= stderr.trim();
+				message+= `\n exit code: ${code}${exitCodeInfo(code) ? ' (' + exitCodeInfo(code) + ')' : ''}`;
 				if (signal != null) {
-					message += `\n	  signal: ${signal}`;
+					message += `\n signal: ${signal}`;
 				}
 			}
-			const output= new ProcessOutput({ code, signal, stdout, stderr, message });
+			const output= new AsyncProcessOutput({ code, signal, stdout, stderr, message, caused });
 			process_store.get(this).resolved= true;
 			if(code === 0 || !process_store.get(this).options.fatal)
 				return resolve(output);
@@ -84,11 +86,10 @@ export class ProcessPromise extends Promise{
 		});
 		this.child.on('error', (err) => {
 			const message = `${err.message}\n` +
-				//`    errno: ${err.errno} (${errnoMessage(err.errno)})\n` +
-				`	 errno: ${err.errno}\n` +
-				`	 code: ${err.code}\n` +
-				`	 at ${process_store.get(this).from}`;
-			reject(new ProcessOutput({ stdout, stderr, message }));
+				//` errno: ${err.errno} (${errnoMessage(err.errno)})\n` +
+				` errno: ${err.errno}\n` +
+				` code: ${err.code}\n\n`;
+			reject(new AsyncProcessOutput({ stdout, stderr, message, caused }));
 			process_store.get(this).resolved= true;
 		});
 		const { piped, postrun, options: { silent } }= process_store.get(this);

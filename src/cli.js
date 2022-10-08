@@ -26,7 +26,7 @@ export const cli= {
 	isFIFO(stream_id= 0){ return fstatSync(stream_id).isFIFO(); },
 	
 	Error: class extends Error{},
-	error(message){ throw new cli.Error(message); },
+	error(message){ const e= new cli.Error(message); Error.captureStackTrace(e, cli.error); throw e; },
 
 	xdg
 };

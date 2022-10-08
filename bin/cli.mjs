@@ -4,6 +4,16 @@ import { argv } from "node:process";
 import url from "node:url";
 import "../index.js";/* global echo, exit, cli, s, style, pipe */
 
+process.on('uncaughtException', e=> {
+	if(e instanceof cli.Error){
+		console.error(e.message);
+		return exit(1);
+	}
+	const { stdout, stderr, name, message, exitCode }= e;
+	console.error(name);
+	console.error(message || stderr || stdout);
+	exit(exitCode);
+});
 (async function main(){
 	const candidate= argv.splice(2, 1)[0];
 	if(candidate[0]==="-") handleMyArgvs(candidate);

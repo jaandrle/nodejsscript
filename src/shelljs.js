@@ -1,8 +1,8 @@
 import shelljs from "shelljs";
 import plugin from "shelljs/plugin.js";
 import escape from "shell-escape-tag";
-import { ProcessPromise, ProcessOutput } from "./runA-utils.js";
-export { ProcessPromise, ProcessOutput };
+import { ProcessPromise, AsyncProcessOutput } from "./runA-utils.js";
+export { ProcessPromise, AsyncProcessOutput as ProcessOutput };
 
 shelljs.echo= shelljs.ShellString;
 
@@ -53,7 +53,7 @@ function $(config_next){
 		}
 	});
 }
-function runArgumentsToCommand(from, pieces, args){
+function runArgumentsToCommand(pieces, args){
 	if(typeof pieces === "string"){
 		const [ vars= {}, options= {} ]= args;
 		const { needle= /::([^:]+)::/g }= options;
@@ -65,7 +65,7 @@ function runArgumentsToCommand(from, pieces, args){
 		else
 			return [ pieces ];
 	} else if(pieces.some((p)=> p == undefined)) {
-		throw new Error(`Malformed command at ${from}`);
+		throw new Error("Malformed command");
 	} else {
 		return [ escape(pieces, args) ];
 	}
@@ -75,19 +75,12 @@ function run(pieces, ...args){
 	/* jshint ignore:start */
 	const s= this || shelljs;
 	/* jshint ignore:end *//* global s */
-	const from= new Error().stack.split(/^\s*at\s/m).find(l=> l.indexOf("async main")===0 || l.indexOf("main")===0).trim();
-	const [ command, options= {} ]= runArgumentsToCommand(from, pieces, args);
-	try {
-		return s.exec(command, options);
-	} catch(e){
-		const err= new Error(e.message.split("\n").slice(0, 1).join("\n")+"\n    at "+from);
-		throw err;
-	}
+	const [ command, options= {} ]= runArgumentsToCommand(pieces, args);
+	return s.exec(command, options);
 }
 function runA(pieces, ...args){
-	const from= new Error().stack.split(/^\s*at\s/m).find(l=> l.indexOf("async main")===0 || l.indexOf("main")===0).trim();
-	const [ command, options= {} ]= runArgumentsToCommand(from, pieces, args);
+	const [ command, options= {} ]= runArgumentsToCommand(pieces, args);
 	const pipe= plugin.readFromPipe();
 	if(pipe) options.pipe= pipe;
-	return ProcessPromise.create(command, from, Object.assign({}, shelljs.config, options));
+	return ProcessPromise.create(command, Object.assign({}, shelljs.config, options));
 }
