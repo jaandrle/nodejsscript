@@ -28,19 +28,11 @@
 
 • **pid**: `number`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1262
-
 ___
 
 ### output
 
 • **output**: `T`[]
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1263
 
 ___
 
@@ -48,19 +40,11 @@ ___
 
 • **stdout**: `T`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1264
-
 ___
 
 ### stderr
 
 • **stderr**: `T`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1265
 
 ___
 
@@ -68,26 +52,14 @@ ___
 
 • **status**: `number`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1266
-
 ___
 
 ### signal
 
 • **signal**: `Signals`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1267
-
 ___
 
 ### error
 
 • `Optional` **error**: `Error`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1268

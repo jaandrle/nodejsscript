@@ -37,10 +37,6 @@
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[encoding](s.child.ExecSyncOptions.md#encoding)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1307
-
 ___
 
 ### shell
@@ -50,10 +46,6 @@ ___
 #### Inherited from
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[shell](s.child.ExecSyncOptions.md#shell)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1301
 
 ___
 
@@ -65,10 +57,6 @@ ___
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[input](s.child.ExecSyncOptions.md#input)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1294
-
 ___
 
 ### stdio
@@ -78,10 +66,6 @@ ___
 #### Inherited from
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[stdio](s.child.ExecSyncOptions.md#stdio)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1295
 
 ___
 
@@ -93,10 +77,6 @@ ___
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[killSignal](s.child.ExecSyncOptions.md#killsignal)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1296
-
 ___
 
 ### maxBuffer
@@ -106,10 +86,6 @@ ___
 #### Inherited from
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[maxBuffer](s.child.ExecSyncOptions.md#maxbuffer)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1297
 
 ___
 
@@ -125,10 +101,6 @@ true
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[windowsHide](s.child.ExecSyncOptions.md#windowshide)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:629
-
 ___
 
 ### timeout
@@ -143,10 +115,6 @@ ___
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[timeout](s.child.ExecSyncOptions.md#timeout)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:633
-
 ___
 
 ### uid
@@ -156,10 +124,6 @@ ___
 #### Inherited from
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[uid](s.child.ExecSyncOptions.md#uid)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:620
 
 ___
 
@@ -171,10 +135,6 @@ ___
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[gid](s.child.ExecSyncOptions.md#gid)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:621
-
 ___
 
 ### cwd
@@ -185,10 +145,6 @@ ___
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[cwd](s.child.ExecSyncOptions.md#cwd)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:622
-
 ___
 
 ### env
@@ -198,7 +154,3 @@ ___
 #### Inherited from
 
 [ExecSyncOptions](s.child.ExecSyncOptions.md).[env](s.child.ExecSyncOptions.md#env)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:623

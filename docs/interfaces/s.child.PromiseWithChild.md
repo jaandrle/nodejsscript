@@ -35,10 +35,6 @@
 
 • **child**: [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:931
-
 ___
 
 ### [toStringTag]
@@ -48,10 +44,6 @@ ___
 #### Inherited from
 
 Promise.\_\_@toStringTag@23
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:174
 
 ## Methods
 
@@ -85,10 +77,6 @@ A Promise for the completion of which ever callback is executed.
 
 Promise.then
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1520
-
 ___
 
 ### catch
@@ -119,10 +107,6 @@ A Promise for the completion of the callback.
 
 Promise.catch
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1527
-
 ___
 
 ### finally
@@ -147,7 +131,3 @@ A Promise for the completion of the callback.
 #### Inherited from
 
 Promise.finally
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es2018.promise.d.ts:31

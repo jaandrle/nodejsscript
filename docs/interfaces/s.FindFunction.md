@@ -24,10 +24,6 @@ Returns array of all files (however deep) in the given paths.
 
 An array of all files (however deep) in the given path(s).
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:81
-
 ### FindFunction
 
 ▸ **FindFunction**(...`path`): [`ShellArray`](../modules/s.md#shellarray)
@@ -41,7 +37,3 @@ node_modules/@types/shelljs/index.d.ts:81
 #### Returns
 
 [`ShellArray`](../modules/s.md#shellarray)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:82

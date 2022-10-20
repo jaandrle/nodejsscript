@@ -39,10 +39,6 @@
 
 true
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:629
-
 ___
 
 ### timeout
@@ -52,10 +48,6 @@ ___
 **`Default`**
 
 0
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:633
 
 ___
 
@@ -67,10 +59,6 @@ ___
 
 [ProcessEnvOptions](s.child.ProcessEnvOptions.md).[uid](s.child.ProcessEnvOptions.md#uid)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:620
-
 ___
 
 ### gid
@@ -80,10 +68,6 @@ ___
 #### Inherited from
 
 [ProcessEnvOptions](s.child.ProcessEnvOptions.md).[gid](s.child.ProcessEnvOptions.md#gid)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:621
 
 ___
 
@@ -95,10 +79,6 @@ ___
 
 [ProcessEnvOptions](s.child.ProcessEnvOptions.md).[cwd](s.child.ProcessEnvOptions.md#cwd)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:622
-
 ___
 
 ### env
@@ -108,7 +88,3 @@ ___
 #### Inherited from
 
 [ProcessEnvOptions](s.child.ProcessEnvOptions.md).[env](s.child.ProcessEnvOptions.md#env)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:623

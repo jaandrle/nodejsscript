@@ -2,9 +2,9 @@ export type XdgPath= [ path: TemplateStringsArray, ...path_vars: string[] ];
 /**
  * Returns the directory/file path based on the passed tag string.
  * ```js
- * cli.xdg.home() //=> (on my linux) /home/jaandrle
- * cli.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
- * cli.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
+ * $.xdg.home() //=> (on my linux) /home/jaandrle
+ * $.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
+ * $.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
  * ```
  * …similarly for `temp`, `data`, `config` ans `cache`.
  */

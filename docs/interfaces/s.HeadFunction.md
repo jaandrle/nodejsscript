@@ -21,10 +21,6 @@
 
 [`ShellString`](../modules/s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1090
-
 ### HeadFunction
 
 ▸ **HeadFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -40,10 +36,6 @@ node_modules/@types/shelljs/index.d.ts:1090
 
 [`ShellString`](../modules/s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1091
-
 ### HeadFunction
 
 ▸ **HeadFunction**(`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -58,10 +50,6 @@ node_modules/@types/shelljs/index.d.ts:1091
 
 [`ShellString`](../modules/s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1093
-
 ### HeadFunction
 
 ▸ **HeadFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -75,7 +63,3 @@ node_modules/@types/shelljs/index.d.ts:1093
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1094

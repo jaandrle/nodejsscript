@@ -41,10 +41,6 @@ Do not echo program output to the console.
 
 false
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:803
-
 ___
 
 ### fatal
@@ -56,10 +52,6 @@ Exit when command return code is non-zero.
 **`Default`**
 
 false
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:810
 
 ___
 
@@ -74,10 +66,6 @@ If a callback is provided, it will be set to `true`, regardless of the passed va
 **`Default`**
 
 false
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:819
 
 ___
 
@@ -94,10 +82,6 @@ and what is written to `stdout` and `stderr` when not in silent mode
 
 "utf8"
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:829
-
 ___
 
 ### shell
@@ -107,10 +91,6 @@ ___
 #### Inherited from
 
 [ExecOptions](s.child.ExecOptions.md).[shell](s.child.ExecOptions.md#shell)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:794
 
 ___
 
@@ -122,10 +102,6 @@ ___
 
 [ExecOptions](s.child.ExecOptions.md).[signal](s.child.ExecOptions.md#signal)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:795
-
 ___
 
 ### maxBuffer
@@ -136,10 +112,6 @@ ___
 
 [ExecOptions](s.child.ExecOptions.md).[maxBuffer](s.child.ExecOptions.md#maxbuffer)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:796
-
 ___
 
 ### killSignal
@@ -149,10 +121,6 @@ ___
 #### Inherited from
 
 [ExecOptions](s.child.ExecOptions.md).[killSignal](s.child.ExecOptions.md#killsignal)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:797
 
 ___
 
@@ -168,10 +136,6 @@ true
 
 [ExecOptions](s.child.ExecOptions.md).[windowsHide](s.child.ExecOptions.md#windowshide)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:629
-
 ___
 
 ### timeout
@@ -186,10 +150,6 @@ ___
 
 [ExecOptions](s.child.ExecOptions.md).[timeout](s.child.ExecOptions.md#timeout)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:633
-
 ___
 
 ### uid
@@ -199,10 +159,6 @@ ___
 #### Inherited from
 
 [ExecOptions](s.child.ExecOptions.md).[uid](s.child.ExecOptions.md#uid)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:620
 
 ___
 
@@ -214,10 +170,6 @@ ___
 
 [ExecOptions](s.child.ExecOptions.md).[gid](s.child.ExecOptions.md#gid)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:621
-
 ___
 
 ### cwd
@@ -228,10 +180,6 @@ ___
 
 [ExecOptions](s.child.ExecOptions.md).[cwd](s.child.ExecOptions.md#cwd)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:622
-
 ___
 
 ### env
@@ -241,7 +189,3 @@ ___
 #### Inherited from
 
 [ExecOptions](s.child.ExecOptions.md).[env](s.child.ExecOptions.md#env)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:623

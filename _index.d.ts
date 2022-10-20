@@ -1,7 +1,14 @@
 /** @category Public */
 export { echo } from './src/echo.d';
-/** @category Public */
-export { cli, xdg_, __sade } from './src/cli.d';
+export { xdg_, __sade, _env, _exit } from './src/$.d';
+/**
+ * Contains configuration for current script and methods
+ * for managing arguments.
+ *
+ * You can also use `$[0]`–`$[n]` for getting nth script argument (compare to bashs `$0`–`$n`).
+ * @category Public 
+ */
+export { Dollar as $ } from './src/$.d';
 /**
  * Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe). Provides functional way to combine commands/functions.
  * 
@@ -27,7 +34,7 @@ export function pipe(...funs: Function[]): (input: any)=> any;
  *  · [ls](https://github.com/shelljs/shelljs#lsoptions-path-) · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-) · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest) · [pwd](https://github.com/shelljs/shelljs#pwd)
  *  · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
  *  · [tail](https://github.com/shelljs/shelljs#tail-n-num-file--file-) · [test](https://github.com/shelljs/shelljs#testexpression) · [touch](https://github.com/shelljs/shelljs#touchoptions-file--file-)
- *  · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output) · [which](https://github.com/shelljs/shelljs#whichcommand) · [exit](https://github.com/shelljs/shelljs#exitcode) · [error](https://github.com/shelljs/shelljs#error) · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
+ *  · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output) · [which](https://github.com/shelljs/shelljs#whichcommand) · [error](https://github.com/shelljs/shelljs#error) · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
  *
  * ```js
  * s.cat("./package.json").grep("version");
@@ -41,8 +48,8 @@ export function pipe(...funs: Function[]): (input: any)=> any;
  * **Changes/recommenctions:**
  * - use {@link echo} instead of `s.echo`, this was changed to `s.ShellString` for easy file writing without logging to console `s.echo("Data").to("file.txt")`.
  * - use {@link s.RunFunction 'run()'}/{@link s.RunAsyncFunction 'runA()'} instead of `s.exec`, because of options for passing arguments in secure way.
- * - use {@link s.DollarFunction '$()'} instead of `s.set()`, because `$()` allows chaining (you can also access config with {@link cli}s `.is_*` keys).
- * - use {@link cli.xdg}`.temp` instead of `s.tempdir()` – the `cli.xdg.*` provides more paths than just temp directory.
+ * - use {@link s.DollarFunction '$()'} instead of `s.set()`, because `$()` allows chaining (you can also access config with {@link $}s `.is_*` keys).
+ * - use {@link $.xdg}`.temp` instead of `s.tempdir()` – the `$.xdg.*` provides more paths than just temp directory.
  * @category Public
  */
 export * as s from './src/shelljs.d';

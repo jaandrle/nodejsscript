@@ -37,10 +37,6 @@ s.run("git branch --show-current").xargs({ "-I": "§" }, s.run, "dep deploy --br
 
 Result of `cmd`
 
-#### Defined in
-
-[src/shelljs.d.ts:25](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L25)
-
 ### XargsFunction
 
 ▸ **XargsFunction**<`T`\>(`cmd`, ...`cmd_args`): `ReturnType`<`T`\>
@@ -61,7 +57,3 @@ Result of `cmd`
 #### Returns
 
 `ReturnType`<`T`\>
-
-#### Defined in
-
-[src/shelljs.d.ts:26](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L26)

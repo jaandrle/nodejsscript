@@ -26,10 +26,6 @@
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ## Table of contents
 
 ### Properties
@@ -87,10 +83,6 @@ node_modules/ansi-colors/types/index.d.ts:150
 
 StylesType.reset
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:96
-
 ___
 
 ### bold
@@ -100,10 +92,6 @@ ___
 #### Inherited from
 
 StylesType.bold
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:97
 
 ___
 
@@ -115,10 +103,6 @@ ___
 
 StylesType.dim
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:98
-
 ___
 
 ### italic
@@ -128,10 +112,6 @@ ___
 #### Inherited from
 
 StylesType.italic
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:99
 
 ___
 
@@ -143,10 +123,6 @@ ___
 
 StylesType.underline
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:100
-
 ___
 
 ### inverse
@@ -156,10 +132,6 @@ ___
 #### Inherited from
 
 StylesType.inverse
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:101
 
 ___
 
@@ -171,10 +143,6 @@ ___
 
 StylesType.hidden
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:102
-
 ___
 
 ### strikethrough
@@ -184,10 +152,6 @@ ___
 #### Inherited from
 
 StylesType.strikethrough
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:103
 
 ___
 
@@ -199,10 +163,6 @@ ___
 
 StylesType.black
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:106
-
 ___
 
 ### red
@@ -212,10 +172,6 @@ ___
 #### Inherited from
 
 StylesType.red
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:107
 
 ___
 
@@ -227,10 +183,6 @@ ___
 
 StylesType.green
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:108
-
 ___
 
 ### yellow
@@ -240,10 +192,6 @@ ___
 #### Inherited from
 
 StylesType.yellow
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:109
 
 ___
 
@@ -255,10 +203,6 @@ ___
 
 StylesType.blue
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:110
-
 ___
 
 ### magenta
@@ -268,10 +212,6 @@ ___
 #### Inherited from
 
 StylesType.magenta
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:111
 
 ___
 
@@ -283,10 +223,6 @@ ___
 
 StylesType.cyan
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:112
-
 ___
 
 ### white
@@ -296,10 +232,6 @@ ___
 #### Inherited from
 
 StylesType.white
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:113
 
 ___
 
@@ -311,10 +243,6 @@ ___
 
 StylesType.gray
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:114
-
 ___
 
 ### grey
@@ -324,10 +252,6 @@ ___
 #### Inherited from
 
 StylesType.grey
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:115
 
 ___
 
@@ -339,10 +263,6 @@ ___
 
 StylesType.blackBright
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:118
-
 ___
 
 ### redBright
@@ -352,10 +272,6 @@ ___
 #### Inherited from
 
 StylesType.redBright
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:119
 
 ___
 
@@ -367,10 +283,6 @@ ___
 
 StylesType.greenBright
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:120
-
 ___
 
 ### yellowBright
@@ -380,10 +292,6 @@ ___
 #### Inherited from
 
 StylesType.yellowBright
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:121
 
 ___
 
@@ -395,10 +303,6 @@ ___
 
 StylesType.blueBright
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:122
-
 ___
 
 ### magentaBright
@@ -408,10 +312,6 @@ ___
 #### Inherited from
 
 StylesType.magentaBright
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:123
 
 ___
 
@@ -423,10 +323,6 @@ ___
 
 StylesType.cyanBright
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:124
-
 ___
 
 ### whiteBright
@@ -436,10 +332,6 @@ ___
 #### Inherited from
 
 StylesType.whiteBright
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:125
 
 ___
 
@@ -451,10 +343,6 @@ ___
 
 StylesType.bgBlack
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:128
-
 ___
 
 ### bgRed
@@ -464,10 +352,6 @@ ___
 #### Inherited from
 
 StylesType.bgRed
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:129
 
 ___
 
@@ -479,10 +363,6 @@ ___
 
 StylesType.bgGreen
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:130
-
 ___
 
 ### bgYellow
@@ -492,10 +372,6 @@ ___
 #### Inherited from
 
 StylesType.bgYellow
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:131
 
 ___
 
@@ -507,10 +383,6 @@ ___
 
 StylesType.bgBlue
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:132
-
 ___
 
 ### bgMagenta
@@ -520,10 +392,6 @@ ___
 #### Inherited from
 
 StylesType.bgMagenta
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:133
 
 ___
 
@@ -535,10 +403,6 @@ ___
 
 StylesType.bgCyan
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:134
-
 ___
 
 ### bgWhite
@@ -548,10 +412,6 @@ ___
 #### Inherited from
 
 StylesType.bgWhite
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:135
 
 ___
 
@@ -563,10 +423,6 @@ ___
 
 StylesType.bgBlackBright
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:138
-
 ___
 
 ### bgRedBright
@@ -576,10 +432,6 @@ ___
 #### Inherited from
 
 StylesType.bgRedBright
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:139
 
 ___
 
@@ -591,10 +443,6 @@ ___
 
 StylesType.bgGreenBright
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:140
-
 ___
 
 ### bgYellowBright
@@ -604,10 +452,6 @@ ___
 #### Inherited from
 
 StylesType.bgYellowBright
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:141
 
 ___
 
@@ -619,10 +463,6 @@ ___
 
 StylesType.bgBlueBright
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:142
-
 ___
 
 ### bgMagentaBright
@@ -632,10 +472,6 @@ ___
 #### Inherited from
 
 StylesType.bgMagentaBright
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:143
 
 ___
 
@@ -647,10 +483,6 @@ ___
 
 StylesType.bgCyanBright
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:144
-
 ___
 
 ### bgWhiteBright
@@ -660,7 +492,3 @@ ___
 #### Inherited from
 
 StylesType.bgWhiteBright
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:145

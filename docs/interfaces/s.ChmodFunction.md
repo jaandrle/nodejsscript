@@ -33,10 +33,6 @@ Notable exceptions:
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1007
-
 ### ChmodFunction
 
 ▸ **ChmodFunction**(`mode`, `file`): [`ShellString`](../modules/s.md#shellstring)
@@ -62,7 +58,3 @@ Notable exceptions:
 [`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1023

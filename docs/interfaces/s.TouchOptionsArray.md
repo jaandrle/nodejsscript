@@ -17,16 +17,8 @@
 
 • `Optional` **-d**: `string`
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1066
-
 ___
 
 ### -r
 
 • `Optional` **-r**: `string`
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1067

@@ -27,10 +27,6 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 Returns a string containing all lines of the file that match the given regex_filter.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:337
-
 ### GrepFunction
 
 ▸ **GrepFunction**(`options`, `regex_filter`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -46,10 +42,6 @@ node_modules/@types/shelljs/index.d.ts:337
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:338
 
 ### GrepFunction
 
@@ -71,10 +63,6 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 Returns a string containing all lines of the file that match the given `regex_filter`.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:348
-
 ### GrepFunction
 
 ▸ **GrepFunction**(`regex_filter`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -89,7 +77,3 @@ node_modules/@types/shelljs/index.d.ts:348
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:349

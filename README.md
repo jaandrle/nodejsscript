@@ -19,7 +19,7 @@ s.run("sleep 2; echo 2");
 s.run("sleep 3; echo 3");
 
 const name= "foo bar";
-s.mkdir(cli.xdg.temp(name));
+s.mkdir($.xdg.temp(name));
 ```
 …also see [examples](./examples).
 
@@ -30,7 +30,7 @@ s.mkdir(cli.xdg.temp(name));
 
 ## Goods
 [s #shelljs](./docs/modules/s.md)
- · [cli](./docs/modules/cli.md) ([cli.api() #sade](./docs/modules/cli.md#api), [cli.read()](./docs/modules/cli.md#read), [cli.xdg](./docs/modules/xdg_.xdg.md), …)
+ · [$](./docs/modules/.md) ([$.api() #sade](./docs/modules/.md#api), [$.read()](./docs/modules/.md#read), [$.xdg](./docs/modules/xdg_.xdg.md), …)
  · [echo()](./docs/README.md#echo)
  · [fetch() #node-fetch](./docs/README.md#fetch)
  · [style #ansi-colors](./docs/modules/style.md)

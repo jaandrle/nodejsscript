@@ -88,10 +88,6 @@ v0.1.90
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[stdin](../classes/s.child.ChildProcess.md#stdin)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:570
-
 ___
 
 ### stdout
@@ -127,10 +123,6 @@ v0.1.90
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[stdout](../classes/s.child.ChildProcess.md#stdout)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:571
-
 ___
 
 ### stderr
@@ -155,10 +147,6 @@ v0.1.90
 #### Overrides
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[stderr](../classes/s.child.ChildProcess.md#stderr)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:572
 
 ___
 
@@ -209,10 +197,6 @@ v0.7.10
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[stdio](../classes/s.child.ChildProcess.md#stdio)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:573
-
 ___
 
 ### channel
@@ -229,10 +213,6 @@ v7.1.0
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[channel](../classes/s.child.ChildProcess.md#channel)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:145
 
 ___
 
@@ -251,10 +231,6 @@ v0.5.10
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[killed](../classes/s.child.ChildProcess.md#killed)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:200
 
 ___
 
@@ -282,10 +258,6 @@ v0.1.90
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[pid](../classes/s.child.ChildProcess.md#pid)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:215
-
 ___
 
 ### connected
@@ -303,10 +275,6 @@ v0.7.2
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[connected](../classes/s.child.ChildProcess.md#connected)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:221
-
 ___
 
 ### exitCode
@@ -319,10 +287,6 @@ If the child process is still running, the field will be `null`.
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[exitCode](../classes/s.child.ChildProcess.md#exitcode)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:226
 
 ___
 
@@ -337,10 +301,6 @@ the child process if any, else `null`.
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[signalCode](../classes/s.child.ChildProcess.md#signalcode)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:231
-
 ___
 
 ### spawnargs
@@ -353,10 +313,6 @@ arguments the child process was launched with.
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[spawnargs](../classes/s.child.ChildProcess.md#spawnargs)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:236
 
 ___
 
@@ -376,10 +332,6 @@ in which the child process is launched.
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[spawnfile](../classes/s.child.ChildProcess.md#spawnfile)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:247
 
 ## Methods
 
@@ -461,10 +413,6 @@ v0.1.90
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[kill](../classes/s.child.ChildProcess.md#kill)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:307
 
 ___
 
@@ -638,10 +586,6 @@ v0.5.9
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[send](../classes/s.child.ChildProcess.md#send)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:458
-
 ▸ **send**(`message`, `sendHandle?`, `callback?`): `boolean`
 
 #### Parameters
@@ -659,10 +603,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:458
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[send](../classes/s.child.ChildProcess.md#send)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:459
 
 ▸ **send**(`message`, `sendHandle?`, `options?`, `callback?`): `boolean`
 
@@ -682,10 +622,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:459
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[send](../classes/s.child.ChildProcess.md#send)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:460
 
 ___
 
@@ -717,10 +653,6 @@ v0.7.2
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[disconnect](../classes/s.child.ChildProcess.md#disconnect)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:476
 
 ___
 
@@ -757,10 +689,6 @@ v0.7.10
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[unref](../classes/s.child.ChildProcess.md#unref)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:496
-
 ___
 
 ### ref
@@ -795,10 +723,6 @@ v0.7.10
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[ref](../classes/s.child.ChildProcess.md#ref)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:515
-
 ___
 
 ### addListener
@@ -828,10 +752,6 @@ events.EventEmitter
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[addListener](../classes/s.child.ChildProcess.md#addlistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:525
-
 ▸ **addListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -848,10 +768,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:525
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[addListener](../classes/s.child.ChildProcess.md#addlistener)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:526
 
 ▸ **addListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
@@ -870,10 +786,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:526
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[addListener](../classes/s.child.ChildProcess.md#addlistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:527
-
 ▸ **addListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -890,10 +802,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:527
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[addListener](../classes/s.child.ChildProcess.md#addlistener)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:528
 
 ▸ **addListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
@@ -912,10 +820,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:528
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[addListener](../classes/s.child.ChildProcess.md#addlistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:529
-
 ▸ **addListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -933,10 +837,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:529
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[addListener](../classes/s.child.ChildProcess.md#addlistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:530
-
 ▸ **addListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -953,10 +853,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:530
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[addListener](../classes/s.child.ChildProcess.md#addlistener)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:531
 
 ___
 
@@ -979,10 +875,6 @@ ___
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[emit](../classes/s.child.ChildProcess.md#emit)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:532
-
 ▸ **emit**(`event`, `code`, `signal`): `boolean`
 
 #### Parameters
@@ -1001,10 +893,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:532
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[emit](../classes/s.child.ChildProcess.md#emit)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:533
-
 ▸ **emit**(`event`): `boolean`
 
 #### Parameters
@@ -1020,10 +908,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:533
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[emit](../classes/s.child.ChildProcess.md#emit)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:534
 
 ▸ **emit**(`event`, `err`): `boolean`
 
@@ -1041,10 +925,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:534
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[emit](../classes/s.child.ChildProcess.md#emit)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:535
 
 ▸ **emit**(`event`, `code`, `signal`): `boolean`
 
@@ -1064,10 +944,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:535
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[emit](../classes/s.child.ChildProcess.md#emit)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:536
-
 ▸ **emit**(`event`, `message`, `sendHandle`): `boolean`
 
 #### Parameters
@@ -1086,10 +962,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:536
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[emit](../classes/s.child.ChildProcess.md#emit)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:537
-
 ▸ **emit**(`event`, `listener`): `boolean`
 
 #### Parameters
@@ -1106,10 +978,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:537
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[emit](../classes/s.child.ChildProcess.md#emit)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:538
 
 ___
 
@@ -1132,10 +1000,6 @@ ___
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[on](../classes/s.child.ChildProcess.md#on-1)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:539
-
 ▸ **on**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1152,10 +1016,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:539
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[on](../classes/s.child.ChildProcess.md#on-1)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:540
 
 ▸ **on**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
@@ -1174,10 +1034,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:540
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[on](../classes/s.child.ChildProcess.md#on-1)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:541
-
 ▸ **on**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1194,10 +1050,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:541
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[on](../classes/s.child.ChildProcess.md#on-1)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:542
 
 ▸ **on**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
@@ -1216,10 +1068,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:542
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[on](../classes/s.child.ChildProcess.md#on-1)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:543
-
 ▸ **on**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1237,10 +1085,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:543
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[on](../classes/s.child.ChildProcess.md#on-1)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:544
-
 ▸ **on**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1257,10 +1101,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:544
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[on](../classes/s.child.ChildProcess.md#on-1)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:545
 
 ___
 
@@ -1283,10 +1123,6 @@ ___
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[once](../classes/s.child.ChildProcess.md#once-1)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:546
-
 ▸ **once**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1303,10 +1139,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:546
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[once](../classes/s.child.ChildProcess.md#once-1)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:547
 
 ▸ **once**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
@@ -1325,10 +1157,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:547
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[once](../classes/s.child.ChildProcess.md#once-1)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:548
-
 ▸ **once**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1345,10 +1173,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:548
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[once](../classes/s.child.ChildProcess.md#once-1)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:549
 
 ▸ **once**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
@@ -1367,10 +1191,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:549
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[once](../classes/s.child.ChildProcess.md#once-1)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:550
-
 ▸ **once**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1388,10 +1208,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:550
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[once](../classes/s.child.ChildProcess.md#once-1)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:551
-
 ▸ **once**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1408,10 +1224,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:551
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[once](../classes/s.child.ChildProcess.md#once-1)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:552
 
 ___
 
@@ -1434,10 +1246,6 @@ ___
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependListener](../classes/s.child.ChildProcess.md#prependlistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:553
-
 ▸ **prependListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1454,10 +1262,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:553
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependListener](../classes/s.child.ChildProcess.md#prependlistener)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:554
 
 ▸ **prependListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
@@ -1476,10 +1280,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:554
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependListener](../classes/s.child.ChildProcess.md#prependlistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:555
-
 ▸ **prependListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1496,10 +1296,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:555
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependListener](../classes/s.child.ChildProcess.md#prependlistener)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:556
 
 ▸ **prependListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
@@ -1518,10 +1314,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:556
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependListener](../classes/s.child.ChildProcess.md#prependlistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:557
-
 ▸ **prependListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1539,10 +1331,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:557
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependListener](../classes/s.child.ChildProcess.md#prependlistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:558
-
 ▸ **prependListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1559,10 +1347,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:558
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependListener](../classes/s.child.ChildProcess.md#prependlistener)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:559
 
 ___
 
@@ -1585,10 +1369,6 @@ ___
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependOnceListener](../classes/s.child.ChildProcess.md#prependoncelistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:560
-
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1605,10 +1385,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:560
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependOnceListener](../classes/s.child.ChildProcess.md#prependoncelistener)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:561
 
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
@@ -1627,10 +1403,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:561
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependOnceListener](../classes/s.child.ChildProcess.md#prependoncelistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:562
-
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1647,10 +1419,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:562
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependOnceListener](../classes/s.child.ChildProcess.md#prependoncelistener)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:563
 
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
@@ -1669,10 +1437,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:563
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependOnceListener](../classes/s.child.ChildProcess.md#prependoncelistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:564
-
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1690,10 +1454,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:564
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependOnceListener](../classes/s.child.ChildProcess.md#prependoncelistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:565
-
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcessWithoutNullStreams`](s.child.ChildProcessWithoutNullStreams.md)
 
 #### Parameters
@@ -1710,10 +1470,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:565
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[prependOnceListener](../classes/s.child.ChildProcess.md#prependoncelistener)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:566
 
 ___
 
@@ -1817,10 +1573,6 @@ v0.1.26
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[removeListener](../classes/s.child.ChildProcess.md#removelistener)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:457
-
 ___
 
 ### off
@@ -1847,10 +1599,6 @@ v10.0.0
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[off](../classes/s.child.ChildProcess.md#off)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:462
 
 ___
 
@@ -1884,10 +1632,6 @@ v0.1.26
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[removeAllListeners](../classes/s.child.ChildProcess.md#removealllisteners)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:473
-
 ___
 
 ### setMaxListeners
@@ -1919,10 +1663,6 @@ v0.3.5
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[setMaxListeners](../classes/s.child.ChildProcess.md#setmaxlisteners-1)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:483
-
 ___
 
 ### getMaxListeners
@@ -1943,10 +1683,6 @@ v1.0.0
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[getMaxListeners](../classes/s.child.ChildProcess.md#getmaxlisteners)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:489
 
 ___
 
@@ -1981,10 +1717,6 @@ v0.1.26
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[listeners](../classes/s.child.ChildProcess.md#listeners)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:502
 
 ___
 
@@ -2037,10 +1769,6 @@ v9.4.0
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[rawListeners](../classes/s.child.ChildProcess.md#rawlisteners)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:532
-
 ___
 
 ### listenerCount
@@ -2066,10 +1794,6 @@ v3.2.0
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[listenerCount](../classes/s.child.ChildProcess.md#listenercount-1)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:579
 
 ___
 
@@ -2104,7 +1828,3 @@ v6.0.0
 #### Inherited from
 
 [ChildProcess](../classes/s.child.ChildProcess.md).[eventNames](../classes/s.child.ChildProcess.md#eventnames)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:632

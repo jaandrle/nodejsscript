@@ -26,10 +26,6 @@ Moves files. The wildcard `*` is accepted.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:181
-
 ### MoveFunction
 
 ▸ **MoveFunction**(`source`, `dest`): [`ShellString`](../modules/s.md#shellstring)
@@ -48,7 +44,3 @@ Moves files. The wildcard `*` is accepted.
 [`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:190

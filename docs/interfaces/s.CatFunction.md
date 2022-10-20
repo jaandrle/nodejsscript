@@ -28,10 +28,6 @@ A string containing the given file, or a concatenated string
         containing the files if more than one file is given
         (a new line character is introduced between each file).
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:267
-
 ### CatFunction
 
 ▸ **CatFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -45,7 +41,3 @@ node_modules/@types/shelljs/index.d.ts:267
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:268

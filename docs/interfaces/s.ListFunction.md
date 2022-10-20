@@ -25,10 +25,6 @@ Returns array of files in the given path, or in current directory if no path pro
 
 An array of files in the given path(s).
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:46
-
 ### ListFunction
 
 ▸ **ListFunction**(`options`, ...`paths`): [`ShellArray`](../modules/s.md#shellarray)
@@ -43,10 +39,6 @@ node_modules/@types/shelljs/index.d.ts:46
 #### Returns
 
 [`ShellArray`](../modules/s.md#shellarray)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:47
 
 ### ListFunction
 
@@ -66,10 +58,6 @@ Returns array of files in the given path, or in current directory if no path pro
 
 An array of files in the given path(s).
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:55
-
 ### ListFunction
 
 ▸ **ListFunction**(...`paths`): [`ShellArray`](../modules/s.md#shellarray)
@@ -83,7 +71,3 @@ node_modules/@types/shelljs/index.d.ts:55
 #### Returns
 
 [`ShellArray`](../modules/s.md#shellarray)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:56

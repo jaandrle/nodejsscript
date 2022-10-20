@@ -26,10 +26,6 @@
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` ; `stderr`: `string`  }\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1104
-
 ▸ **__promisify__**(`file`, `args`): [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` ; `stderr`: `string`  }\>
 
 #### Parameters
@@ -43,10 +39,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1104
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` ; `stderr`: `string`  }\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1108
-
 ▸ **__promisify__**(`file`, `options`): [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `Buffer` ; `stderr`: `Buffer`  }\>
 
 #### Parameters
@@ -59,10 +51,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1108
 #### Returns
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `Buffer` ; `stderr`: `Buffer`  }\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1115
 
 ▸ **__promisify__**(`file`, `args`, `options`): [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `Buffer` ; `stderr`: `Buffer`  }\>
 
@@ -78,10 +66,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1115
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `Buffer` ; `stderr`: `Buffer`  }\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1122
-
 ▸ **__promisify__**(`file`, `options`): [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` ; `stderr`: `string`  }\>
 
 #### Parameters
@@ -94,10 +78,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1122
 #### Returns
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` ; `stderr`: `string`  }\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1130
 
 ▸ **__promisify__**(`file`, `args`, `options`): [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` ; `stderr`: `string`  }\>
 
@@ -113,10 +93,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1130
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` ; `stderr`: `string`  }\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1137
-
 ▸ **__promisify__**(`file`, `options`): [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` \| `Buffer` ; `stderr`: `string` \| `Buffer`  }\>
 
 #### Parameters
@@ -129,10 +105,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1137
 #### Returns
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` \| `Buffer` ; `stderr`: `string` \| `Buffer`  }\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1145
 
 ▸ **__promisify__**(`file`, `args`, `options`): [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` \| `Buffer` ; `stderr`: `string` \| `Buffer`  }\>
 
@@ -148,10 +120,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1145
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` \| `Buffer` ; `stderr`: `string` \| `Buffer`  }\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1152
-
 ▸ **__promisify__**(`file`, `options`): [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` ; `stderr`: `string`  }\>
 
 #### Parameters
@@ -164,10 +132,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1152
 #### Returns
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` ; `stderr`: `string`  }\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1160
 
 ▸ **__promisify__**(`file`, `args`, `options`): [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` ; `stderr`: `string`  }\>
 
@@ -183,10 +147,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1160
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` ; `stderr`: `string`  }\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1167
-
 ▸ **__promisify__**(`file`, `options`): [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` \| `Buffer` ; `stderr`: `string` \| `Buffer`  }\>
 
 #### Parameters
@@ -199,10 +159,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1167
 #### Returns
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` \| `Buffer` ; `stderr`: `string` \| `Buffer`  }\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1175
 
 ▸ **__promisify__**(`file`, `args`, `options`): [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` \| `Buffer` ; `stderr`: `string` \| `Buffer`  }\>
 
@@ -217,7 +173,3 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1175
 #### Returns
 
 [`PromiseWithChild`](../interfaces/s.child.PromiseWithChild.md)<{ `stdout`: `string` \| `Buffer` ; `stderr`: `string` \| `Buffer`  }\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1182

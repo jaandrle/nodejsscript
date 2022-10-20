@@ -17,7 +17,3 @@
 • **-n**: `number`
 
 Show the first <num> lines of the files.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1086

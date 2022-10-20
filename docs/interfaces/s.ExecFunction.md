@@ -24,10 +24,6 @@ Executes the given command synchronously.
 
 Returns an object containing the return code and output as string.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:725
-
 ### ExecFunction
 
 ▸ **ExecFunction**(`command`, `options`): [`ShellString`](../modules/s.md#shellstring)
@@ -47,10 +43,6 @@ Executes the given command synchronously.
 
 Returns an object containing the return code and output as string,
                or if `{async: true}` was passed, a `ChildProcess`.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:735
 
 ### ExecFunction
 
@@ -72,10 +64,6 @@ Executes the given command asynchronously.
 Returns an object containing the return code and output as string,
                or if `{async: true}` was passed, a `ChildProcess`.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:745
-
 ### ExecFunction
 
 ▸ **ExecFunction**(`command`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md) \| [`ShellString`](../modules/s.md#shellstring)
@@ -96,10 +84,6 @@ Executes the given command.
 Returns an object containing the return code and output as string,
                or if `{async: true}` was passed, a `ChildProcess`.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:755
-
 ### ExecFunction
 
 ▸ **ExecFunction**(`command`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
@@ -118,10 +102,6 @@ Executes the given command synchronously.
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:764
-
 ### ExecFunction
 
 ▸ **ExecFunction**(`command`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
@@ -138,7 +118,3 @@ Executes the given command synchronously.
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:772

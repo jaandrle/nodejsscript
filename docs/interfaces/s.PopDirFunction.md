@@ -29,10 +29,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:517
-
 ### PopDirFunction
 
 ▸ **PopDirFunction**(`options`, `dir`): [`ShellArray`](../modules/s.md#shellarray)
@@ -56,10 +52,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:533
-
 ### PopDirFunction
 
 ▸ **PopDirFunction**(`options`, `dir`): [`ShellArray`](../modules/s.md#shellarray)
@@ -82,10 +74,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 [`ShellArray`](../modules/s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:549
 
 ### PopDirFunction
 
@@ -109,10 +97,6 @@ i.e., popd is equivalent to popd +0. Returns an array of paths in the stack.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:561
-
 ### PopDirFunction
 
 ▸ **PopDirFunction**(`dir`): [`ShellArray`](../modules/s.md#shellarray)
@@ -134,10 +118,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 [`ShellArray`](../modules/s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:573
 
 ### PopDirFunction
 
@@ -161,10 +141,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:585
-
 ### PopDirFunction
 
 ▸ **PopDirFunction**(): [`ShellArray`](../modules/s.md#shellarray)
@@ -180,7 +156,3 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 [`ShellArray`](../modules/s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:596

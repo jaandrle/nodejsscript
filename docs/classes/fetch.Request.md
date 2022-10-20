@@ -56,10 +56,6 @@
 
 BodyMixin.constructor
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:150
-
 ## Properties
 
 ### headers
@@ -67,10 +63,6 @@ node_modules/node-fetch/@types/index.d.ts:150
 • `Readonly` **headers**: [`Headers`](fetch.Headers.md)
 
 Returns a Headers object consisting of the headers associated with request. Note that headers added in the network layer by the user agent will not be accounted for in this object, e.g., the "Host" header.
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:155
 
 ___
 
@@ -80,10 +72,6 @@ ___
 
 Returns request's HTTP method, which is "GET" by default.
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:159
-
 ___
 
 ### redirect
@@ -91,10 +79,6 @@ ___
 • `Readonly` **redirect**: [`RequestRedirect`](../modules/_fetch.md#requestredirect)
 
 Returns the redirect mode associated with request, which is a string indicating how redirects for the request will be handled during fetching. A request will follow redirects by default.
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:163
 
 ___
 
@@ -104,10 +88,6 @@ ___
 
 Returns the signal associated with request, which is an AbortSignal object indicating whether or not request has been aborted, and its abort event handler.
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:167
-
 ___
 
 ### url
@@ -115,10 +95,6 @@ ___
 • `Readonly` **url**: `string`
 
 Returns the URL of request as a string.
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:171
 
 ___
 
@@ -128,10 +104,6 @@ ___
 
 A string whose value is a same-origin URL, "about:client", or the empty string, to set request’s referrer.
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:175
-
 ___
 
 ### referrerPolicy
@@ -139,10 +111,6 @@ ___
 • `Readonly` **referrerPolicy**: [`ReferrerPolicy`](../modules/_fetch.md#referrerpolicy)
 
 A referrer policy to set request’s referrerPolicy.
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:179
 
 ___
 
@@ -154,10 +122,6 @@ ___
 
 BodyMixin.body
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:130
-
 ___
 
 ### bodyUsed
@@ -167,10 +131,6 @@ ___
 #### Inherited from
 
 BodyMixin.bodyUsed
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:131
 
 ___
 
@@ -182,10 +142,6 @@ ___
 
 BodyMixin.size
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:132
-
 ## Methods
 
 ### clone
@@ -195,10 +151,6 @@ node_modules/node-fetch/@types/index.d.ts:132
 #### Returns
 
 [`Request`](fetch.Request.md)
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:180
 
 ___
 
@@ -218,10 +170,6 @@ Use `body.arrayBuffer()` instead.
 
 BodyMixin.buffer
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:135
-
 ___
 
 ### arrayBuffer
@@ -235,10 +183,6 @@ ___
 #### Inherited from
 
 BodyMixin.arrayBuffer
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:136
 
 ___
 
@@ -254,10 +198,6 @@ ___
 
 BodyMixin.formData
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:137
-
 ___
 
 ### blob
@@ -271,10 +211,6 @@ ___
 #### Inherited from
 
 BodyMixin.blob
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:138
 
 ___
 
@@ -290,10 +226,6 @@ ___
 
 BodyMixin.json
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:139
-
 ___
 
 ### text
@@ -307,7 +239,3 @@ ___
 #### Inherited from
 
 BodyMixin.text
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:140

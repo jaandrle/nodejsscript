@@ -38,10 +38,6 @@
 
 [`Sade`](sade.Sade.md)
 
-#### Defined in
-
-node_modules/sade/index.d.ts:18
-
 ___
 
 ### option
@@ -60,10 +56,6 @@ ___
 
 [`Sade`](sade.Sade.md)
 
-#### Defined in
-
-node_modules/sade/index.d.ts:23
-
 ___
 
 ### action
@@ -79,10 +71,6 @@ ___
 #### Returns
 
 [`Sade`](sade.Sade.md)
-
-#### Defined in
-
-node_modules/sade/index.d.ts:24
 
 ___
 
@@ -100,10 +88,6 @@ ___
 
 [`Sade`](sade.Sade.md)
 
-#### Defined in
-
-node_modules/sade/index.d.ts:25
-
 ___
 
 ### alias
@@ -120,10 +104,6 @@ ___
 
 [`Sade`](sade.Sade.md)
 
-#### Defined in
-
-node_modules/sade/index.d.ts:26
-
 ___
 
 ### example
@@ -139,10 +119,6 @@ ___
 #### Returns
 
 [`Sade`](sade.Sade.md)
-
-#### Defined in
-
-node_modules/sade/index.d.ts:27
 
 ___
 
@@ -161,10 +137,6 @@ ___
 
 [`LazyOutput`](sade.LazyOutput.md)
 
-#### Defined in
-
-node_modules/sade/index.d.ts:29
-
 ▸ **parse**(`arr`, `opts?`): `void`
 
 #### Parameters
@@ -177,10 +149,6 @@ node_modules/sade/index.d.ts:29
 #### Returns
 
 `void`
-
-#### Defined in
-
-node_modules/sade/index.d.ts:30
 
 ___
 
@@ -198,10 +166,6 @@ ___
 
 [`Sade`](sade.Sade.md)
 
-#### Defined in
-
-node_modules/sade/index.d.ts:32
-
 ___
 
 ### help
@@ -217,7 +181,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-node_modules/sade/index.d.ts:33

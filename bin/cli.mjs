@@ -2,7 +2,7 @@
 import { join, resolve } from "node:path";
 import { argv } from "node:process";
 import url from "node:url";
-import "../index.js";/* global echo, exit, cli, s, style, pipe */
+import "../index.js";/* global echo, exit, $, s, style, pipe */
 
 process.on('uncaughtException', printError);
 (async function main(){
@@ -11,8 +11,10 @@ process.on('uncaughtException', printError);
 
 	const filepath= candidate.startsWith('/') ? candidate : ( candidate.startsWith('file:///') ? url.fileURLToPath(candidate) : resolve(candidate) );
 	argv[1]= filepath;
+	$.push(...argv.slice(1));
+	if($.isFIFO(0)) $.stdin= await $.read();
 	try{
-		if(!s.test("-f", filepath)) cli.error(`File '${candidate}' not found.`);
+		if(!s.test("-f", filepath)) $.error(`File '${candidate}' not found.`);
 		await import(url.pathToFileURL(filepath).toString());
 	} catch(e){
 		printError(e);
@@ -30,7 +32,7 @@ function handleMyArgvs(candidate){
 		return jsconfigTypes();
 }
 function printError(e){
-	if(e instanceof cli.Error){
+	if(e instanceof $.Error){
 		console.error(e.message);
 		return exit(1);
 	}
@@ -38,23 +40,27 @@ function printError(e){
 	exit(e.exitCode || 1);
 }
 function printUsage(){
-	style.theme({ n: style.blueBright, v: style.greenBright, info: style.yellow, code: style.italic });
+	const S= style;
+	S.theme({
+		n: S.blueBright, v: S.greenBright, code: S.italic,
+		H: t=> S.yellow(t)+":", T: t=> "  "+t
+	});
 	const [ n, v, d ]= info("name", "version", "description");
-	echo(`
- ${style.n(n)}@${style.v(v)}
-	${d}
- ${style.info("Usage")}:
-	${n} [options] <script>
- ${style.info('Options')}:
-            --version, -v    print current zx version
-               --help, -h    print help
-  --global-jsconfig [add]    woraround for type checking of non-package scripts
- ${style.info('Examples')}:
-	${n} script.js
-	${n} --help
- ${style.info('Usage in scripts')}:
-	Just start the file with: ${style.code('#!/usr/bin/env nodejsscript')}
-`);
+	echo([
+		`${S.n(n)}@${S.v(v)}`,
+		S.T(d),
+		S.H("Usage"),
+		S.T(`${n} [options] <script>`),
+		S.H("Options"),
+		S.T("          --version, -v    print current zx version"),
+		S.T("             --help, -h    print help"),
+		S.T("--global-jsconfig [add]    woraround for type checking of non-package scripts"),
+		S.H("Examples"),
+		S.T(`${n} script.js`),
+		S.T(`${n} --help`),
+		S.H("Usage in scripts"),
+		S.T("Just start the file with: "+S.code('#!/usr/bin/env nodejsscript'))
+	].map(t=> "  "+t).join("\n"));
 	exit(0);
 }
 function info(...keys){

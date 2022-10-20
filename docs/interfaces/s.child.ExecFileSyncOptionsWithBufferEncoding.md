@@ -37,10 +37,6 @@
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[encoding](s.child.ExecFileSyncOptions.md#encoding)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1336
-
 ___
 
 ### shell
@@ -50,10 +46,6 @@ ___
 #### Inherited from
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[shell](s.child.ExecFileSyncOptions.md#shell)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1330
 
 ___
 
@@ -65,10 +57,6 @@ ___
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[input](s.child.ExecFileSyncOptions.md#input)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1294
-
 ___
 
 ### stdio
@@ -78,10 +66,6 @@ ___
 #### Inherited from
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[stdio](s.child.ExecFileSyncOptions.md#stdio)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1295
 
 ___
 
@@ -93,10 +77,6 @@ ___
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[killSignal](s.child.ExecFileSyncOptions.md#killsignal)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1296
-
 ___
 
 ### maxBuffer
@@ -106,10 +86,6 @@ ___
 #### Inherited from
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[maxBuffer](s.child.ExecFileSyncOptions.md#maxbuffer)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1297
 
 ___
 
@@ -125,10 +101,6 @@ true
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[windowsHide](s.child.ExecFileSyncOptions.md#windowshide)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:629
-
 ___
 
 ### timeout
@@ -143,10 +115,6 @@ ___
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[timeout](s.child.ExecFileSyncOptions.md#timeout)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:633
-
 ___
 
 ### uid
@@ -156,10 +124,6 @@ ___
 #### Inherited from
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[uid](s.child.ExecFileSyncOptions.md#uid)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:620
 
 ___
 
@@ -171,10 +135,6 @@ ___
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[gid](s.child.ExecFileSyncOptions.md#gid)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:621
-
 ___
 
 ### cwd
@@ -185,10 +145,6 @@ ___
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[cwd](s.child.ExecFileSyncOptions.md#cwd)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:622
-
 ___
 
 ### env
@@ -198,7 +154,3 @@ ___
 #### Inherited from
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[env](s.child.ExecFileSyncOptions.md#env)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:623

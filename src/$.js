@@ -1,7 +1,7 @@
-import { config } from "shelljs";
+import { config, ShellString } from "shelljs";
 import { fstatSync } from "node:fs";
 import * as xdg from "./xdg.js";
-export const cli= {
+export const $= Object.assign([], {
 	get is_silent(){ return config.silent; },
 	set is_silent(v){ config.silent= v; },
 	get is_verbose(){ return config.verbose; },
@@ -26,23 +26,36 @@ export const cli= {
 	isFIFO(stream_id= 0){ return fstatSync(stream_id).isFIFO(); },
 	
 	Error: class extends Error{},
-	error(message){ const e= new cli.Error(message); Error.captureStackTrace(e, cli.error); throw e; },
+	error(message){ const e= new $.Error(message); Error.captureStackTrace(e, $.error); throw e; },
+	exit(code){ return process.exit(code); },
 
-	xdg
-};
+	xdg,
+
+	get $(){ return process.pid; },
+	get env(){ return process.env; },
+
+	hasArgs(...needles){ return this.findIndex(a=> needles.indexOf(a)!==-1) !==-1; }
+});
 
 import sade from "sade";
-cli.api= function(usage, is_single= false){
+$.api= function(usage, is_single= false){
 	if(usage && !/^[\[<]/.test(usage))
 		return sade(usage, is_single);
 
 	const script= process.argv[1];
 	const name= script.slice(script.lastIndexOf("/")+1);
-	return sade(name+(usage ? " "+usage : ""), is_single);
+	const out= sade(name+(usage ? " "+usage : ""), is_single);
+	out._parse= out.parse;
+	out.parse= function(options= {}){
+		const { argv= process.argv }= options;
+		Reflect.deleteProperty(options, "argv");
+		return this._parse(argv, options);
+	};
+	return out;
 };
 
 import { echo } from "./echo.js";
-cli.read= async function(options= {}){
+$.read= async function(options= {}){
 	const { stdin }= process;
 	stdin.setEncoding('utf8');
 	const has= Reflect.has.bind(null, options);
@@ -52,7 +65,7 @@ cli.read= async function(options= {}){
 		const line= await stdin[Symbol.asyncIterator]().next();
 		return line.value.slice(0, get("-n"));
 	}
-	let buf= "";
+	let buf= $.stdin ? $.stdin : "";
 	if(has("-d")){
 		const needle= get("-d");
 		for await (const chunk of stdin){
@@ -63,7 +76,7 @@ cli.read= async function(options= {}){
 	}
 	for await (const chunk of stdin)
 		buf+= chunk;
-	return buf;
+	return ShellString(buf);
 };
 
 function promt(options, has, get){

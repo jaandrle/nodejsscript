@@ -90,10 +90,6 @@ Remove styles from string
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:212
-
 ___
 
 ### strip
@@ -111,10 +107,6 @@ Remove styles from string
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:217
 
 ___
 
@@ -134,10 +126,6 @@ Remove styles from string
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:222
-
 ___
 
 ### ok
@@ -156,10 +144,6 @@ Outputs a string with check-symbol as prefix
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:230
-
 ___
 
 ### create
@@ -169,10 +153,6 @@ ___
 #### Returns
 
 typeof [`style`](style.md)
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:232
 
 ___
 
@@ -190,10 +170,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### bold
@@ -209,10 +185,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -230,10 +202,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### italic
@@ -249,10 +217,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -270,10 +234,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### inverse
@@ -289,10 +249,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -310,10 +266,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### strikethrough
@@ -329,10 +281,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -350,10 +298,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### red
@@ -369,10 +313,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -390,10 +330,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### yellow
@@ -409,10 +345,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -430,10 +362,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### magenta
@@ -449,10 +377,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -470,10 +394,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### white
@@ -489,10 +409,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -510,10 +426,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### grey
@@ -529,10 +441,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -550,10 +458,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### redBright
@@ -569,10 +473,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -590,10 +490,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### yellowBright
@@ -609,10 +505,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -630,10 +522,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### magentaBright
@@ -649,10 +537,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -670,10 +554,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### whiteBright
@@ -689,10 +569,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -710,10 +586,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### bgRed
@@ -729,10 +601,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -750,10 +618,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### bgYellow
@@ -769,10 +633,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -790,10 +650,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### bgMagenta
@@ -809,10 +665,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -830,10 +682,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### bgWhite
@@ -849,10 +697,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -870,10 +714,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### bgRedBright
@@ -889,10 +729,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -910,10 +746,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### bgYellowBright
@@ -929,10 +761,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -950,10 +778,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### bgMagentaBright
@@ -969,10 +793,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
 
 ___
 
@@ -990,10 +810,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ___
 
 ### bgWhiteBright
@@ -1010,19 +826,11 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:150
-
 ## Variables
 
 ### enabled
 
 • **enabled**: `boolean`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:205
 
 ___
 
@@ -1030,19 +838,11 @@ ___
 
 • **visible**: `boolean`
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:206
-
 ___
 
 ### ansiRegex
 
 • `Const` **ansiRegex**: `RegExp`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:207
 
 ___
 
@@ -1050,16 +850,8 @@ ___
 
 • `Const` **styles**: `StylesType`<`StyleType`\>
 
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:224
-
 ___
 
 ### symbols
 
 • `Const` **symbols**: `SymbolsType`
-
-#### Defined in
-
-node_modules/ansi-colors/types/index.d.ts:225

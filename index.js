@@ -6,7 +6,6 @@ function fetch(url, init){
 	if(s.config.verbose) echo("fetch(", url, ",", init, ")");
 	return nodeFetch(url, init);
 }
-const pipe= (...funs)=> input=> Array.prototype.reduce.call(funs, (out, f)=> f(out), input);
 function* cyclicLoop(items){
 	if(!items) items= 'win32'===process.platform ? '|/-\\' : "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏";
 	const { length }= items;
@@ -16,15 +15,16 @@ function* cyclicLoop(items){
 	}
 }
 
-import { cli } from "./src/cli.js";
+import { $ } from "./src/$.js";
 import style from "ansi-colors";
 import { read } from "./src/read.js";
+import { pipe } from "./src/utils.js";
 Object.assign(globalThis, {
 	echo,
 	exit: s.exit,
 	pipe,
 	s,
-	cli,
+	$,
 	style,
 	fetch,
 	read,

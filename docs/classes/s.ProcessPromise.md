@@ -73,10 +73,6 @@ A new Promise.
 
 Promise.all
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es2015.iterable.d.ts:227
-
 ▸ `Static` **all**<`T`\>(`values`): `Promise`<{ -readonly [P in string \| number \| symbol]: Awaited<T[P]\> }\>
 
 Creates a Promise that is resolved with an array of results when all of the provided Promises
@@ -103,10 +99,6 @@ A new Promise.
 #### Inherited from
 
 Promise.all
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es2015.promise.d.ts:41
 
 ___
 
@@ -139,10 +131,6 @@ A new Promise.
 
 Promise.race
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es2015.iterable.d.ts:235
-
 ▸ `Static` **race**<`T`\>(`values`): `Promise`<`Awaited`<`T`[`number`]\>\>
 
 Creates a Promise that is resolved or rejected when any of the provided Promises are resolved
@@ -169,10 +157,6 @@ A new Promise.
 #### Inherited from
 
 Promise.race
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es2015.promise.d.ts:52
 
 ___
 
@@ -204,10 +188,6 @@ A new rejected Promise.
 
 Promise.reject
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es2015.promise.d.ts:62
-
 ___
 
 ### resolve
@@ -225,10 +205,6 @@ A resolved promise.
 #### Inherited from
 
 Promise.resolve
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es2015.promise.d.ts:68
 
 ▸ `Static` **resolve**<`T`\>(`value`): `Promise`<`T`\>
 
@@ -255,10 +231,6 @@ A promise whose internal state matches the provided promise.
 #### Inherited from
 
 Promise.resolve
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es2015.promise.d.ts:75
 
 ___
 
@@ -291,10 +263,6 @@ A new Promise.
 
 Promise.allSettled
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es2020.promise.d.ts:40
-
 ▸ `Static` **allSettled**<`T`\>(`values`): `Promise`<`PromiseSettledResult`<`Awaited`<`T`\>\>[]\>
 
 Creates a Promise that is resolved with an array of results when all
@@ -322,10 +290,6 @@ A new Promise.
 
 Promise.allSettled
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es2020.promise.d.ts:48
-
 ___
 
 ### \_run
@@ -335,10 +299,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[src/shelljs.d.ts:121](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L121)
 
 ___
 
@@ -358,10 +318,6 @@ ___
 
 [`ProcessPromise`](s.ProcessPromise.md)
 
-#### Defined in
-
-[src/shelljs.d.ts:125](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L125)
-
 ___
 
 ### pipe
@@ -377,10 +333,6 @@ ___
 #### Returns
 
 [`ProcessPromise`](s.ProcessPromise.md)
-
-#### Defined in
-
-[src/shelljs.d.ts:126](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L126)
 
 ___
 
@@ -414,10 +366,6 @@ A Promise for the completion of which ever callback is executed.
 
 Promise.then
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1520
-
 ___
 
 ### catch
@@ -448,10 +396,6 @@ A Promise for the completion of the callback.
 
 Promise.catch
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1527
-
 ___
 
 ### finally
@@ -477,10 +421,6 @@ A Promise for the completion of the callback.
 
 Promise.finally
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es2018.promise.d.ts:31
-
 ## Properties
 
 ### [species]
@@ -491,19 +431,11 @@ node_modules/typescript/lib/lib.es2018.promise.d.ts:31
 
 Promise.\_\_@species@596
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:178
-
 ___
 
 ### child
 
 • `Optional` **child**: [`ChildProcess`](s.child.ChildProcess.md)
-
-#### Defined in
-
-[src/shelljs.d.ts:120](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L120)
 
 ___
 
@@ -514,10 +446,6 @@ ___
 #### Inherited from
 
 Promise.\_\_@toStringTag@23
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:174
 
 ## Constructors
 
@@ -537,10 +465,6 @@ Creates a new Promise.
 
 Promise<ProcessOutput\>.constructor
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es2015.promise.d.ts:33
-
 ## Accessors
 
 ### stdin
@@ -550,10 +474,6 @@ node_modules/typescript/lib/lib.es2015.promise.d.ts:33
 #### Returns
 
 `Writable`
-
-#### Defined in
-
-[src/shelljs.d.ts:122](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L122)
 
 ___
 
@@ -565,10 +485,6 @@ ___
 
 `Readable`
 
-#### Defined in
-
-[src/shelljs.d.ts:123](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L123)
-
 ___
 
 ### stderr
@@ -578,7 +494,3 @@ ___
 #### Returns
 
 `Readable`
-
-#### Defined in
-
-[src/shelljs.d.ts:124](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L124)

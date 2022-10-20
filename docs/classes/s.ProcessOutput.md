@@ -60,10 +60,6 @@ Create .stack property on a target object
 
 Error.captureStackTrace
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/globals.d.ts:4
-
 ___
 
 ### toString
@@ -74,10 +70,6 @@ ___
 
 `string`
 
-#### Defined in
-
-[src/shelljs.d.ts:112](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L112)
-
 ___
 
 ### [custom]
@@ -87,10 +79,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-[src/shelljs.d.ts:117](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L117)
 
 ## Properties
 
@@ -123,10 +111,6 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 Error.prepareStackTrace
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/globals.d.ts:11
-
 ___
 
 ### stackTraceLimit
@@ -136,10 +120,6 @@ ___
 #### Inherited from
 
 Error.stackTraceLimit
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/globals.d.ts:13
 
 ___
 
@@ -151,10 +131,6 @@ ___
 
 Error.name
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1040
-
 ___
 
 ### message
@@ -165,10 +141,6 @@ ___
 
 Error.message
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1041
-
 ___
 
 ### stack
@@ -178,10 +150,6 @@ ___
 #### Inherited from
 
 Error.stack
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1042
 
 ## Constructors
 
@@ -204,10 +172,6 @@ node_modules/typescript/lib/lib.es5.d.ts:1042
 
 Error.constructor
 
-#### Defined in
-
-[src/shelljs.d.ts:111](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L111)
-
 ## Accessors
 
 ### stdout
@@ -217,10 +181,6 @@ Error.constructor
 #### Returns
 
 `string`
-
-#### Defined in
-
-[src/shelljs.d.ts:113](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L113)
 
 ___
 
@@ -232,10 +192,6 @@ ___
 
 `string`
 
-#### Defined in
-
-[src/shelljs.d.ts:114](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L114)
-
 ___
 
 ### exitCode
@@ -246,10 +202,6 @@ ___
 
 `number`
 
-#### Defined in
-
-[src/shelljs.d.ts:115](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L115)
-
 ___
 
 ### signal
@@ -259,7 +211,3 @@ ___
 #### Returns
 
 `Signals`
-
-#### Defined in
-
-[src/shelljs.d.ts:116](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L116)

@@ -25,10 +25,6 @@ Prints string to stdout, and returns string with additional utility methods like
 
 Returns the string that was passed as argument.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:384
-
 ### EchoFunction
 
 ▸ **EchoFunction**(...`text`): [`ShellString`](../modules/s.md#shellstring)
@@ -46,7 +42,3 @@ Prints string to stdout, and returns string with additional utility methods like
 [`ShellString`](../modules/s.md#shellstring)
 
 Returns the string that was passed as argument.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:392

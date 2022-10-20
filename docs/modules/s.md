@@ -11,7 +11,7 @@ Available commands: [cat](https://github.com/shelljs/shelljs#catoptions-file--fi
  · [ls](https://github.com/shelljs/shelljs#lsoptions-path-) · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-) · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest) · [pwd](https://github.com/shelljs/shelljs#pwd)
  · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
  · [tail](https://github.com/shelljs/shelljs#tail-n-num-file--file-) · [test](https://github.com/shelljs/shelljs#testexpression) · [touch](https://github.com/shelljs/shelljs#touchoptions-file--file-)
- · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output) · [which](https://github.com/shelljs/shelljs#whichcommand) · [exit](https://github.com/shelljs/shelljs#exitcode) · [error](https://github.com/shelljs/shelljs#error) · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
+ · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output) · [which](https://github.com/shelljs/shelljs#whichcommand) · [error](https://github.com/shelljs/shelljs#error) · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
 
 ```js
 s.cat("./package.json").grep("version");
@@ -25,8 +25,8 @@ s.cat("./package.json").grep("version");
 **Changes/recommenctions:**
 - use [echo](s.md#echo) instead of `s.echo`, this was changed to `s.ShellString` for easy file writing without logging to console `s.echo("Data").to("file.txt")`.
 - use ['run()'](../interfaces/s.RunFunction.md)/['runA()'](../interfaces/s.RunAsyncFunction.md) instead of `s.exec`, because of options for passing arguments in secure way.
-- use ['$()'](../interfaces/s.DollarFunction.md) instead of `s.set()`, because `$()` allows chaining (you can also access config with [cli](cli.md)s `.is_*` keys).
-- use [xdg](cli.md#xdg)`.temp` instead of `s.tempdir()` – the `cli.xdg.*` provides more paths than just temp directory.
+- use ['$()'](../interfaces/s.DollarFunction.md) instead of `s.set()`, because `$()` allows chaining (you can also access config with [$](s.md#$)s `.is_*` keys).
+- use [xdg](.md#xdg)`.temp` instead of `s.tempdir()` – the `$.xdg.*` provides more paths than just temp directory.
 
 ## Table of contents
 
@@ -162,19 +162,11 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-[src/shelljs.d.ts:54](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L54)
-
 ▸ **$**(): [`ShellString`](s.md#shellstring)
 
 #### Returns
 
 [`ShellString`](s.md#shellstring)
-
-#### Defined in
-
-[src/shelljs.d.ts:55](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L55)
 
 ___
 
@@ -198,10 +190,6 @@ so by default prints the command output. You can off that by prepend `….$().ru
 
 Returns [ShellString](s.md#shellstring).
 
-#### Defined in
-
-[src/shelljs.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L87)
-
 ▸ **run**(`command`, `vars`, `options`): [`ShellString`](s.md#shellstring)
 
 Executes the given command synchronously, because of that it does not know whether it will be piped,
@@ -220,10 +208,6 @@ so by default prints the command output. You can off that by prepend `….$().ru
 [`ShellString`](s.md#shellstring)
 
 Returns [ShellString](s.md#shellstring).
-
-#### Defined in
-
-[src/shelljs.d.ts:104](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L104)
 
 ___
 
@@ -260,10 +244,6 @@ echo(result_b.toString());
 
 Returns [ProcessPromise](../classes/s.ProcessPromise.md).
 
-#### Defined in
-
-[src/shelljs.d.ts:152](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L152)
-
 ▸ **runA**(`command`, `vars`, `options`): [`ProcessPromise`](../classes/s.ProcessPromise.md)
 
 Executes the given command asynchronously.
@@ -296,10 +276,6 @@ echo(result_b.toString());
 
 Returns [ProcessPromise](../classes/s.ProcessPromise.md).
 
-#### Defined in
-
-[src/shelljs.d.ts:165](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L165)
-
 ___
 
 ### cd
@@ -321,10 +297,6 @@ Changes to the home directory if no argument is supplied.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:24
-
 ___
 
 ### pwd
@@ -338,10 +310,6 @@ Returns the current directory.
 [`ShellString`](s.md#shellstring)
 
 The current directory.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:30
 
 ___
 
@@ -364,10 +332,6 @@ Evaluates expression using the available primaries and returns corresponding val
 
 See option parameter.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:252
-
 ___
 
 ### which
@@ -387,10 +351,6 @@ Searches for command in the system's PATH. On Windows looks for .exe, .cmd, and 
 [`ShellString`](s.md#shellstring) \| ``null``
 
 Returns string containing the absolute path to the command or `null` if it couldn't be found.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:372
 
 ___
 
@@ -412,10 +372,6 @@ Equivalent to calling `process.exit(code)`.
 
 `never`
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:711
-
 ___
 
 ### tempdir
@@ -431,10 +387,6 @@ Follows Python's tempfile algorithm.
 
 The temp file path.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1054
-
 ___
 
 ### error
@@ -448,10 +400,6 @@ Tests if error occurred in the last command.
 [`ShellString`](s.md#shellstring)
 
 Returns null if no error occurred, otherwise returns string explaining the error
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1061
 
 ___
 
@@ -470,10 +418,6 @@ Sets global configuration variables
 #### Returns
 
 `void`
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1184
 
 ___
 
@@ -496,10 +440,6 @@ Returns array of files in the given path, or in current directory if no path pro
 
 An array of files in the given path(s).
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:46
-
 ▸ **ls**(`options`, ...`paths`): [`ShellArray`](s.md#shellarray)
 
 Returns array of files in the given path, or in current directory if no path provided.
@@ -517,10 +457,6 @@ Returns array of files in the given path, or in current directory if no path pro
 
 An array of files in the given path(s).
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:47
-
 ▸ **ls**(`paths`): [`ShellArray`](s.md#shellarray)
 
 Returns array of files in the given path, or in current directory if no path provided.
@@ -537,10 +473,6 @@ Returns array of files in the given path, or in current directory if no path pro
 
 An array of files in the given path(s).
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:55
-
 ▸ **ls**(...`paths`): [`ShellArray`](s.md#shellarray)
 
 Returns array of files in the given path, or in current directory if no path provided.
@@ -556,10 +488,6 @@ Returns array of files in the given path, or in current directory if no path pro
 [`ShellArray`](s.md#shellarray)
 
 An array of files in the given path(s).
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:56
 
 ___
 
@@ -581,10 +509,6 @@ Returns array of all files (however deep) in the given paths.
 
 An array of all files (however deep) in the given path(s).
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:81
-
 ▸ **find**(...`path`): [`ShellArray`](s.md#shellarray)
 
 Returns array of all files (however deep) in the given paths.
@@ -600,10 +524,6 @@ Returns array of all files (however deep) in the given paths.
 [`ShellArray`](s.md#shellarray)
 
 An array of all files (however deep) in the given path(s).
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:82
 
 ___
 
@@ -627,10 +547,6 @@ Copies files. The wildcard `*` is accepted.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:108
-
 ▸ **cp**(`source`, `dest`): [`ShellString`](s.md#shellstring)
 
 Copies files. The wildcard `*` is accepted.
@@ -647,10 +563,6 @@ Copies files. The wildcard `*` is accepted.
 [`ShellString`](s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:117
 
 ___
 
@@ -673,10 +585,6 @@ Removes files. The wildcard `*` is accepted.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:146
-
 ▸ **rm**(`options`, ...`files`): [`ShellString`](s.md#shellstring)
 
 Removes files. The wildcard `*` is accepted.
@@ -694,10 +602,6 @@ Removes files. The wildcard `*` is accepted.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:147
-
 ▸ **rm**(`files`): [`ShellString`](s.md#shellstring)
 
 Removes files. The wildcard `*` is accepted.
@@ -714,10 +618,6 @@ Removes files. The wildcard `*` is accepted.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:155
-
 ▸ **rm**(...`files`): [`ShellString`](s.md#shellstring)
 
 Removes files. The wildcard `*` is accepted.
@@ -733,10 +633,6 @@ Removes files. The wildcard `*` is accepted.
 [`ShellString`](s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:156
 
 ___
 
@@ -760,10 +656,6 @@ Moves files. The wildcard `*` is accepted.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:181
-
 ▸ **mv**(`source`, `dest`): [`ShellString`](s.md#shellstring)
 
 Moves files. The wildcard `*` is accepted.
@@ -780,10 +672,6 @@ Moves files. The wildcard `*` is accepted.
 [`ShellString`](s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:190
 
 ___
 
@@ -806,10 +694,6 @@ Creates directories.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:214
-
 ▸ **mkdir**(`options`, ...`dir`): [`ShellString`](s.md#shellstring)
 
 Creates directories.
@@ -827,10 +711,6 @@ Creates directories.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:215
-
 ▸ **mkdir**(`dir`): [`ShellString`](s.md#shellstring)
 
 Creates directories.
@@ -847,10 +727,6 @@ Creates directories.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:223
-
 ▸ **mkdir**(...`dir`): [`ShellString`](s.md#shellstring)
 
 Creates directories.
@@ -866,10 +742,6 @@ Creates directories.
 [`ShellString`](s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:224
 
 ___
 
@@ -895,10 +767,6 @@ A string containing the given file, or a concatenated string
         containing the files if more than one file is given
         (a new line character is introduced between each file).
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:267
-
 ▸ **cat**(...`files`): [`ShellString`](s.md#shellstring)
 
 Returns a string containing the given file, or a concatenated string
@@ -918,10 +786,6 @@ is introduced between each file).
 A string containing the given file, or a concatenated string
         containing the files if more than one file is given
         (a new line character is introduced between each file).
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:268
 
 ___
 
@@ -947,10 +811,6 @@ on the input using the given search regex and replacement string or function.
 
 The new string after replacement.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:295
-
 ▸ **sed**(`options`, `searchRegex`, `replacement`, ...`files`): [`ShellString`](s.md#shellstring)
 
 Reads an input string from file and performs a JavaScript `replace()`
@@ -971,10 +831,6 @@ on the input using the given search regex and replacement string or function.
 
 The new string after replacement.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:296
-
 ▸ **sed**(`searchRegex`, `replacement`, `files`): [`ShellString`](s.md#shellstring)
 
 Reads an input string from file and performs a JavaScript `replace()`
@@ -994,10 +850,6 @@ on the input using the given search regex and replacement string or function.
 
 The new string after replacement.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:307
-
 ▸ **sed**(`searchRegex`, `replacement`, ...`files`): [`ShellString`](s.md#shellstring)
 
 Reads an input string from file and performs a JavaScript `replace()`
@@ -1016,10 +868,6 @@ on the input using the given search regex and replacement string or function.
 [`ShellString`](s.md#shellstring)
 
 The new string after replacement.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:308
 
 ___
 
@@ -1044,10 +892,6 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 Returns a string containing all lines of the file that match the given `regex_filter`.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:337
-
 ▸ **grep**(`options`, `regex_filter`, ...`files`): [`ShellString`](s.md#shellstring)
 
 Reads input string from given files and returns a string containing all lines
@@ -1067,10 +911,6 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 Returns a string containing all lines of the file that match the given `regex_filter`.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:338
-
 ▸ **grep**(`regex_filter`, `files`): [`ShellString`](s.md#shellstring)
 
 Reads input string from given files and returns a string containing all lines
@@ -1089,10 +929,6 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 Returns a string containing all lines of the file that match the given `regex_filter`.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:348
-
 ▸ **grep**(`regex_filter`, ...`files`): [`ShellString`](s.md#shellstring)
 
 Reads input string from given files and returns a string containing all lines
@@ -1110,10 +946,6 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 [`ShellString`](s.md#shellstring)
 
 Returns a string containing all lines of the file that match the given `regex_filter`.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:349
 
 ___
 
@@ -1136,10 +968,6 @@ Prints string to stdout, and returns string with additional utility methods like
 
 Returns the string that was passed as argument.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:384
-
 ▸ **echo**(...`text`): [`ShellString`](s.md#shellstring)
 
 Prints string to stdout, and returns string with additional utility methods like .to().
@@ -1155,10 +983,6 @@ Prints string to stdout, and returns string with additional utility methods like
 [`ShellString`](s.md#shellstring)
 
 Returns the string that was passed as argument.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:392
 
 ___
 
@@ -1182,10 +1006,6 @@ With no arguments, `pushd` exchanges the top two directories.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:419
-
 ▸ **pushd**(`options`, `dir`): [`ShellArray`](s.md#shellarray)
 
 Saves the current directory on the top of the directory stack and then cd to dir.
@@ -1204,10 +1024,6 @@ With no arguments, `pushd` exchanges the top two directories.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:433
-
 ▸ **pushd**(`options`, `dir`): [`ShellArray`](s.md#shellarray)
 
 Saves the current directory on the top of the directory stack and then cd to dir.
@@ -1225,10 +1041,6 @@ With no arguments, `pushd` exchanges the top two directories.
 [`ShellArray`](s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:447
 
 ▸ **pushd**(`dir`): [`ShellArray`](s.md#shellarray)
 
@@ -1247,10 +1059,6 @@ With no arguments, `pushd` exchanges the top two directories.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:457
-
 ▸ **pushd**(`dir`): [`ShellArray`](s.md#shellarray)
 
 Saves the current directory on the top of the directory stack and then cd to dir.
@@ -1267,10 +1075,6 @@ With no arguments, `pushd` exchanges the top two directories.
 [`ShellArray`](s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:467
 
 ▸ **pushd**(`dir`): [`ShellArray`](s.md#shellarray)
 
@@ -1289,10 +1093,6 @@ With no arguments, `pushd` exchanges the top two directories.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:477
-
 ▸ **pushd**(): [`ShellArray`](s.md#shellarray)
 
 Saves the current directory on the top of the directory stack and then cd to dir.
@@ -1303,10 +1103,6 @@ With no arguments, `pushd` exchanges the top two directories.
 [`ShellArray`](s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:485
 
 ___
 
@@ -1333,10 +1129,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:517
-
 ▸ **popd**(`options`, `dir`): [`ShellArray`](s.md#shellarray)
 
 When no arguments are given, popd removes the top directory from the stack
@@ -1358,10 +1150,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:533
-
 ▸ **popd**(`options`, `dir`): [`ShellArray`](s.md#shellarray)
 
 When no arguments are given, popd removes the top directory from the stack
@@ -1382,10 +1170,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 [`ShellArray`](s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:549
 
 ▸ **popd**(`dir`): [`ShellArray`](s.md#shellarray)
 
@@ -1407,10 +1191,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:561
-
 ▸ **popd**(`dir`): [`ShellArray`](s.md#shellarray)
 
 When no arguments are given, popd removes the top directory from the stack
@@ -1430,10 +1210,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 [`ShellArray`](s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:573
 
 ▸ **popd**(`dir`): [`ShellArray`](s.md#shellarray)
 
@@ -1455,10 +1231,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:585
-
 ▸ **popd**(): [`ShellArray`](s.md#shellarray)
 
 When no arguments are given, popd removes the top directory from the stack
@@ -1472,10 +1244,6 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 [`ShellArray`](s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:596
 
 ___
 
@@ -1497,10 +1265,6 @@ Displays the list of currently remembered directories.
 
 Returns an array of paths in the stack, or a single path if +N or -N was specified.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:622
-
 ▸ **dirs**(`options`): [`ShellString`](s.md#shellstring)
 
 Displays the list of currently remembered directories.
@@ -1516,10 +1280,6 @@ Displays the list of currently remembered directories.
 [`ShellString`](s.md#shellstring)
 
 Returns an array of paths in the stack, or a single path if +N or -N was specified.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:631
 
 ▸ **dirs**(`options`): [`ShellString`](s.md#shellstring)
 
@@ -1537,10 +1297,6 @@ Displays the list of currently remembered directories.
 
 Returns an array of paths in the stack, or a single path if +N or -N was specified.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:640
-
 ▸ **dirs**(`options`): [`ShellString`](s.md#shellstring) \| [`ShellArray`](s.md#shellarray)
 
 Displays the list of currently remembered directories.
@@ -1556,10 +1312,6 @@ Displays the list of currently remembered directories.
 [`ShellString`](s.md#shellstring) \| [`ShellArray`](s.md#shellarray)
 
 Returns an array of paths in the stack, or a single path if +N or -N was specified.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:653
 
 ___
 
@@ -1583,10 +1335,6 @@ Links source to dest. Use `-f` to force the link, should dest already exist.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:680
-
 ▸ **ln**(`source`, `dest`): [`ShellString`](s.md#shellstring)
 
 Links source to dest. Use `-f` to force the link, should dest already exist.
@@ -1603,10 +1351,6 @@ Links source to dest. Use `-f` to force the link, should dest already exist.
 [`ShellString`](s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:689
 
 ___
 
@@ -1629,10 +1373,6 @@ Executes the given command.
 Returns an object containing the return code and output as string,
         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:725
-
 ▸ **exec**(`command`, `options`): [`ShellString`](s.md#shellstring)
 
 Executes the given command.
@@ -1650,10 +1390,6 @@ Executes the given command.
 
 Returns an object containing the return code and output as string,
         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:735
 
 ▸ **exec**(`command`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -1673,10 +1409,6 @@ Executes the given command.
 Returns an object containing the return code and output as string,
         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:745
-
 ▸ **exec**(`command`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md) \| [`ShellString`](s.md#shellstring)
 
 Executes the given command.
@@ -1694,10 +1426,6 @@ Executes the given command.
 
 Returns an object containing the return code and output as string,
         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:755
 
 ▸ **exec**(`command`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -1718,10 +1446,6 @@ Executes the given command.
 Returns an object containing the return code and output as string,
         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:764
-
 ▸ **exec**(`command`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 Executes the given command.
@@ -1739,10 +1463,6 @@ Executes the given command.
 
 Returns an object containing the return code and output as string,
         or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:772
 
 ___
 
@@ -1772,10 +1492,6 @@ respectively.
 
 A string-like object with special methods.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:982
-
 ▸ **ShellString**(`value`): [`ShellArray`](s.md#shellarray)
 
 #### Parameters
@@ -1787,10 +1503,6 @@ node_modules/@types/shelljs/index.d.ts:982
 #### Returns
 
 [`ShellArray`](s.md#shellarray)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:983
 
 ___
 
@@ -1821,10 +1533,6 @@ Notable exceptions:
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1007
-
 ▸ **chmod**(`mode`, `file`): [`ShellString`](s.md#shellstring)
 
 Alters the permissions of a file or directory by either specifying the absolute
@@ -1849,10 +1557,6 @@ Notable exceptions:
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1023
-
 ___
 
 ### touch
@@ -1873,10 +1577,6 @@ A FILE argument that does not exist is created empty, unless `-c` is supplied
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1071
-
 ▸ **touch**(`options`, ...`files`): [`ShellString`](s.md#shellstring)
 
 Update the access and modification times of each FILE to the current time.
@@ -1893,10 +1593,6 @@ A FILE argument that does not exist is created empty, unless `-c` is supplied
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1072
-
 ▸ **touch**(`files`): [`ShellString`](s.md#shellstring)
 
 Update the access and modification times of each FILE to the current time.
@@ -1912,10 +1608,6 @@ A FILE argument that does not exist is created empty, unless `-c` is supplied
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1074
-
 ▸ **touch**(...`files`): [`ShellString`](s.md#shellstring)
 
 Update the access and modification times of each FILE to the current time.
@@ -1930,10 +1622,6 @@ A FILE argument that does not exist is created empty, unless `-c` is supplied
 #### Returns
 
 [`ShellString`](s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1075
 
 ___
 
@@ -1954,10 +1642,6 @@ Read the start of a file.
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1090
-
 ▸ **head**(`options`, ...`files`): [`ShellString`](s.md#shellstring)
 
 Read the start of a file.
@@ -1973,10 +1657,6 @@ Read the start of a file.
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1091
-
 ▸ **head**(`files`): [`ShellString`](s.md#shellstring)
 
 Read the start of a file.
@@ -1991,10 +1671,6 @@ Read the start of a file.
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1093
-
 ▸ **head**(...`files`): [`ShellString`](s.md#shellstring)
 
 Read the start of a file.
@@ -2008,10 +1684,6 @@ Read the start of a file.
 #### Returns
 
 [`ShellString`](s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1094
 
 ___
 
@@ -2033,10 +1705,6 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1111
-
 ▸ **sort**(`options`, ...`files`): [`ShellString`](s.md#shellstring)
 
 Return the contents of the files, sorted line-by-line.
@@ -2053,10 +1721,6 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1112
-
 ▸ **sort**(`files`): [`ShellString`](s.md#shellstring)
 
 Return the contents of the files, sorted line-by-line.
@@ -2072,10 +1736,6 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1118
-
 ▸ **sort**(...`files`): [`ShellString`](s.md#shellstring)
 
 Return the contents of the files, sorted line-by-line.
@@ -2090,10 +1750,6 @@ Sorting multiple files mixes their content (just as unix sort does).
 #### Returns
 
 [`ShellString`](s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1119
 
 ___
 
@@ -2114,10 +1770,6 @@ Read the end of a file.
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1138
-
 ▸ **tail**(`options`, ...`files`): [`ShellString`](s.md#shellstring)
 
 Read the end of a file.
@@ -2133,10 +1785,6 @@ Read the end of a file.
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1139
-
 ▸ **tail**(`files`): [`ShellString`](s.md#shellstring)
 
 Read the end of a file.
@@ -2151,10 +1799,6 @@ Read the end of a file.
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1141
-
 ▸ **tail**(...`files`): [`ShellString`](s.md#shellstring)
 
 Read the end of a file.
@@ -2168,10 +1812,6 @@ Read the end of a file.
 #### Returns
 
 [`ShellString`](s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1142
 
 ___
 
@@ -2193,10 +1833,6 @@ Filter adjacent matching lines from input.
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1159
-
 ▸ **uniq**(`input`, `output?`): [`ShellString`](s.md#shellstring)
 
 Filter adjacent matching lines from input.
@@ -2212,19 +1848,11 @@ Filter adjacent matching lines from input.
 
 [`ShellString`](s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1164
-
 ## Type Aliases
 
 ### RunOptions
 
 Ƭ **RunOptions**: [`ExecOptions`](../interfaces/s.ExecOptions.md) & { `needle?`: `RegExp`  }
-
-#### Defined in
-
-[src/shelljs.d.ts:59](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L59)
 
 ___
 
@@ -2232,19 +1860,11 @@ ___
 
 Ƭ **IO**: [`StdioPipe`](s.child.md#stdiopipe) \| [`StdioNull`](s.child.md#stdionull)
 
-#### Defined in
-
-[src/shelljs.d.ts:109](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L109)
-
 ___
 
 ### TestOptions
 
 Ƭ **TestOptions**: ``"-b"`` \| ``"-c"`` \| ``"-d"`` \| ``"-e"`` \| ``"-f"`` \| ``"-L"`` \| ``"-p"`` \| ``"-S"``
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:254
 
 ___
 
@@ -2268,21 +1888,11 @@ ___
 
 `any`
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:786
-
 ___
 
 ### ShellString
 
 Ƭ **ShellString**: `string` & `ShellReturnValue`
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:939
-
-node_modules/@types/shelljs/index.d.ts:986
 
 ___
 
@@ -2290,19 +1900,11 @@ ___
 
 Ƭ **ShellArray**: `string`[] & `ShellReturnValue`
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:941
-
 ___
 
 ### TouchOptionsLiteral
 
 Ƭ **TouchOptionsLiteral**: ``"-a"`` \| ``"-c"`` \| ``"-m"`` \| ``"-d"`` \| ``"-r"``
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1063
 
 ## Variables
 
@@ -2312,10 +1914,6 @@ node_modules/@types/shelljs/index.d.ts:1063
 
 Object containing environment variables (both getter and setter). Shortcut to `process.env`.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:716
-
 ___
 
 ### config
@@ -2323,7 +1921,3 @@ ___
 • `Const` **config**: [`ShellConfig`](../interfaces/s.ShellConfig.md)
 
 The shelljs configuration.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1225

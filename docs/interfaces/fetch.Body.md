@@ -45,10 +45,6 @@ Use `body.arrayBuffer()` instead.
 
 Pick.buffer
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:135
-
 ___
 
 ### formData
@@ -62,10 +58,6 @@ ___
 #### Inherited from
 
 Pick.formData
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:137
 
 ___
 
@@ -81,10 +73,6 @@ ___
 
 Pick.text
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:140
-
 ___
 
 ### blob
@@ -98,10 +86,6 @@ ___
 #### Inherited from
 
 Pick.blob
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:138
 
 ___
 
@@ -117,10 +101,6 @@ ___
 
 Pick.json
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:139
-
 ___
 
 ### arrayBuffer
@@ -135,10 +115,6 @@ ___
 
 Pick.arrayBuffer
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:136
-
 ## Properties
 
 ### body
@@ -148,10 +124,6 @@ node_modules/node-fetch/@types/index.d.ts:136
 #### Inherited from
 
 Pick.body
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:130
 
 ___
 
@@ -163,10 +135,6 @@ ___
 
 Pick.size
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:132
-
 ___
 
 ### bodyUsed
@@ -176,7 +144,3 @@ ___
 #### Inherited from
 
 Pick.bodyUsed
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:131

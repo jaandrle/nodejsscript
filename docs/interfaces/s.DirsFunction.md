@@ -24,10 +24,6 @@ Clears the directory stack by deleting all of the elements.
 
 Returns an array of paths in the stack, or a single path if +N or -N was specified.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:622
-
 ### DirsFunction
 
 ▸ **DirsFunction**(`options`): [`ShellString`](../modules/s.md#shellstring)
@@ -45,10 +41,6 @@ Displays the list of currently remembered directories.
 [`ShellString`](../modules/s.md#shellstring)
 
 Returns an array of paths in the stack, or a single path if +N or -N was specified.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:631
 
 ### DirsFunction
 
@@ -68,10 +60,6 @@ Displays the list of currently remembered directories.
 
 Returns an array of paths in the stack, or a single path if +N or -N was specified.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:640
-
 ### DirsFunction
 
 ▸ **DirsFunction**(`options`): [`ShellString`](../modules/s.md#shellstring) \| [`ShellArray`](../modules/s.md#shellarray)
@@ -89,7 +77,3 @@ Displays the list of currently remembered directories.
 [`ShellString`](../modules/s.md#shellstring) \| [`ShellArray`](../modules/s.md#shellarray)
 
 Returns an array of paths in the stack, or a single path if +N or -N was specified.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:653

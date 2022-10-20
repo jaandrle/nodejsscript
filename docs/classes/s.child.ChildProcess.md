@@ -183,10 +183,6 @@ v11.13.0, v10.16.0
 
 EventEmitter.once
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:157
-
 ▸ `Static` **once**(`emitter`, `eventName`, `options?`): `Promise`<`any`[]\>
 
 #### Parameters
@@ -204,10 +200,6 @@ node_modules/@types/node/ts4.8/events.d.ts:157
 #### Inherited from
 
 EventEmitter.once
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:158
 
 ___
 
@@ -291,10 +283,6 @@ that iterates `eventName` events emitted by the `emitter`
 
 EventEmitter.on
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:217
-
 ___
 
 ### listenerCount
@@ -334,10 +322,6 @@ Since v3.2.0 - Use `listenerCount` instead.
 #### Inherited from
 
 EventEmitter.listenerCount
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:234
 
 ___
 
@@ -389,10 +373,6 @@ v15.2.0, v14.17.0
 
 EventEmitter.getEventListeners
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:262
-
 ___
 
 ### setMaxListeners
@@ -429,10 +409,6 @@ v15.4.0
 #### Inherited from
 
 EventEmitter.setMaxListeners
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:280
 
 ___
 
@@ -510,10 +486,6 @@ v0.1.90
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:307
 
 ___
 
@@ -683,10 +655,6 @@ v0.5.9
 
 `boolean`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:458
-
 ▸ **send**(`message`, `sendHandle?`, `callback?`): `boolean`
 
 #### Parameters
@@ -700,10 +668,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:458
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:459
 
 ▸ **send**(`message`, `sendHandle?`, `options?`, `callback?`): `boolean`
 
@@ -719,10 +683,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:459
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:460
 
 ___
 
@@ -750,10 +710,6 @@ v0.7.2
 #### Returns
 
 `void`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:476
 
 ___
 
@@ -786,10 +742,6 @@ v0.7.10
 
 `void`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:496
-
 ___
 
 ### ref
@@ -820,10 +772,6 @@ v0.7.10
 
 `void`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:515
-
 ___
 
 ### addListener
@@ -853,10 +801,6 @@ events.EventEmitter
 
 EventEmitter.addListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:525
-
 ▸ **addListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -873,10 +817,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:525
 #### Overrides
 
 EventEmitter.addListener
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:526
 
 ▸ **addListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
@@ -895,10 +835,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:526
 
 EventEmitter.addListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:527
-
 ▸ **addListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -915,10 +851,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:527
 #### Overrides
 
 EventEmitter.addListener
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:528
 
 ▸ **addListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
@@ -937,10 +869,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:528
 
 EventEmitter.addListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:529
-
 ▸ **addListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -958,10 +886,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:529
 
 EventEmitter.addListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:530
-
 ▸ **addListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -978,10 +902,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:530
 #### Overrides
 
 EventEmitter.addListener
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:531
 
 ___
 
@@ -1004,10 +924,6 @@ ___
 
 EventEmitter.emit
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:532
-
 ▸ **emit**(`event`, `code`, `signal`): `boolean`
 
 #### Parameters
@@ -1026,10 +942,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:532
 
 EventEmitter.emit
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:533
-
 ▸ **emit**(`event`): `boolean`
 
 #### Parameters
@@ -1045,10 +957,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:533
 #### Overrides
 
 EventEmitter.emit
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:534
 
 ▸ **emit**(`event`, `err`): `boolean`
 
@@ -1066,10 +974,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:534
 #### Overrides
 
 EventEmitter.emit
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:535
 
 ▸ **emit**(`event`, `code`, `signal`): `boolean`
 
@@ -1089,10 +993,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:535
 
 EventEmitter.emit
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:536
-
 ▸ **emit**(`event`, `message`, `sendHandle`): `boolean`
 
 #### Parameters
@@ -1111,10 +1011,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:536
 
 EventEmitter.emit
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:537
-
 ▸ **emit**(`event`, `listener`): `boolean`
 
 #### Parameters
@@ -1131,10 +1027,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:537
 #### Overrides
 
 EventEmitter.emit
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:538
 
 ___
 
@@ -1157,10 +1049,6 @@ ___
 
 EventEmitter.on
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:539
-
 ▸ **on**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1177,10 +1065,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:539
 #### Overrides
 
 EventEmitter.on
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:540
 
 ▸ **on**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
@@ -1199,10 +1083,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:540
 
 EventEmitter.on
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:541
-
 ▸ **on**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1219,10 +1099,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:541
 #### Overrides
 
 EventEmitter.on
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:542
 
 ▸ **on**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
@@ -1241,10 +1117,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:542
 
 EventEmitter.on
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:543
-
 ▸ **on**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1262,10 +1134,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:543
 
 EventEmitter.on
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:544
-
 ▸ **on**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1282,10 +1150,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:544
 #### Overrides
 
 EventEmitter.on
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:545
 
 ___
 
@@ -1308,10 +1172,6 @@ ___
 
 EventEmitter.once
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:546
-
 ▸ **once**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1328,10 +1188,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:546
 #### Overrides
 
 EventEmitter.once
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:547
 
 ▸ **once**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
@@ -1350,10 +1206,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:547
 
 EventEmitter.once
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:548
-
 ▸ **once**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1370,10 +1222,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:548
 #### Overrides
 
 EventEmitter.once
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:549
 
 ▸ **once**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
@@ -1392,10 +1240,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:549
 
 EventEmitter.once
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:550
-
 ▸ **once**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1413,10 +1257,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:550
 
 EventEmitter.once
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:551
-
 ▸ **once**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1433,10 +1273,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:551
 #### Overrides
 
 EventEmitter.once
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:552
 
 ___
 
@@ -1459,10 +1295,6 @@ ___
 
 EventEmitter.prependListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:553
-
 ▸ **prependListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1479,10 +1311,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:553
 #### Overrides
 
 EventEmitter.prependListener
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:554
 
 ▸ **prependListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
@@ -1501,10 +1329,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:554
 
 EventEmitter.prependListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:555
-
 ▸ **prependListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1521,10 +1345,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:555
 #### Overrides
 
 EventEmitter.prependListener
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:556
 
 ▸ **prependListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
@@ -1543,10 +1363,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:556
 
 EventEmitter.prependListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:557
-
 ▸ **prependListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1564,10 +1380,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:557
 
 EventEmitter.prependListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:558
-
 ▸ **prependListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1584,10 +1396,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:558
 #### Overrides
 
 EventEmitter.prependListener
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:559
 
 ___
 
@@ -1610,10 +1418,6 @@ ___
 
 EventEmitter.prependOnceListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:560
-
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1630,10 +1434,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:560
 #### Overrides
 
 EventEmitter.prependOnceListener
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:561
 
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
@@ -1652,10 +1452,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:561
 
 EventEmitter.prependOnceListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:562
-
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1672,10 +1468,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:562
 #### Overrides
 
 EventEmitter.prependOnceListener
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:563
 
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
@@ -1694,10 +1486,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:563
 
 EventEmitter.prependOnceListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:564
-
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1715,10 +1503,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:564
 
 EventEmitter.prependOnceListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:565
-
 ▸ **prependOnceListener**(`event`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 #### Parameters
@@ -1735,10 +1519,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:565
 #### Overrides
 
 EventEmitter.prependOnceListener
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:566
 
 ___
 
@@ -1842,10 +1622,6 @@ v0.1.26
 
 EventEmitter.removeListener
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:457
-
 ___
 
 ### off
@@ -1872,10 +1648,6 @@ v10.0.0
 #### Inherited from
 
 EventEmitter.off
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:462
 
 ___
 
@@ -1909,10 +1681,6 @@ v0.1.26
 
 EventEmitter.removeAllListeners
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:473
-
 ___
 
 ### setMaxListeners
@@ -1944,10 +1712,6 @@ v0.3.5
 
 EventEmitter.setMaxListeners
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:483
-
 ___
 
 ### getMaxListeners
@@ -1968,10 +1732,6 @@ v1.0.0
 #### Inherited from
 
 EventEmitter.getMaxListeners
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:489
 
 ___
 
@@ -2006,10 +1766,6 @@ v0.1.26
 #### Inherited from
 
 EventEmitter.listeners
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:502
 
 ___
 
@@ -2062,10 +1818,6 @@ v9.4.0
 
 EventEmitter.rawListeners
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:532
-
 ___
 
 ### listenerCount
@@ -2091,10 +1843,6 @@ v3.2.0
 #### Inherited from
 
 EventEmitter.listenerCount
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:579
 
 ___
 
@@ -2130,10 +1878,6 @@ v6.0.0
 
 EventEmitter.eventNames
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:632
-
 ## Properties
 
 ### errorMonitor
@@ -2152,10 +1896,6 @@ regular `'error'` listener is installed.
 
 EventEmitter.errorMonitor
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:290
-
 ___
 
 ### captureRejectionSymbol
@@ -2165,10 +1905,6 @@ ___
 #### Inherited from
 
 EventEmitter.captureRejectionSymbol
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:291
 
 ___
 
@@ -2182,10 +1918,6 @@ Sets or gets the default captureRejection value for all emitters.
 
 EventEmitter.captureRejections
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:296
-
 ___
 
 ### defaultMaxListeners
@@ -2195,10 +1927,6 @@ ___
 #### Inherited from
 
 EventEmitter.defaultMaxListeners
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:297
 
 ___
 
@@ -2223,10 +1951,6 @@ not be successfully spawned.
 **`Since`**
 
 v0.1.90
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:101
 
 ___
 
@@ -2259,10 +1983,6 @@ not be successfully spawned.
 
 v0.1.90
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:125
-
 ___
 
 ### stderr
@@ -2284,10 +2004,6 @@ not be successfully spawned.
 
 v0.1.90
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:139
-
 ___
 
 ### channel
@@ -2300,10 +2016,6 @@ no IPC channel currently exists, this property is `undefined`.
 **`Since`**
 
 v7.1.0
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:145
 
 ___
 
@@ -2350,10 +2062,6 @@ not be successfully spawned.
 
 v0.7.10
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:183
-
 ___
 
 ### killed
@@ -2367,10 +2075,6 @@ does not indicate that the child process has been terminated.
 **`Since`**
 
 v0.5.10
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:200
 
 ___
 
@@ -2394,10 +2098,6 @@ grep.stdin.end();
 
 v0.1.90
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:215
-
 ___
 
 ### connected
@@ -2411,10 +2111,6 @@ send and receive messages from a child process. When `subprocess.connected` is`f
 
 v0.7.2
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:221
-
 ___
 
 ### exitCode
@@ -2423,10 +2119,6 @@ ___
 
 The `subprocess.exitCode` property indicates the exit code of the child process.
 If the child process is still running, the field will be `null`.
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:226
 
 ___
 
@@ -2437,10 +2129,6 @@ ___
 The `subprocess.signalCode` property indicates the signal received by
 the child process if any, else `null`.
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:231
-
 ___
 
 ### spawnargs
@@ -2449,10 +2137,6 @@ ___
 
 The `subprocess.spawnargs` property represents the full list of command-line
 arguments the child process was launched with.
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:236
 
 ___
 
@@ -2469,10 +2153,6 @@ the executable file.
 For [exec](../modules/s.child.md#exec),  its value will be the name of the shell
 in which the child process is launched.
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:247
-
 ## Constructors
 
 ### constructor
@@ -2488,7 +2168,3 @@ node_modules/@types/node/ts4.8/child_process.d.ts:247
 #### Inherited from
 
 EventEmitter.constructor
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:74
