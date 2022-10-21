@@ -42,7 +42,6 @@ function printError(e){
 function printUsage(){
 	const [ n, v, d ]= info("name", "version", "description");
 	const css= echo.css(
-		".test { unset }",
 		"* { margin-left: 2; }",
 		".n { color: lightblue; }",
 		".v { color: lightgreen; margin-left: 0; }",

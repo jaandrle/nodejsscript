@@ -19,7 +19,7 @@ global.Error= class extends ErrorOld{
 		);
 		const { stdout, stderr, name, message, stack, exitCode= 1 }= e;
 		echo.use("-2", `%c${name}: ${message.trim()}`, css.h1);
-		echo.use("-2", "%ccode: " + exitCode + ( Error.exitCodeInfo(exitCode) ? ` %c(${Error.exitCodeInfo(exitCode)})` : "" ), css.h2, "color: blue");
+		echo.use("-2", "%ccode: " + exitCode + ( Error.exitCodeInfo(exitCode) ? ` %c(${Error.exitCodeInfo(exitCode)})` : "%c" ), css.h2, "color: blue");
 		if(stderr) echo.use("-2", "%cstderr:\n%c" + stderr, css.h2, css.pre);
 		if(stdout) echo.use("-2", "%cstdout:\n%c" + stdout, css.h2, css.pre);
 		if(stack) echo.use("-2", "%cstack:\n%c" + pipe( Error.stackToList, l=> l.slice(1), Error.listToStack)(stack), css.h2, css.pre);

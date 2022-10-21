@@ -68,7 +68,7 @@ echo.css= function(...styles_arr){
 function useColors(target){ return $.is_colors===-1 && support_colors[target] || $.is_colors; }
 function processColors(messages){
 	const out= [];
-	const c= "%c", cr= new RegExp(`(?=${c})`);
+	const c= "%c", cr= new RegExp(`(?<!%)(?=${c})`);
 	for(let i=0, { length }= messages; i<length; i++){
 		const m= messages[i];
 		if(typeof m !== "string"||m.indexOf(c)===-1){ out.push(m); continue; }
