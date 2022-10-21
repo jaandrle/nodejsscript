@@ -325,15 +325,7 @@ v0.1.13
 
 Ƭ **css\_rules**: ``"unset: all;"`` \| ``"display: none"`` \| \`color: ${css\_colors};\` \| \`background: ${css\_colors};\` \| \`margin-left: ${number};\` \| ``"font-style: italic;"`` \| ``"font-weight: bold;"`` \| \`text-decoration: ${"underline" \| "line-through"}\` \| ``"animation: blink;"``
 
-- `unset: all`
-- `display: none`
-- `color: COLOR`
-- `background: COLOR`
-- `margin-left: NUMBER` – counts spaces
-- `font-style: italic`
-- `font-weight: bold`
-- `text-decoration: underline|line-through`
-- `animation:blink`
+TODO: `…:before { content: "…" }`, `tab-size`
 
 ___
 
