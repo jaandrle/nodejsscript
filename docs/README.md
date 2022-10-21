@@ -323,11 +323,11 @@ v0.1.13
 
 ### css\_rules
 
-Ƭ **css\_rules**: ``"unset: all;"`` \| ``"display: none"`` \| \`color: ${css\_colors};\` \| \`background: ${css\_colors};\` \| \`margin-left: ${number};\` \| ``"font-style: italic;"`` \| ``"font-weight: bold;"`` \| \`text-decoration: ${"underline" \| "line-through"}\` \| ``"animation: blink;"``
+Ƭ **css\_rules**: ``"unset: all;"`` \| ``"display: none;"`` \| \`color: ${css\_colors};\` \| \`background: ${css\_colors};\` \| \`margin-left: ${number};\` \| ``"font-style: italic;"`` \| ``"font-weight: bold;"`` \| \`text-decoration: ${"underline" \| "line-through"}\` \| ``"animation: blink;"``
 
-- `color: COLOR`
-- `background: COLOR`
-- `margin-left: NUMBER` – counts spaces
+- `color: COLOR` – see [css_colors](README.md#css_colors)
+- `background: COLOR` – see [css_colors](README.md#css_colors)
+- `margin-left: NUMBER` – counts spaces before string
 - `font-style: italic`
 - `font-weight: bold`
 - `text-decoration: underline|line-through`

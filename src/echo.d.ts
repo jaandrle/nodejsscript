@@ -2,9 +2,9 @@ import * as s from "shelljs";
 export type Options= `-${string}`;
 export type css_colors= "black" | "red" | "green" | "yellow" | "blue" | "magenta" | "cyan" | "white" | "gray" | "lightred" | "lightgreen" | "lightyellow" | "lightblue" | "lightmagenta" | "lightcyan" | "whitesmoke";
 /**
- * - `color: COLOR`
- * - `background: COLOR`
- * - `margin-left: NUMBER` – counts spaces
+ * - `color: COLOR` – see {@link css_colors}
+ * - `background: COLOR` – see {@link css_colors}
+ * - `margin-left: NUMBER` – counts spaces before string
  * - `font-style: italic`
  * - `font-weight: bold`
  * - `text-decoration: underline|line-through`
@@ -13,7 +13,7 @@ export type css_colors= "black" | "red" | "green" | "yellow" | "blue" | "magenta
 */
 export type css_rules=
 	  "unset: all;"
-	| "display: none"
+	| "display: none;"
 	| `color: ${css_colors};`
 	| `background: ${css_colors};`
 	| `margin-left: ${number};`
