@@ -2,8 +2,15 @@ import * as s from "shelljs";
 export type Options= `-${string}`;
 export type css_colors= "black" | "red" | "green" | "yellow" | "blue" | "magenta" | "cyan" | "white" | "gray" | "lightred" | "lightgreen" | "lightyellow" | "lightblue" | "lightmagenta" | "lightcyan" | "whitesmoke";
 /**
- * TODO: `…:before { content: "…" }`, `tab-size`
- */
+ * - `color: COLOR`
+ * - `background: COLOR`
+ * - `margin-left: NUMBER` – counts spaces
+ * - `font-style: italic`
+ * - `font-weight: bold`
+ * - `text-decoration: underline|line-through`
+ * - `animation:blink`
+ * - TODO: `…:before { content: "…" }`, `tab-size`
+*/
 export type css_rules=
 	  "unset: all;"
 	| "display: none"
