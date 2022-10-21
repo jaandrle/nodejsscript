@@ -51,7 +51,6 @@ Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe). Provides f
 ```js
 pipe(
 	Number,
-	v=> style.greenBright(v+1),
 	v=> `Result is: ${v}`,
 	echo
 )(await question("Choose number:"));

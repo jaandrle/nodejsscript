@@ -1,27 +1,12 @@
 import { ShellString } from "shelljs";
 import { $ } from "./$.js";
-import support_colors from "supports-color";
 import { formatWithOptions } from "node:util";
 import __log from 'log-update-async-hook';
 const { create: createLogUpdate }= __log;
+
 /** @type {(arr: any[]|string, item: any)=> boolean} */
 const contains= Array.prototype.contains ? Function.prototype.bind(Array.prototype.contains.call) : (arr, item)=> arr.indexOf(item) !== -1;
 let rewritableCurr;
-/** @see https://gist.github.com/rauschma/8698180ae64428badd498599fffd5069 */
-const ansi_constants = {
-	"unset:all": 0, "display:none": 8,
-	"font-weight:bold": 1, "font-style:italic": 3,
-	"text-decoration:underline": 4, "text-decoration:line-through": 9,
-	"animation:blink": 5,
-	"color:black": 30, "color:red": 31, "color:green": 32, "color:yellow": 33, "color:blue": 34, "color:magenta": 35,
-	"color:cyan": 36, "color:white": 37, "color:gray": 90, "color:lightred": 91, "color:lightgreen": 92,
-	"color:lightyellow": 93, "color:lightblue": 94, "color:lightmagenta": 95, "color:lightcyan": 96, "color:whitesmoke": 97,
-	"background:black": 40, "background:red": 41, "background:green": 42, "background:yellow": 43, "background:blue": 44,
-	"background:magenta": 45, "background:cyan": 46, "background:white": 47, "background:gray": 100,
-	"background:lightred": 101, "background:lightgreen": 102, "background:lightyellow": 103, "background:lightblue": 104,
-	"background:lightmagenta": 105, "background:lightcyan": 106, "background:whitesmoke": 107
-};
-
 class EchoOptions extends String{
 	constructor(options= "1"){ super(options.replaceAll(/[ -]/g, "")); return this; }
 	has(needle){ return contains(this, needle); }
@@ -48,6 +33,7 @@ export function echo(options, ...messages){
 	return ShellString(output);
 }
 echo.use= function(options, ...messages){ return this(new EchoOptions(options), ...messages); };
+
 echo.css= function(...styles_arr){
 	const out= { unset: "unset:all" };
 	let all= "";
@@ -65,7 +51,16 @@ echo.css= function(...styles_arr){
 	return out;
 };
 
-function useColors(target){ return $.is_colors===-1 && support_colors[target] || $.is_colors; }
+function useColors(target){//?also levels, see supports-color, and ?$.isFIFO
+	if($.is_colors!==-1) return $.is_colors;
+	if("FORCE_COLORS" in $.env){
+		const { FORCE_COLORS: f }= $.env;
+		if(f==="false"||f==="0") return false;
+		return true;
+	}
+	const { hasColors= ()=> false }= process[target];
+	return hasColors();
+}
 function processColors(messages){
 	const out= [];
 	const c= "%c", cr= new RegExp(`(?<!%)(?=${c})`);
@@ -76,15 +71,26 @@ function processColors(messages){
 		for(let j=0, { length: jl }= ms; j<jl; j++){
 			const msj= ms[j];
 			if(msj.indexOf(c)===-1) continue;
-			ms[j]= msj.replace(c, processCSS(messages[++i]))+"\x1B[0m";
+			ms[j]= processCSS(messages[++i])(msj);
 		}
 		out.push(ms.join(""));
 	}
 	return out;
 }
-function processCSS(candidate= ""){ //TODO?: https://github.com/doowb/ansi-colors/blob/master/index.js
-	if(typeof candidate !== "string") return "";
-	if(candidate.indexOf(":")===-1) return "";
+import { inspect } from 'node:util';
+const ansi_constants= (s=> ({
+	"unset:all": s.reset, "display:none": s.hidden,
+	"font-weight:bold": s.bold, "font-style:italic": s.italic,
+	"text-decoration:underline": s.underline, "text-decoration:line-through": s.strikethrough,
+	"animation:blink": s.blink,
+	"color:black": s.black, "color:red": s.red, "color:green": s.green, "color:yellow": s.yellow, "color:blue": s.blue, "color:magenta": s.magenta, "color:cyan": s.cyan, "color:white": s.white, "color:gray": s.gray,
+	"color:lightred": s.redBright, "color:lightgreen": s.greenBright, "color:lightyellow": s.yellowBright, "color:lightblue": s.blueBright, "color:lightmagenta": s.magentaBright, "color:lightcyan": s.cyanBright, "color:whitesmoke": s.whiteBright,
+	"background:black": s.bgBlack, "background:red": s.bgRed, "background:green": s.bgGreen, "background:yellow": s.bgYellow, "background:blue": s.bgBlue, "background:magenta": s.bgMagenta, "background:cyan": s.bgCyan, "background:white": s.bgWhite, "background:gray": s.bgGray,
+	"background:lightred": s.bgRedBright, "background:lightgreen": s.bgGreenBright, "background:lightyellow": s.bgYellowBright, "background:lightblue": s.bgBlueBright, "background:lightmagenta": s.bgMagentaBright, "background:lightcyan": s.bgCyanBright, "background:whitesmoke": s.bgEsmokeBright
+}))(inspect.colors);
+function processCSS(candidate= ""){
+	if(typeof candidate !== "string") return m=> m.slice(2);
+	if(candidate.indexOf(":")===-1) return m=> m.slice(2);
 	const filter= {};
 	let css= candidate.split(";").reverse();
 	const left_rule= css.find(c=> c.split(":")[0].trim()==="margin-left");
@@ -95,7 +101,7 @@ function processCSS(candidate= ""){ //TODO?: https://github.com/doowb/ansi-color
 	}
 	let before= "";
 	css= css
-		.filter(c=> { const type= c.split(":")[0]; if(filter[type]) return false; filter[type]= 1; return true; })
+		.filter(c=> { const type= c.split(":")[0].trim(); if(filter[type]) return false; filter[type]= 1; return c.trim() && c.indexOf(":")!==-1; })
 		.map(c=> {
 			if(c.trim().indexOf("content-before")===0){
 				before= c.split(":")[1].trim().replaceAll(/["']/g, "");
@@ -104,7 +110,11 @@ function processCSS(candidate= ""){ //TODO?: https://github.com/doowb/ansi-color
 			return ansi_constants[c.replaceAll(" ", "")];
 		})
 		.filter(Boolean);
-	return `${left}\x1B[${css.join(';')}m${before}`;
+	const css_pre= css.map(s=> s[0]);
+	const css_after= css.map(s=> s[1]);
+	return function(match){
+		return left+`\x1B[${css_pre.join(';')}m`+before+match.slice(2)+`\x1B[${css_after.join(';')}m`;
+	};
 }
 function rewritableStart({ output, stream= process.stdout, showCursor= false }= {}){
 	if(!rewritableCurr)

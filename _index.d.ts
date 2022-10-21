@@ -15,7 +15,6 @@ export { Dollar as $ } from './src/$.d';
  * ```js
  * pipe(
  * 	Number,
- * 	v=> style.greenBright(v+1),
  * 	v=> `Result is: ${v}`,
  * 	echo
  * )(await question("Choose number:"));

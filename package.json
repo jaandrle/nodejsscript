@@ -66,8 +66,7 @@
 		"node-fetch": "^3.2.10",
 		"sade": "^1.8.1",
 		"shell-escape-tag": "^2.0.2",
-		"shelljs": "^0.8.5",
-		"supports-color": "^9.2.3"
+		"shelljs": "^0.8.5"
 	},
 	"devDependencies": {
 		"jshint": "^2.13.5",
