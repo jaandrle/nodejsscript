@@ -1,6 +1,5 @@
 #!/usr/bin/env nodejsscript
 /* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true *//* global echo, $, pipe, s */
-echo($.hasArgs("--help"));
 $.api("", true)
 .version("0.1.0")
 .describe("NodeJS Script cli test")
@@ -14,5 +13,6 @@ $.api("", true)
 	
 	if(clear) s.rm("-R", name);
 	testDir(name);
+	$.exit(0);
 })
 .parse();

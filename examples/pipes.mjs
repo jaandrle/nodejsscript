@@ -18,4 +18,4 @@ echo("Local packages:");
 getPackages(false).forEach(printPackage);
 echo("Global packages:");
 getPackages(true).forEach(printPackage);
-exit(0);
+$.exit(0);

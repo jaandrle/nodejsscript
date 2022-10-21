@@ -16,11 +16,19 @@ nodejsscript
 - [\_\_sade](README.md#__sade)
 - [\_exit](README.md#_exit)
 
+### Interfaces
+
+- [EchoFunction](interfaces/EchoFunction.md)
+
+### Type Aliases
+
+- [css\_rules](README.md#css_rules)
+- [css\_colors](README.md#css_colors)
+
 ### Public Namespaces
 
 - [$](modules/.md)
 - [s](modules/s.md)
-- [style](modules/style.md)
 
 ### Internal Namespaces
 
@@ -171,6 +179,8 @@ The `console.log` alternative with method `use` similar to [echo](modules/s.md#e
 - `-P`: Outputs objects in **p**rettier format
 - `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
 
+There is also partial supports for styling mimic CSS and `console.log` in the web browser. See [css](interfaces/EchoFunction.md#css).
+
 ```js
 // as console.log
 const count = 5;
@@ -308,6 +318,28 @@ v0.1.13
 #### Returns
 
 `never`
+
+## Type Aliases
+
+### css\_rules
+
+Ƭ **css\_rules**: ``"unset: all;"`` \| ``"display: none"`` \| \`color: ${css\_colors};\` \| \`background: ${css\_colors};\` \| \`margin-left: ${number};\` \| ``"font-style: italic;"`` \| ``"font-weight: bold;"`` \| \`text-decoration: ${"underline" \| "line-through"}\` \| ``"animation: blink;"``
+
+- `unset: all`
+- `display: none`
+- `color: COLOR`
+- `background: COLOR`
+- `margin-left: NUMBER` – counts spaces
+- `font-style: italic`
+- `font-weight: bold`
+- `text-decoration: underline|line-through`
+- `animation:blink`
+
+___
+
+### css\_colors
+
+Ƭ **css\_colors**: ``"black"`` \| ``"red"`` \| ``"green"`` \| ``"yellow"`` \| ``"blue"`` \| ``"magenta"`` \| ``"cyan"`` \| ``"white"`` \| ``"gray"`` \| ``"lightred"`` \| ``"lightgreen"`` \| ``"lightyellow"`` \| ``"lightblue"`` \| ``"lightmagenta"`` \| ``"lightcyan"`` \| ``"whitesmoke"``
 
 ## Properties
 

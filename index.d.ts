@@ -4,7 +4,6 @@ declare global{
 	var $: typeof _.$ & string[];
 	var pipe: typeof _.pipe;
 	var s: typeof _.s;
-	var style: typeof _.style;
 	/**
 	 * A wrapper around the [node-fetch](https://www.npmjs.com/package/node-fetch) package.
 	 *

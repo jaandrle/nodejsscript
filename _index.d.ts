@@ -1,5 +1,5 @@
 /** @category Public */
-export { echo } from './src/echo.d';
+export { echo, EchoFunction, css_rules, css_colors } from './src/echo.d';
 export { xdg_, __sade, _env, _exit } from './src/$.d';
 /**
  * Contains configuration for current script and methods
@@ -53,17 +53,6 @@ export function pipe(...funs: Function[]): (input: any)=> any;
  * @category Public
  */
 export * as s from './src/shelljs.d';
-
-import * as style from 'ansi-colors';
-/**
- * The [doowb/ansi-colors](https://github.com/doowb/ansi-colors) package as `style` namespace.
- * ```js
- * style.theme({ info: style.blue });
- * echo(style.info('Hello world!'));
- * ```
- * @category Public
- */
-export { style };
 
 import * as __fetch from 'node-fetch';
 /**

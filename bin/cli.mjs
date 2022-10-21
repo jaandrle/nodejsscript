@@ -2,7 +2,7 @@
 import { join, resolve } from "node:path";
 import { argv } from "node:process";
 import url from "node:url";
-import "../index.js";/* global echo, exit, $, s, style, pipe */
+import "../index.js";/* global echo, $, s, pipe */
 
 process.on('uncaughtException', printError);
 (async function main(){
@@ -24,7 +24,7 @@ process.on('uncaughtException', printError);
 function handleMyArgvs(candidate){
 	if(['--version', '-v', '-V'].includes(candidate)){
 		echo(info("version")[0]);
-		return exit(0);
+		return $.exit(0);
 	}
 	if(['--help', '-h'].includes(candidate))
 		return printUsage();
@@ -34,34 +34,36 @@ function handleMyArgvs(candidate){
 function printError(e){
 	if(e instanceof $.Error){
 		console.error(e.message);
-		return exit(1);
+		return $.exit(1);
 	}
 	Error.print(e);
-	exit(e.exitCode || 1);
+	$.exit(e.exitCode || 1);
 }
 function printUsage(){
-	const S= style;
-	S.theme({
-		n: S.blueBright, v: S.greenBright, code: S.italic,
-		H: t=> S.yellow(t)+":", T: t=> "  "+t
-	});
 	const [ n, v, d ]= info("name", "version", "description");
-	echo([
-		`${S.n(n)}@${S.v(v)}`,
-		S.T(d),
-		S.H("Usage"),
-		S.T(`${n} [options] <script>`),
-		S.H("Options"),
-		S.T("          --version, -v    print current zx version"),
-		S.T("             --help, -h    print help"),
-		S.T("--global-jsconfig [add]    woraround for type checking of non-package scripts"),
-		S.H("Examples"),
-		S.T(`${n} script.js`),
-		S.T(`${n} --help`),
-		S.H("Usage in scripts"),
-		S.T("Just start the file with: "+S.code('#!/usr/bin/env nodejsscript'))
-	].map(t=> "  "+t).join("\n"));
-	exit(0);
+	const css= echo.css(
+		".test { unset }",
+		"* { margin-left: 2; }",
+		".n { color: lightblue; }",
+		".v { color: lightgreen; margin-left: 0; }",
+		".code { font-style: italic; margin-left: 0; }",
+		".H { color: yellow; }",
+		".T { margin-left: 4; }"
+	);
+	echo(`%c${n}@%c${v}`, css.n, css.v);
+	echo(`%c${d}`, css.T);
+	echo(`%cUsage%c:`, css.H);
+	echo(`%c${n} [options] <script>`, css.T);
+	echo(`%cOptions%c:`, css.H);
+	echo("%c          --version, -v    print current zx version", css.T);
+	echo("%c             --help, -h    print help", css.T);
+	echo("%c--global-jsconfig [add]    woraround for type checking of non-package scripts", css.T);
+	echo("%cExamples%c:", css.H);
+	echo(`%c${n} script.js`, css.T);
+	echo(`%c${n} --help`, css.T);
+	echo("%cUsage in scripts%c:", css.H);
+	echo("%cJust start the file with: %c#!/usr/bin/env nodejsscript", css.T, css.code);
+	$.exit(0);
 }
 function info(...keys){
 	const info= s.cat(url.fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse);
@@ -83,5 +85,5 @@ function jsconfigTypes(){
 		s.ShellString,
 		s=> s.to("jsconfig.json")
 	)(jsconfig_file);
-	exit(0);
+	$.exit(0);
 }

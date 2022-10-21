@@ -33,7 +33,6 @@ s.mkdir($.xdg.temp(name));
  · [$](./docs/modules/.md) ([$.api() #sade](./docs/modules/.md#api), [$.read()](./docs/modules/.md#read), [$.xdg](./docs/modules/xdg_.xdg.md), …)
  · [echo()](./docs/README.md#echo)
  · [fetch() #node-fetch](./docs/README.md#fetch)
- · [style #ansi-colors](./docs/modules/style.md)
  · [pipe()](./docs/README.md#pipe)
  · [cyclicLoop()](./docs/README.md#cyclicloop)
 

@@ -16,18 +16,13 @@ function* cyclicLoop(items){
 }
 
 import { $ } from "./src/$.js";
-import style from "ansi-colors";
-import { read } from "./src/read.js";
 import { pipe } from "./src/utils.js";
 Object.assign(globalThis, {
 	echo,
-	exit: s.exit,
-	pipe,
 	s,
 	$,
-	style,
 	fetch,
-	read,
+	pipe,
 	cyclicLoop
 });
 

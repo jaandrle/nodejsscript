@@ -1,5 +1,27 @@
 import * as s from "shelljs";
-type Options= `-${string}`;
+export type Options= `-${string}`;
+export type css_colors= "black" | "red" | "green" | "yellow" | "blue" | "magenta" | "cyan" | "white" | "gray" | "lightred" | "lightgreen" | "lightyellow" | "lightblue" | "lightmagenta" | "lightcyan" | "whitesmoke";
+/**
+ * - `unset: all`
+ * - `display: none`
+ * - `color: COLOR`
+ * - `background: COLOR`
+ * - `margin-left: NUMBER` – counts spaces
+ * - `font-style: italic`
+ * - `font-weight: bold`
+ * - `text-decoration: underline|line-through`
+ * - `animation:blink`
+*/
+export type css_rules=
+	  "unset: all;"
+	| "display: none"
+	| `color: ${css_colors};`
+	| `background: ${css_colors};`
+	| `margin-left: ${number};`
+	| "font-style: italic;"
+	| "font-weight: bold;"
+	| `text-decoration: ${"underline"|"line-through"}`
+	| "animation: blink;";
 export interface EchoFunction {
 	/**
 	 * Similarly to {@link s.echo}, the first argument accepts options string starting with `-`:
@@ -21,6 +43,28 @@ export interface EchoFunction {
 	 * @return	   Returns processed string with additional utility methods like .to().
 	 */
 	use(options: Options, message?: any, ...optionalParams: any[]): s.ShellString;
+
+	/**
+	 * In `echo`, you can use `%c` for styling (see [Styling console output](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output)):
+	 * ```js
+	 * echo("%cHello %cWorld!", "color: red", "color: blue");
+	 * ```
+	 * **But**, implementation for `echo` is much more limited. There is no CSS parser, just keywords see {@link css_rules}.
+	 *
+	 * You can pre-define css class with this method:
+	 * ```js
+	 * const css= echo.css(".red { color: red; }", ".blue { color: blue; }");
+	 * echo("%cRed text", css.red);
+	 * echo("%cBlue text", css.blue);
+	 * ```
+	 * …there is special style name `*` which applies to all defined classes:
+	 * ```js
+	 * const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue { color: blue; }");
+	 * echo("%cRed and bold text", css.red);
+	 * echo("%cBlue and bold text", css.blue);
+	 * ```
+	 */
+	css(...styles: `.${string}{ ${css_rules} }`[]): Record<string, string>;
 
 	/**
 	 * Prints to `stdout` with newline. Multiple arguments can be passed, with the
@@ -53,6 +97,8 @@ export interface EchoFunction {
  * - `-c`: Don’t **c**olorize output (e.g. objects)
  * - `-P`: Outputs objects in **p**rettier format
  * - `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
+ *
+ * There is also partial supports for styling mimic CSS and `console.log` in the web browser. See {@link EchoFunction.css}.
  *
  * ```js
  * // as console.log

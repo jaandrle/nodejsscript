@@ -16,11 +16,12 @@ export const $= Object.assign([], {
 		set options(v){ return (config.globOptions= v); },
 	});},
 	
+	is_colors: -1,
 	configAssign(...c){
 		const o= Object.assign({}, ...c);
 		const has= Reflect.has.bind(null, o);
 		const get= Reflect.get.bind(null, o);
-		for(const config of [ "silent", "verbose", "fatal" ])
+		for(const config of [ "silent", "verbose", "fatal", "colors" ])
 			if(has(config)) this["is_"+config]= get(config);
 	},
 	isFIFO(stream_id= 0){ return fstatSync(stream_id).isFIFO(); },
@@ -63,14 +64,14 @@ $.read= async function(options= {}){
 	if(has("-p")) return promt(options, has, get);
 	if(has("-n")){
 		const line= await stdin[Symbol.asyncIterator]().next();
-		return line.value.slice(0, get("-n"));
+		return ShellString(line.value.slice(0, get("-n")));
 	}
 	let buf= $.stdin ? $.stdin : "";
 	if(has("-d")){
 		const needle= get("-d");
 		for await (const chunk of stdin){
 			const i= chunk.indexOf(needle);
-			if(i!==-1) return buf+chunk.slice(0, i);
+			if(i!==-1) return ShellString(buf+chunk.slice(0, i));
 			buf+= chunk;
 		}
 	}
@@ -87,12 +88,11 @@ function promt(options, has, get){
 		return chars < 0 ? promt : promt.slice(0, chars);
 	});
 }
-import style from "ansi-colors";
 import { createInterface } from "node:readline";
 function question(query= "", options= {}){
 	query= String(query);
-	if(!/\s$/.test(query)) query+= "\n"+style.greenBright.bold('❯ ');
-	if(!options.output) echo.use("-n", query);
+	if(!/\s$/.test(query)) query+= "\n"+'%c❯ ';
+	if(!options.output) echo.use("-n", query, "color: lightgreen");
 	
 	const rl= createInterface({
 		input: process.stdin,
