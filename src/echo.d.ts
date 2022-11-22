@@ -111,15 +111,19 @@ export interface EchoFunction {
 	(message?: any, ...optionalParams: any[]): s.ShellString;
 }
 /**
- * The `console.log` alternative with method `use` similar to {@link s.echo},
- *  the first argument accepts options string starting with `-`:
+ * This is mixed function between bash’s `echo` and `console.log`.
+ * By default, works more like `console.log` with partial supports
+ * for styling mimic CSS and `console.log` in the web browser. See {@link EchoFunction.css}.
+ * 
+ * The {@link EchoFunction.use} provides more `echo` way,
+ * the first argument accepts options string starting with `-`:
  * - `-n`: Don’t append **n**ew line
  * - `-1`/`-2`: Outputs to `stdout`/`stderr`
  * - `-c`: Don’t **c**olorize output (e.g. objects)
  * - `-P`: Outputs objects in **p**rettier format
  * - `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
  *
- * There is also partial supports for styling mimic CSS and `console.log` in the web browser. See {@link EchoFunction.css}.
+ * There is also 
  *
  * ```js
  * // as console.log

@@ -170,15 +170,19 @@ ___
 
 ▸ **echo**(`message?`, ...`optionalParams`): [`ShellString`](modules/s.md#shellstring)
 
-The `console.log` alternative with method `use` similar to [echo](modules/s.md#echo),
- the first argument accepts options string starting with `-`:
+This is mixed function between bash’s `echo` and `console.log`.
+By default, works more like `console.log` with partial supports
+for styling mimic CSS and `console.log` in the web browser. See [css](interfaces/EchoFunction.md#css).
+
+The [use](interfaces/EchoFunction.md#use) provides more `echo` way,
+the first argument accepts options string starting with `-`:
 - `-n`: Don’t append **n**ew line
 - `-1`/`-2`: Outputs to `stdout`/`stderr`
 - `-c`: Don’t **c**olorize output (e.g. objects)
 - `-P`: Outputs objects in **p**rettier format
 - `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
 
-There is also partial supports for styling mimic CSS and `console.log` in the web browser. See [css](interfaces/EchoFunction.md#css).
+There is also 
 
 ```js
 // as console.log

@@ -42,11 +42,16 @@ echo.use= function(options, ...messages){ return this(new EchoOptions(options), 
 echo.css= function(...styles_arr){
 	const out= { unset: "unset:all" };
 	let all= "";
-	for(const style of styles_arr){
-		let [ name, css ]= style.replace("}","").replaceAll(/[\.#]/g, "").split("{");
-		let pseudo;
-		[ name, pseudo ]= name.trim().split(":");
-		if(pseudo) css= css.replaceAll("content", "content-"+pseudo);
+	const styles_preprocessed= styles_arr.flatMap(function(style){
+		let [ name_candidate, css ]= style.replace("}","").replaceAll(/[\.#]/g, "").split("{");
+		return name_candidate.split(",").map(name=> {
+			let pseudo;
+			[ name, pseudo ]= name.trim().split(":");
+			if(pseudo) css= css.replaceAll("content", "content-"+pseudo);
+			return [ name, css ];
+		});
+	});
+	for(const [ name, css ] of styles_preprocessed){
 		if(name!=="*")
 			out[name]= out[name] ? out[name]+css : css;
 		else
