@@ -25,12 +25,17 @@ export function echo(options, ...messages){
 	if(!has_options) messages.unshift(options);
 	
 	if(!o.has("c")&&useColors(target)) messages= processColors(messages);
-	let output= formatWithOptions({ colors: !o.has("c"), compact: !o.has("P") }, ...messages.map(prepareTexts));
-	if(!o.has("n")) output+= "\n";
+	const output= echoOutput(messages, o);
+	if(o.has("S")) return ShellString(output);
 	if(o.has("R")) return rewritableStart({ stream: process[target], output });
 	
 	process[target].write(output);
 	return ShellString(output);
+}
+function echoOutput(messages, o){
+	let output= formatWithOptions({ colors: !o.has("c"), compact: !o.has("P") }, ...messages.map(prepareTexts));
+	if(!o.has("n")) output+= "\n";
+	return output;
 }
 echo.use= function(options, ...messages){ return this(new EchoOptions(options), ...messages); };
 
@@ -50,6 +55,8 @@ echo.css= function(...styles_arr){
 	if(all) Object.keys(out).forEach(key=> key!=="unset" && (out[key]= all+";"+out[key]));
 	return out;
 };
+echo.format= function(...messages){ return this(new EchoOptions("-S"), ...messages); };
+echo.formatWithOptions= function(options, ...messages){ return this(new EchoOptions("-S"+options), ...messages); };
 
 function useColors(target){//?also levels, see supports-color, and ?$.isFIFO
 	if($.is_colors!==-1) return $.is_colors;

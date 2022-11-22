@@ -29,6 +29,7 @@ export interface EchoFunction {
 	 * - `-c`: Don’t **c**olorize output (e.g. objects)
 	 * - `-P`: Outputs objects in **p**rettier format
 	 * - `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
+	 * - `-S`: silent mode ⇒ just return processed final string (ignores: `-1`, `-2`, `R`)
 	 *
 	 * ```js
 	 * echo.use("-R", "0%");
@@ -37,7 +38,7 @@ export interface EchoFunction {
 	 * // combination
 	 * echo.use("-2cP", { a: "A" });
 	 * ```
-	 * @param options Available options: `-n`, `-1`/`-2`, `-c`, `-P`, `-R`/`-r` and `--`.
+	 * @param options Available options: `-n`, `-1`/`-2`, `-c`, `-P`, `-R`/`-r`.
 	 * @param message The text to print.
 	 * @return	   Returns processed string with additional utility methods like .to().
 	 */
@@ -62,14 +63,35 @@ export interface EchoFunction {
 	 * echo("%cRed and bold text", css.red);
 	 * echo("%cBlue and bold text", css.blue);
 	 * ```
+	 * …there is also helpers (see {@link EchoFunction.format} and {@link EchoFunction.formatWithOptions}) to just return finally formated text:
+	 * ```js
+	 * const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue { color: blue; }");
+	 * const text= echo.format("%cRed and bold text", css.red);
+	 * echo(text);
+	 * ```
 	 */
 	css(...styles: `.${string}{ ${css_rules} }`[]): Record<string, string>;
+	/**
+	 * A helper method returning formated text as it processed by {@link echo}, but not printed into the console.
+	 * (So infact, it is an alias `echo.use("-S", …);`)
+	 * @param message The text to print.
+	 * @return	   Returns processed string with additional utility methods like .to().
+	 * */
+	format(message?: any, ...optionalParams: any[]): s.ShellString;
+	/**
+	 * A helper method returning formated text as it processed by {@link echo}, but not printed into the console.
+	 * (So infact, it is an alias `echo.use("-S"+…, …);`)
+	 * @param options Available options: `-n`, `-c`, `-P` (these are available, but ignored: `-1`/`-2`, `-R`/`-r`).
+	 * @param message The text to print.
+	 * @return	   Returns processed string with additional utility methods like .to().
+	 * */
+	formatWithOptions(options: Options, message?: any, ...optionalParams: any[]): s.ShellString;
 
 	/**
 	 * Prints to `stdout` with newline. Multiple arguments can be passed, with the
 	 * first used as the primary message and all additional used as substitution
 	 * values similar to [`printf(3)`](http://man7.org/linux/man-pages/man3/printf.3.html) (the arguments are all passed to `util.format()`).
-	 * Internally uses {@link console.log}. Stringify inputs except objects and errors in case of {@link config.verbose}.
+	 * Internally uses `console.log`. Stringify inputs except objects and errors in case of `$.is_verbose`.
 	 *
 	 * ```js
 	 * const count = 5;

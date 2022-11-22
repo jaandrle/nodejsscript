@@ -11,7 +11,7 @@
 Prints to `stdout` with newline. Multiple arguments can be passed, with the
 first used as the primary message and all additional used as substitution
 values similar to [`printf(3)`](http://man7.org/linux/man-pages/man3/printf.3.html) (the arguments are all passed to `util.format()`).
-Internally uses console.log. Stringify inputs except objects and errors in case of config.verbose.
+Internally uses `console.log`. Stringify inputs except objects and errors in case of `$.is_verbose`.
 
 ```js
 const count = 5;
@@ -44,6 +44,8 @@ Returns processed string with additional utility methods like .to().
 
 - [use](EchoFunction.md#use)
 - [css](EchoFunction.md#css)
+- [format](EchoFunction.md#format)
+- [formatWithOptions](EchoFunction.md#formatwithoptions)
 
 ## Methods
 
@@ -57,6 +59,7 @@ Similarly to [echo](../modules/s.md#echo), the first argument accepts options st
 - `-c`: Don’t **c**olorize output (e.g. objects)
 - `-P`: Outputs objects in **p**rettier format
 - `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
+- `-S`: silent mode ⇒ just return processed final string (ignores: `-1`, `-2`, `R`)
 
 ```js
 echo.use("-R", "0%");
@@ -70,7 +73,7 @@ echo.use("-2cP", { a: "A" });
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | \`-${string}\` | Available options: `-n`, `-1`/`-2`, `-c`, `-P`, `-R`/`-r` and `--`. |
+| `options` | \`-${string}\` | Available options: `-n`, `-1`/`-2`, `-c`, `-P`, `-R`/`-r`. |
 | `message?` | `any` | The text to print. |
 | `...optionalParams` | `any`[] | - |
 
@@ -104,6 +107,12 @@ const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue {
 echo("%cRed and bold text", css.red);
 echo("%cBlue and bold text", css.blue);
 ```
+…there is also helpers (see [format](EchoFunction.md#format) and [formatWithOptions](EchoFunction.md#formatwithoptions)) to just return finally formated text:
+```js
+const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue { color: blue; }");
+const text= echo.format("%cRed and bold text", css.red);
+echo(text);
+```
 
 #### Parameters
 
@@ -114,3 +123,48 @@ echo("%cBlue and bold text", css.blue);
 #### Returns
 
 `Record`<`string`, `string`\>
+
+___
+
+### format
+
+▸ **format**(`message?`, ...`optionalParams`): [`ShellString`](../modules/s.md#shellstring)
+
+A helper method returning formated text as it processed by [echo](../README.md#echo), but not printed into the console.
+(So infact, it is an alias `echo.use("-S", …);`)
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `message?` | `any` | The text to print. |
+| `...optionalParams` | `any`[] | - |
+
+#### Returns
+
+[`ShellString`](../modules/s.md#shellstring)
+
+Returns processed string with additional utility methods like .to().
+
+___
+
+### formatWithOptions
+
+▸ **formatWithOptions**(`options`, `message?`, ...`optionalParams`): [`ShellString`](../modules/s.md#shellstring)
+
+A helper method returning formated text as it processed by [echo](../README.md#echo), but not printed into the console.
+(So infact, it is an alias `echo.use("-S"+…, …);`)
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options` | \`-${string}\` | Available options: `-n`, `-c`, `-P` (these are available, but ignored: `-1`/`-2`, `-R`/`-r`). |
+| `message?` | `any` | The text to print. |
+| `...optionalParams` | `any`[] | - |
+
+#### Returns
+
+[`ShellString`](../modules/s.md#shellstring)
+
+Returns processed string with additional utility methods like .to().
