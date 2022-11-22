@@ -45,7 +45,7 @@ export interface EchoFunction {
 	use(options: Options, message?: any, ...optionalParams: any[]): s.ShellString;
 
 	/**
-	 * In `echo`, you can use `%c` for styling (see [Styling console output](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output)):
+	 * In `echo`, you can use `%c` for styling:
 	 * ```js
 	 * echo("%cHello %cWorld!", "color: red", "color: blue");
 	 * ```
@@ -69,6 +69,9 @@ export interface EchoFunction {
 	 * const text= echo.format("%cRed and bold text", css.red);
 	 * echo(text);
 	 * ```
+	 * For further information, see:
+	 * <br>- [Styling console output](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output)
+	 * <br>- [Util.format | Node.js v19.1.0 Documentation](https://nodejs.org/api/util.html#utilformatformat-args)
 	 */
 	css(...styles: `.${string}{ ${css_rules} }`[]): Record<string, string>;
 	/**

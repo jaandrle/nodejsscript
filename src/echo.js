@@ -60,7 +60,7 @@ echo.css= function(...styles_arr){
 	if(all) Object.keys(out).forEach(key=> key!=="unset" && (out[key]= all+";"+out[key]));
 	return out;
 };
-echo.format= function(...messages){ return this(new EchoOptions("-S"), ...messages); };
+echo.format= function(...messages){ return this(new EchoOptions("-Sn"), ...messages); };
 echo.formatWithOptions= function(options, ...messages){ return this(new EchoOptions("-S"+options), ...messages); };
 
 function useColors(target){//?also levels, see supports-color, and ?$.isFIFO

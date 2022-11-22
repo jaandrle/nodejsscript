@@ -89,7 +89,7 @@ ___
 
 ▸ **css**(...`styles`): `Record`<`string`, `string`\>
 
-In `echo`, you can use `%c` for styling (see [Styling console output](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output)):
+In `echo`, you can use `%c` for styling:
 ```js
 echo("%cHello %cWorld!", "color: red", "color: blue");
 ```
@@ -113,6 +113,9 @@ const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue {
 const text= echo.format("%cRed and bold text", css.red);
 echo(text);
 ```
+For further information, see:
+<br>- [Styling console output](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output)
+<br>- [Util.format | Node.js v19.1.0 Documentation](https://nodejs.org/api/util.html#utilformatformat-args)
 
 #### Parameters
 
