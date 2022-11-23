@@ -70,7 +70,7 @@ function printUsage(){
 	echo(`%cUsage%c:`, css.H);
 	echo(`%c${n} [options] <script>`, css.T);
 	echo(`%cOptions%c:`, css.H);
-	echo("%c          --version, -v    print current zx version", css.T);
+	echo(`%c          --version, -v    print current ${n} version`, css.T);
 	echo("%c             --help, -h    print help", css.T);
 	echo("%c             --eval, -e    similar to `node -e …`", css.T);
 	echo("%c            --print, -p    similar to `node -p …`, infact (for now?) it wraps argument by `echo` function (splits givent string by ';' and wraps last non-empty part)", css.T);
