@@ -2,21 +2,33 @@
 import { join, resolve } from "node:path";
 import { argv } from "node:process";
 import url from "node:url";
+import { randomUUID } from "node:crypto";
 import "../index.js";/* global echo, $, s, pipe */
 
 process.on('uncaughtException', printError);
 (async function main(){
 	const candidate= argv.splice(2, 1)[0];
-	if(candidate[0]==="-") handleMyArgvs(candidate);
+	let filepath_tmp;
+	if(candidate[0]==="-")
+		filepath_tmp= handleMyArgvs(candidate);
+	const is_tmp= filepath_tmp !== undefined;
 
-	const filepath= candidate.startsWith('/') ? candidate : ( candidate.startsWith('file:///') ? url.fileURLToPath(candidate) : resolve(candidate) );
+	const filepath= is_tmp ?
+		filepath_tmp : (
+		candidate.startsWith('/') ?
+			candidate :
+			( candidate.startsWith('file:///') ?
+				url.fileURLToPath(candidate) :
+				resolve(candidate) ));
 	argv[1]= filepath;
 	$.push(...argv.slice(1));
 	if($.isFIFO(0)) $.stdin= await $.read();
 	try{
 		if(!s.test("-f", filepath)) $.error(`File '${candidate}' not found.`);
 		await import(url.pathToFileURL(filepath).toString());
+		if(is_tmp) s.rm("-f", filepath_tmp);
 	} catch(e){
+		if(is_tmp) s.rm("-f", filepath_tmp);
 		printError(e);
 	}
 })();
@@ -30,6 +42,10 @@ function handleMyArgvs(candidate){
 		return printUsage();
 	if("--global-jsconfig"===candidate)
 		return jsconfigTypes();
+	if(['-e', '--eval'].includes(candidate))
+		return runEval(0);
+	if(['-p', '--print'].includes(candidate))
+		return runEval(1);
 }
 function printError(e){
 	if(e instanceof $.Error){
@@ -56,10 +72,14 @@ function printUsage(){
 	echo(`%cOptions%c:`, css.H);
 	echo("%c          --version, -v    print current zx version", css.T);
 	echo("%c             --help, -h    print help", css.T);
+	echo("%c             --eval, -e    similar to `node -e …`", css.T);
+	echo("%c            --print, -p    similar to `node -p …`, infact (for now?) it wraps argument by `echo` function (splits givent string by ';' and wraps last non-empty part)", css.T);
 	echo("%c--global-jsconfig [add]    woraround for type checking of non-package scripts", css.T);
 	echo("%cExamples%c:", css.H);
 	echo(`%c${n} script.js`, css.T);
 	echo(`%c${n} --help`, css.T);
+	echo(`%cls | ${n} -p '$.stdin.replaceAll("A", "AAAA").to'`, css.T);
+	echo(`%cls | ${n} -p '$.stdin.lines.filter(line=> line[0]==="R").map(line=> \`file: \${line}\`)'`, css.T);
 	echo("%cUsage in scripts%c:", css.H);
 	echo("%cJust start the file with: %c#!/usr/bin/env nodejsscript", css.T, css.code);
 	$.exit(0);
@@ -85,4 +105,16 @@ function jsconfigTypes(){
 		s=> s.to("jsconfig.json")
 	)(jsconfig_file);
 	$.exit(0);
+}
+function runEval(is_print){
+	let input= argv[2];
+	if(is_print){
+		let out_arr= input.split(";").reverse();
+		if(out_arr[0].trim()==="") out_arr.shift();
+		out_arr[0]= `echo(${out_arr[0]})`;
+		input= out_arr.reverse().join(";");
+	}
+	const filepath= join(process.cwd(), `nodejsscript-${randomUUID()}.mjs`);
+	s.echo(input).to(filepath);
+	return filepath;
 }

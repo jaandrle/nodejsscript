@@ -77,7 +77,11 @@ $.read= async function(options= {}){
 	}
 	for await (const chunk of stdin)
 		buf+= chunk;
-	return ShellString(buf);
+	const out= ShellString(buf);
+	Reflect.defineProperty(out, "lines", {
+		get(){ return out.split("\n"); }
+	});
+	return out;
 };
 
 function promt(options, has, get){
@@ -91,8 +95,8 @@ function promt(options, has, get){
 import { createInterface } from "node:readline";
 function question(query= "", options= {}){
 	query= String(query);
-	if(!/\s$/.test(query)) query+= "\n"+'%c❯ ';
-	if(!options.output) echo.use("-n", query, "color: lightgreen");
+	if(!/\s$/.test(query)) query+= "\n"+echo.format('%c❯ ', "color:lightgreen");
+	if(!options.output) echo.use("-n", query);
 	
 	const rl= createInterface({
 		input: process.stdin,
