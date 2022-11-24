@@ -1,6 +1,7 @@
 import { config, ShellString } from "shelljs";
 import { fstatSync } from "node:fs";
 import * as xdg from "./xdg.js";
+import { stdin as key_stdin } from "./keys.js";
 export const $= Object.assign([], {
 	get is_silent(){ return config.silent; },
 	set is_silent(v){ config.silent= v; },
@@ -25,6 +26,23 @@ export const $= Object.assign([], {
 			if(has(config)) this["is_"+config]= get(config);
 	},
 	isFIFO(stream_id= 0){ return fstatSync(stream_id).isFIFO(); },
+	stdin: (function(){
+		let stdin, setted= false;
+		return {
+			[Symbol.toPrimitive](hint){
+				if(hint==="boolean") return setted;
+				if(hint==="number") return Number(setted);
+				if(hint==="string") return stdin || "";
+				return null;
+			},
+			text(_default){ return setted ? stdin : _default; },
+			lines(_default){ return setted ? stdin.split("\n") : _default; },
+			[key_stdin](){
+				if(!$.isFIFO(0)) return Promise.resolve("");
+				return $.read().then(t=> (setted= true, stdin= (t.slice(0, -1))));
+			}
+		};
+	})(),
 	
 	Error: class extends Error{},
 	error(message){ const e= new $.Error(message); Error.captureStackTrace(e, $.error); throw e; },
@@ -66,7 +84,7 @@ $.read= async function(options= {}){
 		const line= await stdin[Symbol.asyncIterator]().next();
 		return ShellString(line.value.slice(0, get("-n")));
 	}
-	let buf= $.stdin ? $.stdin : "";
+	let buf= $.stdin ? $.stdin.text("") : "";
 	if(has("-d")){
 		const needle= get("-d");
 		for await (const chunk of stdin){
@@ -77,11 +95,7 @@ $.read= async function(options= {}){
 	}
 	for await (const chunk of stdin)
 		buf+= chunk;
-	const out= ShellString(buf);
-	Reflect.defineProperty(out, "lines", {
-		get(){ return out.split("\n"); }
-	});
-	return out;
+	return ShellString(buf);
 };
 
 function promt(options, has, get){

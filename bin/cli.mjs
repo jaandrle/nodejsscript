@@ -4,6 +4,7 @@ import { argv } from "node:process";
 import url from "node:url";
 import { randomUUID } from "node:crypto";
 import "../index.js";/* global echo, $, s, pipe */
+import { stdin as key_stdin } from "../src/keys.js";
 
 process.on('uncaughtException', printError);
 (async function main(){
@@ -22,7 +23,7 @@ process.on('uncaughtException', printError);
 				resolve(candidate) ));
 	argv[1]= filepath;
 	$.push(...argv.slice(1));
-	if($.isFIFO(0)) $.stdin= await $.read();
+	await $.stdin[key_stdin]();
 	try{
 		if(!s.test("-f", filepath)) $.error(`File '${candidate}' not found.`);
 		await import(url.pathToFileURL(filepath).toString());
@@ -78,8 +79,8 @@ function printUsage(){
 	echo("%cExamples%c:", css.H);
 	echo(`%c${n} script.js`, css.T);
 	echo(`%c${n} --help`, css.T);
-	echo(`%cls | ${n} -p '$.stdin.replaceAll("A", "AAAA").to'`, css.T);
-	echo(`%cls | ${n} -p '$.stdin.lines.filter(line=> line[0]==="R").map(line=> \`file: \${line}\`)'`, css.T);
+	echo(`%cls | ${n} -p '$.stdin.text().replaceAll("A", "AAAA").to'`, css.T);
+	echo(`%cls | ${n} -p '$.stdin.lines().filter(line=> line[0]==="R").map(line=> \`file: \${line}\`)'`, css.T);
 	echo("%cUsage in scripts%c:", css.H);
 	echo("%cJust start the file with: %c#!/usr/bin/env nodejsscript", css.T, css.code);
 	$.exit(0);
