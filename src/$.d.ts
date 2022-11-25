@@ -185,6 +185,11 @@ export namespace Dollar{
 		 * */
 		text: <T>(_default: T)=> string | T;
 		/**
+		 * Returns stdin processed by `JSON.parse`.
+		 * @param _default Default value when no stdin.
+		 * */
+		json: <T>(_default: T)=> string | T;
+		/**
 		 * Returns stdin as an array of lines.
 		 * @param _default Default value when no stdin.
 		 * */
