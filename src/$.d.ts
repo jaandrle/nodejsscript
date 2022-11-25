@@ -13,6 +13,7 @@ export namespace Dollar{
 	 * ```js
 	 * if($.isMain(import.meta)) echo("This is main script");
 	 * ```
+	 * @category Public
 	 * */
 	function isMain(import_meta: ImportMeta): boolean;
 	
