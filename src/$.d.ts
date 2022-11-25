@@ -157,11 +157,22 @@ export namespace Dollar{
 	 * echo TEST | nodejsscript script.js
 	 * ```
 	 * ```javascript
-	 * echo($.stdin);//= "TEST"
+	 * echo($.stdin.text());//= "TEST"
 	 * ```
 	 * @category Public
 	 */
-	const stdin: undefined | string;
+	const stdin: {
+		/**
+		 * Returns stdin as a text.
+		 * @param _default Default value when no stdin.
+		 * */
+		text: (_default: any)=> string | any;
+		/**
+		 * Returns stdin as an array of lines.
+		 * @param _default Default value when no stdin.
+		 * */
+		lines: (_default: any)=> string[] | any;
+	};
 
 	/**
 	 * Throws user targeted error

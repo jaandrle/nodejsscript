@@ -79,7 +79,7 @@ function printUsage(){
 	echo("%cExamples%c:", css.H);
 	echo(`%c${n} script.js`, css.T);
 	echo(`%c${n} --help`, css.T);
-	echo(`%cls | ${n} -p '$.stdin.text().replaceAll("A", "AAAA").to'`, css.T);
+	echo(`%cls | ${n} -p '$.stdin.text().replaceAll("A", "AAAA")'`, css.T);
 	echo(`%cls | ${n} -p '$.stdin.lines().filter(line=> line[0]==="R").map(line=> \`file: \${line}\`)'`, css.T);
 	echo("%cUsage in scripts%c:", css.H);
 	echo("%cJust start the file with: %c#!/usr/bin/env nodejsscript", css.T, css.code);
@@ -108,14 +108,14 @@ function jsconfigTypes(){
 	$.exit(0);
 }
 function runEval(is_print){
-	let input= argv[2];
+	let input= argv.splice(2, 1)[0];
 	if(is_print){
 		let out_arr= input.split(";").reverse();
 		if(out_arr[0].trim()==="") out_arr.shift();
 		out_arr[0]= `echo(${out_arr[0]})`;
 		input= out_arr.reverse().join(";");
 	}
-	const filepath= join(process.cwd(), `nodejsscript-${randomUUID()}.mjs`);
+	const filepath= $.xdg.temp`nodejsscript-${randomUUID()}.mjs`;
 	s.echo(input).to(filepath);
 	return filepath;
 }

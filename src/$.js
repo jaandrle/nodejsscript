@@ -26,7 +26,7 @@ export const $= Object.assign([], {
 			if(has(config)) this["is_"+config]= get(config);
 	},
 	isFIFO(stream_id= 0){ return fstatSync(stream_id).isFIFO(); },
-	stdin: (function(){
+	stdin: (function(){ // stdin[key_stdin] is called from cli.mjs to make text/lines synchronous
 		let stdin, setted= false;
 		return {
 			[Symbol.toPrimitive](hint){
