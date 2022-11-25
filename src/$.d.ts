@@ -9,6 +9,14 @@ import { ShellString } from 'shelljs';
 
 export namespace Dollar{
 	/**
+	 * This is small helper function to determine if current script file was launched as main one.
+	 * ```js
+	 * if($.isMain(import.meta)) echo("This is main script");
+	 * ```
+	 * */
+	function isMain(import_meta: ImportMeta): boolean;
+	
+	/**
 	 * Suppresses all command output if `true`, except for `echo()` call.
 	 * @default false
 	 * @category Public
@@ -161,18 +169,19 @@ export namespace Dollar{
 	 * ```
 	 * @category Public
 	 */
-	const stdin: {
+	const stdin: STDIN;
+	interface STDIN {
 		/**
 		 * Returns stdin as a text.
 		 * @param _default Default value when no stdin.
 		 * */
-		text: (_default: any)=> string | any;
+		text: <T>(_default: T)=> string | T;
 		/**
 		 * Returns stdin as an array of lines.
 		 * @param _default Default value when no stdin.
 		 * */
-		lines: (_default: any)=> string[] | any;
-	};
+		lines: <T>(_default: T)=> string[] | T;
+	}
 
 	/**
 	 * Throws user targeted error

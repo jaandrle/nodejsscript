@@ -49,7 +49,7 @@ export interface EchoFunction {
 	 * ```js
 	 * echo("%cHello %cWorld!", "color: red", "color: blue");
 	 * ```
-	 * **But**, implementation for `echo` is much more limited. There is no CSS parser, just keywords see {@link css_rules}.
+	 * **But**, implementation for `echo` is much more limited. There is no CSS parser, just keywords see {@link css_rules} (alternatively file `src/ansi_constants.js`).
 	 *
 	 * You can pre-define css class with this method:
 	 * ```js
@@ -95,6 +95,7 @@ export interface EchoFunction {
 	 * first used as the primary message and all additional used as substitution
 	 * values similar to [`printf(3)`](http://man7.org/linux/man-pages/man3/printf.3.html) (the arguments are all passed to `util.format()`).
 	 * Internally uses `console.log`. Stringify inputs except objects and errors in case of `$.is_verbose`.
+	 * Supports basic styling, see {@link css}.
 	 *
 	 * ```js
 	 * const count = 5;

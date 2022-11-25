@@ -2,7 +2,15 @@ import { config, ShellString } from "shelljs";
 import { fstatSync } from "node:fs";
 import * as xdg from "./xdg.js";
 import { stdin as key_stdin } from "./keys.js";
+import { fileURLToPath } from "node:url";
+
 export const $= Object.assign([], {
+	isMain(_meta){
+		const module_path= fileURLToPath(_meta.url);
+		console.log(module_path);
+		return this[0] === module_path;
+	},
+	
 	get is_silent(){ return config.silent; },
 	set is_silent(v){ config.silent= v; },
 	get is_verbose(){ return config.verbose; },

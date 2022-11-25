@@ -78,11 +78,18 @@ Note that there are also built-in `'node:*'` modules:
 import { setTimeout } from "node:timers/promises";
 import { join, resolve } from "node:path";
 
-//current file url
+//.current file url
 import.meta.url;
-//url to path
+//.url to path
 import { fileURLToPath } from "node:url";
 const file_path= fileURLToPath(import.meta.url);
+// url is supported! (see relative reading)
+s.cat(new URL('relative_file', import.meta.url));
+
+//.crypto utils
+import { randomUUID } from "node:crypto";
+
+// …
 ```
 …and more, see [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
 
