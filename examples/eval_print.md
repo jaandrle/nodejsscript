@@ -27,3 +27,23 @@ curl https://api.spacexdata.com/v4/launches/latest | nodejsscript -p '$.stdin.js
 echo '{"fairings":{"reused":false,, "recovery_attempt":true}}' | nodejsscript -p '$.stdin.json()'
 curl https://api.spacexdata.com/v4/launches/latest | nodejsscript -p 'pipe($.stdin.json, Object.entries, a=> a.filter(([k,v])=> Array.isArray(v)))()'
 ```
+## Aliases
+For now, just an idea:
+```bash
+# instead of
+echo '{"a":"A"}' | nodejsscript -p '$.stdin.json().a'
+# you can also use
+echo '{"a":"A"}' | nodejsscript -p '$.nojq.a'
+```
+```bash
+# instead of
+who | nodejsscript -p '$.stdin.text().split(/ +/)[0]'
+# you can also use
+who | nodejsscript -p '$.nosed.split(/ +/)[0]'
+```
+```bash
+# instead of
+apt list --installed | nodejsscript -p '$.stdin.lines().filter(l=> l.indexOf("libreoffice")!==-1).length'
+# you can also use
+apt list --installed | nodejsscript -p '$.noawk.filter(l=> l.indexOf("libreoffice")!==-1).length'
+```

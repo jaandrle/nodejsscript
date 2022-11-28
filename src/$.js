@@ -64,6 +64,9 @@ export const $= Object.assign([], {
 
 	hasArgs(...needles){ return this.findIndex(a=> needles.indexOf(a)!==-1) !==-1; }
 });
+Reflect.defineProperty($, "nosed", { get(){ return this.stdin.text(""); }, });
+Reflect.defineProperty($, "nojq", { get(){ return this.stdin.json(null); }, });
+Reflect.defineProperty($, "noawk", { get(){ return this.stdin.lines([]); }, });
 
 import sade from "sade";
 $.api= function(usage, is_single= false){
