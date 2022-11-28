@@ -195,6 +195,12 @@ export namespace Dollar{
 		 * */
 		lines: <T>(_default: T)=> string[] | T;
 	}
+	/** @alias {@link STDIN.json}`(null)` */
+	const nojq: null | Array<any> | Record<any, any>;
+	/** @alias {@link STDIN.text}`("")` */
+	const nosed: string;
+	/** @alias {@link STDIN.lines}`([])` */
+	const noawk: string[];
 
 	/**
 	 * Throws user targeted error

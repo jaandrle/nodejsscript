@@ -21,7 +21,11 @@ s.run("sleep 3; echo 3");
 const name= "foo bar";
 s.mkdir($.xdg.temp(name));
 ```
-…also see [examples](./examples).
+…also see [examples](./examples). You can also use `nodejsscript -e`/`nodejsscript -p` in shell:
+```bash
+curl https://api.spacexdata.com/v4/launches/latest | nodejsscript -p 'Object.entries($.nojq).filter(([_,v])=> Array.isArray(v))'
+```
+…see [examples](./examples) again.
 
 ## Installation
 
