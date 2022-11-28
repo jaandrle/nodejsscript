@@ -144,6 +144,10 @@ echo(s.cat("package.json").grep("name"));
 // or
 echo(s.grep("name", "package.json"));
 ```
+## API changes *0.8* → **0.9**
+1. `cli` renamed to `$`
+1. `style` (`ansi-colors`) removed in favour of using “CSS” in `echo`
+1. `exit` removed in favour of `$.exit`
 
 ## Contribute
 - [Contributor Covenant Code of Conduc](./CODE_OF_CONDUCT.md)
