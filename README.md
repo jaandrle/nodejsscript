@@ -25,7 +25,7 @@ s.mkdir($.xdg.temp(name));
 ```bash
 curl https://api.spacexdata.com/v4/launches/latest | nodejsscript -p 'Object.entries($.nojq).filter(([_,v])=> Array.isArray(v))'
 ```
-…see [examples](./examples) again.
+…see [examples](./examples/eval_print.md) again.
 
 ## Installation
 
