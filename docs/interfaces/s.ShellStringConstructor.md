@@ -32,10 +32,6 @@ respectively.
 
 A string-like object with special methods.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:982
-
 ### ShellStringConstructor
 
 ▸ **ShellStringConstructor**(`value`): [`ShellArray`](../modules/s.md#shellarray)
@@ -49,10 +45,6 @@ node_modules/@types/shelljs/index.d.ts:982
 #### Returns
 
 [`ShellArray`](../modules/s.md#shellarray)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:983
 
 ## Table of contents
 
@@ -89,10 +81,6 @@ https://github.com/shelljs/shelljs#shellstringstr
 | :------ | :------ | :------ |
 | `value` | `string` | The string value to wrap. |
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:965
-
 • **new ShellStringConstructor**(`value`)
 
 #### Parameters
@@ -100,7 +88,3 @@ node_modules/@types/shelljs/index.d.ts:965
 | Name | Type |
 | :------ | :------ |
 | `value` | `string`[] |
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:966

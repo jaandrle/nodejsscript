@@ -18,26 +18,14 @@
 
 • `Optional` **headers**: [`HeadersInit`](../modules/_fetch.md#headersinit)
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:115
-
 ___
 
 ### status
 
 • `Optional` **status**: `number`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:116
-
 ___
 
 ### statusText
 
 • `Optional` **statusText**: `string`
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:117

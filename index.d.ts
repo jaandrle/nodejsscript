@@ -1,10 +1,9 @@
 import * as _ from "./_index.d";
 declare global{
 	var echo: typeof _.echo;
-	var cli: typeof _.cli;
+	var $: typeof _.$ & string[];
 	var pipe: typeof _.pipe;
 	var s: typeof _.s;
-	var style: typeof _.style;
 	/**
 	 * A wrapper around the [node-fetch](https://www.npmjs.com/package/node-fetch) package.
 	 *

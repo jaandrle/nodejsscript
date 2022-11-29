@@ -1,7 +1,16 @@
-import { config } from "shelljs";
+import { config, ShellString } from "shelljs";
 import { fstatSync } from "node:fs";
 import * as xdg from "./xdg.js";
-export const cli= {
+import { stdin as key_stdin } from "./keys.js";
+import { fileURLToPath } from "node:url";
+
+export const $= Object.assign([], {
+	isMain(_meta){
+		const module_path= fileURLToPath(_meta.url);
+		console.log(module_path);
+		return this[0] === module_path;
+	},
+	
 	get is_silent(){ return config.silent; },
 	set is_silent(v){ config.silent= v; },
 	get is_verbose(){ return config.verbose; },
@@ -16,33 +25,68 @@ export const cli= {
 		set options(v){ return (config.globOptions= v); },
 	});},
 	
+	is_colors: -1,
 	configAssign(...c){
 		const o= Object.assign({}, ...c);
 		const has= Reflect.has.bind(null, o);
 		const get= Reflect.get.bind(null, o);
-		for(const config of [ "silent", "verbose", "fatal" ])
+		for(const config of [ "silent", "verbose", "fatal", "colors" ])
 			if(has(config)) this["is_"+config]= get(config);
 	},
 	isFIFO(stream_id= 0){ return fstatSync(stream_id).isFIFO(); },
+	stdin: (function(){ // stdin[key_stdin] is called from cli.mjs to make text/lines synchronous
+		let stdin, setted= false;
+		return {
+			[Symbol.toPrimitive](hint){
+				if(hint==="boolean") return setted;
+				if(hint==="number") return Number(setted);
+				if(hint==="string") return stdin || "";
+				return null;
+			},
+			text(_default){ return setted ? stdin : _default; },
+			lines(_default){ return setted ? stdin.split("\n") : _default; },
+			json(_default){ return setted ? JSON.parse(stdin.trim()) : _default; },
+			[key_stdin](){
+				if(!$.isFIFO(0)) return Promise.resolve("");
+				return $.read().then(t=> (setted= true, stdin= (t.replace(/\n$/, ""))));
+			}
+		};
+	})(),
 	
 	Error: class extends Error{},
-	error(message){ throw new cli.Error(message); },
+	error(message){ const e= new $.Error(message); Error.captureStackTrace(e, $.error); throw e; },
+	exit(code){ return process.exit(code); },
 
-	xdg
-};
+	xdg,
+
+	get $(){ return process.pid; },
+	get env(){ return process.env; },
+
+	hasArgs(...needles){ return this.findIndex(a=> needles.indexOf(a)!==-1) !==-1; }
+});
+Reflect.defineProperty($, "nosed", { get(){ return this.stdin.text(""); }, });
+Reflect.defineProperty($, "nojq", { get(){ return this.stdin.json(null); }, });
+Reflect.defineProperty($, "noawk", { get(){ return this.stdin.lines([]); }, });
 
 import sade from "sade";
-cli.api= function(usage, is_single= false){
+$.api= function(usage, is_single= false){
 	if(usage && !/^[\[<]/.test(usage))
 		return sade(usage, is_single);
 
 	const script= process.argv[1];
 	const name= script.slice(script.lastIndexOf("/")+1);
-	return sade(name+(usage ? " "+usage : ""), is_single);
+	const out= sade(name+(usage ? " "+usage : ""), is_single);
+	out._parse= out.parse;
+	out.parse= function(options= {}){
+		const { argv= process.argv }= options;
+		Reflect.deleteProperty(options, "argv");
+		return this._parse(argv, options);
+	};
+	return out;
 };
 
 import { echo } from "./echo.js";
-cli.read= async function(options= {}){
+$.read= async function(options= {}){
 	const { stdin }= process;
 	stdin.setEncoding('utf8');
 	const has= Reflect.has.bind(null, options);
@@ -50,20 +94,20 @@ cli.read= async function(options= {}){
 	if(has("-p")) return promt(options, has, get);
 	if(has("-n")){
 		const line= await stdin[Symbol.asyncIterator]().next();
-		return line.value.slice(0, get("-n"));
+		return ShellString(line.value.slice(0, get("-n")));
 	}
-	let buf= "";
+	let buf= $.stdin ? $.stdin.text("") : "";
 	if(has("-d")){
 		const needle= get("-d");
 		for await (const chunk of stdin){
 			const i= chunk.indexOf(needle);
-			if(i!==-1) return buf+chunk.slice(0, i);
+			if(i!==-1) return ShellString(buf+chunk.slice(0, i));
 			buf+= chunk;
 		}
 	}
 	for await (const chunk of stdin)
 		buf+= chunk;
-	return buf;
+	return ShellString(buf);
 };
 
 function promt(options, has, get){
@@ -74,11 +118,10 @@ function promt(options, has, get){
 		return chars < 0 ? promt : promt.slice(0, chars);
 	});
 }
-import style from "ansi-colors";
 import { createInterface } from "node:readline";
 function question(query= "", options= {}){
 	query= String(query);
-	if(!/\s$/.test(query)) query+= "\n"+style.greenBright.bold('❯ ');
+	if(!/\s$/.test(query)) query+= "\n"+echo.format('%c❯ ', "color:lightgreen");
 	if(!options.output) echo.use("-n", query);
 	
 	const rl= createInterface({

@@ -34,16 +34,8 @@
 
 `any`
 
-#### Defined in
-
-node_modules/sade/index.d.ts:8
-
 ___
 
 ### Value
 
 Ƭ **Value**: `number` \| `string` \| `boolean` \| ``null``
-
-#### Defined in
-
-node_modules/sade/index.d.ts:9

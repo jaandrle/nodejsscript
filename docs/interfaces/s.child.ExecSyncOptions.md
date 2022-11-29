@@ -37,10 +37,6 @@
 
 • `Optional` **shell**: `string`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1301
-
 ___
 
 ### input
@@ -50,10 +46,6 @@ ___
 #### Inherited from
 
 [CommonExecOptions](s.child.CommonExecOptions.md).[input](s.child.CommonExecOptions.md#input)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1294
 
 ___
 
@@ -65,10 +57,6 @@ ___
 
 [CommonExecOptions](s.child.CommonExecOptions.md).[stdio](s.child.CommonExecOptions.md#stdio)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1295
-
 ___
 
 ### killSignal
@@ -78,10 +66,6 @@ ___
 #### Inherited from
 
 [CommonExecOptions](s.child.CommonExecOptions.md).[killSignal](s.child.CommonExecOptions.md#killsignal)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1296
 
 ___
 
@@ -93,10 +77,6 @@ ___
 
 [CommonExecOptions](s.child.CommonExecOptions.md).[maxBuffer](s.child.CommonExecOptions.md#maxbuffer)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1297
-
 ___
 
 ### encoding
@@ -106,10 +86,6 @@ ___
 #### Inherited from
 
 [CommonExecOptions](s.child.CommonExecOptions.md).[encoding](s.child.CommonExecOptions.md#encoding)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1298
 
 ___
 
@@ -125,10 +101,6 @@ true
 
 [CommonExecOptions](s.child.CommonExecOptions.md).[windowsHide](s.child.CommonExecOptions.md#windowshide)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:629
-
 ___
 
 ### timeout
@@ -143,10 +115,6 @@ ___
 
 [CommonExecOptions](s.child.CommonExecOptions.md).[timeout](s.child.CommonExecOptions.md#timeout)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:633
-
 ___
 
 ### uid
@@ -156,10 +124,6 @@ ___
 #### Inherited from
 
 [CommonExecOptions](s.child.CommonExecOptions.md).[uid](s.child.CommonExecOptions.md#uid)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:620
 
 ___
 
@@ -171,10 +135,6 @@ ___
 
 [CommonExecOptions](s.child.CommonExecOptions.md).[gid](s.child.CommonExecOptions.md#gid)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:621
-
 ___
 
 ### cwd
@@ -185,10 +145,6 @@ ___
 
 [CommonExecOptions](s.child.CommonExecOptions.md).[cwd](s.child.CommonExecOptions.md#cwd)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:622
-
 ___
 
 ### env
@@ -198,7 +154,3 @@ ___
 #### Inherited from
 
 [CommonExecOptions](s.child.CommonExecOptions.md).[env](s.child.CommonExecOptions.md#env)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:623

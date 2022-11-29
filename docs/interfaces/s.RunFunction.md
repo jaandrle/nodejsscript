@@ -37,10 +37,6 @@ s.run("echo ::branch::", { branch });
 
 Returns an object containing the return code and output as [ShellString](../modules/s.md#shellstring).
 
-#### Defined in
-
-[src/shelljs.d.ts:87](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L87)
-
 ### RunFunction
 
 ▸ **RunFunction**(`command`, `vars`, `options`): [`ShellString`](../modules/s.md#shellstring)
@@ -67,7 +63,3 @@ s.run("echo ::branch::", { branch });
 [`ShellString`](../modules/s.md#shellstring)
 
 Returns an object containing the return code and output as [ShellString](../modules/s.md#shellstring).
-
-#### Defined in
-
-[src/shelljs.d.ts:104](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L104)

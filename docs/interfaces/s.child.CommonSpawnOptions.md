@@ -42,19 +42,11 @@
 
 • `Optional` **argv0**: `string`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:636
-
 ___
 
 ### stdio
 
 • `Optional` **stdio**: [`StdioOptions`](../modules/s.child.md#stdiooptions)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:637
 
 ___
 
@@ -62,19 +54,11 @@ ___
 
 • `Optional` **shell**: `string` \| `boolean`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:638
-
 ___
 
 ### windowsVerbatimArguments
 
 • `Optional` **windowsVerbatimArguments**: `boolean`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:639
 
 ___
 
@@ -90,10 +74,6 @@ true
 
 [CommonOptions](s.child.CommonOptions.md).[windowsHide](s.child.CommonOptions.md#windowshide)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:629
-
 ___
 
 ### timeout
@@ -108,10 +88,6 @@ ___
 
 [MessagingOptions](s.child.MessagingOptions.md).[timeout](s.child.MessagingOptions.md#timeout)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:633
-
 ___
 
 ### uid
@@ -121,10 +97,6 @@ ___
 #### Inherited from
 
 [CommonOptions](s.child.CommonOptions.md).[uid](s.child.CommonOptions.md#uid)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:620
 
 ___
 
@@ -136,10 +108,6 @@ ___
 
 [CommonOptions](s.child.CommonOptions.md).[gid](s.child.CommonOptions.md#gid)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:621
-
 ___
 
 ### cwd
@@ -150,10 +118,6 @@ ___
 
 [CommonOptions](s.child.CommonOptions.md).[cwd](s.child.CommonOptions.md#cwd)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:622
-
 ___
 
 ### env
@@ -163,10 +127,6 @@ ___
 #### Inherited from
 
 [CommonOptions](s.child.CommonOptions.md).[env](s.child.CommonOptions.md#env)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:623
 
 ___
 
@@ -184,10 +144,6 @@ Specify the kind of serialization used for sending messages between processes.
 
 [MessagingOptions](s.child.MessagingOptions.md).[serialization](s.child.MessagingOptions.md#serialization)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:608
-
 ___
 
 ### killSignal
@@ -204,10 +160,6 @@ The signal value to be used when the spawned process will be killed by the abort
 
 [MessagingOptions](s.child.MessagingOptions.md).[killSignal](s.child.MessagingOptions.md#killsignal)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:613
-
 ___
 
 ### signal
@@ -219,7 +171,3 @@ When provided the corresponding `AbortController` can be used to cancel an async
 #### Inherited from
 
 [MessagingOptions](s.child.MessagingOptions.md).[signal](s.child.MessagingOptions.md#signal)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:307

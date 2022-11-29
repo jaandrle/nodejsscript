@@ -1,13 +1,29 @@
+import { env as _env, exit as _exit } from 'node:process';
+export { _env, _exit };
 import { IOptions } from 'glob';
 import * as __sade from "sade";
 export { __sade };
 import * as xdg_ from "./xdg.d";
 export { xdg_ };
-/**
- * Contains configuration for current script and methods
- * for managing arguments.
- */
-export namespace cli{
+import { ShellString } from 'shelljs';
+
+export namespace Dollar{
+	/**
+	 * This is small helper function to determine if current script file was launched as main one.
+	 * ```js
+	 * //nodejsscript main.js
+	 * 
+	 * //main.js
+	 * if($.isMain(import.meta)) echo("This is main script");
+	 * import 'nomain.js';
+	 * 
+	 * //nomain.js
+	 * if($.isMain(import.meta)) echo("This is NOT main script ⇒ never echo");
+	 * ```
+	 * @category Public
+	 * */
+	function isMain(import_meta: ImportMeta): boolean;
+	
 	/**
 	 * Suppresses all command output if `true`, except for `echo()` call.
 	 * @default false
@@ -44,9 +60,9 @@ export namespace cli{
 	/**
 	 *  Set multiple options except `glob_options` with one command.
 	 * ```js
-	 * const { is_verbose, is_fatal }= cli;
-	 * cli.is_silent= true;
-	 * const cli.configAssign({ verbose: true, silent: false });
+	 * const { is_verbose, is_fatal }= $;
+	 * $.is_silent= true;
+	 * const $.configAssign({ verbose: true, silent: false });
 	 * ```
 	 * @category Public
 	 * */
@@ -55,38 +71,39 @@ export namespace cli{
 	/**
 	 * Method to check whether script stdin/stdout (0/1) is a first-in-first-out (FIFO) pipe or not.
 	 * ```bash
-	 * node pipes.js | … # — test by cli.isFIFO(1)
-	 * … | node pipes.js # — test by cli.isFIFO(0)
+	 * node pipes.js | … # — test by $.isFIFO(1)
+	 * … | node pipes.js # — test by $.isFIFO(0)
 	 * ```
 	 * @category Public
 	 */
 	function isFIFO(stream_id: 0|1): boolean;
 	/**
 	 * A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
-	 * In addition to the origin, `cli.api()` supports to fill script name from script file name.
+	 * In addition to the origin, `$.api()` supports to fill script name from script file name.
+	 * Also, you can call `*.parse()` and it automatically use `process.argv` or use `*.parse(options: {})` with custom `argv` key.
 	 * This should be good balance between [commander - npm](https://www.npmjs.com/package/commander) and parsing arguments and writing help texts by hand.
 	 * For more complex scripts just create full npm package.
 	 * ```js
-	 * cli.api("", true)
+	 * $.api("", true)
 	 * .version("0.1.0")
-	 * .describe("NodeJS Script cli test")
+	 * .describe("NodeJS Script $ test")
 	 * .action(echo)
-	 * .parse(process.argv);
+	 * .parse();
 	 * ```
 	 * 	
 	 * ```js
-	 * cli.api("copy <file> <destination>", true)
+	 * $.api("copy <file> <destination>", true)
 	 * .version("0.1.0")
 	 * .describe("copy file simpulation")
 	 * .option("--force", "Overwrite file in destination.")
 	 * .action(function(file, destination, { force }){
 	 * 	// copy file logic
 	 * })
-	 * .parse(process.argv);
+	 * .parse();
 	 * ```
 	 * 
 	 * ```js
-	 * const prog= cli.api('my-cli');
+	 * const prog= $.api('my-cli');
 	 * prog
 	 *   .version('1.0.5')
 	 *   .option('--global, -g', 'An example global flag')
@@ -101,7 +118,7 @@ export namespace cli{
 	 *     echo(`> building from ${src} to ${dest}`);
 	 *     echo('> these are extra opts', opts);
 	 *   });
-	 * prog.parse(process.argv);
+	 * prog.parse();
 	 * ```
 	 * @param usage The script name and usage (`[optional]`/`<required>`). If no `name`, then the script file name will be used.
 	 * @param is_single See {@link __sade}
@@ -125,13 +142,13 @@ export namespace cli{
 	 * This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
 	 * So, the function purpose is reading from `stdin`.
 	 * ```js
-	 * const answer= await cli.read({ "-p": "Question" });
-	 * const color= await cli.read({ "-p": "Your color", completions: [ "red", "green" ] });
-	 * if(cli.isFIFO(0)) await cli.read().then(echo.bind(null, "E.g. for reading received input:"));
+	 * const answer= await $.read({ "-p": "Question" });
+	 * const color= await $.read({ "-p": "Your color", completions: [ "red", "green" ] });
+	 * if($.isFIFO(0)) await $.read().then(echo.bind(null, "E.g. for reading received input:"));
 	 * ```
 	 * @category Public
 	 * */
-	function read(options: ReadOptions): Promise<string>;
+	function read(options: ReadOptions): Promise<ShellString>;
 	
 	/**
 	 * @category Public
@@ -139,11 +156,79 @@ export namespace cli{
 	const xdg: typeof xdg_.xdg;
 
 	/**
+	 * Returns the PID of the process. Compare to bash `$$` vs `$.$`.
+	 * @category Public
+	 * @alias process.pid
+	 */
+	const $: typeof process.pid;
+	/**
+	 * {@link _env}. Compare to bash `$var` vs `$.env['var']`.
+	 * @category Public
+	 * @alias process.env
+	 */
+	const env: typeof _env;
+	/**
+	 * Holding `stdin` when script was executed.
+	 * ```bash
+	 * echo TEST | nodejsscript script.js
+	 * ```
+	 * ```javascript
+	 * echo($.stdin.text());//= "TEST"
+	 * ```
+	 * @category Public
+	 */
+	const stdin: STDIN;
+	interface STDIN {
+		/**
+		 * Returns stdin as a text.
+		 * @param _default Default value when no stdin.
+		 * */
+		text: <T>(_default: T)=> string | T;
+		/**
+		 * Returns stdin processed by `JSON.parse`.
+		 * @param _default Default value when no stdin.
+		 * */
+		json: <T>(_default: T)=> string | T;
+		/**
+		 * Returns stdin as an array of lines.
+		 * @param _default Default value when no stdin.
+		 * */
+		lines: <T>(_default: T)=> string[] | T;
+	}
+	/** @alias {@link STDIN.json}`(null)` */
+	const nojq: null | Array<any> | Record<any, any>;
+	/** @alias {@link STDIN.text}`("")` */
+	const nosed: string;
+	/** @alias {@link STDIN.lines}`([])` */
+	const noawk: string[];
+
+	/**
 	 * Throws user targeted error
 	 * ```js
-	 * const number= await cli.read({ "-p". "Insert a number:" });
-	 * if(Number.isNaN(Number(number))) cli.error(`Provided text '${number}' is not a number`);
+	 * const number= await $.read({ "-p". "Insert a number:" });
+	 * if(Number.isNaN(Number(number))) $.error(`Provided text '${number}' is not a number`);
 	 * ```
+	 * @category Public
 	 * */
 	function error(message: string): Error;
+
+	const Error: typeof global.Error;
+
+	/**
+	 * Just an alias for {@link _exit}. Any other argument is ignored, so you can use:
+	 * ```js
+	 * if($.hasArgs("-v", "--version")) $.exit(0, echo("v0.0.1"));
+	 * ```
+	 * @category Public
+	 */
+	function exit(code?: number, ...ignore: any[]): never;
+	
+	/**
+	 * Returns boolean value that script has been executed with given arguments (`needles`).
+	 * ```js
+	 * if($.hasArgs("-v", "--version")) $.exit(0, echo("v0.0.1"));
+	 * ```
+	 * @category Public
+	 */
+	function hasArgs(...needles: string[]): boolean;
 }

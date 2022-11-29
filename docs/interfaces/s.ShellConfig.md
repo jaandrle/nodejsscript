@@ -26,10 +26,6 @@
 
 Suppresses all command output if true, except for echo() calls. Default is false.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1192
-
 ___
 
 ### fatal
@@ -37,10 +33,6 @@ ___
 • **fatal**: `boolean`
 
 If true the script will die on errors. Default is false.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1197
 
 ___
 
@@ -54,10 +46,6 @@ Will print each executed command to the screen.
 
 false
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1204
-
 ___
 
 ### globOptions
@@ -66,10 +54,6 @@ ___
 
 Passed to glob.sync() instead of the default options ({}).
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1209
-
 ___
 
 ### execPath
@@ -77,10 +61,6 @@ ___
 • **execPath**: `string`
 
 Absolute path of the Node binary. Default is null (inferred).
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1214
 
 ## Methods
 
@@ -93,7 +73,3 @@ Reset shell.config to the defaults.
 #### Returns
 
 `void`
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1219

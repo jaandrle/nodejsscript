@@ -18,26 +18,14 @@
 
 • **name**: `string`
 
-#### Defined in
-
-node_modules/sade/index.d.ts:12
-
 ___
 
 ### handler
 
 • **handler**: [`Handler`](../modules/_sade.md#handler)
 
-#### Defined in
-
-node_modules/sade/index.d.ts:13
-
 ___
 
 ### args
 
 • **args**: `string`[]
-
-#### Defined in
-
-node_modules/sade/index.d.ts:14

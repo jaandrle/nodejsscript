@@ -55,10 +55,6 @@ Create .stack property on a target object
 
 Error.captureStackTrace
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/globals.d.ts:4
-
 ## Properties
 
 ### prepareStackTrace
@@ -90,10 +86,6 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 Error.prepareStackTrace
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/globals.d.ts:11
-
 ___
 
 ### stackTraceLimit
@@ -103,10 +95,6 @@ ___
 #### Inherited from
 
 Error.stackTraceLimit
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/globals.d.ts:13
 
 ___
 
@@ -118,19 +106,11 @@ ___
 
 Error.name
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:204
-
 ___
 
 ### type
 
 • **type**: `string`
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:206
 
 ___
 
@@ -138,29 +118,17 @@ ___
 
 • `Optional` **code**: `string`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:207
-
 ___
 
 ### errno
 
 • `Optional` **errno**: `string`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:208
-
 ___
 
 ### [toStringTag]
 
 • **[toStringTag]**: ``"FetchError"``
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:205
 
 ___
 
@@ -172,10 +140,6 @@ ___
 
 Error.message
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1041
-
 ___
 
 ### stack
@@ -185,10 +149,6 @@ ___
 #### Inherited from
 
 Error.stack
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1042
 
 ## Constructors
 
@@ -207,7 +167,3 @@ node_modules/typescript/lib/lib.es5.d.ts:1042
 #### Overrides
 
 Error.constructor
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:202

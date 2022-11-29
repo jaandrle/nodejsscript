@@ -41,29 +41,17 @@
 
 • `Optional` **input**: `string` \| `ArrayBufferView`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1251
-
 ___
 
 ### maxBuffer
 
 • `Optional` **maxBuffer**: `number`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1252
-
 ___
 
 ### encoding
 
 • `Optional` **encoding**: ``"buffer"`` \| `BufferEncoding`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1253
 
 ___
 
@@ -75,10 +63,6 @@ ___
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[argv0](s.child.CommonSpawnOptions.md#argv0)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:636
-
 ___
 
 ### stdio
@@ -88,10 +72,6 @@ ___
 #### Inherited from
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[stdio](s.child.CommonSpawnOptions.md#stdio)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:637
 
 ___
 
@@ -103,10 +83,6 @@ ___
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[shell](s.child.CommonSpawnOptions.md#shell)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:638
-
 ___
 
 ### windowsVerbatimArguments
@@ -116,10 +92,6 @@ ___
 #### Inherited from
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[windowsVerbatimArguments](s.child.CommonSpawnOptions.md#windowsverbatimarguments)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:639
 
 ___
 
@@ -135,10 +107,6 @@ true
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[windowsHide](s.child.CommonSpawnOptions.md#windowshide)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:629
-
 ___
 
 ### timeout
@@ -153,10 +121,6 @@ ___
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[timeout](s.child.CommonSpawnOptions.md#timeout)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:633
-
 ___
 
 ### uid
@@ -166,10 +130,6 @@ ___
 #### Inherited from
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[uid](s.child.CommonSpawnOptions.md#uid)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:620
 
 ___
 
@@ -181,10 +141,6 @@ ___
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[gid](s.child.CommonSpawnOptions.md#gid)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:621
-
 ___
 
 ### cwd
@@ -195,10 +151,6 @@ ___
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[cwd](s.child.CommonSpawnOptions.md#cwd)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:622
-
 ___
 
 ### env
@@ -208,10 +160,6 @@ ___
 #### Inherited from
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[env](s.child.CommonSpawnOptions.md#env)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:623
 
 ___
 
@@ -229,10 +177,6 @@ Specify the kind of serialization used for sending messages between processes.
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[serialization](s.child.CommonSpawnOptions.md#serialization)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:608
-
 ___
 
 ### killSignal
@@ -249,10 +193,6 @@ The signal value to be used when the spawned process will be killed by the abort
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[killSignal](s.child.CommonSpawnOptions.md#killsignal)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:613
-
 ___
 
 ### signal
@@ -264,7 +204,3 @@ When provided the corresponding `AbortController` can be used to cancel an async
 #### Inherited from
 
 [CommonSpawnOptions](s.child.CommonSpawnOptions.md).[signal](s.child.CommonSpawnOptions.md#signal)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:307

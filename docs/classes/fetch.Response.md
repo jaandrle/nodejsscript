@@ -51,10 +51,6 @@
 
 [`Response`](fetch.Response.md)
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:197
-
 ___
 
 ### redirect
@@ -72,10 +68,6 @@ ___
 
 [`Response`](fetch.Response.md)
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:198
-
 ___
 
 ### clone
@@ -85,10 +77,6 @@ ___
 #### Returns
 
 [`Response`](fetch.Response.md)
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:195
 
 ___
 
@@ -108,10 +96,6 @@ Use `body.arrayBuffer()` instead.
 
 BodyMixin.buffer
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:135
-
 ___
 
 ### arrayBuffer
@@ -125,10 +109,6 @@ ___
 #### Inherited from
 
 BodyMixin.arrayBuffer
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:136
 
 ___
 
@@ -144,10 +124,6 @@ ___
 
 BodyMixin.formData
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:137
-
 ___
 
 ### blob
@@ -161,10 +137,6 @@ ___
 #### Inherited from
 
 BodyMixin.blob
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:138
 
 ___
 
@@ -180,10 +152,6 @@ ___
 
 BodyMixin.json
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:139
-
 ___
 
 ### text
@@ -197,10 +165,6 @@ ___
 #### Inherited from
 
 BodyMixin.text
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:140
 
 ## Constructors
 
@@ -219,19 +183,11 @@ node_modules/node-fetch/@types/index.d.ts:140
 
 BodyMixin.constructor
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:186
-
 ## Properties
 
 ### headers
 
 • `Readonly` **headers**: [`Headers`](fetch.Headers.md)
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:188
 
 ___
 
@@ -239,19 +195,11 @@ ___
 
 • `Readonly` **ok**: `boolean`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:189
-
 ___
 
 ### redirected
 
 • `Readonly` **redirected**: `boolean`
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:190
 
 ___
 
@@ -259,19 +207,11 @@ ___
 
 • `Readonly` **status**: `number`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:191
-
 ___
 
 ### statusText
 
 • `Readonly` **statusText**: `string`
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:192
 
 ___
 
@@ -279,19 +219,11 @@ ___
 
 • `Readonly` **type**: `ResponseType`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:193
-
 ___
 
 ### url
 
 • `Readonly` **url**: `string`
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:194
 
 ___
 
@@ -303,10 +235,6 @@ ___
 
 BodyMixin.body
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:130
-
 ___
 
 ### bodyUsed
@@ -317,10 +245,6 @@ ___
 
 BodyMixin.bodyUsed
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:131
-
 ___
 
 ### size
@@ -330,7 +254,3 @@ ___
 #### Inherited from
 
 BodyMixin.size
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:132

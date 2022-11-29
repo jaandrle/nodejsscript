@@ -41,10 +41,6 @@
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[encoding](s.child.SpawnSyncOptions.md#encoding)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1256
-
 ___
 
 ### input
@@ -54,10 +50,6 @@ ___
 #### Inherited from
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[input](s.child.SpawnSyncOptions.md#input)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1251
 
 ___
 
@@ -69,10 +61,6 @@ ___
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[maxBuffer](s.child.SpawnSyncOptions.md#maxbuffer)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1252
-
 ___
 
 ### argv0
@@ -82,10 +70,6 @@ ___
 #### Inherited from
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[argv0](s.child.SpawnSyncOptions.md#argv0)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:636
 
 ___
 
@@ -97,10 +81,6 @@ ___
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[stdio](s.child.SpawnSyncOptions.md#stdio)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:637
-
 ___
 
 ### shell
@@ -111,10 +91,6 @@ ___
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[shell](s.child.SpawnSyncOptions.md#shell)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:638
-
 ___
 
 ### windowsVerbatimArguments
@@ -124,10 +100,6 @@ ___
 #### Inherited from
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[windowsVerbatimArguments](s.child.SpawnSyncOptions.md#windowsverbatimarguments)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:639
 
 ___
 
@@ -143,10 +115,6 @@ true
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[windowsHide](s.child.SpawnSyncOptions.md#windowshide)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:629
-
 ___
 
 ### timeout
@@ -161,10 +129,6 @@ ___
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[timeout](s.child.SpawnSyncOptions.md#timeout)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:633
-
 ___
 
 ### uid
@@ -174,10 +138,6 @@ ___
 #### Inherited from
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[uid](s.child.SpawnSyncOptions.md#uid)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:620
 
 ___
 
@@ -189,10 +149,6 @@ ___
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[gid](s.child.SpawnSyncOptions.md#gid)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:621
-
 ___
 
 ### cwd
@@ -203,10 +159,6 @@ ___
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[cwd](s.child.SpawnSyncOptions.md#cwd)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:622
-
 ___
 
 ### env
@@ -216,10 +168,6 @@ ___
 #### Inherited from
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[env](s.child.SpawnSyncOptions.md#env)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:623
 
 ___
 
@@ -237,10 +185,6 @@ Specify the kind of serialization used for sending messages between processes.
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[serialization](s.child.SpawnSyncOptions.md#serialization)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:608
-
 ___
 
 ### killSignal
@@ -257,10 +201,6 @@ The signal value to be used when the spawned process will be killed by the abort
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[killSignal](s.child.SpawnSyncOptions.md#killsignal)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:613
-
 ___
 
 ### signal
@@ -272,7 +212,3 @@ When provided the corresponding `AbortController` can be used to cancel an async
 #### Inherited from
 
 [SpawnSyncOptions](s.child.SpawnSyncOptions.md).[signal](s.child.SpawnSyncOptions.md#signal)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:307

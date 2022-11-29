@@ -28,10 +28,6 @@ on the input using the given search regex and replacement string or function.
 
 The new string after replacement.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:295
-
 ### SedFunction
 
 ▸ **SedFunction**(`options`, `searchRegex`, `replacement`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -48,10 +44,6 @@ node_modules/@types/shelljs/index.d.ts:295
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:296
 
 ### SedFunction
 
@@ -74,10 +66,6 @@ on the input using the given search regex and replacement string or function.
 
 The new string after replacement.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:307
-
 ### SedFunction
 
 ▸ **SedFunction**(`searchRegex`, `replacement`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -93,7 +81,3 @@ node_modules/@types/shelljs/index.d.ts:307
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:308

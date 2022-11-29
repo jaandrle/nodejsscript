@@ -26,10 +26,6 @@ With no arguments, `pushd` exchanges the top two directories.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:419
-
 ### PushDirFunction
 
 ▸ **PushDirFunction**(`options`, `dir`): [`ShellArray`](../modules/s.md#shellarray)
@@ -49,10 +45,6 @@ With no arguments, `pushd` exchanges the top two directories.
 [`ShellArray`](../modules/s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:433
 
 ### PushDirFunction
 
@@ -74,10 +66,6 @@ With no arguments, `pushd` exchanges the top two directories.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:447
-
 ### PushDirFunction
 
 ▸ **PushDirFunction**(`dir`): [`ShellArray`](../modules/s.md#shellarray)
@@ -96,10 +84,6 @@ With no arguments, `pushd` exchanges the top two directories.
 [`ShellArray`](../modules/s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:457
 
 ### PushDirFunction
 
@@ -120,10 +104,6 @@ With no arguments, `pushd` exchanges the top two directories.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:467
-
 ### PushDirFunction
 
 ▸ **PushDirFunction**(`dir`): [`ShellArray`](../modules/s.md#shellarray)
@@ -143,10 +123,6 @@ With no arguments, `pushd` exchanges the top two directories.
 
 Returns an array of paths in the stack.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:477
-
 ### PushDirFunction
 
 ▸ **PushDirFunction**(): [`ShellArray`](../modules/s.md#shellarray)
@@ -159,7 +135,3 @@ With no arguments, `pushd` exchanges the top two directories.
 [`ShellArray`](../modules/s.md#shellarray)
 
 Returns an array of paths in the stack.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:485

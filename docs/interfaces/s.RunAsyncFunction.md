@@ -38,10 +38,6 @@ echo(result_a.toString());
 
 [`ProcessPromise`](../classes/s.ProcessPromise.md)
 
-#### Defined in
-
-[src/shelljs.d.ts:152](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L152)
-
 ### RunAsyncFunction
 
 ▸ **RunAsyncFunction**(`command`, `vars`, `options`): [`ProcessPromise`](../classes/s.ProcessPromise.md)
@@ -63,7 +59,3 @@ echo(result_b.toString());
 #### Returns
 
 [`ProcessPromise`](../classes/s.ProcessPromise.md)
-
-#### Defined in
-
-[src/shelljs.d.ts:165](https://github.com/jaandrle/nodejsscript/blob/6b875ec/src/shelljs.d.ts#L165)

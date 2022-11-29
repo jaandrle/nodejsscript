@@ -57,10 +57,6 @@
 
 `boolean`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:217
-
 ___
 
 ### default
@@ -77,10 +73,6 @@ ___
 #### Returns
 
 `Promise`<[`Response`](../classes/fetch.Response.md)\>
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:218
 
 ___
 
@@ -99,10 +91,6 @@ ___
 
 `Promise`<`Blob`\>
 
-#### Defined in
-
-node_modules/fetch-blob/from.d.ts:14
-
 ___
 
 ### blobFromSync
@@ -119,10 +107,6 @@ ___
 #### Returns
 
 `Blob`
-
-#### Defined in
-
-node_modules/fetch-blob/from.d.ts:6
 
 ___
 
@@ -141,10 +125,6 @@ ___
 
 `Promise`<`File`\>
 
-#### Defined in
-
-node_modules/fetch-blob/from.d.ts:20
-
 ___
 
 ### fileFromSync
@@ -162,19 +142,11 @@ ___
 
 `File`
 
-#### Defined in
-
-node_modules/fetch-blob/from.d.ts:25
-
 ## Type Aliases
 
 ### HeadersInit
 
 Ƭ **HeadersInit**: [`Headers`](../classes/fetch.Headers.md) \| `Record`<`string`, `string`\> \| `Iterable`<readonly [`string`, `string`]\> \| `Iterable`<`Iterable`<`string`\>\>
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:21
 
 ___
 
@@ -182,19 +154,11 @@ ___
 
 Ƭ **BodyInit**: `Blob` \| `Buffer` \| `URLSearchParams` \| `FormData` \| `NodeJS.ReadableStream` \| `string`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:120
-
 ___
 
 ### RequestRedirect
 
 Ƭ **RequestRedirect**: ``"error"`` \| ``"follow"`` \| ``"manual"``
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:146
 
 ___
 
@@ -202,19 +166,11 @@ ___
 
 Ƭ **ReferrerPolicy**: ``""`` \| ``"no-referrer"`` \| ``"no-referrer-when-downgrade"`` \| ``"same-origin"`` \| ``"origin"`` \| ``"strict-origin"`` \| ``"origin-when-cross-origin"`` \| ``"strict-origin-when-cross-origin"`` \| ``"unsafe-url"``
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:147
-
 ___
 
 ### RequestInfo
 
 Ƭ **RequestInfo**: `string` \| [`Request`](../classes/fetch.Request.md)
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:148
 
 ## Variables
 
@@ -236,26 +192,14 @@ node_modules/node-fetch/@types/index.d.ts:148
 | :------ | :------ |
 | `prototype` | `FormData` |
 
-#### Defined in
-
-node_modules/formdata-polyfill/esm.min.d.ts:1
-
 ___
 
 ### Blob
 
 • `Const` **Blob**: typeof `globalThis.Blob`
 
-#### Defined in
-
-node_modules/fetch-blob/index.d.ts:2
-
 ___
 
 ### File
 
 • `Const` **File**: typeof `globalThis.File`
-
-#### Defined in
-
-node_modules/fetch-blob/file.d.ts:1

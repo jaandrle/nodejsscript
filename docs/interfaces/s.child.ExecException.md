@@ -28,19 +28,11 @@
 
 • `Optional` **cmd**: `string`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:806
-
 ___
 
 ### killed
 
 • `Optional` **killed**: `boolean`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:807
 
 ___
 
@@ -48,19 +40,11 @@ ___
 
 • `Optional` **code**: `number`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:808
-
 ___
 
 ### signal
 
 • `Optional` **signal**: `Signals`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:809
 
 ___
 
@@ -72,10 +56,6 @@ ___
 
 Error.name
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1040
-
 ___
 
 ### message
@@ -86,10 +66,6 @@ ___
 
 Error.message
 
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1041
-
 ___
 
 ### stack
@@ -99,7 +75,3 @@ ___
 #### Inherited from
 
 Error.stack
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:1042

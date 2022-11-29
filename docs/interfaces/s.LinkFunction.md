@@ -26,10 +26,6 @@ Links source to dest. Use `-f` to force the link, should dest already exist.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:680
-
 ### LinkFunction
 
 ▸ **LinkFunction**(`source`, `dest`): [`ShellString`](../modules/s.md#shellstring)
@@ -48,7 +44,3 @@ Links source to dest. Use `-f` to force the link, should dest already exist.
 [`ShellString`](../modules/s.md#shellstring)
 
 Object with shell exit code, stderr and stdout.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:689

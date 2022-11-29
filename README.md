@@ -19,9 +19,17 @@ s.run("sleep 2; echo 2");
 s.run("sleep 3; echo 3");
 
 const name= "foo bar";
-s.mkdir(cli.xdg.temp(name));
+s.mkdir($.xdg.temp(name));
 ```
-…also see [examples](./examples).
+…also see [examples](./examples). You can also use `nodejsscript -e`/`nodejsscript -p` in shell:
+```bash
+curl https://api.spacexdata.com/v4/launches/latest | nodejsscript -p 'Object.entries($.nojq).filter(([_,v])=> Array.isArray(v))'
+```
+…see [examples](./examples/eval_print.md) again.
+
+## Quick links/info
+- migration from *0.8.\**: see [API changes 0.8 → 0.9](#api-changes-08--09)
+- potencial changes for *1.x.y*: see [issues](https://github.com/jaandrle/nodejsscript/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
 
 ## Installation
 
@@ -30,10 +38,9 @@ s.mkdir(cli.xdg.temp(name));
 
 ## Goods
 [s #shelljs](./docs/modules/s.md)
- · [cli](./docs/modules/cli.md) ([cli.api() #sade](./docs/modules/cli.md#api), [cli.read()](./docs/modules/cli.md#read), [cli.xdg](./docs/modules/xdg_.xdg.md), …)
+ · [$](./docs/modules/.md) ([$.api() #sade](./docs/modules/.md#api), [$.read()](./docs/modules/.md#read), [$.xdg](./docs/modules/xdg_.xdg.md), …)
  · [echo()](./docs/README.md#echo)
  · [fetch() #node-fetch](./docs/README.md#fetch)
- · [style #ansi-colors](./docs/modules/style.md)
  · [pipe()](./docs/README.md#pipe)
  · [cyclicLoop()](./docs/README.md#cyclicloop)
 
@@ -79,11 +86,18 @@ Note that there are also built-in `'node:*'` modules:
 import { setTimeout } from "node:timers/promises";
 import { join, resolve } from "node:path";
 
-//current file url
+//.current file url
 import.meta.url;
-//url to path
+//.url to path
 import { fileURLToPath } from "node:url";
 const file_path= fileURLToPath(import.meta.url);
+// url is supported! (see relative reading)
+s.cat(new URL('relative_file', import.meta.url));
+
+//.crypto utils
+import { randomUUID } from "node:crypto";
+
+// …
 ```
 …and more, see [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
 
@@ -134,6 +148,10 @@ echo(s.cat("package.json").grep("name"));
 // or
 echo(s.grep("name", "package.json"));
 ```
+## API changes *0.8* → **0.9**
+1. `cli` renamed to `$`
+1. `style` (`ansi-colors`) removed in favour of using “CSS” in `echo`
+1. `exit` removed in favour of `$.exit`
 
 ## Contribute
 - [Contributor Covenant Code of Conduc](./CODE_OF_CONDUCT.md)

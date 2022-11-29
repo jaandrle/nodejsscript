@@ -24,10 +24,6 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 [`ShellString`](../modules/s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1111
-
 ### SortFunction
 
 ▸ **SortFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -42,10 +38,6 @@ node_modules/@types/shelljs/index.d.ts:1111
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1112
 
 ### SortFunction
 
@@ -64,10 +56,6 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 [`ShellString`](../modules/s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1118
-
 ### SortFunction
 
 ▸ **SortFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -81,7 +69,3 @@ node_modules/@types/shelljs/index.d.ts:1118
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1119

@@ -42,10 +42,6 @@ In all methods of this interface, header names are matched by case-insensitive b
 | :------ | :------ |
 | `init?` | [`HeadersInit`](../modules/_fetch.md#headersinit) |
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:41
-
 ## Methods
 
 ### append
@@ -63,10 +59,6 @@ node_modules/node-fetch/@types/index.d.ts:41
 
 `void`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:43
-
 ___
 
 ### delete
@@ -82,10 +74,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:44
 
 ___
 
@@ -103,10 +91,6 @@ ___
 
 `string`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:45
-
 ___
 
 ### has
@@ -122,10 +106,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:46
 
 ___
 
@@ -144,10 +124,6 @@ ___
 
 `void`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:47
-
 ___
 
 ### forEach
@@ -165,10 +141,6 @@ ___
 
 `void`
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:48
-
 ___
 
 ### entries
@@ -180,10 +152,6 @@ Returns an iterator allowing to go through all key/value pairs contained in this
 #### Returns
 
 `IterableIterator`<[`string`, `string`]\>
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:57
 
 ___
 
@@ -197,10 +165,6 @@ Returns an iterator allowing to go through all keys of the key/value pairs conta
 
 `IterableIterator`<`string`\>
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:61
-
 ___
 
 ### values
@@ -212,10 +176,6 @@ Returns an iterator allowing to go through all values of the key/value pairs con
 #### Returns
 
 `IterableIterator`<`string`\>
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:65
 
 ___
 
@@ -229,10 +189,6 @@ Node-fetch extension
 
 `Record`<`string`, `string`[]\>
 
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:68
-
 ___
 
 ### [iterator]
@@ -242,7 +198,3 @@ ___
 #### Returns
 
 `IterableIterator`<[`string`, `string`]\>
-
-#### Defined in
-
-node_modules/node-fetch/@types/index.d.ts:53

@@ -35,10 +35,6 @@ Specify the kind of serialization used for sending messages between processes.
 
 'json'
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:608
-
 ___
 
 ### killSignal
@@ -51,10 +47,6 @@ The signal value to be used when the spawned process will be killed by the abort
 
 'SIGTERM'
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:613
-
 ___
 
 ### timeout
@@ -62,10 +54,6 @@ ___
 • `Optional` **timeout**: `number`
 
 In milliseconds the maximum amount of time the process is allowed to run.
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:617
 
 ___
 
@@ -78,7 +66,3 @@ When provided the corresponding `AbortController` can be used to cancel an async
 #### Inherited from
 
 Abortable.signal
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/events.d.ts:307

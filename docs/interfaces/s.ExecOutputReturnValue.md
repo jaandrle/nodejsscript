@@ -20,10 +20,6 @@
 
 The process exit code.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:834
-
 ___
 
 ### stdout
@@ -32,10 +28,6 @@ ___
 
 The process standard output.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:837
-
 ___
 
 ### stderr
@@ -43,7 +35,3 @@ ___
 • **stderr**: `string`
 
 The process standard error output.
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:840

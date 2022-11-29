@@ -2,53 +2,88 @@
 import { join, resolve } from "node:path";
 import { argv } from "node:process";
 import url from "node:url";
-import "../index.js";/* global echo, exit, cli, s, style, pipe */
+import { randomUUID } from "node:crypto";
+import "../index.js";/* global echo, $, s, pipe */
+import { stdin as key_stdin } from "../src/keys.js";
 
+process.on('uncaughtException', printError);
 (async function main(){
 	const candidate= argv.splice(2, 1)[0];
-	if(candidate[0]==="-") handleMyArgvs(candidate);
+	let filepath_tmp;
+	if(candidate[0]==="-")
+		filepath_tmp= handleMyArgvs(candidate);
+	const is_tmp= filepath_tmp !== undefined;
 
-	const filepath= candidate.startsWith('/') ? candidate : ( candidate.startsWith('file:///') ? url.fileURLToPath(candidate) : resolve(candidate) );
+	const filepath= is_tmp ?
+		filepath_tmp : (
+		candidate.startsWith('/') ?
+			candidate :
+			( candidate.startsWith('file:///') ?
+				url.fileURLToPath(candidate) :
+				resolve(candidate) ));
 	argv[1]= filepath;
+	$.push(...argv.slice(1));
+	await $.stdin[key_stdin]();
 	try{
-		if(!s.test("-f", filepath)) cli.error(`File '${candidate}' not found.`);
+		if(!s.test("-f", filepath)) $.error(`File '${candidate}' not found.`);
 		await import(url.pathToFileURL(filepath).toString());
+		if(is_tmp) s.rm("-f", filepath_tmp);
 	} catch(e){
-		const error= e instanceof cli.Error ? e.message : e;
-		console.error(error);
-		exit(1);
+		if(is_tmp) s.rm("-f", filepath_tmp);
+		printError(e);
 	}
 })();
 
 function handleMyArgvs(candidate){
 	if(['--version', '-v', '-V'].includes(candidate)){
 		echo(info("version")[0]);
-		return exit(0);
+		return $.exit(0);
 	}
 	if(['--help', '-h'].includes(candidate))
 		return printUsage();
 	if("--global-jsconfig"===candidate)
 		return jsconfigTypes();
+	if(['-e', '--eval'].includes(candidate))
+		return runEval(0);
+	if(['-p', '--print'].includes(candidate))
+		return runEval(1);
+}
+function printError(e){
+	if(e instanceof $.Error){
+		console.error(e.message);
+		return $.exit(1);
+	}
+	Error.print(e);
+	$.exit(e.exitCode || 1);
 }
 function printUsage(){
-	style.theme({ n: style.blueBright, v: style.greenBright, info: style.yellow, code: style.italic });
 	const [ n, v, d ]= info("name", "version", "description");
-	echo(`
- ${style.n(n)}@${style.v(v)}
-	${d}
- ${style.info("Usage")}:
-	${n} [options] <script>
- ${style.info('Options')}:
-            --version, -v    print current zx version
-               --help, -h    print help
-  --global-jsconfig [add]    woraround for type checking of non-package scripts
- ${style.info('Examples')}:
-	${n} script.js
-	${n} --help
- ${style.info('Usage in scripts')}:
-	Just start the file with: ${style.code('#!/usr/bin/env nodejsscript')}
-`);
-	exit(0);
+	const css= echo.css(
+		"* { margin-left: 2; }",
+		".n { color: lightblue; }",
+		".v { color: lightgreen; margin-left: 0; }",
+		".code { font-style: italic; margin-left: 0; }",
+		".H { color: yellow; }",
+		".T { margin-left: 4; }"
+	);
+	echo(`%c${n}@%c${v}`, css.n, css.v);
+	echo(`%c${d}`, css.T);
+	echo(`%cUsage%c:`, css.H);
+	echo(`%c${n} [options] <script>`, css.T);
+	echo(`%cOptions%c:`, css.H);
+	echo(`%c          --version, -v    print current ${n} version`, css.T);
+	echo("%c             --help, -h    print help", css.T);
+	echo("%c             --eval, -e    similar to `node -e …`", css.T);
+	echo("%c            --print, -p    similar to `node -p …`, infact (for now?) it wraps argument by `echo` function (splits givent string by ';' and wraps last non-empty part)", css.T);
+	echo("%c--global-jsconfig [add]    woraround for type checking of non-package scripts", css.T);
+	echo("%cExamples%c:", css.H);
+	echo(`%c${n} script.js`, css.T);
+	echo(`%c${n} --help`, css.T);
+	echo(`%cls | ${n} -p '$.stdin.text().replaceAll("A", "AAAA")'`, css.T);
+	echo(`%cls | ${n} -p '$.stdin.lines().filter(line=> line[0]==="R").map(line=> \`file: \${line}\`)'`, css.T);
+	echo("%cUsage in scripts%c:", css.H);
+	echo("%cJust start the file with: %c#!/usr/bin/env nodejsscript", css.T, css.code);
+	$.exit(0);
 }
 function info(...keys){
 	const info= s.cat(url.fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse);
@@ -70,5 +105,17 @@ function jsconfigTypes(){
 		s.ShellString,
 		s=> s.to("jsconfig.json")
 	)(jsconfig_file);
-	exit(0);
+	$.exit(0);
+}
+function runEval(is_print){
+	let input= argv.splice(2, 1)[0];
+	if(is_print){
+		let out_arr= input.split(";").reverse();
+		if(out_arr[0].trim()==="") out_arr.shift();
+		out_arr[0]= `echo(${out_arr[0]})`;
+		input= out_arr.reverse().join(";");
+	}
+	const filepath= $.xdg.temp`nodejsscript-${randomUUID()}.mjs`;
+	s.echo(input).to(filepath);
+	return filepath;
 }

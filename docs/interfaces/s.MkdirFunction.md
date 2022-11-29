@@ -25,10 +25,6 @@ Creates directories.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:214
-
 ### MkdirFunction
 
 ▸ **MkdirFunction**(`options`, ...`dir`): [`ShellString`](../modules/s.md#shellstring)
@@ -43,10 +39,6 @@ node_modules/@types/shelljs/index.d.ts:214
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:215
 
 ### MkdirFunction
 
@@ -66,10 +58,6 @@ Creates directories.
 
 Object with shell exit code, stderr and stdout.
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:223
-
 ### MkdirFunction
 
 ▸ **MkdirFunction**(...`dir`): [`ShellString`](../modules/s.md#shellstring)
@@ -83,7 +71,3 @@ node_modules/@types/shelljs/index.d.ts:223
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:224

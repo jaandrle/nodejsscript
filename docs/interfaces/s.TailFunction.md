@@ -21,10 +21,6 @@
 
 [`ShellString`](../modules/s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1138
-
 ### TailFunction
 
 ▸ **TailFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -40,10 +36,6 @@ node_modules/@types/shelljs/index.d.ts:1138
 
 [`ShellString`](../modules/s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1139
-
 ### TailFunction
 
 ▸ **TailFunction**(`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -58,10 +50,6 @@ node_modules/@types/shelljs/index.d.ts:1139
 
 [`ShellString`](../modules/s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1141
-
 ### TailFunction
 
 ▸ **TailFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
@@ -75,7 +63,3 @@ node_modules/@types/shelljs/index.d.ts:1141
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1142

@@ -24,10 +24,6 @@ Filter adjacent matching lines from input.
 
 [`ShellString`](../modules/s.md#shellstring)
 
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1159
-
 ### UniqFunction
 
 ▸ **UniqFunction**(`input`, `output?`): [`ShellString`](../modules/s.md#shellstring)
@@ -44,7 +40,3 @@ Filter adjacent matching lines from input.
 #### Returns
 
 [`ShellString`](../modules/s.md#shellstring)
-
-#### Defined in
-
-node_modules/@types/shelljs/index.d.ts:1164

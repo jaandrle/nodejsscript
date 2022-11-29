@@ -33,10 +33,6 @@
 
 • **encoding**: ``"buffer"``
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:982
-
 ___
 
 ### maxBuffer
@@ -46,10 +42,6 @@ ___
 #### Inherited from
 
 [ExecFileOptions](s.child.ExecFileOptions.md).[maxBuffer](s.child.ExecFileOptions.md#maxbuffer)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:972
 
 ___
 
@@ -61,10 +53,6 @@ ___
 
 [ExecFileOptions](s.child.ExecFileOptions.md).[killSignal](s.child.ExecFileOptions.md#killsignal)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:973
-
 ___
 
 ### windowsVerbatimArguments
@@ -74,10 +62,6 @@ ___
 #### Inherited from
 
 [ExecFileOptions](s.child.ExecFileOptions.md).[windowsVerbatimArguments](s.child.ExecFileOptions.md#windowsverbatimarguments)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:974
 
 ___
 
@@ -89,10 +73,6 @@ ___
 
 [ExecFileOptions](s.child.ExecFileOptions.md).[shell](s.child.ExecFileOptions.md#shell)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:975
-
 ___
 
 ### signal
@@ -102,10 +82,6 @@ ___
 #### Inherited from
 
 [ExecFileOptions](s.child.ExecFileOptions.md).[signal](s.child.ExecFileOptions.md#signal)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:976
 
 ___
 
@@ -121,10 +97,6 @@ true
 
 [ExecFileOptions](s.child.ExecFileOptions.md).[windowsHide](s.child.ExecFileOptions.md#windowshide)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:629
-
 ___
 
 ### timeout
@@ -139,10 +111,6 @@ ___
 
 [ExecFileOptions](s.child.ExecFileOptions.md).[timeout](s.child.ExecFileOptions.md#timeout)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:633
-
 ___
 
 ### uid
@@ -152,10 +120,6 @@ ___
 #### Inherited from
 
 [ExecFileOptions](s.child.ExecFileOptions.md).[uid](s.child.ExecFileOptions.md#uid)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:620
 
 ___
 
@@ -167,10 +131,6 @@ ___
 
 [ExecFileOptions](s.child.ExecFileOptions.md).[gid](s.child.ExecFileOptions.md#gid)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:621
-
 ___
 
 ### cwd
@@ -181,10 +141,6 @@ ___
 
 [ExecFileOptions](s.child.ExecFileOptions.md).[cwd](s.child.ExecFileOptions.md#cwd)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:622
-
 ___
 
 ### env
@@ -194,7 +150,3 @@ ___
 #### Inherited from
 
 [ExecFileOptions](s.child.ExecFileOptions.md).[env](s.child.ExecFileOptions.md#env)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:623

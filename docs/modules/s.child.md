@@ -276,10 +276,6 @@ v0.1.90
 
 [`ChildProcessWithoutNullStreams`](../interfaces/s.child.ChildProcessWithoutNullStreams.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:772
-
 ▸ **spawn**(`command`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, `Readable`, `Readable`\>
 
 #### Parameters
@@ -292,10 +288,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:772
 #### Returns
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, `Readable`, `Readable`\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:773
 
 ▸ **spawn**(`command`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, `Readable`, ``null``\>
 
@@ -310,10 +302,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:773
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, `Readable`, ``null``\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:774
-
 ▸ **spawn**(`command`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, ``null``, `Readable`\>
 
 #### Parameters
@@ -326,10 +314,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:774
 #### Returns
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, ``null``, `Readable`\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:775
 
 ▸ **spawn**(`command`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, `Readable`, `Readable`\>
 
@@ -344,10 +328,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:775
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, `Readable`, `Readable`\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:776
-
 ▸ **spawn**(`command`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, ``null``, ``null``\>
 
 #### Parameters
@@ -360,10 +340,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:776
 #### Returns
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, ``null``, ``null``\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:777
 
 ▸ **spawn**(`command`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, `Readable`, ``null``\>
 
@@ -378,10 +354,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:777
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, `Readable`, ``null``\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:778
-
 ▸ **spawn**(`command`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, ``null``, `Readable`\>
 
 #### Parameters
@@ -394,10 +366,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:778
 #### Returns
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, ``null``, `Readable`\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:779
 
 ▸ **spawn**(`command`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, ``null``, ``null``\>
 
@@ -412,10 +380,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:779
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, ``null``, ``null``\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:780
-
 ▸ **spawn**(`command`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -428,10 +392,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:780
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:781
 
 ▸ **spawn**(`command`, `args?`, `options?`): [`ChildProcessWithoutNullStreams`](../interfaces/s.child.ChildProcessWithoutNullStreams.md)
 
@@ -447,10 +407,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:781
 
 [`ChildProcessWithoutNullStreams`](../interfaces/s.child.ChildProcessWithoutNullStreams.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:783
-
 ▸ **spawn**(`command`, `args`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, `Readable`, `Readable`\>
 
 #### Parameters
@@ -464,10 +420,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:783
 #### Returns
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, `Readable`, `Readable`\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:784
 
 ▸ **spawn**(`command`, `args`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, `Readable`, ``null``\>
 
@@ -483,10 +435,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:784
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, `Readable`, ``null``\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:785
-
 ▸ **spawn**(`command`, `args`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, ``null``, `Readable`\>
 
 #### Parameters
@@ -500,10 +448,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:785
 #### Returns
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, ``null``, `Readable`\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:786
 
 ▸ **spawn**(`command`, `args`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, `Readable`, `Readable`\>
 
@@ -519,10 +463,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:786
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, `Readable`, `Readable`\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:787
-
 ▸ **spawn**(`command`, `args`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, ``null``, ``null``\>
 
 #### Parameters
@@ -536,10 +476,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:787
 #### Returns
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<`Writable`, ``null``, ``null``\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:788
 
 ▸ **spawn**(`command`, `args`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, `Readable`, ``null``\>
 
@@ -555,10 +491,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:788
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, `Readable`, ``null``\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:789
-
 ▸ **spawn**(`command`, `args`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, ``null``, `Readable`\>
 
 #### Parameters
@@ -572,10 +504,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:789
 #### Returns
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, ``null``, `Readable`\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:790
 
 ▸ **spawn**(`command`, `args`, `options`): [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, ``null``, ``null``\>
 
@@ -591,10 +519,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:790
 
 [`ChildProcessByStdio`](../interfaces/s.child.ChildProcessByStdio.md)<``null``, ``null``, ``null``\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:791
-
 ▸ **spawn**(`command`, `args`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -608,10 +532,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:791
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:792
 
 ___
 
@@ -715,10 +635,6 @@ v0.1.90
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:896
-
 ▸ **exec**(`command`, `options`, `callback?`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -732,10 +648,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:896
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:898
 
 ▸ **exec**(`command`, `options`, `callback?`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -751,10 +663,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:898
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:906
-
 ▸ **exec**(`command`, `options`, `callback?`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -768,10 +676,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:906
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:915
 
 ▸ **exec**(`command`, `options`, `callback?`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -787,10 +691,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:915
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:923
-
 ▸ **exec**(`command`, `options`, `callback?`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -804,10 +704,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:923
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:925
 
 ___
 
@@ -887,10 +783,6 @@ v0.1.91
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1051
-
 ▸ **execFile**(`file`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -904,10 +796,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1051
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1052
-
 ▸ **execFile**(`file`, `args?`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -920,10 +808,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1052
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1053
 
 ▸ **execFile**(`file`, `args`, `options`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -939,10 +823,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1053
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1054
-
 ▸ **execFile**(`file`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -955,10 +835,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1054
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1056
 
 ▸ **execFile**(`file`, `args`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -974,10 +850,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1056
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1057
-
 ▸ **execFile**(`file`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -991,10 +863,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1057
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1059
 
 ▸ **execFile**(`file`, `args`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -1011,10 +879,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1059
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1060
-
 ▸ **execFile**(`file`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -1028,10 +892,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1060
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1067
 
 ▸ **execFile**(`file`, `args`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -1048,10 +908,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1067
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1068
-
 ▸ **execFile**(`file`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -1065,10 +921,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1068
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1076
 
 ▸ **execFile**(`file`, `args`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -1085,10 +937,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1076
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1077
-
 ▸ **execFile**(`file`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -1102,10 +950,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1077
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1084
 
 ▸ **execFile**(`file`, `args`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -1122,10 +966,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1084
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1085
-
 ▸ **execFile**(`file`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -1139,10 +979,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1085
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1092
 
 ▸ **execFile**(`file`, `args`, `options`, `callback`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
@@ -1158,10 +994,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1092
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1097
 
 ___
 
@@ -1229,10 +1061,6 @@ v0.5.0
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1248
-
 ▸ **fork**(`modulePath`, `args?`, `options?`): [`ChildProcess`](../classes/s.child.ChildProcess.md)
 
 #### Parameters
@@ -1246,10 +1074,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1248
 #### Returns
 
 [`ChildProcess`](../classes/s.child.ChildProcess.md)
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1249
 
 ___
 
@@ -1282,10 +1106,6 @@ v0.11.12
 
 [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`Buffer`\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1285
-
 ▸ **spawnSync**(`command`, `options`): [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`string`\>
 
 #### Parameters
@@ -1298,10 +1118,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1285
 #### Returns
 
 [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`string`\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1286
 
 ▸ **spawnSync**(`command`, `options`): [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`Buffer`\>
 
@@ -1316,10 +1132,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1286
 
 [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`Buffer`\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1287
-
 ▸ **spawnSync**(`command`, `options?`): [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`string` \| `Buffer`\>
 
 #### Parameters
@@ -1333,10 +1145,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1287
 
 [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`string` \| `Buffer`\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1288
-
 ▸ **spawnSync**(`command`, `args`): [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`Buffer`\>
 
 #### Parameters
@@ -1349,10 +1157,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1288
 #### Returns
 
 [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`Buffer`\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1289
 
 ▸ **spawnSync**(`command`, `args`, `options`): [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`string`\>
 
@@ -1368,10 +1172,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1289
 
 [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`string`\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1290
-
 ▸ **spawnSync**(`command`, `args`, `options`): [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`Buffer`\>
 
 #### Parameters
@@ -1386,10 +1186,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1290
 
 [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`Buffer`\>
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1291
-
 ▸ **spawnSync**(`command`, `args?`, `options?`): [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`string` \| `Buffer`\>
 
 #### Parameters
@@ -1403,10 +1199,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1291
 #### Returns
 
 [`SpawnSyncReturns`](../interfaces/s.child.SpawnSyncReturns.md)<`string` \| `Buffer`\>
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1292
 
 ___
 
@@ -1442,10 +1234,6 @@ v0.11.12
 
 The stdout from the command.
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1325
-
 ▸ **execSync**(`command`, `options`): `string`
 
 #### Parameters
@@ -1458,10 +1246,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1325
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1326
 
 ▸ **execSync**(`command`, `options`): `Buffer`
 
@@ -1476,10 +1260,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1326
 
 `Buffer`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1327
-
 ▸ **execSync**(`command`, `options?`): `string` \| `Buffer`
 
 #### Parameters
@@ -1492,10 +1272,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1327
 #### Returns
 
 `string` \| `Buffer`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1328
 
 ___
 
@@ -1534,10 +1310,6 @@ v0.11.12
 
 The stdout from the command.
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1358
-
 ▸ **execFileSync**(`file`, `options`): `string`
 
 #### Parameters
@@ -1550,10 +1322,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1358
 #### Returns
 
 `string`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1359
 
 ▸ **execFileSync**(`file`, `options`): `Buffer`
 
@@ -1568,10 +1336,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1359
 
 `Buffer`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1360
-
 ▸ **execFileSync**(`file`, `options?`): `string` \| `Buffer`
 
 #### Parameters
@@ -1585,10 +1349,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1360
 
 `string` \| `Buffer`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1361
-
 ▸ **execFileSync**(`file`, `args`): `Buffer`
 
 #### Parameters
@@ -1601,10 +1361,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1361
 #### Returns
 
 `Buffer`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1362
 
 ▸ **execFileSync**(`file`, `args`, `options`): `string`
 
@@ -1620,10 +1376,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1362
 
 `string`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1363
-
 ▸ **execFileSync**(`file`, `args`, `options`): `Buffer`
 
 #### Parameters
@@ -1637,10 +1389,6 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1363
 #### Returns
 
 `Buffer`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1364
 
 ▸ **execFileSync**(`file`, `args?`, `options?`): `string` \| `Buffer`
 
@@ -1656,19 +1404,11 @@ node_modules/@types/node/ts4.8/child_process.d.ts:1364
 
 `string` \| `Buffer`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:1365
-
 ## Type Aliases
 
 ### Serializable
 
 Ƭ **Serializable**: `string` \| `object` \| `number` \| `boolean` \| `bigint`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:74
 
 ___
 
@@ -1676,19 +1416,11 @@ ___
 
 Ƭ **SendHandle**: `net.Socket` \| `net.Server`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:75
-
 ___
 
 ### IOType
 
 Ƭ **IOType**: ``"overlapped"`` \| ``"pipe"`` \| ``"ignore"`` \| ``"inherit"``
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:600
 
 ___
 
@@ -1696,19 +1428,11 @@ ___
 
 Ƭ **StdioOptions**: [`IOType`](s.child.md#iotype) \| ([`IOType`](s.child.md#iotype) \| ``"ipc"`` \| `Stream` \| `number` \| ``null`` \| `undefined`)[]
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:601
-
 ___
 
 ### SerializationType
 
 Ƭ **SerializationType**: ``"json"`` \| ``"advanced"``
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:602
 
 ___
 
@@ -1716,19 +1440,11 @@ ___
 
 Ƭ **StdioNull**: ``"inherit"`` \| ``"ignore"`` \| `Stream`
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:647
-
 ___
 
 ### StdioPipeNamed
 
 Ƭ **StdioPipeNamed**: ``"pipe"`` \| ``"overlapped"``
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:648
 
 ___
 
@@ -1736,16 +1452,8 @@ ___
 
 Ƭ **StdioPipe**: `undefined` \| ``null`` \| [`StdioPipeNamed`](s.child.md#stdiopipenamed)
 
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:649
-
 ___
 
 ### ExecFileException
 
 Ƭ **ExecFileException**: [`ExecException`](../interfaces/s.child.ExecException.md) & `NodeJS.ErrnoException`
-
-#### Defined in
-
-node_modules/@types/node/ts4.8/child_process.d.ts:987
