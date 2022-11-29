@@ -28,7 +28,7 @@ curl https://api.spacexdata.com/v4/launches/latest | nodejsscript -p 'Object.ent
 …see [examples](./examples/eval_print.md) again.
 
 ## Quick links/info
-- migration from *0.8.\**: see [API changes 0.8 → 0.9](##api-changes-08--09)
+- migration from *0.8.\**: see [API changes 0.8 → 0.9](#api-changes-08--09)
 - potencial changes for *1.x.y*: see [issues](https://github.com/jaandrle/nodejsscript/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
 
 ## Installation
