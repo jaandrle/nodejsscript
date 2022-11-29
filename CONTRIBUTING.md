@@ -12,24 +12,24 @@ The proper way to report Bug/Feature is to use corresponding issue template.
 
 The maintenance team will read all created issues and …:
 
-<!--1. … assign them to proper [projects](../../projects/)
-based on targerted library version. Also, each issue schould have chooosed
-priority (__low__/__high__) by using specific column i project
-(__To Do – Low priority__/__To Do – High priority__).-->
+1. … provide additional information such as priority and/or ask for more information
 1. … assign them to targerted milestone (with specific deadline, if it is known).
 
 ## Patches
 __We're super grateful for your patch__
 
 The best way to make sure your issue is addressed is to submit a patch.
-We accept patches through all mediums: pull requests, email, issue
-comment, tweet with a link to a snippet, etc.
+We accept patches through all mediums: pull requests, issue
+comment, email (andrle.jan+at+centrum.cz) and mastodon (@jaandrle@fosstodon.org).
 
 However, before sending a patch, please take try to:
 
 - make your commit message describtive and use issue links for better
 understandig commit purpose.
-- make your coding style similar to ours (TBD).
+- make your coding style similar to ours, mainly
+	- use tabulator for indentation
+	- camelCase for function names
+	- snake\_case for variables
 
 ### Development Environment
 The library is developed using [Node.js](http://nodejs.org/) and has
@@ -38,6 +38,10 @@ To install them just run the following command from within your
 repo directory:
 ```bash
 $ npm ci
+```
+There is `npm` task for generating documentation from TypeScript anotations:
+```bash
+npm run doc
 ```
 
 ## Documentation/examples improvements
@@ -48,7 +52,8 @@ and you think it schould.
 
 For updating documentation and examples follow [Patches](#Patches).
 The documentation is created by [typedoc](https://github.com/TypeStrong/typedoc).
-Examples are in [examples/](./docs/examples/).
+
+You can also improve examples founded in [examples/](./docs/examples/).
 
 ---
 This text was inspired by
