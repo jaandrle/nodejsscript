@@ -23,7 +23,7 @@
 
 ### TailFunction
 
-▸ **TailFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **TailFunction**(`options`, `...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -52,7 +52,7 @@
 
 ### TailFunction
 
-▸ **TailFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **TailFunction**(`...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 

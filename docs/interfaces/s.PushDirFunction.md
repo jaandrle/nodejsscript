@@ -17,8 +17,8 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when adding directories                to the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
-| `dir` | ``"+N"`` | Brings the Nth directory (counting from the left of the list printed by dirs,                starting with zero) to the top of the list by rotating the stack. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when adding directories to the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
+| `dir` | ``"+N"`` | Brings the Nth directory (counting from the left of the list printed by dirs, starting with zero) to the top of the list by rotating the stack. |
 
 #### Returns
 
@@ -37,8 +37,8 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when adding directories                to the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
-| `dir` | ``"-N"`` | Brings the Nth directory (counting from the right of the list printed by dirs,                starting with zero) to the top of the list by rotating the stack. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when adding directories to the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
+| `dir` | ``"-N"`` | Brings the Nth directory (counting from the right of the list printed by dirs, starting with zero) to the top of the list by rotating the stack. |
 
 #### Returns
 
@@ -57,8 +57,8 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when adding directories                to the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
-| `dir` | `string` | Makes the current working directory be the top of the stack,                and then executes the equivalent of `cd dir`. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when adding directories to the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
+| `dir` | `string` | Makes the current working directory be the top of the stack, and then executes the equivalent of `cd dir`. |
 
 #### Returns
 
@@ -77,7 +77,7 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `dir` | ``"+N"`` | Brings the Nth directory (counting from the left of the list printed by dirs,            starting with zero) to the top of the list by rotating the stack. |
+| `dir` | ``"+N"`` | Brings the Nth directory (counting from the left of the list printed by dirs, starting with zero) to the top of the list by rotating the stack. |
 
 #### Returns
 
@@ -96,7 +96,7 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `dir` | ``"-N"`` | Brings the Nth directory (counting from the right of the list printed by dirs,            starting with zero) to the top of the list by rotating the stack. |
+| `dir` | ``"-N"`` | Brings the Nth directory (counting from the right of the list printed by dirs, starting with zero) to the top of the list by rotating the stack. |
 
 #### Returns
 
@@ -115,7 +115,7 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `dir` | `string` | Makes the current working directory be the top of the stack,            and then executes the equivalent of cd dir. |
+| `dir` | `string` | Makes the current working directory be the top of the stack, and then executes the equivalent of cd dir. |
 
 #### Returns
 

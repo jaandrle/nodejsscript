@@ -16,12 +16,15 @@ It tryies to use [xdg-user-dirs](https://www.freedesktop.org/wiki/Software/xdg-u
 - [data](xdg_.xdg.md#data)
 - [config](xdg_.xdg.md#config)
 - [cache](xdg_.xdg.md#cache)
+- [root](xdg_.xdg.md#root)
+- [cwd](xdg_.xdg.md#cwd)
+- [main](xdg_.xdg.md#main)
 
 ## Functions
 
 ### home
 
-▸ **home**(...`path`): `string`
+▸ **home**(`...path`): `string`
 
 Returns the directory/file path based on the passed tag string.
 ```js
@@ -29,7 +32,7 @@ $.xdg.home() //=> (on my linux) /home/jaandrle
 $.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
 $.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 ```
-…similarly for `temp`, `data`, `config` ans `cache`.
+…similarly for `temp`, `data`, `config`, `cache`, `root`, `cwd` and `main`.
 
 #### Parameters
 
@@ -45,7 +48,7 @@ ___
 
 ### temp
 
-▸ **temp**(...`path`): `string`
+▸ **temp**(`...path`): `string`
 
 Returns the directory/file path based on the passed tag string.
 ```js
@@ -53,7 +56,7 @@ $.xdg.home() //=> (on my linux) /home/jaandrle
 $.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
 $.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 ```
-…similarly for `temp`, `data`, `config` ans `cache`.
+…similarly for `temp`, `data`, `config`, `cache`, `root`, `cwd` and `main`.
 
 #### Parameters
 
@@ -69,7 +72,7 @@ ___
 
 ### data
 
-▸ **data**(...`path`): `string`
+▸ **data**(`...path`): `string`
 
 Returns the directory/file path based on the passed tag string.
 ```js
@@ -77,7 +80,7 @@ $.xdg.home() //=> (on my linux) /home/jaandrle
 $.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
 $.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 ```
-…similarly for `temp`, `data`, `config` ans `cache`.
+…similarly for `temp`, `data`, `config`, `cache`, `root`, `cwd` and `main`.
 
 #### Parameters
 
@@ -93,7 +96,7 @@ ___
 
 ### config
 
-▸ **config**(...`path`): `string`
+▸ **config**(`...path`): `string`
 
 Returns the directory/file path based on the passed tag string.
 ```js
@@ -101,7 +104,7 @@ $.xdg.home() //=> (on my linux) /home/jaandrle
 $.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
 $.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 ```
-…similarly for `temp`, `data`, `config` ans `cache`.
+…similarly for `temp`, `data`, `config`, `cache`, `root`, `cwd` and `main`.
 
 #### Parameters
 
@@ -117,7 +120,7 @@ ___
 
 ### cache
 
-▸ **cache**(...`path`): `string`
+▸ **cache**(`...path`): `string`
 
 Returns the directory/file path based on the passed tag string.
 ```js
@@ -125,7 +128,79 @@ $.xdg.home() //=> (on my linux) /home/jaandrle
 $.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
 $.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
 ```
-…similarly for `temp`, `data`, `config` ans `cache`.
+…similarly for `temp`, `data`, `config`, `cache`, `root`, `cwd` and `main`.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `...path` | [`XdgPath`](xdg_.md#xdgpath) |
+
+#### Returns
+
+`string`
+
+___
+
+### root
+
+▸ **root**(`...path`): `string`
+
+Returns the directory/file path based on the passed tag string.
+```js
+$.xdg.home() //=> (on my linux) /home/jaandrle
+$.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
+$.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
+```
+…similarly for `temp`, `data`, `config`, `cache`, `root`, `cwd` and `main`.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `...path` | [`XdgPath`](xdg_.md#xdgpath) |
+
+#### Returns
+
+`string`
+
+___
+
+### cwd
+
+▸ **cwd**(`...path`): `string`
+
+Returns the directory/file path based on the passed tag string.
+```js
+$.xdg.home() //=> (on my linux) /home/jaandrle
+$.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
+$.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
+```
+…similarly for `temp`, `data`, `config`, `cache`, `root`, `cwd` and `main`.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `...path` | [`XdgPath`](xdg_.md#xdgpath) |
+
+#### Returns
+
+`string`
+
+___
+
+### main
+
+▸ **main**(`...path`): `string`
+
+Returns the directory/file path based on the passed tag string.
+```js
+$.xdg.home() //=> (on my linux) /home/jaandrle
+$.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
+$.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
+```
+…similarly for `temp`, `data`, `config`, `cache`, `root`, `cwd` and `main`.
 
 #### Parameters
 

@@ -91,7 +91,7 @@ ___
 
 **`Default`**
 
-true
+false
 
 #### Inherited from
 

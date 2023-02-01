@@ -34,7 +34,7 @@ Displays the list of currently remembered directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | ``"+N"`` | Displays the Nth directory (counting from the left of the list                printed by dirs when invoked without options), starting with zero. |
+| `options` | ``"+N"`` | Displays the Nth directory (counting from the left of the list printed by dirs when invoked without options), starting with zero. |
 
 #### Returns
 
@@ -52,7 +52,7 @@ Displays the list of currently remembered directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | ``"-N"`` | Displays the Nth directory (counting from the right of the list                printed by dirs when invoked without options), starting with zero. |
+| `options` | ``"-N"`` | Displays the Nth directory (counting from the right of the list printed by dirs when invoked without options), starting with zero. |
 
 #### Returns
 
@@ -70,7 +70,7 @@ Displays the list of currently remembered directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-c`: Clears the directory stack by deleting all of the elements.        - `-N`: Displays the Nth directory (counting from the right of the list                printed by dirs when invoked without options), starting with zero.        - `+N`: Displays the Nth directory (counting from the left of the list                printed by dirs when invoked without options), starting with zero. |
+| `options` | `string` | Available options: - `-c`: Clears the directory stack by deleting all of the elements. - `-N`: Displays the Nth directory (counting from the right of the list printed by dirs when invoked without options), starting with zero. - `+N`: Displays the Nth directory (counting from the left of the list printed by dirs when invoked without options), starting with zero. |
 
 #### Returns
 

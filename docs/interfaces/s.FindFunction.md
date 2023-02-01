@@ -26,7 +26,7 @@ An array of all files (however deep) in the given path(s).
 
 ### FindFunction
 
-▸ **FindFunction**(...`path`): [`ShellArray`](../modules/s.md#shellarray)
+▸ **FindFunction**(`...path`): [`ShellArray`](../modules/s.md#shellarray)
 
 #### Parameters
 

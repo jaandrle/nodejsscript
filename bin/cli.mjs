@@ -8,7 +8,7 @@ import { stdin as key_stdin } from "../src/keys.js";
 
 process.on('uncaughtException', printError);
 (async function main(){
-	const candidate= argv.splice(2, 1)[0];
+	const candidate= argv.splice(2, 1)[0] || "--help";
 	let filepath_tmp;
 	if(candidate[0]==="-")
 		filepath_tmp= handleMyArgvs(candidate);
@@ -58,15 +58,15 @@ function printError(e){
 }
 function printUsage(){
 	const [ n, v, d ]= info("name", "version", "description");
-	const css= echo.css(
-		"* { margin-left: 2; }",
-		".n { color: lightblue; }",
-		".v { color: lightgreen; margin-left: 0; }",
-		".code { font-style: italic; margin-left: 0; }",
-		".H { color: yellow; }",
-		".T { margin-left: 4; }"
-	);
-	echo(`%c${n}@%c${v}`, css.n, css.v);
+	const css= echo.css`
+		* { margin-left: 2; }
+		.n { color: lightblue; }
+		.v { color: lightgreen; margin-left: 0; }
+		.code { font-style: italic; margin-left: 0; }
+		.H { color: yellow; }
+		.T { margin-left: 4; }
+	`;
+	echo("%c%s%c@%c%s", css.n, css.unset, css.v, n, v);
 	echo(`%c${d}`, css.T);
 	echo(`%cUsage%c:`, css.H);
 	echo(`%c${n} [options] <script>`, css.T);
@@ -112,7 +112,15 @@ function runEval(is_print){
 	if(is_print){
 		let out_arr= input.split(";").reverse();
 		if(out_arr[0].trim()==="") out_arr.shift();
-		out_arr[0]= `echo(${out_arr[0]})`;
+		let pre= "";
+		let out= out_arr[0].trim();
+		if(out[0]==="}"){
+			pre= "}";
+			out= out.slice(1).trim();
+		}
+		const input_rest= argv.slice(2).join(",");
+		if(input_rest.trim()!=="") out= `pipe(${input_rest})(${out})`;
+		out_arr[0]= `${pre} echo(${out})`;
 		input= out_arr.reverse().join(";");
 	}
 	const filepath= $.xdg.temp`nodejsscript-${randomUUID()}.mjs`;

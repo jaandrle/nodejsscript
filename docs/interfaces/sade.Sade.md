@@ -92,7 +92,7 @@ ___
 
 ### alias
 
-▸ **alias**(...`names`): [`Sade`](sade.Sade.md)
+▸ **alias**(`...names`): [`Sade`](sade.Sade.md)
 
 #### Parameters
 

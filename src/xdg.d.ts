@@ -6,7 +6,7 @@ export type XdgPath= [ path: TemplateStringsArray, ...path_vars: string[] ];
  * $.xdg.home`Documents` //=> (on my linux) /home/jaandrle/Documents
  * $.xdg.home("Documents") //=> (on my linux) /home/jaandrle/Documents
  * ```
- * …similarly for `temp`, `data`, `config` ans `cache`.
+ * …similarly for `temp`, `data`, `config`, `cache`, `root`, `cwd` and `main`.
  */
 export type XdgFunctionPath= (...path: XdgPath)=> string;
 export type XdgFunctionRoot= ()=> string;
@@ -21,4 +21,7 @@ export namespace xdg{
 	const data: XdgFunction;
 	const config: XdgFunction;
 	const cache: XdgFunction;
+	const root: XdgFunction;
+	const cwd: XdgFunction;
+	const main: XdgFunction;
 }

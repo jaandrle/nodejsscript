@@ -17,7 +17,7 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-v`: Inverse the sense of the regex and print                the lines not matching the criteria.        - `-l`: Print only filenames of matching files |
+| `options` | `string` | Available options: - `-v`: Inverse the sense of the regex and print the lines not matching the criteria. - `-l`: Print only filenames of matching files |
 | `regex_filter` | `string` \| `RegExp` | The regular expression to use. |
 | `files` | `string`[] | The files to process. |
 
@@ -29,7 +29,7 @@ Returns a string containing all lines of the file that match the given regex_fil
 
 ### GrepFunction
 
-▸ **GrepFunction**(`options`, `regex_filter`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **GrepFunction**(`options`, `regex_filter`, `...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -65,7 +65,7 @@ Returns a string containing all lines of the file that match the given `regex_fi
 
 ### GrepFunction
 
-▸ **GrepFunction**(`regex_filter`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **GrepFunction**(`regex_filter`, `...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 

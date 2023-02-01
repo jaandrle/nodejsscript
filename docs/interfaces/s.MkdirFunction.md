@@ -16,7 +16,7 @@ Creates directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-p`: full paths, will create intermediate dirs if necessary |
+| `options` | `string` | Available options: - `-p`: full paths, will create intermediate dirs if necessary |
 | `dir` | `string`[] | The directories to create. |
 
 #### Returns
@@ -27,7 +27,7 @@ Object with shell exit code, stderr and stdout.
 
 ### MkdirFunction
 
-▸ **MkdirFunction**(`options`, ...`dir`): [`ShellString`](../modules/s.md#shellstring)
+▸ **MkdirFunction**(`options`, `...dir`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -60,7 +60,7 @@ Object with shell exit code, stderr and stdout.
 
 ### MkdirFunction
 
-▸ **MkdirFunction**(...`dir`): [`ShellString`](../modules/s.md#shellstring)
+▸ **MkdirFunction**(`...dir`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 

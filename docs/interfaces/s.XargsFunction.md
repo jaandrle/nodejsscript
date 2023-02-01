@@ -8,7 +8,7 @@
 
 ### XargsFunction
 
-▸ **XargsFunction**<`T`\>(`options`, `cmd`, ...`cmd_args`): `ReturnType`<`T`\>
+▸ **XargsFunction**<`T`\>(`options`, `cmd`, `...cmd_args`): `ReturnType`<`T`\>
 
 Works as `xargs` in bash, only `-I` option is supported.
 ```js
@@ -39,7 +39,7 @@ Result of `cmd`
 
 ### XargsFunction
 
-▸ **XargsFunction**<`T`\>(`cmd`, ...`cmd_args`): `ReturnType`<`T`\>
+▸ **XargsFunction**<`T`\>(`cmd`, `...cmd_args`): `ReturnType`<`T`\>
 
 #### Type parameters
 

@@ -1,26 +1,6 @@
 import * as s from "shelljs";
 export type Options= `-${string}`;
-export type css_colors= "black" | "red" | "green" | "yellow" | "blue" | "magenta" | "cyan" | "white" | "gray" | "lightred" | "lightgreen" | "lightyellow" | "lightblue" | "lightmagenta" | "lightcyan" | "whitesmoke";
-/**
- * - `color: COLOR` – see {@link css_colors}
- * - `background: COLOR` – see {@link css_colors}
- * - `margin-left: NUMBER` – counts spaces before string
- * - `font-style: italic`
- * - `font-weight: bold`
- * - `text-decoration: underline|line-through`
- * - `animation:blink`
- * - TODO: `…:before { content: "…" }`, `tab-size`
-*/
-export type css_rules=
-	  "unset: all;"
-	| "display: none;"
-	| `color: ${css_colors};`
-	| `background: ${css_colors};`
-	| `margin-left: ${number};`
-	| "font-style: italic;"
-	| "font-weight: bold;"
-	| `text-decoration: ${"underline"|"line-through"}`
-	| "animation: blink;";
+import { style } from 'css-in-console';
 export interface EchoFunction {
 	/**
 	 * Similarly to {@link s.echo}, the first argument accepts options string starting with `-`:
@@ -49,7 +29,8 @@ export interface EchoFunction {
 	 * ```js
 	 * echo("%cHello %cWorld!", "color: red", "color: blue");
 	 * ```
-	 * **But**, implementation for `echo` is much more limited. There is no CSS parser, just keywords see {@link css_rules} (alternatively file `src/ansi_constants.js`).
+	 * **But**, implementation for `echo` is much more limited. There is no CSS parser, just keywords see [css_rules](https://github.com/jaandrle/css-in-console/blob/main/docs/README.md#css_rules).
+	 * **Internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)**.
 	 *
 	 * You can pre-define css class with this method:
 	 * ```js
@@ -65,15 +46,20 @@ export interface EchoFunction {
 	 * ```
 	 * …there is also helpers (see {@link EchoFunction.format} and {@link EchoFunction.formatWithOptions}) to just return finally formated text:
 	 * ```js
-	 * const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue { color: blue; }");
+	 * const css= echo.css`
+	 *	* { font-weight: bold; }
+	 *	.red { color: red; }
+	 *	.blue { color: blue; }
+	 * `;
 	 * const text= echo.format("%cRed and bold text", css.red);
 	 * echo(text);
 	 * ```
 	 * For further information, see:
+	 * <br>- [css-in-console - npm](https://www.npmjs.com/package/css-in-console)
 	 * <br>- [Styling console output](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output)
 	 * <br>- [Util.format | Node.js v19.1.0 Documentation](https://nodejs.org/api/util.html#utilformatformat-args)
 	 */
-	css(...styles: `.${string}{ ${css_rules} }`[]): Record<string, string>;
+	css: typeof style;
 	/**
 	 * A helper method returning formated text as it processed by {@link echo}, but not printed into the console.
 	 * (So infact, it is an alias `echo.use("-S", …);`)
@@ -117,7 +103,7 @@ export interface EchoFunction {
 /**
  * This is mixed function between bash’s `echo` and `console.log`.
  * By default, works more like `console.log` with partial supports
- * for styling mimic CSS and `console.log` in the web browser. See {@link EchoFunction.css}.
+ * for styling mimic CSS and `console.log` in the web browser. See {@link EchoFunction.css echo.css} (internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)).
  * 
  * The {@link EchoFunction.use} provides more `echo` way,
  * the first argument accepts options string starting with `-`:

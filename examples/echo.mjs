@@ -1,12 +1,12 @@
 #!/usr/bin/env nodejsscript
 /* jshint esversion: 11,-W097, -W040, module: true, node: true, expr: true, undef: true *//* global echo, $ */
-const css= echo.css(
-	"h1 { color: lightblue; }",
-	".pid { background: red; color: yellow; animation: blink; }",
-	".json {}",
-	".pid, .json { margin-left: 2; }",
-	"h1:before, .pid:before, .json:before { content: '- '; }"
-);
+const css= echo.css`
+	.h1 { color: lightblue; }
+	.pid { background: red; color: yellow; animation: blink; }
+	.json {}
+	.pid, .json { margin-left: 2; }
+	.h1, .pid, .json { display: list-item; }
+`;
 
 echo("%cTest 1", css.h1);
 echoList(list());
@@ -20,12 +20,11 @@ echo("%c%j", css.json, { a: "A" });
 $.exit(0);
 
 function echoList(items){
-	const css= echo.css(
-		"* { margin-left: 2; }",
-		"*:before { content: '- '; }",
-		".list { color: gray; }",
-		".list-odd { font-style: italic; }"
-	);
+	const css= echo.css`
+		* { margin-left: 2; display: list-item; }
+		.list { color: gray; }
+		.list-odd { font-style: italic; }
+	`;
 	items.forEach(function(item, i){
 		echo("%c"+item, i%2 ? css.list : css["list-odd"]);
 	});

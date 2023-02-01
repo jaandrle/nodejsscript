@@ -156,7 +156,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | ``"-S"`` \| ``"-V"`` \| ``"-F"`` \| ``"-g"`` | Options  - "-V": verbose  - "-S": silent (default)  - "-F": fatal  - "-g": noglob |
+| `options` | ``"-S"`` \| ``"-V"`` \| ``"-F"`` \| ``"-g"`` | Options - "-V": verbose - "-S": silent (default) - "-F": fatal - "-g": noglob |
 
 #### Returns
 
@@ -323,7 +323,7 @@ Evaluates expression using the available primaries and returns corresponding val
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `option` | [`TestOptions`](s.md#testoptions) | Valid options:        - `-b`: true if path is a block device;        - `-c`: true if path is a character device;        - `-d`: true if path is a directory;        - `-e`: true if path exists;        - `-f`: true if path is a regular file;        - `-L`: true if path is a symbolic link;        - `-p`: true if path is a pipe (FIFO);        - `-S`: true if path is a socket |
+| `option` | [`TestOptions`](s.md#testoptions) | Valid options: - `-b`: true if path is a block device; - `-c`: true if path is a character device; - `-d`: true if path is a directory; - `-e`: true if path exists; - `-f`: true if path is a regular file; - `-L`: true if path is a symbolic link; - `-p`: true if path is a pipe (FIFO); - `-S`: true if path is a socket |
 | `path` | `string` | The path. |
 
 #### Returns
@@ -413,7 +413,7 @@ Sets global configuration variables
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `+/-e`: exit upon error (`config.fatal`),        - `+/-v`: verbose: show all commands (`config.verbose`),        - `+/-f`: disable filename expansion (globbing) |
+| `options` | `string` | Available options: - `+/-e`: exit upon error (`config.fatal`), - `+/-v`: verbose: show all commands (`config.verbose`), - `+/-f`: disable filename expansion (globbing) |
 
 #### Returns
 
@@ -431,7 +431,7 @@ Returns array of files in the given path, or in current directory if no path pro
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-R`: recursive        - `-A`: all files (include files beginning with ., except for . and ..)        - `-L`: follow symlinks        - `-d`: list directories themselves, not their contents        - `-l`: list objects representing each file, each with fields containing                `ls -l` output fields. See fs.Stats for more info |
+| `options` | `string` | Available options: - `-R`: recursive - `-A`: all files (include files beginning with ., except for . and ..) - `-L`: follow symlinks - `-d`: list directories themselves, not their contents - `-l`: list objects representing each file, each with fields containing `ls -l` output fields. See fs.Stats for more info |
 | `paths` | `string`[] | Paths to search. |
 
 #### Returns
@@ -440,7 +440,7 @@ Returns array of files in the given path, or in current directory if no path pro
 
 An array of files in the given path(s).
 
-▸ **ls**(`options`, ...`paths`): [`ShellArray`](s.md#shellarray)
+▸ **ls**(`options`, `...paths`): [`ShellArray`](s.md#shellarray)
 
 Returns array of files in the given path, or in current directory if no path provided.
 
@@ -448,7 +448,7 @@ Returns array of files in the given path, or in current directory if no path pro
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-R`: recursive        - `-A`: all files (include files beginning with ., except for . and ..)        - `-L`: follow symlinks        - `-d`: list directories themselves, not their contents        - `-l`: list objects representing each file, each with fields containing                `ls -l` output fields. See fs.Stats for more info |
+| `options` | `string` | Available options: - `-R`: recursive - `-A`: all files (include files beginning with ., except for . and ..) - `-L`: follow symlinks - `-d`: list directories themselves, not their contents - `-l`: list objects representing each file, each with fields containing `ls -l` output fields. See fs.Stats for more info |
 | `...paths` | `string`[] | Paths to search. |
 
 #### Returns
@@ -473,7 +473,7 @@ Returns array of files in the given path, or in current directory if no path pro
 
 An array of files in the given path(s).
 
-▸ **ls**(...`paths`): [`ShellArray`](s.md#shellarray)
+▸ **ls**(`...paths`): [`ShellArray`](s.md#shellarray)
 
 Returns array of files in the given path, or in current directory if no path provided.
 
@@ -509,7 +509,7 @@ Returns array of all files (however deep) in the given paths.
 
 An array of all files (however deep) in the given path(s).
 
-▸ **find**(...`path`): [`ShellArray`](s.md#shellarray)
+▸ **find**(`...path`): [`ShellArray`](s.md#shellarray)
 
 Returns array of all files (however deep) in the given paths.
 
@@ -537,7 +537,7 @@ Copies files. The wildcard `*` is accepted.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-f`: force (default behavior)        - `-n`: no-clobber        - `-u`: only copy if source is newer than dest        - `-r`, -R: recursive        - `-L`: follow symlinks        - `-P`: don't follow symlinks |
+| `options` | `string` | Available options: - `-f`: force (default behavior) - `-n`: no-clobber - `-u`: only copy if source is newer than dest - `-r`, -R: recursive - `-L`: follow symlinks - `-P`: don't follow symlinks |
 | `source` | `string` \| `string`[] | The source. |
 | `dest` | `string` | The destination. |
 
@@ -576,7 +576,7 @@ Removes files. The wildcard `*` is accepted.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-f` (force),        - `-r`, `-R` (recursive) |
+| `options` | `string` | Available options: - `-f` (force), - `-r`, `-R` (recursive) |
 | `files` | `string`[] | Files to remove. |
 
 #### Returns
@@ -585,7 +585,7 @@ Removes files. The wildcard `*` is accepted.
 
 Object with shell exit code, stderr and stdout.
 
-▸ **rm**(`options`, ...`files`): [`ShellString`](s.md#shellstring)
+▸ **rm**(`options`, `...files`): [`ShellString`](s.md#shellstring)
 
 Removes files. The wildcard `*` is accepted.
 
@@ -593,7 +593,7 @@ Removes files. The wildcard `*` is accepted.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-f` (force),        - `-r`, `-R` (recursive) |
+| `options` | `string` | Available options: - `-f` (force), - `-r`, `-R` (recursive) |
 | `...files` | `string`[] | Files to remove. |
 
 #### Returns
@@ -618,7 +618,7 @@ Removes files. The wildcard `*` is accepted.
 
 Object with shell exit code, stderr and stdout.
 
-▸ **rm**(...`files`): [`ShellString`](s.md#shellstring)
+▸ **rm**(`...files`): [`ShellString`](s.md#shellstring)
 
 Removes files. The wildcard `*` is accepted.
 
@@ -646,7 +646,7 @@ Moves files. The wildcard `*` is accepted.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-f`: force (default behavior)        - `-n`: no-clobber |
+| `options` | `string` | Available options: - `-f`: force (default behavior) - `-n`: no-clobber |
 | `source` | `string` \| `string`[] | The source. |
 | `dest` | `string` | The destination. |
 
@@ -685,7 +685,7 @@ Creates directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-p`: full paths, will create intermediate dirs if necessary |
+| `options` | `string` | Available options: - `-p`: full paths, will create intermediate dirs if necessary |
 | `dir` | `string`[] | The directories to create. |
 
 #### Returns
@@ -694,7 +694,7 @@ Creates directories.
 
 Object with shell exit code, stderr and stdout.
 
-▸ **mkdir**(`options`, ...`dir`): [`ShellString`](s.md#shellstring)
+▸ **mkdir**(`options`, `...dir`): [`ShellString`](s.md#shellstring)
 
 Creates directories.
 
@@ -702,7 +702,7 @@ Creates directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-p`: full paths, will create intermediate dirs if necessary |
+| `options` | `string` | Available options: - `-p`: full paths, will create intermediate dirs if necessary |
 | `...dir` | `string`[] | The directories to create. |
 
 #### Returns
@@ -727,7 +727,7 @@ Creates directories.
 
 Object with shell exit code, stderr and stdout.
 
-▸ **mkdir**(...`dir`): [`ShellString`](s.md#shellstring)
+▸ **mkdir**(`...dir`): [`ShellString`](s.md#shellstring)
 
 Creates directories.
 
@@ -767,7 +767,7 @@ A string containing the given file, or a concatenated string
         containing the files if more than one file is given
         (a new line character is introduced between each file).
 
-▸ **cat**(...`files`): [`ShellString`](s.md#shellstring)
+▸ **cat**(`...files`): [`ShellString`](s.md#shellstring)
 
 Returns a string containing the given file, or a concatenated string
 containing the files if more than one file is given (a new line character
@@ -800,7 +800,7 @@ on the input using the given search regex and replacement string or function.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-i`: Replace contents of 'file' in-place. Note that no backups will be created! |
+| `options` | `string` | Available options: - `-i`: Replace contents of 'file' in-place. Note that no backups will be created! |
 | `searchRegex` | `string` \| `RegExp` | The regular expression to use for search. |
 | `replacement` | `string` | The replacement. |
 | `files` | `string`[] | The files to process. |
@@ -811,7 +811,7 @@ on the input using the given search regex and replacement string or function.
 
 The new string after replacement.
 
-▸ **sed**(`options`, `searchRegex`, `replacement`, ...`files`): [`ShellString`](s.md#shellstring)
+▸ **sed**(`options`, `searchRegex`, `replacement`, `...files`): [`ShellString`](s.md#shellstring)
 
 Reads an input string from file and performs a JavaScript `replace()`
 on the input using the given search regex and replacement string or function.
@@ -820,7 +820,7 @@ on the input using the given search regex and replacement string or function.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-i`: Replace contents of 'file' in-place. Note that no backups will be created! |
+| `options` | `string` | Available options: - `-i`: Replace contents of 'file' in-place. Note that no backups will be created! |
 | `searchRegex` | `string` \| `RegExp` | The regular expression to use for search. |
 | `replacement` | `string` | The replacement. |
 | `...files` | `string`[] | The files to process. |
@@ -850,7 +850,7 @@ on the input using the given search regex and replacement string or function.
 
 The new string after replacement.
 
-▸ **sed**(`searchRegex`, `replacement`, ...`files`): [`ShellString`](s.md#shellstring)
+▸ **sed**(`searchRegex`, `replacement`, `...files`): [`ShellString`](s.md#shellstring)
 
 Reads an input string from file and performs a JavaScript `replace()`
 on the input using the given search regex and replacement string or function.
@@ -882,7 +882,7 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-v`: Inverse the sense of the regex and print                the lines not matching the criteria.        - `-l`: Print only filenames of matching files |
+| `options` | `string` | Available options: - `-v`: Inverse the sense of the regex and print the lines not matching the criteria. - `-l`: Print only filenames of matching files |
 | `regex_filter` | `string` \| `RegExp` | The regular expression to use. |
 | `files` | `string`[] | The files to process. |
 
@@ -892,7 +892,7 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 Returns a string containing all lines of the file that match the given `regex_filter`.
 
-▸ **grep**(`options`, `regex_filter`, ...`files`): [`ShellString`](s.md#shellstring)
+▸ **grep**(`options`, `regex_filter`, `...files`): [`ShellString`](s.md#shellstring)
 
 Reads input string from given files and returns a string containing all lines
 of the file that match the given `regex_filter`. Wildcard `*` accepted.
@@ -901,7 +901,7 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-v`: Inverse the sense of the regex and print                the lines not matching the criteria.        - `-l`: Print only filenames of matching files |
+| `options` | `string` | Available options: - `-v`: Inverse the sense of the regex and print the lines not matching the criteria. - `-l`: Print only filenames of matching files |
 | `regex_filter` | `string` \| `RegExp` | The regular expression to use. |
 | `...files` | `string`[] | The files to process. |
 
@@ -929,7 +929,7 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 Returns a string containing all lines of the file that match the given `regex_filter`.
 
-▸ **grep**(`regex_filter`, ...`files`): [`ShellString`](s.md#shellstring)
+▸ **grep**(`regex_filter`, `...files`): [`ShellString`](s.md#shellstring)
 
 Reads input string from given files and returns a string containing all lines
 of the file that match the given `regex_filter`. Wildcard `*` accepted.
@@ -951,7 +951,7 @@ ___
 
 ### echo
 
-▸ **echo**(`options`, ...`text`): [`ShellString`](s.md#shellstring)
+▸ **echo**(`options`, `...text`): [`ShellString`](s.md#shellstring)
 
 Prints string to stdout, and returns string with additional utility methods like .to().
 
@@ -959,7 +959,7 @@ Prints string to stdout, and returns string with additional utility methods like
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-e`: interpret backslash escapes (default)        - `-n`: remove trailing newline from output |
+| `options` | `string` | Available options: - `-e`: interpret backslash escapes (default) - `-n`: remove trailing newline from output |
 | `...text` | `string`[] | The text to print. |
 
 #### Returns
@@ -968,7 +968,7 @@ Prints string to stdout, and returns string with additional utility methods like
 
 Returns the string that was passed as argument.
 
-▸ **echo**(...`text`): [`ShellString`](s.md#shellstring)
+▸ **echo**(`...text`): [`ShellString`](s.md#shellstring)
 
 Prints string to stdout, and returns string with additional utility methods like .to().
 
@@ -997,8 +997,8 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when adding directories                to the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
-| `dir` | ``"+N"`` | Makes the current working directory be the top of the stack,                and then executes the equivalent of `cd dir`. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when adding directories to the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
+| `dir` | ``"+N"`` | Makes the current working directory be the top of the stack, and then executes the equivalent of `cd dir`. |
 
 #### Returns
 
@@ -1015,8 +1015,8 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when adding directories                to the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
-| `dir` | ``"-N"`` | Makes the current working directory be the top of the stack,                and then executes the equivalent of `cd dir`. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when adding directories to the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
+| `dir` | ``"-N"`` | Makes the current working directory be the top of the stack, and then executes the equivalent of `cd dir`. |
 
 #### Returns
 
@@ -1033,8 +1033,8 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when adding directories                to the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
-| `dir` | `string` | Makes the current working directory be the top of the stack,                and then executes the equivalent of `cd dir`. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when adding directories to the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
+| `dir` | `string` | Makes the current working directory be the top of the stack, and then executes the equivalent of `cd dir`. |
 
 #### Returns
 
@@ -1051,7 +1051,7 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `dir` | ``"+N"`` | Makes the current working directory be the top of the stack,                and then executes the equivalent of `cd dir`. |
+| `dir` | ``"+N"`` | Makes the current working directory be the top of the stack, and then executes the equivalent of `cd dir`. |
 
 #### Returns
 
@@ -1068,7 +1068,7 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `dir` | ``"-N"`` | Makes the current working directory be the top of the stack,                and then executes the equivalent of `cd dir`. |
+| `dir` | ``"-N"`` | Makes the current working directory be the top of the stack, and then executes the equivalent of `cd dir`. |
 
 #### Returns
 
@@ -1085,7 +1085,7 @@ With no arguments, `pushd` exchanges the top two directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `dir` | `string` | Makes the current working directory be the top of the stack,                and then executes the equivalent of `cd dir`. |
+| `dir` | `string` | Makes the current working directory be the top of the stack, and then executes the equivalent of `cd dir`. |
 
 #### Returns
 
@@ -1120,7 +1120,7 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when removing directories                from the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when removing directories from the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
 | `dir` | ``"+N"`` | You can only use -N and +N. |
 
 #### Returns
@@ -1141,7 +1141,7 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when removing directories                from the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when removing directories from the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
 | `dir` | ``"-N"`` | You can only use -N and +N. |
 
 #### Returns
@@ -1162,7 +1162,7 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when removing directories                from the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when removing directories from the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
 | `dir` | `string` | You can only use -N and +N. |
 
 #### Returns
@@ -1257,7 +1257,7 @@ Displays the list of currently remembered directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | ``"-c"`` | Available options:        - `-c`: Clears the directory stack by deleting all of the elements.        - `-N`: Displays the Nth directory (counting from the right of the list                printed by dirs when invoked without options), starting with zero.        - `+N`: Displays the Nth directory (counting from the left of the list                printed by dirs when invoked without options), starting with zero. |
+| `options` | ``"-c"`` | Available options: - `-c`: Clears the directory stack by deleting all of the elements. - `-N`: Displays the Nth directory (counting from the right of the list printed by dirs when invoked without options), starting with zero. - `+N`: Displays the Nth directory (counting from the left of the list printed by dirs when invoked without options), starting with zero. |
 
 #### Returns
 
@@ -1273,7 +1273,7 @@ Displays the list of currently remembered directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | ``"+N"`` | Available options:        - `-c`: Clears the directory stack by deleting all of the elements.        - `-N`: Displays the Nth directory (counting from the right of the list                printed by dirs when invoked without options), starting with zero.        - `+N`: Displays the Nth directory (counting from the left of the list                printed by dirs when invoked without options), starting with zero. |
+| `options` | ``"+N"`` | Available options: - `-c`: Clears the directory stack by deleting all of the elements. - `-N`: Displays the Nth directory (counting from the right of the list printed by dirs when invoked without options), starting with zero. - `+N`: Displays the Nth directory (counting from the left of the list printed by dirs when invoked without options), starting with zero. |
 
 #### Returns
 
@@ -1289,7 +1289,7 @@ Displays the list of currently remembered directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | ``"-N"`` | Available options:        - `-c`: Clears the directory stack by deleting all of the elements.        - `-N`: Displays the Nth directory (counting from the right of the list                printed by dirs when invoked without options), starting with zero.        - `+N`: Displays the Nth directory (counting from the left of the list                printed by dirs when invoked without options), starting with zero. |
+| `options` | ``"-N"`` | Available options: - `-c`: Clears the directory stack by deleting all of the elements. - `-N`: Displays the Nth directory (counting from the right of the list printed by dirs when invoked without options), starting with zero. - `+N`: Displays the Nth directory (counting from the left of the list printed by dirs when invoked without options), starting with zero. |
 
 #### Returns
 
@@ -1305,7 +1305,7 @@ Displays the list of currently remembered directories.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-c`: Clears the directory stack by deleting all of the elements.        - `-N`: Displays the Nth directory (counting from the right of the list                printed by dirs when invoked without options), starting with zero.        - `+N`: Displays the Nth directory (counting from the left of the list                printed by dirs when invoked without options), starting with zero. |
+| `options` | `string` | Available options: - `-c`: Clears the directory stack by deleting all of the elements. - `-N`: Displays the Nth directory (counting from the right of the list printed by dirs when invoked without options), starting with zero. - `+N`: Displays the Nth directory (counting from the left of the list printed by dirs when invoked without options), starting with zero. |
 
 #### Returns
 
@@ -1325,7 +1325,7 @@ Links source to dest. Use `-f` to force the link, should dest already exist.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-s`: Create a symbolic link, defaults to a hardlink        - `-f`: Force creation |
+| `options` | `string` | Available options: - `-s`: Create a symbolic link, defaults to a hardlink - `-f`: Force creation |
 | `source` | `string` | The source. |
 | `dest` | `string` | The destination. |
 
@@ -1523,7 +1523,7 @@ Notable exceptions:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-v`: output a diagnostic for every file processed        - `-c`: like -v but report only when a change is made        - `-R`: change files and directories recursively |
+| `options` | `string` | Available options: - `-v`: output a diagnostic for every file processed - `-c`: like -v but report only when a change is made - `-R`: change files and directories recursively |
 | `mode` | `string` \| `number` | The access mode. Can be an octal string or a symbolic mode string. |
 | `file` | `string` | The file to use. |
 
@@ -1577,7 +1577,7 @@ A FILE argument that does not exist is created empty, unless `-c` is supplied
 
 [`ShellString`](s.md#shellstring)
 
-▸ **touch**(`options`, ...`files`): [`ShellString`](s.md#shellstring)
+▸ **touch**(`options`, `...files`): [`ShellString`](s.md#shellstring)
 
 Update the access and modification times of each FILE to the current time.
 A FILE argument that does not exist is created empty, unless `-c` is supplied
@@ -1608,7 +1608,7 @@ A FILE argument that does not exist is created empty, unless `-c` is supplied
 
 [`ShellString`](s.md#shellstring)
 
-▸ **touch**(...`files`): [`ShellString`](s.md#shellstring)
+▸ **touch**(`...files`): [`ShellString`](s.md#shellstring)
 
 Update the access and modification times of each FILE to the current time.
 A FILE argument that does not exist is created empty, unless `-c` is supplied
@@ -1642,7 +1642,7 @@ Read the start of a file.
 
 [`ShellString`](s.md#shellstring)
 
-▸ **head**(`options`, ...`files`): [`ShellString`](s.md#shellstring)
+▸ **head**(`options`, `...files`): [`ShellString`](s.md#shellstring)
 
 Read the start of a file.
 
@@ -1671,7 +1671,7 @@ Read the start of a file.
 
 [`ShellString`](s.md#shellstring)
 
-▸ **head**(...`files`): [`ShellString`](s.md#shellstring)
+▸ **head**(`...files`): [`ShellString`](s.md#shellstring)
 
 Read the start of a file.
 
@@ -1698,14 +1698,14 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-r`: Reverse the results        - `-n`: Compare according to numerical value |
+| `options` | `string` | Available options: - `-r`: Reverse the results - `-n`: Compare according to numerical value |
 | `files` | `string`[] | - |
 
 #### Returns
 
 [`ShellString`](s.md#shellstring)
 
-▸ **sort**(`options`, ...`files`): [`ShellString`](s.md#shellstring)
+▸ **sort**(`options`, `...files`): [`ShellString`](s.md#shellstring)
 
 Return the contents of the files, sorted line-by-line.
 Sorting multiple files mixes their content (just as unix sort does).
@@ -1714,7 +1714,7 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-r`: Reverse the results        - `-n`: Compare according to numerical value |
+| `options` | `string` | Available options: - `-r`: Reverse the results - `-n`: Compare according to numerical value |
 | `...files` | `string`[] | - |
 
 #### Returns
@@ -1736,7 +1736,7 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 [`ShellString`](s.md#shellstring)
 
-▸ **sort**(...`files`): [`ShellString`](s.md#shellstring)
+▸ **sort**(`...files`): [`ShellString`](s.md#shellstring)
 
 Return the contents of the files, sorted line-by-line.
 Sorting multiple files mixes their content (just as unix sort does).
@@ -1770,7 +1770,7 @@ Read the end of a file.
 
 [`ShellString`](s.md#shellstring)
 
-▸ **tail**(`options`, ...`files`): [`ShellString`](s.md#shellstring)
+▸ **tail**(`options`, `...files`): [`ShellString`](s.md#shellstring)
 
 Read the end of a file.
 
@@ -1799,7 +1799,7 @@ Read the end of a file.
 
 [`ShellString`](s.md#shellstring)
 
-▸ **tail**(...`files`): [`ShellString`](s.md#shellstring)
+▸ **tail**(`...files`): [`ShellString`](s.md#shellstring)
 
 Read the end of a file.
 
@@ -1825,7 +1825,7 @@ Filter adjacent matching lines from input.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-i`: Ignore case while comparing        - `-c`: Prefix lines by the number of occurrences        - `-d`: Only print duplicate lines, one for each group of identical lines |
+| `options` | `string` | Available options: - `-i`: Ignore case while comparing - `-c`: Prefix lines by the number of occurrences - `-d`: Only print duplicate lines, one for each group of identical lines |
 | `input` | `string` | - |
 | `output?` | `string` | - |
 

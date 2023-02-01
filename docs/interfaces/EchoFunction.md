@@ -6,7 +6,7 @@
 
 ### EchoFunction
 
-▸ **EchoFunction**(`message?`, ...`optionalParams`): [`ShellString`](../modules/s.md#shellstring)
+▸ **EchoFunction**(`message?`, `...optionalParams`): [`ShellString`](../modules/s.md#shellstring)
 
 Prints to `stdout` with newline. Multiple arguments can be passed, with the
 first used as the primary message and all additional used as substitution
@@ -44,15 +44,18 @@ Returns processed string with additional utility methods like .to().
 ### Methods
 
 - [use](EchoFunction.md#use)
-- [css](EchoFunction.md#css)
 - [format](EchoFunction.md#format)
 - [formatWithOptions](EchoFunction.md#formatwithoptions)
+
+### Properties
+
+- [css](EchoFunction.md#css)
 
 ## Methods
 
 ### use
 
-▸ **use**(`options`, `message?`, ...`optionalParams`): [`ShellString`](../modules/s.md#shellstring)
+▸ **use**(`options`, `message?`, `...optionalParams`): [`ShellString`](../modules/s.md#shellstring)
 
 Similarly to [echo](../modules/s.md#echo), the first argument accepts options string starting with `-`:
 - `-n`: Don’t append **n**ew line
@@ -86,53 +89,9 @@ Returns processed string with additional utility methods like .to().
 
 ___
 
-### css
-
-▸ **css**(...`styles`): `Record`<`string`, `string`\>
-
-In `echo`, you can use `%c` for styling:
-```js
-echo("%cHello %cWorld!", "color: red", "color: blue");
-```
-**But**, implementation for `echo` is much more limited. There is no CSS parser, just keywords see [css_rules](../README.md#css_rules) (alternatively file `src/ansi_constants.js`).
-
-You can pre-define css class with this method:
-```js
-const css= echo.css(".red { color: red; }", ".blue { color: blue; }");
-echo("%cRed text", css.red);
-echo("%cBlue text", css.blue);
-```
-…there is special style name `*` which applies to all defined classes:
-```js
-const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue { color: blue; }");
-echo("%cRed and bold text", css.red);
-echo("%cBlue and bold text", css.blue);
-```
-…there is also helpers (see [format](EchoFunction.md#format) and [formatWithOptions](EchoFunction.md#formatwithoptions)) to just return finally formated text:
-```js
-const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue { color: blue; }");
-const text= echo.format("%cRed and bold text", css.red);
-echo(text);
-```
-For further information, see:
-<br>- [Styling console output](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output)
-<br>- [Util.format | Node.js v19.1.0 Documentation](https://nodejs.org/api/util.html#utilformatformat-args)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `...styles` | (\`.${string}{ color: black; }\` \| \`.${string}{ color: red; }\` \| \`.${string}{ color: green; }\` \| \`.${string}{ color: yellow; }\` \| \`.${string}{ color: blue; }\` \| \`.${string}{ color: magenta; }\` \| \`.${string}{ color: cyan; }\` \| \`.${string}{ color: white; }\` \| \`.${string}{ color: gray; }\` \| \`.${string}{ color: lightred; }\` \| \`.${string}{ color: lightgreen; }\` \| \`.${string}{ color: lightyellow; }\` \| \`.${string}{ color: lightblue; }\` \| \`.${string}{ color: lightmagenta; }\` \| \`.${string}{ color: lightcyan; }\` \| \`.${string}{ color: whitesmoke; }\` \| \`.${string}{ background: black; }\` \| \`.${string}{ background: red; }\` \| \`.${string}{ background: green; }\` \| \`.${string}{ background: yellow; }\` \| \`.${string}{ background: blue; }\` \| \`.${string}{ background: magenta; }\` \| \`.${string}{ background: cyan; }\` \| \`.${string}{ background: white; }\` \| \`.${string}{ background: gray; }\` \| \`.${string}{ background: lightred; }\` \| \`.${string}{ background: lightgreen; }\` \| \`.${string}{ background: lightyellow; }\` \| \`.${string}{ background: lightblue; }\` \| \`.${string}{ background: lightmagenta; }\` \| \`.${string}{ background: lightcyan; }\` \| \`.${string}{ background: whitesmoke; }\` \| \`.${string}{ margin-left: ${number}; }\` \| \`.${string}{ text-decoration: underline }\` \| \`.${string}{ text-decoration: line-through }\` \| \`.${string}{ unset: all; }\` \| \`.${string}{ display: none; }\` \| \`.${string}{ font-style: italic; }\` \| \`.${string}{ font-weight: bold; }\` \| \`.${string}{ animation: blink; }\`)[] |
-
-#### Returns
-
-`Record`<`string`, `string`\>
-
-___
-
 ### format
 
-▸ **format**(`message?`, ...`optionalParams`): [`ShellString`](../modules/s.md#shellstring)
+▸ **format**(`message?`, `...optionalParams`): [`ShellString`](../modules/s.md#shellstring)
 
 A helper method returning formated text as it processed by [echo](../README.md#echo), but not printed into the console.
 (So infact, it is an alias `echo.use("-S", …);`)
@@ -154,7 +113,7 @@ ___
 
 ### formatWithOptions
 
-▸ **formatWithOptions**(`options`, `message?`, ...`optionalParams`): [`ShellString`](../modules/s.md#shellstring)
+▸ **formatWithOptions**(`options`, `message?`, `...optionalParams`): [`ShellString`](../modules/s.md#shellstring)
 
 A helper method returning formated text as it processed by [echo](../README.md#echo), but not printed into the console.
 (So infact, it is an alias `echo.use("-S"+…, …);`)
@@ -172,3 +131,103 @@ A helper method returning formated text as it processed by [echo](../README.md#e
 [`ShellString`](../modules/s.md#shellstring)
 
 Returns processed string with additional utility methods like .to().
+
+## Properties
+
+### css
+
+• **css**: (...`styles`: (\`.${string}{ @import "${string}" }\` \| \`.${string}{ display: none; }\` \| \`.${string}{ display: list-item; }\` \| \`.${string}{ color: black; }\` \| \`.${string}{ color: red; }\` \| \`.${string}{ color: green; }\` \| \`.${string}{ color: yellow; }\` \| \`.${string}{ color: blue; }\` \| \`.${string}{ color: magenta; }\` \| \`.${string}{ color: cyan; }\` \| \`.${string}{ color: white; }\` \| \`.${string}{ color: gray; }\` \| \`.${string}{ color: lightred; }\` \| \`.${string}{ color: lightgreen; }\` \| \`.${string}{ color: lightyellow; }\` \| \`.${string}{ color: lightblue; }\` \| \`.${string}{ color: lightmagenta; }\` \| \`.${string}{ color: lightcyan; }\` \| \`.${string}{ color: whitesmoke; }\` \| \`.${string}{ background: black; }\` \| \`.${string}{ background: red; }\` \| \`.${string}{ background: green; }\` \| \`.${string}{ background: yellow; }\` \| \`.${string}{ background: blue; }\` \| \`.${string}{ background: magenta; }\` \| \`.${string}{ background: cyan; }\` \| \`.${string}{ background: white; }\` \| \`.${string}{ background: gray; }\` \| \`.${string}{ background: lightred; }\` \| \`.${string}{ background: lightgreen; }\` \| \`.${string}{ background: lightyellow; }\` \| \`.${string}{ background: lightblue; }\` \| \`.${string}{ background: lightmagenta; }\` \| \`.${string}{ background: lightcyan; }\` \| \`.${string}{ background: whitesmoke; }\` \| \`.${string}{ margin-left: ${number}; }\` \| \`.${string}{ margin-right: ${number}; }\` \| \`.${string}{ text-decoration: underline }\` \| \`.${string}{ text-decoration: line-through }\` \| \`.${string}{ list-style-type: ${string} }\` \| \`.${string}{ unset: all; }\` \| \`.${string}{ font-style: italic; }\` \| \`.${string}{ font-weight: bold; }\` \| \`.${string}{ animation: blink; }\`)[]) => `Record`<`string`, `string`\>(...`styles`: `cssTemplate`) => `Record`<`string`, `string`\>
+
+#### Type declaration
+
+▸ (`...styles`): `Record`<`string`, `string`\>
+
+In `echo`, you can use `%c` for styling:
+```js
+echo("%cHello %cWorld!", "color: red", "color: blue");
+```
+**But**, implementation for `echo` is much more limited. There is no CSS parser, just keywords see [css_rules](https://github.com/jaandrle/css-in-console/blob/main/docs/README.md#css_rules).
+**Internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)**.
+
+You can pre-define css class with this method:
+```js
+const css= echo.css(".red { color: red; }", ".blue { color: blue; }");
+echo("%cRed text", css.red);
+echo("%cBlue text", css.blue);
+```
+…there is special style name `*` which applies to all defined classes:
+```js
+const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue { color: blue; }");
+echo("%cRed and bold text", css.red);
+echo("%cBlue and bold text", css.blue);
+```
+…there is also helpers (see [format](EchoFunction.md#format) and [formatWithOptions](EchoFunction.md#formatwithoptions)) to just return finally formated text:
+```js
+const css= echo.css`
+	* { font-weight: bold; }
+	.red { color: red; }
+	.blue { color: blue; }
+`;
+const text= echo.format("%cRed and bold text", css.red);
+echo(text);
+```
+For further information, see:
+<br>- [css-in-console - npm](https://www.npmjs.com/package/css-in-console)
+<br>- [Styling console output](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output)
+<br>- [Util.format | Node.js v19.1.0 Documentation](https://nodejs.org/api/util.html#utilformatformat-args)
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `...styles` | (\`.${string}{ @import "${string}" }\` \| \`.${string}{ display: none; }\` \| \`.${string}{ display: list-item; }\` \| \`.${string}{ color: black; }\` \| \`.${string}{ color: red; }\` \| \`.${string}{ color: green; }\` \| \`.${string}{ color: yellow; }\` \| \`.${string}{ color: blue; }\` \| \`.${string}{ color: magenta; }\` \| \`.${string}{ color: cyan; }\` \| \`.${string}{ color: white; }\` \| \`.${string}{ color: gray; }\` \| \`.${string}{ color: lightred; }\` \| \`.${string}{ color: lightgreen; }\` \| \`.${string}{ color: lightyellow; }\` \| \`.${string}{ color: lightblue; }\` \| \`.${string}{ color: lightmagenta; }\` \| \`.${string}{ color: lightcyan; }\` \| \`.${string}{ color: whitesmoke; }\` \| \`.${string}{ background: black; }\` \| \`.${string}{ background: red; }\` \| \`.${string}{ background: green; }\` \| \`.${string}{ background: yellow; }\` \| \`.${string}{ background: blue; }\` \| \`.${string}{ background: magenta; }\` \| \`.${string}{ background: cyan; }\` \| \`.${string}{ background: white; }\` \| \`.${string}{ background: gray; }\` \| \`.${string}{ background: lightred; }\` \| \`.${string}{ background: lightgreen; }\` \| \`.${string}{ background: lightyellow; }\` \| \`.${string}{ background: lightblue; }\` \| \`.${string}{ background: lightmagenta; }\` \| \`.${string}{ background: lightcyan; }\` \| \`.${string}{ background: whitesmoke; }\` \| \`.${string}{ margin-left: ${number}; }\` \| \`.${string}{ margin-right: ${number}; }\` \| \`.${string}{ text-decoration: underline }\` \| \`.${string}{ text-decoration: line-through }\` \| \`.${string}{ list-style-type: ${string} }\` \| \`.${string}{ unset: all; }\` \| \`.${string}{ font-style: italic; }\` \| \`.${string}{ font-weight: bold; }\` \| \`.${string}{ animation: blink; }\`)[] |
+
+##### Returns
+
+`Record`<`string`, `string`\>
+
+▸ (`...styles`): `Record`<`string`, `string`\>
+
+In `echo`, you can use `%c` for styling:
+```js
+echo("%cHello %cWorld!", "color: red", "color: blue");
+```
+**But**, implementation for `echo` is much more limited. There is no CSS parser, just keywords see [css_rules](https://github.com/jaandrle/css-in-console/blob/main/docs/README.md#css_rules).
+**Internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)**.
+
+You can pre-define css class with this method:
+```js
+const css= echo.css(".red { color: red; }", ".blue { color: blue; }");
+echo("%cRed text", css.red);
+echo("%cBlue text", css.blue);
+```
+…there is special style name `*` which applies to all defined classes:
+```js
+const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue { color: blue; }");
+echo("%cRed and bold text", css.red);
+echo("%cBlue and bold text", css.blue);
+```
+…there is also helpers (see [format](EchoFunction.md#format) and [formatWithOptions](EchoFunction.md#formatwithoptions)) to just return finally formated text:
+```js
+const css= echo.css`
+	* { font-weight: bold; }
+	.red { color: red; }
+	.blue { color: blue; }
+`;
+const text= echo.format("%cRed and bold text", css.red);
+echo(text);
+```
+For further information, see:
+<br>- [css-in-console - npm](https://www.npmjs.com/package/css-in-console)
+<br>- [Styling console output](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output)
+<br>- [Util.format | Node.js v19.1.0 Documentation](https://nodejs.org/api/util.html#utilformatformat-args)
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `...styles` | `cssTemplate` |
+
+##### Returns
+
+`Record`<`string`, `string`\>

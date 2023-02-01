@@ -39,7 +39,7 @@ curl https://api.spacexdata.com/v4/launches/latest | nodejsscript -p 'Object.ent
 ## Goods
 [s #shelljs](./docs/modules/s.md)
  · [$](./docs/modules/.md) ([$.api() #sade](./docs/modules/.md#api), [$.read()](./docs/modules/.md#read), [$.xdg](./docs/modules/xdg_.xdg.md), …)
- · [echo()](./docs/README.md#echo)
+ · [echo() #css-in-console](./docs/README.md#echo)
  · [fetch() #node-fetch](./docs/README.md#fetch)
  · [pipe()](./docs/README.md#pipe)
  · [cyclicLoop()](./docs/README.md#cyclicloop)

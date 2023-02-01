@@ -16,7 +16,7 @@ Removes files. The wildcard `*` is accepted.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-f`: force        - `-r`, `-R`: recursive |
+| `options` | `string` | Available options: - `-f`: force - `-r`, `-R`: recursive |
 | `files` | `string`[] | Files to remove. |
 
 #### Returns
@@ -27,7 +27,7 @@ Object with shell exit code, stderr and stdout.
 
 ### RemoveFunction
 
-▸ **RemoveFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **RemoveFunction**(`options`, `...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -60,7 +60,7 @@ Object with shell exit code, stderr and stdout.
 
 ### RemoveFunction
 
-▸ **RemoveFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **RemoveFunction**(`...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 

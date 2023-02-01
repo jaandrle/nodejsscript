@@ -23,7 +23,7 @@ Notable exceptions:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-v`: output a diagnostic for every file processed        - `-c`: like -v but report only when a change is made        - `-R`: change files and directories recursively |
+| `options` | `string` | Available options: - `-v`: output a diagnostic for every file processed - `-c`: like -v but report only when a change is made - `-R`: change files and directories recursively |
 | `mode` | `string` \| `number` | The access mode. Can be an octal string or a symbolic mode string. |
 | `file` | `string` | The file to use. |
 

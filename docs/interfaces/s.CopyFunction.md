@@ -16,7 +16,7 @@ Copies files. The wildcard `*` is accepted.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-f`: force (default behavior)        - `-n`: no-clobber        - `-u`: only copy if source is newer than dest        - `-r`, `-R`: recursive        - `-L`: follow symlinks        - `-P`: don't follow symlinks |
+| `options` | `string` | Available options: - `-f`: force (default behavior) - `-n`: no-clobber - `-u`: only copy if source is newer than dest - `-r`, `-R`: recursive - `-L`: follow symlinks - `-P`: don't follow symlinks |
 | `source` | `string` \| `string`[] | The source. |
 | `dest` | `string` | The destination. |
 
