@@ -108,13 +108,21 @@ function jsconfigTypes(){
 	$.exit(0);
 }
 function runEval(is_print){
-	let input= argv.splice(2, 1)[0];
+	let input= argv.splice(2, 1)[0] ?? "";
 	if(is_print){
-		let out_arr= input.split(";").reverse();
+		const m= randomUUID();
+		const store_quotes= [];
+		input= input.replace(/("([^"]|(?<=\\)")+"|'([^']|(?<=\\)')+'|`([^`]|(?<=\\)`)+`)/g,
+			//temporary remove quotes (can contain ';')
+			f=> (store_quotes.push(f), m));
+		const m_regexp= new RegExp(m.toString().replace(".", "\\."), "g");
+		let out_arr= input.split(";").reverse()
+			//return quotes (in reverse order)
+			.map(v=> v.replace(m_regexp, ()=> store_quotes.shift()));
 		if(out_arr[0].trim()==="") out_arr.shift();
 		let pre= "";
-		let out= out_arr[0].trim();
-		if(out[0]==="}"){
+		let out= out_arr[0]?.trim();
+		if(out && out[0]==="}"){// "function …{ …; }" ⇒ [ " }".trim(), "function …{ …"  ]
 			pre= "}";
 			out= out.slice(1).trim();
 		}
@@ -123,6 +131,7 @@ function runEval(is_print){
 		out_arr[0]= `${pre} echo(${out})`;
 		input= out_arr.reverse().join(";");
 	}
+	input+= ";$.exit(0);";
 	const filepath= $.xdg.temp`nodejsscript-${randomUUID()}.mjs`;
 	s.echo(input).to(filepath);
 	return filepath;
