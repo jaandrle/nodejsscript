@@ -59,12 +59,12 @@ function runArgumentsToCommand(pieces, args){
 		const [ vars= {}, options= {} ]= args;
 		const { needle= /::([^:]+)::/g }= options;
 		Reflect.deleteProperty(options, "needle");
-		if(Object.keys(vars).length)
+		if(vars && Object.keys(vars).length)
 			return [ pieces.replace(needle, function replace(_, key){
 				return escape([ "" ], [ vars[key] ]);
 			}), options ];
 		else
-			return [ pieces ];
+			return [ pieces, options ];
 	} else if(pieces.some((p)=> p == undefined)) {
 		throw new Error("Malformed command");
 	} else {
@@ -77,9 +77,14 @@ function run(pieces, ...args){
 	const s= this || shelljs;
 	/* jshint ignore:end *//* global s */
 	const [ command, options= {} ]= runArgumentsToCommand(pieces, args);
-	const { fatal }= shelljs.config;
+	const { fatal, verbose }= shelljs.config;
 	const is_fatal= fatal||options.fatal;
 	if(is_fatal) shelljs.config.fatal= false;
+	if(Reflect.has(options, "signal")){
+		if( verbose||options.verbose )
+			console.warn("AbortSignal is not supported by run.");
+		Reflect.deleteProperty(options, "signal");
+	}
 
 	const out= s.exec(command, options);
 	shelljs.config.fatal= fatal;

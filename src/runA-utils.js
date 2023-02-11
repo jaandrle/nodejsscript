@@ -51,9 +51,9 @@ export class ProcessPromise extends Promise{
 				return resolve(output);
 			reject(output);
 		});
-		this.child.on('error', (err) => {
-			const message= err.message;
-			reject(processOutput({ stdout, stderr, message }));
+		this.child.on('error', err=> {
+			 const { message, name }= err;
+			reject(processOutput({ stdout, stderr, message, name }));
 			process_store.get(this).resolved= true;
 		});
 		const { piped, postrun, options: { silent } }= process_store.get(this);
@@ -89,17 +89,6 @@ export class ProcessPromise extends Promise{
 		process_store.get(this).postrun = () => this.stdout.pipe(dest);
 		return this;
 	}
-	//async kill(signal = 'SIGTERM') {
-	//	if (!this.child) throw new Error('Trying to kill a process without creating one.');
-	//	if (!this.child.pid) throw new Error('The process pid is undefined.');
-	//=>	let children= await psTree(this.child.pid);
-	//	for (const p of children) {
-	//		try { process.kill(+p.PID, signal); }
-	//		catch (e) { }
-	//	}
-	//	try { process.kill(this.child.pid, signal); }
-	//	catch (e) { }
-	//}
 	stdio(stdin, stdout = 'pipe', stderr = 'pipe') {
 		process_store.get(this).stdio= [stdin, stdout, stderr];
 		return this;
