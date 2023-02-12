@@ -71,19 +71,22 @@ Reflect.defineProperty($, "noawk", { get(){ return this.stdin.lines([]); }, });
 import sade from "sade";
 $.api= function(usage, is_single= false){
 	if(usage && !/^[\[<]/.test(usage))
-		return sade(usage, is_single);
+		return sadeOut(sade(usage, is_single));
 
 	const script= process.argv[1];
 	const name= script.slice(script.lastIndexOf("/")+1);
 	const out= sade(name+(usage ? " "+usage : ""), is_single);
-	out._parse= out.parse;
-	out.parse= function(options= {}){
+	return sadeOut(out);
+};
+function sadeOut(sade){
+	sade._parse= sade.parse;
+	sade.parse= function(options= {}){
 		const { argv= process.argv }= options;
 		Reflect.deleteProperty(options, "argv");
 		return this._parse(argv, options);
 	};
-	return out;
-};
+	return sade;
+}
 
 import { echo } from "./echo.js";
 $.read= async function(options= {}){
