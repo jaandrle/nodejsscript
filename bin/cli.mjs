@@ -116,8 +116,9 @@ function runEval(is_print){
 			//temporary remove quotes (can contain ';')
 			f=> (store_quotes.push(f), m));
 		const m_regexp= new RegExp(m, "g");
-		let out_arr= input.split(";").reverse()
-			.map(/* return quotes */ v=> v.replace(m_regexp, ()=> store_quotes.pop()));
+		let out_arr= input.split(";")
+			.map(/* return quotes */ v=> v.replace(m_regexp, ()=> store_quotes.shift()))
+			.reverse();
 		if(out_arr[0].trim()==="") out_arr.shift();
 		let pre= "";
 		let out= out_arr[0]?.trim();
