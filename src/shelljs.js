@@ -49,7 +49,7 @@ function $(config_next){
 				Object.assign(shelljs.config, config_next);
 				const out= target[p].apply(target, args);
 				Object.assign(shelljs.config, { silent, verbose, fatal });
-				return out instanceof String && Reflect.has(out, "stdout") ? new shelljs.ShellString(out.replace(/\n$/g, ""), out.stderr, out.code) : out;
+				return out instanceof String && Reflect.has(out, "stdout") ? new shelljs.ShellString(out.stdout.replace(/\n$/g, ""), out.stderr, out.code) : out;
 			};
 		}
 	});
