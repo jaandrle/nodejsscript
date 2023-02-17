@@ -61,14 +61,14 @@ function runArgumentsToCommand(pieces, args){
 		Reflect.deleteProperty(options, "needle");
 		if(vars && Object.keys(vars).length)
 			return [ pieces.replace(needle, function replace(_, key){
-				return escape([ "" ], [ vars[key] ]);
+				return escape([ "" ], vars[key]);
 			}), options ];
 		else
 			return [ pieces, options ];
 	} else if(pieces.some((p)=> p == undefined)) {
 		throw new Error("Malformed command");
 	} else {
-		return [ escape(pieces, args) ];
+		return [ escape(pieces, ...args) ];
 	}
 }
 /** @this {shelljs} */
