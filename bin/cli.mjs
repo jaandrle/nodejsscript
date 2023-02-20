@@ -112,7 +112,7 @@ function runEval(is_print){
 	if(is_print){
 		const m= "--§--"+randomUUID().replaceAll("-", "")+"--§--";
 		const store_quotes= [];
-		input= input.replace(/("([^"]|(?<=\\)")+"|'([^']|(?<=\\)')+'|`([^`]|(?<=\\)`)+`)/g,
+		input= input.replace(/(['"`])(?:(?!\1)[^\\]|\\[\s\S])*\1/g,
 			//temporary remove quotes (can contain ';')
 			f=> (store_quotes.push(f), m));
 		const m_regexp= new RegExp(m, "g");
