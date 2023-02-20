@@ -136,6 +136,12 @@ Keep in mind that you can always turn off this for next command by using:
 s.$("-g").rm("*.txt");
 ```
 
+## Helper(s) for developing
+You can create `jsconfig.json` to help your editor provide proper suggestions.
+As editor you can use VSCode or Vim with for example [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim).
+NodeJSScript provides `nodejsscript --global-jsconfig add script_file` to
+help generate `jsconfig.json`.
+
 ## Migration from `zx`
 The `runA` is almost identical to `$`:
 ```js
