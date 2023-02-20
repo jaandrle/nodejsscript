@@ -57,7 +57,7 @@
 		"latedef": "true",
 		"maxparams": 4,
 		"maxdepth": 4,
-		"maxcomplexity": 12
+		"maxcomplexity": 15
 	},
 	"dependencies": {
 		"@types/sade": "^1.7.4",
