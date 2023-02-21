@@ -44,7 +44,6 @@ export class ProcessOutput extends Error {
 	}
 	constructor({ name= "Process Output", is_async= true, message, code, ...rest }){
 		super(message);
-		console.log(rest);
 		this.name= "s.run"+(is_async ? "A" : "")+` [${name}]`;
 		for(const [ k, value ] of Object.entries(rest))
 			Reflect.defineProperty(this, k, { value, writable: false });
