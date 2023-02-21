@@ -83,6 +83,7 @@ function printUsage(){
 	echo(`%cls | ${n} -p '$.stdin.lines().filter(line=> line[0]==="R").map(line=> \`file: \${line}\`)'`, css.T);
 	echo("%cUsage in scripts%c:", css.H);
 	echo("%cJust start the file with: %c#!/usr/bin/env nodejsscript", css.T, css.code);
+	echo("%c…and make the script file executable.", css.T);
 	$.exit(0);
 }
 function info(...keys){
