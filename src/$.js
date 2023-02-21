@@ -71,19 +71,22 @@ Reflect.defineProperty($, "noawk", { get(){ return this.stdin.lines([]); }, });
 import sade from "sade";
 $.api= function(usage, is_single= false){
 	if(usage && !/^[\[<]/.test(usage))
-		return sade(usage, is_single);
+		return sadeOut(sade(usage, is_single));
 
 	const script= process.argv[1];
 	const name= script.slice(script.lastIndexOf("/")+1);
 	const out= sade(name+(usage ? " "+usage : ""), is_single);
-	out._parse= out.parse;
-	out.parse= function(options= {}){
+	return sadeOut(out);
+};
+function sadeOut(sade){
+	sade._parse= sade.parse;
+	sade.parse= function(options= {}){
 		const { argv= process.argv }= options;
 		Reflect.deleteProperty(options, "argv");
 		return this._parse(argv, options);
 	};
-	return out;
-};
+	return sade;
+}
 
 import { echo } from "./echo.js";
 $.read= async function(options= {}){
@@ -92,6 +95,9 @@ $.read= async function(options= {}){
 	const has= Reflect.has.bind(null, options);
 	const get= Reflect.get.bind(null, options);
 	if(has("-p")) return promt(options, has, get);
+	/** @type {AbortSignal|null} */
+	const signal= options.signal instanceof global.AbortSignal ? options.signal : null;
+	if(signal && signal.aborted) return;
 	if(has("-n")){
 		const line= await stdin[Symbol.asyncIterator]().next();
 		return ShellString(line.value.slice(0, get("-n")));
@@ -100,13 +106,16 @@ $.read= async function(options= {}){
 	if(has("-d")){
 		const needle= get("-d");
 		for await (const chunk of stdin){
+			if(signal && signal.aborted) return;
 			const i= chunk.indexOf(needle);
 			if(i!==-1) return ShellString(buf+chunk.slice(0, i));
 			buf+= chunk;
 		}
 	}
-	for await (const chunk of stdin)
+	for await (const chunk of stdin){
+		if(signal && signal.aborted) return;
 		buf+= chunk;
+	}
 	return ShellString(buf);
 };
 
@@ -128,6 +137,7 @@ function question(query= "", options= {}){
 		input: process.stdin,
 		output: options.output,
 		terminal: true,
+		signal: options.signal,
 		completer: !Array.isArray(options.completions) ? undefined : 
 			function completer(line){
 				const completions= options.completions;

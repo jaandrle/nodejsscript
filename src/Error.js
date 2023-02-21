@@ -42,9 +42,10 @@ export class ProcessOutput extends Error {
 			return e;
 		};
 	}
-	constructor({ is_async= true, message, code, ...rest }){
+	constructor({ name= "Process Output", is_async= true, message, code, ...rest }){
 		super(message);
-		this.name= "s.run"+(is_async ? "A" : "")+" [Process Output]";
+		console.log(rest);
+		this.name= "s.run"+(is_async ? "A" : "")+` [${name}]`;
 		for(const [ k, value ] of Object.entries(rest))
 			Reflect.defineProperty(this, k, { value, writable: false });
 		Reflect.defineProperty(this, "exitCode", { value: code, writable: false });

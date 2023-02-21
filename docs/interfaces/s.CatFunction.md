@@ -30,7 +30,7 @@ A string containing the given file, or a concatenated string
 
 ### CatFunction
 
-▸ **CatFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **CatFunction**(`...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 

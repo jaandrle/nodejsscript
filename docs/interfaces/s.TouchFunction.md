@@ -23,7 +23,7 @@
 
 ### TouchFunction
 
-▸ **TouchFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **TouchFunction**(`options`, `...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -52,7 +52,7 @@
 
 ### TouchFunction
 
-▸ **TouchFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **TouchFunction**(`...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 

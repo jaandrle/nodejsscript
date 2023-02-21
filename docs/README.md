@@ -20,11 +20,6 @@ nodejsscript
 
 - [EchoFunction](interfaces/EchoFunction.md)
 
-### Type Aliases
-
-- [css\_rules](README.md#css_rules)
-- [css\_colors](README.md#css_colors)
-
 ### Public Namespaces
 
 - [$](modules/.md)
@@ -44,7 +39,7 @@ nodejsscript
 
 ### pipe
 
-▸ **pipe**(...`funs`): (`input`: `any`) => `any`
+▸ **pipe**(`...funs`): (`input`: `any`) => `any`
 
 Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe). Provides functional way to combine commands/functions.
 
@@ -168,11 +163,11 @@ ___
 
 ### echo
 
-▸ **echo**(`message?`, ...`optionalParams`): [`ShellString`](modules/s.md#shellstring)
+▸ **echo**(`message?`, `...optionalParams`): [`ShellString`](modules/s.md#shellstring)
 
 This is mixed function between bash’s `echo` and `console.log`.
 By default, works more like `console.log` with partial supports
-for styling mimic CSS and `console.log` in the web browser. See [css](interfaces/EchoFunction.md#css).
+for styling mimic CSS and `console.log` in the web browser. See [`echo.css`](interfaces/EchoFunction.md#type-declaration) (internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)).
 
 The [use](interfaces/EchoFunction.md#use) provides more `echo` way,
 the first argument accepts options string starting with `-`:
@@ -321,27 +316,6 @@ v0.1.13
 #### Returns
 
 `never`
-
-## Type Aliases
-
-### css\_rules
-
-Ƭ **css\_rules**: ``"unset: all;"`` \| ``"display: none;"`` \| \`color: ${css\_colors};\` \| \`background: ${css\_colors};\` \| \`margin-left: ${number};\` \| ``"font-style: italic;"`` \| ``"font-weight: bold;"`` \| \`text-decoration: ${"underline" \| "line-through"}\` \| ``"animation: blink;"``
-
-- `color: COLOR` – see [css_colors](README.md#css_colors)
-- `background: COLOR` – see [css_colors](README.md#css_colors)
-- `margin-left: NUMBER` – counts spaces before string
-- `font-style: italic`
-- `font-weight: bold`
-- `text-decoration: underline|line-through`
-- `animation:blink`
-- TODO: `…:before { content: "…" }`, `tab-size`
-
-___
-
-### css\_colors
-
-Ƭ **css\_colors**: ``"black"`` \| ``"red"`` \| ``"green"`` \| ``"yellow"`` \| ``"blue"`` \| ``"magenta"`` \| ``"cyan"`` \| ``"white"`` \| ``"gray"`` \| ``"lightred"`` \| ``"lightgreen"`` \| ``"lightyellow"`` \| ``"lightblue"`` \| ``"lightmagenta"`` \| ``"lightcyan"`` \| ``"whitesmoke"``
 
 ## Properties
 

@@ -33,7 +33,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | ``"-S"`` \| ``"-V"`` \| ``"-F"`` \| ``"-g"`` | Options  - "-V": verbose  - "-S": silent (default)  - "-F": fatal  - "-g": noglob |
+| `options` | ``"-S"`` \| ``"-V"`` \| ``"-F"`` \| ``"-g"`` | Options - "-V": verbose - "-S": silent (default) - "-F": fatal - "-g": noglob |
 
 #### Returns
 

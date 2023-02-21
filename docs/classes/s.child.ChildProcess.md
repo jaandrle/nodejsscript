@@ -171,7 +171,7 @@ v11.13.0, v10.16.0
 
 | Name | Type |
 | :------ | :------ |
-| `emitter` | `NodeEventTarget` |
+| `emitter` | `_NodeEventTarget` |
 | `eventName` | `string` \| `symbol` |
 | `options?` | `StaticEventEmitterOptions` |
 
@@ -189,7 +189,7 @@ EventEmitter.once
 
 | Name | Type |
 | :------ | :------ |
-| `emitter` | `DOMEventTarget` |
+| `emitter` | `_DOMEventTarget` |
 | `eventName` | `string` |
 | `options?` | `StaticEventEmitterOptions` |
 
@@ -362,7 +362,7 @@ v15.2.0, v14.17.0
 
 | Name | Type |
 | :------ | :------ |
-| `emitter` | `EventEmitter` \| `DOMEventTarget` |
+| `emitter` | `EventEmitter` \| `_DOMEventTarget` |
 | `name` | `string` \| `symbol` |
 
 #### Returns
@@ -377,7 +377,7 @@ ___
 
 ### setMaxListeners
 
-▸ `Static` **setMaxListeners**(`n?`, ...`eventTargets`): `void`
+▸ `Static` **setMaxListeners**(`n?`, `...eventTargets`): `void`
 
 ```js
 const {
@@ -400,7 +400,7 @@ v15.4.0
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `n?` | `number` | A non-negative number. The maximum number of listeners per `EventTarget` event. |
-| `...eventTargets` | (`EventEmitter` \| `DOMEventTarget`)[] | - |
+| `...eventTargets` | (`EventEmitter` \| `_DOMEventTarget`)[] | - |
 
 #### Returns
 
@@ -907,7 +907,7 @@ ___
 
 ### emit
 
-▸ **emit**(`event`, ...`args`): `boolean`
+▸ **emit**(`event`, `...args`): `boolean`
 
 #### Parameters
 

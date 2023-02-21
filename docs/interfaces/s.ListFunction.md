@@ -16,7 +16,7 @@ Returns array of files in the given path, or in current directory if no path pro
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-R`: recursive        - `-A`: all files (include files beginning with ., except for . and ..)        - `-L`: follow symlinks        - `-d`: list directories themselves, not their contents        - `-l`: list objects representing each file, each with fields containing                `ls -l` output fields. See fs.Stats for more info |
+| `options` | `string` | Available options: - `-R`: recursive - `-A`: all files (include files beginning with ., except for . and ..) - `-L`: follow symlinks - `-d`: list directories themselves, not their contents - `-l`: list objects representing each file, each with fields containing `ls -l` output fields. See fs.Stats for more info |
 | `paths` | `string`[] | Paths to search. |
 
 #### Returns
@@ -27,7 +27,7 @@ An array of files in the given path(s).
 
 ### ListFunction
 
-▸ **ListFunction**(`options`, ...`paths`): [`ShellArray`](../modules/s.md#shellarray)
+▸ **ListFunction**(`options`, `...paths`): [`ShellArray`](../modules/s.md#shellarray)
 
 #### Parameters
 
@@ -60,7 +60,7 @@ An array of files in the given path(s).
 
 ### ListFunction
 
-▸ **ListFunction**(...`paths`): [`ShellArray`](../modules/s.md#shellarray)
+▸ **ListFunction**(`...paths`): [`ShellArray`](../modules/s.md#shellarray)
 
 #### Parameters
 

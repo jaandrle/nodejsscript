@@ -39,7 +39,7 @@ curl https://api.spacexdata.com/v4/launches/latest | nodejsscript -p 'Object.ent
 ## Goods
 [s #shelljs](./docs/modules/s.md)
  · [$](./docs/modules/.md) ([$.api() #sade](./docs/modules/.md#api), [$.read()](./docs/modules/.md#read), [$.xdg](./docs/modules/xdg_.xdg.md), …)
- · [echo()](./docs/README.md#echo)
+ · [echo() #css-in-console](./docs/README.md#echo)
  · [fetch() #node-fetch](./docs/README.md#fetch)
  · [pipe()](./docs/README.md#pipe)
  · [cyclicLoop()](./docs/README.md#cyclicloop)
@@ -135,6 +135,12 @@ Keep in mind that you can always turn off this for next command by using:
 ```js
 s.$("-g").rm("*.txt");
 ```
+
+## Helper(s) for developing
+You can create `jsconfig.json` to help your editor provide proper suggestions.
+As editor you can use VSCode or Vim with for example [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim).
+NodeJSScript provides `nodejsscript --global-jsconfig add script_file` to
+help generate `jsconfig.json`.
 
 ## Migration from `zx`
 The `runA` is almost identical to `$`:

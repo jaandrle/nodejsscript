@@ -866,7 +866,7 @@ ___
 
 ### emit
 
-▸ **emit**(`event`, ...`args`): `boolean`
+▸ **emit**(`event`, `...args`): `boolean`
 
 #### Parameters
 

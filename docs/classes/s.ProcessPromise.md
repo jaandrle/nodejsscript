@@ -206,7 +206,33 @@ A resolved promise.
 
 Promise.resolve
 
-▸ `Static` **resolve**<`T`\>(`value`): `Promise`<`T`\>
+▸ `Static` **resolve**<`T`\>(`value`): `Promise`<`Awaited`<`T`\>\>
+
+Creates a new resolved promise for the provided value.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | A promise. |
+
+#### Returns
+
+`Promise`<`Awaited`<`T`\>\>
+
+A promise whose internal state matches the provided promise.
+
+#### Inherited from
+
+Promise.resolve
+
+▸ `Static` **resolve**<`T`\>(`value`): `Promise`<`Awaited`<`T`\>\>
 
 Creates a new resolved promise for the provided value.
 
@@ -224,7 +250,7 @@ Creates a new resolved promise for the provided value.
 
 #### Returns
 
-`Promise`<`T`\>
+`Promise`<`Awaited`<`T`\>\>
 
 A promise whose internal state matches the provided promise.
 
@@ -459,7 +485,7 @@ Creates a new Promise.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `executor` | (`resolve`: (`value`: [`ProcessOutput`](s.ProcessOutput.md) \| `PromiseLike`<[`ProcessOutput`](s.ProcessOutput.md)\>) => `void`, `reject`: (`reason?`: `any`) => `void`) => `void` | A callback used to initialize the promise. This callback is passed two arguments:  a resolve callback used to resolve the promise with a value or the result of another promise,  and a reject callback used to reject the promise with a provided reason or error. |
+| `executor` | (`resolve`: (`value`: [`ProcessOutput`](s.ProcessOutput.md) \| `PromiseLike`<[`ProcessOutput`](s.ProcessOutput.md)\>) => `void`, `reject`: (`reason?`: `any`) => `void`) => `void` | A callback used to initialize the promise. This callback is passed two arguments: a resolve callback used to resolve the promise with a value or the result of another promise, and a reject callback used to reject the promise with a provided reason or error. |
 
 #### Inherited from
 

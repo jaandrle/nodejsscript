@@ -20,7 +20,7 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when removing directories                from the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when removing directories from the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
 | `dir` | ``"+N"`` | Removes the Nth directory (counting from the left of the list printed by dirs), starting with zero. |
 
 #### Returns
@@ -43,7 +43,7 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when removing directories                from the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when removing directories from the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
 | `dir` | ``"-N"`` | Removes the Nth directory (counting from the right of the list printed by dirs), starting with zero. |
 
 #### Returns
@@ -66,7 +66,7 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-n`: Suppresses the normal change of directory when removing directories                from the stack, so that only the stack is manipulated        - `-q`: Suppresses output to the console. |
+| `options` | `string` | Available options: - `-n`: Suppresses the normal change of directory when removing directories from the stack, so that only the stack is manipulated - `-q`: Suppresses output to the console. |
 | `dir` | `string` | You can only use -N and +N. |
 
 #### Returns

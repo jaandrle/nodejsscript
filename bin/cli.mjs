@@ -8,7 +8,7 @@ import { stdin as key_stdin } from "../src/keys.js";
 
 process.on('uncaughtException', printError);
 (async function main(){
-	const candidate= argv.splice(2, 1)[0];
+	const candidate= argv.splice(2, 1)[0] || "--help";
 	let filepath_tmp;
 	if(candidate[0]==="-")
 		filepath_tmp= handleMyArgvs(candidate);
@@ -58,15 +58,15 @@ function printError(e){
 }
 function printUsage(){
 	const [ n, v, d ]= info("name", "version", "description");
-	const css= echo.css(
-		"* { margin-left: 2; }",
-		".n { color: lightblue; }",
-		".v { color: lightgreen; margin-left: 0; }",
-		".code { font-style: italic; margin-left: 0; }",
-		".H { color: yellow; }",
-		".T { margin-left: 4; }"
-	);
-	echo(`%c${n}@%c${v}`, css.n, css.v);
+	const css= echo.css`
+		* { margin-left: 2; }
+		.n { color: lightblue; }
+		.v { color: lightgreen; margin-left: 0; }
+		.code { font-style: italic; margin-left: 0; }
+		.H { color: yellow; }
+		.T { margin-left: 4; }
+	`;
+	echo("%c%s%c@%c%s", css.n, css.unset, css.v, n, v);
 	echo(`%c${d}`, css.T);
 	echo(`%cUsage%c:`, css.H);
 	echo(`%c${n} [options] <script>`, css.T);
@@ -83,6 +83,7 @@ function printUsage(){
 	echo(`%cls | ${n} -p '$.stdin.lines().filter(line=> line[0]==="R").map(line=> \`file: \${line}\`)'`, css.T);
 	echo("%cUsage in scripts%c:", css.H);
 	echo("%cJust start the file with: %c#!/usr/bin/env nodejsscript", css.T, css.code);
+	echo("%c…and make the script file executable.", css.T);
 	$.exit(0);
 }
 function info(...keys){
@@ -108,13 +109,30 @@ function jsconfigTypes(){
 	$.exit(0);
 }
 function runEval(is_print){
-	let input= argv.splice(2, 1)[0];
+	let input= argv.splice(2, 1)[0] ?? "";
 	if(is_print){
-		let out_arr= input.split(";").reverse();
+		const m= "--§--"+randomUUID().replaceAll("-", "")+"--§--";
+		const store_quotes= [];
+		input= input.replace(/(['"`])(?:(?!\1)[^\\]|\\[\s\S])*\1/g,
+			//temporary remove quotes (can contain ';')
+			f=> (store_quotes.push(f), m));
+		const m_regexp= new RegExp(m, "g");
+		let out_arr= input.split(";")
+			.map(/* return quotes */ v=> v.replace(m_regexp, ()=> store_quotes.shift()))
+			.reverse();
 		if(out_arr[0].trim()==="") out_arr.shift();
-		out_arr[0]= `echo(${out_arr[0]})`;
+		let pre= "";
+		let out= out_arr[0]?.trim();
+		if(out && out[0]==="}"){// "function …{ …; }" ⇒ [ " }".trim(), "function …{ …"  ]
+			pre= "}";
+			out= out.slice(1).trim();
+		}
+		const input_rest= argv.slice(2).join(",");
+		if(input_rest.trim()!=="") out= `pipe(${input_rest})(${out})`;
+		out_arr[0]= `${pre} echo(${out})`;
 		input= out_arr.reverse().join(";");
 	}
+	input+= ";$.exit(0);";
 	const filepath= $.xdg.temp`nodejsscript-${randomUUID()}.mjs`;
 	s.echo(input).to(filepath);
 	return filepath;

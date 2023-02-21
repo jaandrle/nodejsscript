@@ -16,7 +16,7 @@ Filter adjacent matching lines from input.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-i`: Ignore case while comparing        - `-c`: Prefix lines by the number of occurrences        - `-d`: Only print duplicate lines, one for each group of identical lines |
+| `options` | `string` | Available options: - `-i`: Ignore case while comparing - `-c`: Prefix lines by the number of occurrences - `-d`: Only print duplicate lines, one for each group of identical lines |
 | `input` | `string` | - |
 | `output?` | `string` | - |
 

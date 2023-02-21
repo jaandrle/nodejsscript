@@ -16,12 +16,13 @@
 
 - [error](fetch.Response.md#error)
 - [redirect](fetch.Response.md#redirect)
+- [json](fetch.Response.md#json)
 - [clone](fetch.Response.md#clone)
 - [buffer](fetch.Response.md#buffer)
 - [arrayBuffer](fetch.Response.md#arraybuffer)
 - [formData](fetch.Response.md#formdata)
 - [blob](fetch.Response.md#blob)
-- [json](fetch.Response.md#json)
+- [json](fetch.Response.md#json-1)
 - [text](fetch.Response.md#text)
 
 ### Constructors
@@ -63,6 +64,23 @@ ___
 | :------ | :------ |
 | `url` | `string` |
 | `status?` | `number` |
+
+#### Returns
+
+[`Response`](fetch.Response.md)
+
+___
+
+### json
+
+▸ `Static` **json**(`data`, `init?`): [`Response`](fetch.Response.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `data` | `any` |
+| `init?` | [`ResponseInit`](../interfaces/fetch.ResponseInit.md) |
 
 #### Returns
 

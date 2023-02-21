@@ -16,7 +16,7 @@ Links source to dest. Use `-f` to force the link, should dest already exist.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-s`: Create a symbolic link, defaults to a hardlink        - `-f`: Force creation |
+| `options` | `string` | Available options: - `-s`: Create a symbolic link, defaults to a hardlink - `-f`: Force creation |
 | `source` | `string` | The source. |
 | `dest` | `string` | The destination. |
 

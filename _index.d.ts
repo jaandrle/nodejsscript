@@ -1,5 +1,5 @@
 /** @category Public */
-export { echo, EchoFunction, css_rules, css_colors } from './src/echo.d';
+export { echo, EchoFunction } from './src/echo.d';
 export { xdg_, __sade, _env, _exit } from './src/$.d';
 /**
  * Contains configuration for current script and methods

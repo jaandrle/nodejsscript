@@ -23,7 +23,7 @@
 
 ### HeadFunction
 
-▸ **HeadFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **HeadFunction**(`options`, `...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -52,7 +52,7 @@
 
 ### HeadFunction
 
-▸ **HeadFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **HeadFunction**(`...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 

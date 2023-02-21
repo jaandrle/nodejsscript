@@ -17,7 +17,7 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-r`: Reverse the results        - `-n`: Compare according to numerical value |
+| `options` | `string` | Available options: - `-r`: Reverse the results - `-n`: Compare according to numerical value |
 | `files` | `string`[] | - |
 
 #### Returns
@@ -26,7 +26,7 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 ### SortFunction
 
-▸ **SortFunction**(`options`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **SortFunction**(`options`, `...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 ### SortFunction
 
-▸ **SortFunction**(...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **SortFunction**(`...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 

@@ -22,7 +22,7 @@
 
 #### Type declaration
 
-▸ (...`args`): `any`
+▸ (`...args`): `any`
 
 ##### Parameters
 

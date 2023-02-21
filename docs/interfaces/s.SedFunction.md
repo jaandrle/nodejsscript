@@ -17,7 +17,7 @@ on the input using the given search regex and replacement string or function.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `string` | Available options:        - `-i`: Replace contents of 'file' in-place. Note that no backups will be created! |
+| `options` | `string` | Available options: - `-i`: Replace contents of 'file' in-place. Note that no backups will be created! |
 | `searchRegex` | `string` \| `RegExp` | The regular expression to use for search. |
 | `replacement` | `string` | The replacement. |
 | `files` | `string`[] | The files to process. |
@@ -30,7 +30,7 @@ The new string after replacement.
 
 ### SedFunction
 
-▸ **SedFunction**(`options`, `searchRegex`, `replacement`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **SedFunction**(`options`, `searchRegex`, `replacement`, `...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
@@ -68,7 +68,7 @@ The new string after replacement.
 
 ### SedFunction
 
-▸ **SedFunction**(`searchRegex`, `replacement`, ...`files`): [`ShellString`](../modules/s.md#shellstring)
+▸ **SedFunction**(`searchRegex`, `replacement`, `...files`): [`ShellString`](../modules/s.md#shellstring)
 
 #### Parameters
 
