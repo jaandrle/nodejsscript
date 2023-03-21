@@ -6,6 +6,7 @@ import { randomUUID } from "node:crypto";
 import "../index.js";/* global echo, $, s, pipe */
 import { stdin as key_stdin } from "../src/keys.js";
 
+const { is_fatal }= $;
 $.is_fatal= true;
 process.on('uncaughtException', printError);
 (async function main(){
@@ -25,6 +26,7 @@ process.on('uncaughtException', printError);
 	argv[1]= filepath;
 	$.push(...argv.slice(1));
 	await $.stdin[key_stdin]();
+	$.is_fatal= is_fatal;
 	try{
 		if(!s.test("-f", filepath)) $.error(`File '${candidate}' not found.`);
 		await import(url.pathToFileURL(filepath).toString());
