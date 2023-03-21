@@ -178,8 +178,7 @@ function completion(){
 			` COMPREPLY=( $(${script_name} --completion complete "$1" "\${#COMP_WORDS[@]}" "\${COMP_WORDS[COMP_CWORD]}" "\${COMP_WORDS[COMP_CWORD-1]}" "\${COMP_WORDS[1]}") )`,
 			" return 0",
 			"}",
-			`complete -o filenames -F __nodejsscript_cli_opts ${script_name}`,
-			`complete -o filenames -F __nodejsscript_cli_opts Test`
+			`complete -o filenames -F __nodejsscript_cli_opts ${script_name}`
 		].join("\n"));
 		$.exit(0);
 	}
