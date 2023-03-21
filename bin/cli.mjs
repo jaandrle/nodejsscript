@@ -6,6 +6,7 @@ import { randomUUID } from "node:crypto";
 import "../index.js";/* global echo, $, s, pipe */
 import { stdin as key_stdin } from "../src/keys.js";
 
+$.is_fatal= true;
 process.on('uncaughtException', printError);
 (async function main(){
 	const candidate= argv.splice(2, 1)[0] || "--help";
@@ -47,6 +48,8 @@ function handleMyArgvs(candidate){
 		return runEval(0);
 	if(['-p', '--print'].includes(candidate))
 		return runEval(1);
+	if("--completion"===candidate)
+		return completion();
 }
 function printError(e){
 	if(e instanceof $.Error){
@@ -58,15 +61,8 @@ function printError(e){
 }
 function printUsage(){
 	const [ n, v, d ]= info("name", "version", "description");
-	const css= echo.css`
-		* { margin-left: 2; }
-		.n { color: lightblue; }
-		.v { color: lightgreen; margin-left: 0; }
-		.code { font-style: italic; margin-left: 0; }
-		.H { color: yellow; }
-		.T { margin-left: 4; }
-	`;
-	echo("%c%s%c@%c%s", css.n, css.unset, css.v, n, v);
+	const css= styles();
+	echo("%c%s%c@%c%s", css.H+css.n, css.unset, css.v, n, v);
 	echo(`%c${d}`, css.T);
 	echo(`%cUsage%c:`, css.H);
 	echo(`%c${n} [options] <script>`, css.T);
@@ -75,6 +71,7 @@ function printUsage(){
 	echo("%c             --help, -h    print help", css.T);
 	echo("%c             --eval, -e    similar to `node -e …`", css.T);
 	echo("%c            --print, -p    similar to `node -p …`, infact (for now?) it wraps argument by `echo` function (splits givent string by ';' and wraps last non-empty part)", css.T);
+	echo("%c           --completion    register TAB completion for %c%s%c and your scripts, see %c%s --completion help%c for more info", css.T, css.n, css.unset, css.code, css.unset, n, n);
 	echo("%c--global-jsconfig [add]    woraround for type checking of non-package scripts", css.T);
 	echo("%cExamples%c:", css.H);
 	echo(`%c${n} script.js`, css.T);
@@ -136,4 +133,64 @@ function runEval(is_print){
 	const filepath= $.xdg.temp`nodejsscript-${randomUUID()}.mjs`;
 	s.echo(input).to(filepath);
 	return filepath;
+}
+function completion(){
+	const option= argv[2];
+	const script_name= info("name")[0];
+	if(typeof option==="undefined" || [ "help", "--help", "-h" ].includes(option)){
+		const css= styles();
+		echo(`%cUsage:\n%c%c${script_name}%c --completion [options]`, css.H, css.T, css.n);
+		echo("%cOptions%c:", css.H);
+		echo("%chelp	Print this help", css.T);
+		echo("%cbash	Output bash completion script.", css.T);
+		echo(`%c    	Add %ceval "$(${script_name} --completion bash)"%c to your '.bashrc' file.`, css.T, css.code);
+		$.exit(0);
+	}
+	$.is_color= 0;
+	if("complete"===option){
+		const [ trigger, level, now, prev, first ]= argv.slice(3);
+		const level_num= level - 2;
+		const matches= arr=> arr.filter(item=> item.indexOf(now)===0).join(" ");
+		const resolve= arr=> { echo(matches(arr)); return $.exit(0); };
+		if(script_name===trigger){
+			if(!level_num && !now?.includes("/"))
+				return resolve([ "--completion", "--help", "--version", "--eval", "--print" ].concat(...s.ls()));
+			if("--completion"===prev)
+				return resolve([ "help", "bash" ]);
+			if([ "--eval", "--print" ].includes(first))
+				return pipe(
+					()=> Object.keys($.stdin),
+					keys=> keys.map(name=> `$.stdin.${name}()`),
+					arr=> arr.concat("$", "echo", "s", "fetch", "pipe"),
+					arr=> arr.join(" "),
+					echo,
+					$.exit.bind(null, 0)
+				)();
+			return resolve(s.ls(now+"*"));
+		}
+		echo.use("-2", { trigger });
+		$.exit(0);
+	}
+	if("bash"===option){
+		echo([
+			"__nodejsscript_cli_opts()",
+			"{",
+			` COMPREPLY=( $(${script_name} --completion complete "$1" "\${#COMP_WORDS[@]}" "\${COMP_WORDS[COMP_CWORD]}" "\${COMP_WORDS[COMP_CWORD-1]}" "\${COMP_WORDS[1]}") )`,
+			" return 0",
+			"}",
+			`complete -o filenames -F __nodejsscript_cli_opts ${script_name}`,
+			`complete -o filenames -F __nodejsscript_cli_opts Test`
+		].join("\n"));
+		$.exit(0);
+	}
+}
+function styles(){
+	return echo.css`
+		.n { color: lightblue; }
+		.v { color: lightgreen; }
+		.code { font-style: italic; }
+		.code::before, .code::after{ content: "\`"; }
+		.H { color: yellow; margin-left: 2; }
+		.T { margin-left: 4; }
+	`;
 }
