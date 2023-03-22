@@ -49,7 +49,7 @@ async function handleMyArgvs(candidate){
 	}
 	if("--global-jsconfig"===candidate){
 		const { jsconfigTypes }= await import("./jsconfigTypes.mjs");
-		return jsconfigTypes();
+		return jsconfigTypes(argv);
 	}
 	if(['-e', '--eval'].includes(candidate)){
 		const { runEval }= await import("./runEval.mjs");

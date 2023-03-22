@@ -1,4 +1,6 @@
-export function jsconfigTypes(){
+/* global pipe, s, $, echo */
+import { join } from "node:path";
+export function jsconfigTypes(argv){
 	const jsconfig_file= pipe(
 		f=> f ? f : '{"include":[]}',
 		JSON.parse

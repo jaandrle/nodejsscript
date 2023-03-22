@@ -1,3 +1,4 @@
+/* global echo, $, s */
 import url from "node:url";
 import { join } from "node:path";
 export async function printUsage(){

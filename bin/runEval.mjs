@@ -1,3 +1,4 @@
+/* global s, $ */
 import { randomUUID } from "node:crypto";
 export function runEval(argv, is_print){
 	let input= argv.splice(2, 1)[0] ?? "";

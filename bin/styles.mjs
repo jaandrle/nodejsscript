@@ -1,3 +1,4 @@
+/* global echo */
 export function styles(){
 	return echo.css`
 		.n { color: lightblue; }
