@@ -15,13 +15,13 @@
 	"main": "index.js",
 	"type": "module",
 	"bin": {
-		"nodejsscript": "bin/cli.mjs"
+		"nodejsscript": "bin/index.mjs"
 	},
 	"exports": {
 		".": "./index.js"
 	},
 	"files": [
-		"bin/cli.mjs",
+		"bin/*.mjs",
 		"_index.d.ts",
 		"index.d.ts",
 		"index.js",

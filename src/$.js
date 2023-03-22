@@ -82,6 +82,22 @@ function sadeOut(sade){
 	sade._parse= sade.parse;
 	sade.parse= function(options= {}){
 		const { argv= process.argv }= options;
+		if(argv[2]==="__ALL__"){ //as this is already protected by Sade
+			const completions= pipe(
+				Object.entries,
+				a=> a.filter(([ name ])=> name!=="__default__"),
+				a=> a.map(([n,v])=> [ n, typeof v==="string" ? v : v.options.flatMap(o=> o[0].split(/, ?/g)) ]),
+				a=> a.reduce((acc, [ name, o ])=> (acc[name]= o, acc), {}),
+			)(sade.tree);
+			const completions_all= Reflect.get(completions, "__all__").concat("--help", "--version");
+			Reflect.deleteProperty(completions, "__all__");
+			const npx= $.is_local;
+			pipe(
+				JSON.stringify,
+				echo
+			)({ npx, completions, completions_all });
+			$.exit(0);
+		}
 		Reflect.deleteProperty(options, "argv");
 		return this._parse(argv, options);
 	};
