@@ -26,9 +26,9 @@ process.on('uncaughtException', printError);
 	argv[1]= filepath;
 	$.push(...argv.slice(1));
 	await $.stdin[key_stdin]();
-	$.is_fatal= is_fatal;
 	try{
 		if(!s.test("-f", filepath)) $.error(`File '${candidate}' not found.`);
+		$.is_fatal= is_fatal;
 		await import(url.pathToFileURL(filepath).toString());
 		if(is_tmp) s.rm("-f", filepath_tmp);
 	} catch(e){
