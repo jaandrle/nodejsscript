@@ -22,7 +22,7 @@ process.on('uncaughtException', printError);
 			( candidate.startsWith('file:///') ?
 				url.fileURLToPath(candidate) :
 				resolve(candidate) ));
-	$.is_local= argv[1].includes("node_modules");
+	$.is_local= argv[1].includes("node_modules"); //TODO: rm/doc
 	argv[1]= filepath;
 	$.push(...argv.slice(1));
 	await $.stdin[key_stdin]();
