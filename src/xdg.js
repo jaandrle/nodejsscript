@@ -1,5 +1,5 @@
 import { homedir, platform, tmpdir } from "node:os";
-import { join, parse } from "node:path";
+import { join, resolve, parse } from "node:path";
 import { env, cwd as cwd_native, argv } from "node:process";
 let os;
 switch(platform()){
@@ -17,6 +17,20 @@ export function cache(pieces, ...vars){ return out(cachedir(), pieces, vars); }
 export function root(pieces, ...vars){ return out(parse(cwd_native()).root, pieces, vars); }
 export function cwd(pieces, ...vars){ return out(cwd_native(), pieces, vars); }
 export function main(pieces, ...vars){ return out(join(argv[1], ".."), pieces, vars); }
+
+import s from "./shelljs.js";
+const libs= resolve(argv[1], "../../lib/node_modules/")+"/";
+export function globalPackage(pieces, ...vars){
+	if(!pieces) throw new Error("Package name cannot be empty!");
+	const [ pkg_name, ...pkg_subpath_arr ]= ( typeof pieces==="string" ? pieces : String.raw(pieces, ...vars) ).split("/");
+	const pkg_subpath= pkg_subpath_arr.join("/");
+	const pkg= libs+pkg_name;
+	if(!s.test("-d", pkg)) throw new Error(`Package ${pkg} not found!`);
+	const { main, exports }= s.$("-SF").cat(pkg+"/package.json").xargs(JSON.parse);
+	if(!exports || typeof require === "function") return resolve(pkg, pkg_subpath ? pkg_subpath : main);
+	const export_name= pkg_subpath ? "./"+pkg_subpath : ".";
+	return resolve(pkg, exports[export_name]);
+}
 
 function out(folder, pieces, vars){
 	if(!pieces) return folder;
