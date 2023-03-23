@@ -78,6 +78,8 @@ $.api= function(usage, is_single= false){
 	const out= sade(name+(usage ? " "+usage : ""), is_single);
 	return sadeOut(out);
 };
+import { echo } from "./echo.js";
+import { pipe } from "./utils.js";
 function sadeOut(sade){
 	sade._parse= sade.parse;
 	sade.parse= function(options= {}){
@@ -104,7 +106,6 @@ function sadeOut(sade){
 	return sade;
 }
 
-import { echo } from "./echo.js";
 $.read= async function(options= {}){
 	const { stdin }= process;
 	stdin.setEncoding('utf8');
