@@ -10,7 +10,7 @@ let temp;
 export function readCompletions(){
 	temp= s.test("-f", completions) ?
 		s.cat(completions).xargs(JSON.parse) :
-		{ version: 1, scripts: {} };
+		{ version: "1.0", scripts: {} };
 	return temp;
 }
 export function updateCompletions(data){
