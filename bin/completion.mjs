@@ -51,7 +51,7 @@ function complete(script_name, argv){
 			return resolve([ "help", "bash", "register", "remove", "config" ]);
 		if("--global-jsconfig"===prev)
 			return resolve([ "add" ]);
-		if([ "--eval", "--print" ].includes(first))
+		if([ "--eval", "-e", "--print", "-p" ].includes(first))
 			return pipe(
 				()=> Object.keys($.stdin),
 				keys=> keys.map(name=> `$.stdin.${name}()`),
