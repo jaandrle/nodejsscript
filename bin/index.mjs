@@ -47,6 +47,11 @@ async function handleMyArgvs(candidate){
 		const { printUsage }= await import("./info.mjs");
 		return await printUsage();
 	}
+	if("--inspect"===candidate){
+		const { inspect }= await import("./inspect.mjs");
+		await inspect(argv);
+		return $.exit(0);
+	}
 	if("--global-jsconfig"===candidate){
 		const { jsconfigTypes }= await import("./jsconfigTypes.mjs");
 		return jsconfigTypes(argv);
