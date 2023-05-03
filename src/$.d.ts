@@ -20,6 +20,9 @@ export namespace Dollar{
 	 * //nomain.js
 	 * if($.isMain(import.meta)) echo("This is NOT main script ⇒ never echo");
 	 * ```
+	 * This can be helpful for writing importable scripts.
+	 * It is very similar to [`__name__ == '__main__'`](https://docs.python.org/3/library/__main__.html).
+	 * For this use case, be careful to use `$.exit` correctly (when the script is imported, you probably don't want to use it).
 	 * @category Public
 	 * */
 	function isMain(import_meta: ImportMeta): boolean;

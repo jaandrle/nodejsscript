@@ -14,7 +14,7 @@ export function completion(argv){
 		echo(`%c                        	Add %ceval "$(${script_name} --completion bash)"%c to your '.bashrc' file.`, css.T, css.code);
 		echo("%cregister <target> [name]	This enable completion for custom script created with nodejsscript (using %c$.api%c).", css.T, css.code);
 		echo(`%c                        	The <target> reffers to script itself, the [name] (defaults to <target>) to text triggering the completion.`, css.T);
-		echo("%c           remove <name>	This remove completion for custom script previously registered by <name>.", css.T, css.code);
+		echo("%c           remove <name>	This remove completion for custom script previously registered by <name>.", css.T);
 		echo(`%c                  config	Returns location of the completions config file.`, css.T);
 		$.exit(0);
 	}

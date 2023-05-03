@@ -455,7 +455,7 @@ Promise.finally
 
 #### Inherited from
 
-Promise.\_\_@species@596
+Promise.\_\_@species@599
 
 ___
 
