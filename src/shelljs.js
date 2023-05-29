@@ -14,8 +14,8 @@ plugin.register("xargs", xargs, { canReceivePipe: true, wrapOutput: false,
 	}
 });
 plugin.register("$", $, { canReceivePipe: true, wrapOutput: false });
-plugin.register('run', run, { unix: false, canReceivePipe: true, wrapOutput: false });
-plugin.register('runA', runA, { unix: false, canReceivePipe: true, wrapOutput: false });
+plugin.register("run", run, { unix: false, canReceivePipe: true, wrapOutput: false });
+plugin.register("runA", runA, { unix: false, canReceivePipe: true, wrapOutput: false });
 export default shelljs;
 
 function xargs({ needle, is_raw }, ...args){
