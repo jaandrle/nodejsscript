@@ -43,12 +43,12 @@ export const $= Object.assign([], {
 				if(hint==="string") return stdin || "";
 				return null;
 			},
-			text(_default){ return setted ? stdin : _default; },
-			lines(_default){ return setted ? stdin.split("\n") : _default; },
+			text(_default){ return ShellString(setted ? stdin : _default); },
+			lines(_default){ return ShellString(setted ? stdin.split("\n") : _default); },
 			json(_default){ return setted ? JSON.parse(stdin.trim()) : _default; },
 			[key_stdin](){
 				if(!$.isFIFO(0)) return Promise.resolve("");
-				return $.read().then(t=> (setted= true, stdin= (t.replace(/\n$/, ""))));
+				return $.read().then(t=> (setted= true, stdin= t.replace(/\n$/, "")));
 			}
 		};
 	})(),
