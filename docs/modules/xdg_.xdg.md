@@ -25,7 +25,7 @@ It tryies to use [xdg-user-dirs](https://www.freedesktop.org/wiki/Software/xdg-u
 
 ### globalPackage
 
-▸ **globalPackage**(`...path`): `string`
+▸ **globalPackage**(`...path`): `string` \| `void`
 
 This is helper function to get the globally installed packages.
 ```js
@@ -34,6 +34,7 @@ npm install chrome-remote-interface --location=global
 const pkg= await import($.xdg.globalPackage`chrome-remote-interface`);
 // or script.js
 const pkg= require($.xdg.globalPackage`chrome-remote-interface`);
+@throws {Error} Package not found/has no global exports
 ```
 
 #### Parameters
@@ -44,9 +45,9 @@ const pkg= require($.xdg.globalPackage`chrome-remote-interface`);
 
 #### Returns
 
-`string`
+`string` \| `void`
 
-▸ **globalPackage**(`path`): `string`
+▸ **globalPackage**(`path`): `string` \| `void`
 
 #### Parameters
 
@@ -56,7 +57,7 @@ const pkg= require($.xdg.globalPackage`chrome-remote-interface`);
 
 #### Returns
 
-`string`
+`string` \| `void`
 
 ___
 
