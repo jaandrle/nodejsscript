@@ -28,8 +28,9 @@ export function globalPackage(pieces, ...vars){
 	if(!is_domain) pkg_subpath_arr.unshift(pkg_todo);
 	const pkg_subpath= pkg_subpath_arr.join("/");
 	const pkg= libs+pkg_name;
-	if(!s.test("-d", pkg)) throw new Error(`Package ${pkg} not found!`);
+	if(!s.test("-d", pkg)) throw new Error(`Package ${pkg_name} not found! Try to install it first: \`npm install ${pkg_name} --location=global\`!`);
 	const { main, exports }= s.$("-SF").cat(pkg+"/package.json").xargs(JSON.parse);
+	if(!main && !pkg_subpath) throw new Error(`Package ${pkg_name} has no global exports!`);
 	if(!exports || typeof require === "function") return resolve(pkg, pkg_subpath ? pkg_subpath : main);
 	const export_name= pkg_subpath ? "./"+pkg_subpath : ".";
 	const export_candidate= exports[export_name];
