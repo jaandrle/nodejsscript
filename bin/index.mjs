@@ -24,6 +24,7 @@ process.on('uncaughtException', printError);
 				resolve(candidate) ));
 	$.is_local= argv[1].includes("node_modules"); //TODO: rm/doc
 	argv[1]= filepath;
+	$.length= 0;
 	$.push(...argv.slice(1));
 	await $.stdin[key_stdin]();
 	try{

@@ -1,14 +1,19 @@
-import { config, ShellString } from "shelljs";
-import { fstatSync } from "node:fs";
+import { config, ShellString, default as shelljs } from "shelljs";
+import { fstatSync, readlinkSync } from "node:fs";
 import * as xdg from "./xdg.js";
 import { stdin as key_stdin } from "./keys.js";
 import { fileURLToPath } from "node:url";
+import { argv } from 'node:process';
+import { resolve } from "node:path";
 
-export const $= Object.assign([], {
+export const $= Object.assign([ ...argv.slice(1) ], {
 	isMain(_meta){
 		const module_path= fileURLToPath(_meta.url);
-		console.log(module_path);
-		return this[0] === module_path;
+		const [ argv0 ]= this;
+		if(!shelljs.test("-L", argv0))
+			return argv0 === module_path;
+		//TODO: for locally installed modules, this can be also link
+		return resolve(argv0, "..", readlinkSync(argv0)) === module_path;
 	},
 	
 	get is_silent(){ return config.silent; },

@@ -16,7 +16,21 @@ export function cache(pieces, ...vars){ return out(cachedir(), pieces, vars); }
 
 export function root(pieces, ...vars){ return out(parse(cwd_native()).root, pieces, vars); }
 export function cwd(pieces, ...vars){ return out(cwd_native(), pieces, vars); }
-export function main(pieces, ...vars){ return out(join(argv[1], ".."), pieces, vars); }
+
+import { readlinkSync } from 'node:fs';
+export function main(pieces, ...vars){
+	const root= argv[1];
+	let relative= [ ".." ];
+	if(globalThis.$.is_local===false){
+		try{
+			const r= readlinkSync(root);
+			const deep= r.slice(r.indexOf("node_modules")).split("/"); //[ node_modules, library, n×?, script_name ]=> -2 (node_modules, script_name)
+			relative.push( r, "../".repeat(deep.length - 2));
+		} catch(e){}
+	}
+	return out(join(root, ...relative), pieces, vars);
+
+}
 
 import s from "./shelljs.js";
 const libs= resolve(argv[1], "../../lib/node_modules/")+"/";
