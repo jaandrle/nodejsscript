@@ -49,7 +49,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `input` | [`RequestInfo`](../modules/_fetch.md#requestinfo) |
+| `input` | `URL` \| [`RequestInfo`](../modules/_fetch.md#requestinfo) |
 | `init?` | [`RequestInit`](../interfaces/fetch.RequestInit.md) |
 
 #### Overrides

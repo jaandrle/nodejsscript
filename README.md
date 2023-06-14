@@ -42,7 +42,6 @@ curl https://api.spacexdata.com/v4/launches/latest | nodejsscript -p 'Object.ent
  · [echo() #css-in-console](./docs/README.md#echo)
  · [fetch() #node-fetch](./docs/README.md#fetch)
  · [pipe()](./docs/README.md#pipe)
- · [cyclicLoop()](./docs/README.md#cyclicloop)
 
 ## Documentation
 Write your scripts in a file with an `.mjs` extension in order to

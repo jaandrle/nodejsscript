@@ -1,14 +1,19 @@
-import { config, ShellString } from "shelljs";
-import { fstatSync } from "node:fs";
+import { config, ShellString, default as shelljs } from "shelljs";
+import { fstatSync, readlinkSync } from "node:fs";
 import * as xdg from "./xdg.js";
 import { stdin as key_stdin } from "./keys.js";
 import { fileURLToPath } from "node:url";
+import { argv } from 'node:process';
+import { resolve } from "node:path";
 
-export const $= Object.assign([], {
+export const $= Object.assign([ ...argv.slice(1) ], {
 	isMain(_meta){
 		const module_path= fileURLToPath(_meta.url);
-		console.log(module_path);
-		return this[0] === module_path;
+		const [ argv0 ]= this;
+		if(!shelljs.test("-L", argv0))
+			return argv0 === module_path;
+		//TODO: for locally installed modules, this can be also link
+		return resolve(argv0, "..", readlinkSync(argv0)) === module_path;
 	},
 	
 	get is_silent(){ return config.silent; },
@@ -43,12 +48,12 @@ export const $= Object.assign([], {
 				if(hint==="string") return stdin || "";
 				return null;
 			},
-			text(_default){ return setted ? stdin : _default; },
-			lines(_default){ return setted ? stdin.split("\n") : _default; },
+			text(_default){ return ShellString(setted ? stdin : _default); },
+			lines(_default){ return ShellString(setted ? stdin.split("\n") : _default); },
 			json(_default){ return setted ? JSON.parse(stdin.trim()) : _default; },
 			[key_stdin](){
 				if(!$.isFIFO(0)) return Promise.resolve("");
-				return $.read().then(t=> (setted= true, stdin= (t.replace(/\n$/, ""))));
+				return $.read().then(t=> (setted= true, stdin= t.replace(/\n$/, "")));
 			}
 		};
 	})(),
@@ -78,17 +83,34 @@ $.api= function(usage, is_single= false){
 	const out= sade(name+(usage ? " "+usage : ""), is_single);
 	return sadeOut(out);
 };
+import { echo } from "./echo.js";
+import { pipe } from "./utils.js";
 function sadeOut(sade){
 	sade._parse= sade.parse;
 	sade.parse= function(options= {}){
 		const { argv= process.argv }= options;
+		if(argv[2]==="__ALL__"){ //as this is already protected by Sade
+			const completions= pipe(
+				Object.entries,
+				a=> a.filter(([ name ])=> name!=="__default__"),
+				a=> a.map(([n,v])=> [ n, typeof v==="string" ? v : v.options.flatMap(o=> o[0].split(/, ?/g)) ]),
+				a=> a.reduce((acc, [ name, o ])=> (acc[name]= o, acc), {}),
+			)(sade.tree);
+			const completions_all= Reflect.get(completions, "__all__").concat("--help", "--version");
+			Reflect.deleteProperty(completions, "__all__");
+			const npx= $.is_local;
+			pipe(
+				JSON.stringify,
+				echo
+			)({ npx, completions, completions_all });
+			$.exit(0);
+		}
 		Reflect.deleteProperty(options, "argv");
 		return this._parse(argv, options);
 	};
 	return sade;
 }
 
-import { echo } from "./echo.js";
 $.read= async function(options= {}){
 	const { stdin }= process;
 	stdin.setEncoding('utf8');

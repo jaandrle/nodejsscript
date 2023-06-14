@@ -1,5 +1,5 @@
 import { homedir, platform, tmpdir } from "node:os";
-import { join, parse } from "node:path";
+import { join, resolve, parse } from "node:path";
 import { env, cwd as cwd_native, argv } from "node:process";
 let os;
 switch(platform()){
@@ -16,7 +16,40 @@ export function cache(pieces, ...vars){ return out(cachedir(), pieces, vars); }
 
 export function root(pieces, ...vars){ return out(parse(cwd_native()).root, pieces, vars); }
 export function cwd(pieces, ...vars){ return out(cwd_native(), pieces, vars); }
-export function main(pieces, ...vars){ return out(join(argv[1], ".."), pieces, vars); }
+
+import { readlinkSync } from 'node:fs';
+export function main(pieces, ...vars){
+	const root= argv[1];
+	let relative= [ ".." ];
+	if(globalThis.$.is_local===false){
+		try{
+			const r= readlinkSync(root);
+			const deep= r.slice(r.indexOf("node_modules")).split("/"); //[ node_modules, library, n×?, script_name ]=> -2 (node_modules, script_name)
+			relative.push( r, "../".repeat(deep.length - 2));
+		} catch(e){}
+	}
+	return out(join(root, ...relative), pieces, vars);
+
+}
+
+import s from "./shelljs.js";
+const libs= resolve(argv[1], "../../lib/node_modules/")+"/";
+export function globalPackage(pieces, ...vars){
+	if(!pieces) throw new Error("Package name cannot be empty!");
+	const [ pkg_domain, pkg_todo, ...pkg_subpath_arr ]= ( typeof pieces==="string" ? pieces : String.raw(pieces, ...vars) ).split("/");
+	const is_domain= pkg_domain.startsWith("@");
+	const pkg_name= is_domain ? pkg_domain+"/"+pkg_todo : pkg_domain;
+	if(!is_domain) pkg_subpath_arr.unshift(pkg_todo);
+	const pkg_subpath= pkg_subpath_arr.join("/");
+	const pkg= libs+pkg_name;
+	if(!s.test("-d", pkg)) throw new Error(`Package ${pkg_name} not found! Try to install it first: \`npm install ${pkg_name} --location=global\`!`);
+	const { main, exports }= s.$("-SF").cat(pkg+"/package.json").xargs(JSON.parse);
+	if(!main && !pkg_subpath) throw new Error(`Package ${pkg_name} has no global exports!`);
+	if(!exports || typeof require === "function") return resolve(pkg, pkg_subpath ? pkg_subpath : main);
+	const export_name= pkg_subpath ? "./"+pkg_subpath : ".";
+	const export_candidate= exports[export_name];
+	return resolve(pkg, typeof export_candidate==="string" ? export_candidate : export_candidate.import);
+}
 
 function out(folder, pieces, vars){
 	if(!pieces) return folder;
