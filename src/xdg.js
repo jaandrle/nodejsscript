@@ -54,7 +54,7 @@ export function globalPackage(pieces, ...vars){
 function out(folder, pieces, vars){
 	if(!pieces) return folder;
 	if(typeof pieces==="string") return join(folder, pieces);
-	return join(folder, String.raw(pieces, vars));
+	return join(folder, String.raw(pieces, ...vars));
 }
 
 function fl(){

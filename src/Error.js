@@ -6,30 +6,34 @@ const ErrorOld= global.Error;
 /*
  * Replacig build-in Error, because of libraries we have not under control
  * */
-global.Error= class extends ErrorOld{
+globalThis.Error= class extends ErrorOld{
 	static stackToList(stack){ return stack.split(/^\s*at\s/m); }
 	static listToStack(list){ return list.map(l=> "    at "+l).join(""); }
 	static exitCodeInfo(exitCode){ return exit_codes[exitCode || -1]; }
 
-	static print(e){
+	static print(e, is_verbose= 0){
 		const css= echo.css(
 			"h1 { color: lightred; }",
 			"h2 { color: magenta; }",
 			"pre { color: gray; }",
 		);
-		const { stdout, stderr, name, message, stack, exitCode= 1 }= e;
+		if(!e || typeof e.stack ==="undefined" || typeof e.message === "undefined") e= new this(e);
+		const { stdout, stderr, name, message, exitCode= 1 }= e;
 		echo.use("-2", `%c${name}: ${message.trim()}`, css.h1);
 		echo.use("-2", "%ccode: " + exitCode + ( Error.exitCodeInfo(exitCode) ? ` %c(${Error.exitCodeInfo(exitCode)})` : "%c" ), css.h2, "color: blue");
 		if(stderr) echo.use("-2", "%cstderr:\n%c" + stderr, css.h2, css.pre);
 		if(stdout) echo.use("-2", "%cstdout:\n%c" + stdout, css.h2, css.pre);
+		const stack= is_verbose === 1 ? e.stack_all : e.stack;
 		if(stack) echo.use("-2", "%cstack:\n%c" + pipe( Error.stackToList, l=> l.slice(1), Error.listToStack)(stack), css.h2, css.pre);
 	}
 	
 	constructor(message, options){
 		super(message, options);
+		this.stack_all= this.stack;
 		const [ lm, ...l ]= Error.stackToList(this.stack);
-		const i= l.findIndex(l=> l.indexOf("nodejsscript")===-1 || l.indexOf("nodejsscript/examples")!==-1);
-		const l_out= l.slice(i).filter(l=> l.indexOf("node:internal")==-1 && l.indexOf("nodejsscript/bin/cli.mjs")===-1 && l.indexOf("async Promise.all (index 0)")===-1);
+		const i= l.findIndex(l=> !l.includes("nodejsscript") || l.startsWith("file://"));
+		const l_out= l.slice(i).filter(l=> !l.includes("node:internal") && !l.includes("nodejsscript/bin/") && !l.includes("async Promise.all (index 0)"));
+		if(!l_out.length) l_out.push(process.argv[1]);
 		this.stack= lm+Error.listToStack(l_out);
 	}
 };
@@ -48,7 +52,7 @@ export class ProcessOutput extends Error {
 		for(const [ k, value ] of Object.entries(rest))
 			Reflect.defineProperty(this, k, { value, writable: false });
 		Reflect.defineProperty(this, "exitCode", { value: code, writable: false });
-		const combined= rest.stdout + ( rest.stderr ? "\n"+rest.stderr : "");
-		Reflect.defineProperty(this, "toString", { value: ()=> combined, writable: false });
+		const combined= ()=> rest.stdout + ( rest.stderr ? "\n"+rest.stderr : "");
+		Reflect.defineProperty(this, "toString", { value: combined, writable: false });
 	}
 }

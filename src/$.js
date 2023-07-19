@@ -4,9 +4,12 @@ import * as xdg from "./xdg.js";
 import { stdin as key_stdin } from "./keys.js";
 import { fileURLToPath } from "node:url";
 import { argv } from 'node:process';
-import { resolve } from "node:path";
+import { resolve, join } from "node:path";
 
 export const $= Object.assign([ ...argv.slice(1) ], {
+	get version(){
+		return shelljs.cat(fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse).version;
+	},
 	isMain(_meta){
 		const module_path= fileURLToPath(_meta.url);
 		const [ argv0 ]= this;
@@ -69,9 +72,6 @@ export const $= Object.assign([ ...argv.slice(1) ], {
 
 	hasArgs(...needles){ return this.findIndex(a=> needles.indexOf(a)!==-1) !==-1; }
 });
-Reflect.defineProperty($, "nosed", { get(){ return this.stdin.text(""); }, });
-Reflect.defineProperty($, "nojq", { get(){ return this.stdin.json(null); }, });
-Reflect.defineProperty($, "noawk", { get(){ return this.stdin.lines([]); }, });
 
 import sade from "sade";
 $.api= function(usage, is_single= false){

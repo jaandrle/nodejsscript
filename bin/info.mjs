@@ -1,6 +1,7 @@
 /* global echo, $, s */
 import url from "node:url";
 import { join } from "node:path";
+import { file_rc } from './config.mjs';
 export async function printUsage(){
 	const [ n, v, d ]= info("name", "version", "description");
 	const { styles }= await import("./styles.mjs");
@@ -45,6 +46,10 @@ export async function printUsage(){
 		css.T, css.code);
 	echo("%c…and make the script file executable.",
 		css.T);
+	echo("%cLocation of the config file%c:",
+		css.H);
+	echo("%c"+file_rc,
+		css.T + css.code);
 	$.exit(0);
 }
 export function info(...keys){

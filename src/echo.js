@@ -24,9 +24,10 @@ export function echo(options, ...messages){
 	if(o.has("2")) target= "stderr";
 	if(!has_options) messages.unshift(options);
 	
-	const output= echoOutput(messages, o, useColors(target));
+	const is_colors= useColors(target);
+	const output= echoOutput(messages, o, is_colors);
 	if(o.has("S")) return ShellString(output);
-	if(o.has("R")) return rewritableStart({ stream: process[target], output });
+	if(o.has("R") && is_colors) return rewritableStart({ stream: process[target], output });
 	
 	process[target].write(output);
 	return ShellString(output);

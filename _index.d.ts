@@ -88,27 +88,3 @@ import * as __fetch from 'node-fetch';
  */
 export function fetch(url: string | __fetch.Request, init?: __fetch.RequestInit): __fetch.Response;
 export { __fetch };
-
-/**
- * Repeatedly loops through the given chars/strings/….
- * Typical usage is to create a spinner (by default):
- *
- * ```js
- * import { setTimeout } from "node:timers/promises";
- * const spinEnd= spinner(); //output=> ⠋ Waiting…
- * setTimeout(10*750).then(spinEnd);
- * 
- * function spinner(message= "Waiting…"){
- * 	const animation= cyclicLoop();
- * 	const echoSpin= ()=> echo.use("-R", `${animation.next().value} ${message}`);
- * 	const id= setInterval(echoSpin, 750);
- * 	return function(){
- * 		clearInterval(id);
- * 		echo.use("-r");
- * 	};
- * }
- * ```
- * …also see [spinner example](../examples/spinner.mjs).
- * @category Public
- * */
-export function cyclicLoop<T>(items: T[]): Generator<T[], any, T>

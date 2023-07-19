@@ -68,22 +68,4 @@ ls -l | nodejsscript -p '$.stdin.lines().slice(1).reduce((acc, l)=> acc+Number(l
 history | nodejsscript -p 'const add= name=> acc=> Reflect.set(acc, name, Reflect.has(acc, name) ? acc[name]+1 : 1) && acc; $.stdin.lines().reduce((acc, l)=> add(l.trim().split(/  ?/)[1])(acc), {})'
 ```
 ## Aliases
-For now, just an idea:
-```bash
-# instead of
-echo '{"a":"A"}' | nodejsscript -p '$.stdin.json().a'
-# you can also use
-echo '{"a":"A"}' | nodejsscript -p '$.nojq.a'
-```
-```bash
-# instead of
-who | nodejsscript -p '$.stdin.text().split(/ +/)[0]'
-# you can also use
-who | nodejsscript -p '$.nosed.split(/ +/)[0]'
-```
-```bash
-# instead of
-apt list --installed | nodejsscript -p '$.stdin.lines().filter(l=> l.indexOf("libreoffice")!==-1).length'
-# you can also use
-apt list --installed | nodejsscript -p '$.noawk.filter(l=> l.indexOf("libreoffice")!==-1).length'
-```
+See [nodejsscriptrc.mjs](./nodejsscriptrc.md).

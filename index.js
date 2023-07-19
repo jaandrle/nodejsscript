@@ -6,15 +6,6 @@ function fetch(url, init){
 	if(s.config.verbose) echo("fetch(", url, ",", init, ")");
 	return nodeFetch(url, init);
 }
-function* cyclicLoop(items){
-	if(!items) items= 'win32'===process.platform ? '|/-\\' : "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏";
-	const { length }= items;
-	for(let i=0; true; i++){
-		if(i===length) i= 0;
-		yield items[i];
-	}
-}
-
 import { $ } from "./src/$.js";
 import { pipe } from "./src/utils.js";
 Object.assign(globalThis, {
@@ -22,8 +13,7 @@ Object.assign(globalThis, {
 	s,
 	$,
 	fetch,
-	pipe,
-	cyclicLoop
+	pipe
 });
 
 /* jshint ignore:start */

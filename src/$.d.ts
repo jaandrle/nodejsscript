@@ -9,6 +9,10 @@ import { ShellString } from 'shelljs';
 
 export namespace Dollar{
 	/**
+	 * Holds current nodejsscript version
+	 * */
+	const version: string;
+	/**
 	 * This is small helper function to determine if current script file was launched as main one.
 	 * ```js
 	 * //nodejsscript main.js

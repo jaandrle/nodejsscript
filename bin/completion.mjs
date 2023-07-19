@@ -1,7 +1,7 @@
 /* global echo, $, s, pipe */
 import { styles } from './styles.mjs';
 import { info } from './info.mjs';
-import { completions as config, readCompletions, updateCompletions } from './config.mjs';
+import { file_completions, readCompletions, updateCompletions } from './config.mjs';
 export function completion(argv){
 	const option= argv[2];
 	const script_name= info("name")[0];
@@ -19,7 +19,7 @@ export function completion(argv){
 		$.exit(0);
 	}
 	if("config"===option)
-		return $.exit(0, echo(config));
+		return $.exit(0, echo(file_completions));
 	if("remove"===option)
 		return remove(argv);
 	if("register"===option)

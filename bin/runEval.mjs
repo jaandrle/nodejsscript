@@ -25,7 +25,7 @@ export function runEval(argv, is_print){
 		input= out_arr.reverse().join(";");
 	}
 	input+= ";$.exit(0);";
-	const filepath= $.xdg.temp`nodejsscript-${randomUUID()}.mjs`;
+	const filepath= $.xdg.temp`nodejsscript-${is_print ? "print" : "eval"}-${randomUUID()}.mjs`;
 	s.echo(input).to(filepath);
 	return filepath;
 }
