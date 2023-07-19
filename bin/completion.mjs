@@ -31,6 +31,7 @@ export function completion(argv){
 		return bash(script_name);
 }
 
+const alias= "njs";
 function complete(script_name, argv){
 	const [ trigger, level, now, prev, first ]= argv.slice(3);
 	const level_num= level - 2;
@@ -44,7 +45,7 @@ function complete(script_name, argv){
 		return ls.filter(item=> item.indexOf(now_)===0).join(" ");
 	};
 	const resolve= arr=> { echo(matches(arr)); return $.exit(0); };
-	if(script_name===trigger){
+	if(script_name===trigger||alias===trigger){
 		if(!level_num && !now?.includes("/"))
 			return resolve([ "--completion", "--help", "--version", "--eval", "--print", "--global-jsconfig", "--inspect" ]);
 		if("--completion"===prev)
@@ -125,6 +126,7 @@ function bash(script_name){
 		" return 0",
 		"}",
 		`complete -o filenames -F __${script_name}_opts ${script_name}`,
+		`complete -o filenames -F __${script_name}_opts ${alias}`,
 		...Object.keys(scripts).map(s=> `complete -o filenames -F __${script_name}_opts ${s}`)
 	].join("\n"));
 	$.exit(0);

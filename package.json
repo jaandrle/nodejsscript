@@ -1,6 +1,6 @@
 {
 	"name": "nodejsscript",
-	"version": "0.9.4",
+	"version": "1.0.0",
 	"author": "Jan Andrle <andrle.jan@centrum.cz>",
 	"license": "MIT",
 	"description": "A tool for writing better scripts",
@@ -15,7 +15,8 @@
 	"main": "index.js",
 	"type": "module",
 	"bin": {
-		"nodejsscript": "bin/index.mjs"
+		"nodejsscript": "bin/index.mjs",
+		"njs": "bin/index.mjs"
 	},
 	"exports": {
 		".": "./index.js"
