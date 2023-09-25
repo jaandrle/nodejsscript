@@ -94,9 +94,37 @@ async function handleMyArgvs(candidate){
 		const { completion }= await import("./completion.mjs");
 		return completion(argv);
 	}
+	if("--repl"===candidate){
+		return await startRepl(argv);
+	}
 }
 function printError(e){
 	if(e instanceof $.Error)
 		return console.error(e.message);
 	Error.print(e);
 }
+
+import repl from "node:repl";
+import { inspect } from "node:util";
+import { file_repl } from "./config.mjs";
+function startRepl(){ return new Promise(function(){
+	globalThis.$_= undefined;
+	echo("Use `.help` for help, use `$_` to reuse last command result.");
+	const r= repl.start({
+		prompt: echo.format("%c❯ ", "color:lightgreen;"),
+		useGlobal: true,
+		preview: true,
+		writer(res){
+			globalThis.$_= res;
+			const is_shellScript= typeof res==="object" && "stdout" in res;
+			if(is_shellScript && !res.code){
+				const is_string= !Array.isArray(res);
+				console.log("Shell"+(is_string ? "String" : "Array"));
+				res= is_string ? res.stdout : [...res];
+			}
+			return inspect(res, { colors: true });
+		}
+	});
+	r.setupHistory(file_repl, () => {});
+	r.on("exit", $.exit.bind(null, 0));
+}); }

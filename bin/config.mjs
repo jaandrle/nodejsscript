@@ -26,3 +26,5 @@ export function importRC(){
 		return import(file_rc);
 	return Promise.reject();
 }
+
+export const file_repl= join(config, "repl_history");
