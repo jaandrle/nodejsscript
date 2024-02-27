@@ -12,9 +12,9 @@ export function completion(argv){
 		echo("%c                    help	Print this help", css.T);
 		echo("%c                    bash	Output bash completion script.", css.T);
 		echo(`%c                        	Add %ceval "$(${script_name} --completion bash)"%c to your '.bashrc' file.`, css.T, css.code);
-		echo("%cregister <target> [name]	This enable completion for custom script created with nodejsscript (using %c$.api%c).", css.T, css.code);
-		echo(`%c                        	The <target> reffers to script itself, the [name] (defaults to <target>) to text triggering the completion.`, css.T);
-		echo("%c           remove <name>	This remove completion for custom script previously registered by <name>.", css.T);
+		echo("%c       register <target>	This enable completion for custom script created with nodejsscript (using %c$.api%c).", css.T, css.code);
+		echo(`%c                        	The <target> reffers to script itself/the text triggering the completion.`, css.T);
+		echo("%c         remove <target>	This remove completion for custom script previously registered by <target>.", css.T);
 		echo(`%c                  config	Returns location of the completions config file.`, css.T);
 		$.exit(0);
 	}
@@ -47,7 +47,7 @@ function complete(script_name, argv){
 	const resolve= arr=> { echo(matches(arr)); return $.exit(0); };
 	if(script_name===trigger||alias===trigger){
 		if(!level_num && !now?.includes("/"))
-			return resolve([ "--completion", "--help", "--version", "--eval", "--print", "--global-jsconfig", "--inspect" ]);
+			return resolve([ "--completion", "--help", "--version", "--eval", "--print", "--global-jsconfig", "--inspect", "--interactive" ]);
 		if("--completion"===prev)
 			return resolve([ "help", "bash", "register", "remove", "config" ]);
 		if("--global-jsconfig"===prev)
@@ -93,18 +93,17 @@ function remove(argv){
 }
 function register(argv){
 	const css= styles();
-	let [ target, name ]= argv.slice(3);
-	name= name || target;
+	let [ target ]= argv.slice(3);
 	const { version, scripts }= readCompletions();
 	if(!version.toString().startsWith("1"))
 		$.error(`Completion configuration file version '${version}' is not supported. Update to newer version of nodejsscript.`);
-	if(Reflect.has(scripts, name) && scripts[name].target!==target)
-		$.error(`Completion for '${name}' already exists. You can remove previous one and than register this one.`);
+	if(Reflect.has(scripts, target))
+		$.error(`Completion for '${target}' already exists. You can remove previous one and than register this one.`);
 	try{
 		const { npx, completions, completions_all }= s.$("-FS").run`${target} __ALL__ completion`.xargs(JSON.parse);
-		Reflect.set(scripts, name, { target, npx, completions, completions_all });
+		Reflect.set(scripts, target, { npx, completions, completions_all });
 		updateCompletions({ scripts });
-		echo(`%cSuccessfully registered completion for %c${name}%c.`, css.success, css.code);
+		echo(`%cSuccessfully registered completion for %c${target}%c.`, css.success, css.code);
 		$.exit(0);
 	} catch(e){
 		if(e?.exitCode==127)

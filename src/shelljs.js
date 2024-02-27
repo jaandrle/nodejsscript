@@ -94,6 +94,7 @@ function run(pieces, ...args){
 }
 function runA(pieces, ...args){
 	const [ command, options= {} ]= runArgumentsToCommand(pieces, args);
+	if(!Reflect.has(options, "cwd")) Reflect.set(options, "cwd", shelljs.pwd().toString());
 	const pipe= plugin.readFromPipe();
 	if(pipe) options.pipe= pipe;
 	return ProcessPromise.create(command, Object.assign({}, shelljs.config, options));

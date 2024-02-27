@@ -8,6 +8,7 @@ function fetch(url, init){
 }
 import { $ } from "./src/$.js";
 import { pipe } from "./src/utils.js";
+
 Object.assign(globalThis, {
 	echo,
 	s,

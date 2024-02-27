@@ -126,7 +126,8 @@ function getProcesStore(initial){
 			return now;
 		}
 	};
-}function syncCwd() {
+}
+function syncCwd() {
 	const cwd= getStore()[processCwd];
 	if(cwd != process.cwd())
 		process.chdir(cwd);

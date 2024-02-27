@@ -62,14 +62,14 @@ async function importRC(){
 	if(uncaughtException) printError= uncaughtException;
 }
 async function handleMyArgvs(candidate){
-	if(['--version', '-v', '-V'].includes(candidate)){
+	if(["--version", "-v", "-V"].includes(candidate)){
 		const { info }= await import("./info.mjs");
 		echo(info("version")[0]);
 		return $.exit(0);
 	}
-	if(['--help', '-h'].includes(candidate)){
-		const { printUsage }= await import("./info.mjs");
-		return await printUsage();
+	if(["--help", "-h"].includes(candidate)){
+		const { printCliUsage, printUsage }= await import("./info.mjs");
+		return argv.length===2 ? await printCliUsage() : await printUsage(argv[argv.length-1]);
 	}
 	if("--inspect"===candidate){
 		const { inspect }= await import("./inspect.mjs");
@@ -80,12 +80,12 @@ async function handleMyArgvs(candidate){
 		const { jsconfigTypes }= await import("./jsconfigTypes.mjs");
 		return jsconfigTypes(argv);
 	}
-	if(['-e', '--eval'].includes(candidate)){
+	if(["-e", "--eval"].includes(candidate)){
 		const { runEval }= await import("./runEval.mjs");
 		await importRC();
 		return runEval(argv, 0);
 	}
-	if(['-p', '--print'].includes(candidate)){
+	if(["-p", "--print"].includes(candidate)){
 		const { runEval }= await import("./runEval.mjs");
 		await importRC();
 		return runEval(argv, 1);
@@ -94,7 +94,7 @@ async function handleMyArgvs(candidate){
 		const { completion }= await import("./completion.mjs");
 		return completion(argv);
 	}
-	if("--repl"===candidate){
+	if(["-i", "--interactive"].includes(candidate)){
 		return await startRepl(argv);
 	}
 }
@@ -108,14 +108,13 @@ import repl from "node:repl";
 import { inspect } from "node:util";
 import { file_repl } from "./config.mjs";
 function startRepl(){ return new Promise(function(){
-	globalThis.$_= undefined;
-	echo("Use `.help` for help, use `$_` to reuse last command result.");
+	echo("Use `.help` for help, use `_` to reuse last command result.");
 	const r= repl.start({
 		prompt: echo.format("%c❯ ", "color:lightgreen;"),
-		useGlobal: true,
+		replMode: repl.REPL_MODE_STRICT,
+		//useGlobal: true,
 		preview: true,
 		writer(res){
-			globalThis.$_= res;
 			const is_shellScript= typeof res==="object" && "stdout" in res;
 			if(is_shellScript && !res.code){
 				const is_string= !Array.isArray(res);

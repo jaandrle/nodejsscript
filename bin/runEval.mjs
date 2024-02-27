@@ -21,7 +21,8 @@ export function runEval(argv, is_print){
 		}
 		const input_rest= argv.slice(2).join(",");
 		if(input_rest.trim()!=="") out= `pipe(${input_rest})(${out})`;
-		out_arr[0]= `${pre} echo(${out})`;
+		const name_ret= "__"+randomUUID().replaceAll("-", "");
+		out_arr[0]= `${pre} const ${name_ret}= ${out}; echo(${name_ret} instanceof Promise ? await ${name_ret} : ${name_ret})`;
 		input= out_arr.reverse().join(";");
 	}
 	input+= ";$.exit(0);";
