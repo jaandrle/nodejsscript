@@ -7,9 +7,6 @@ import { argv } from 'node:process';
 import { resolve, join } from "node:path";
 
 export const $= Object.assign([ ...argv.slice(1) ], {
-	get version(){
-		return shelljs.cat(fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse).version;
-	},
 	isMain(_meta){
 		const module_path= fileURLToPath(_meta.url);
 		const [ argv0 ]= this;
@@ -18,20 +15,6 @@ export const $= Object.assign([ ...argv.slice(1) ], {
 		//TODO: for locally installed modules, this can be also link
 		return resolve(argv0, "..", readlinkSync(argv0)) === module_path;
 	},
-	
-	get is_silent(){ return config.silent; },
-	set is_silent(v){ config.silent= v; },
-	get is_verbose(){ return config.verbose; },
-	set is_verbose(v){ return (config.verbose= v); },
-	get is_fatal(){ return config.fatal; },
-	set is_fatal(v){ return (config.fatal= v); },
-	
-	get glob_options(){ return ({
-		get is_off(){ return config.noglob; },
-		set is_off(v){ return (config.noglob= v); },
-		get options(){ return config.globOptions; },
-		set options(v){ return (config.globOptions= v); },
-	});},
 	
 	is_colors: -1,
 	configAssign(...c){
@@ -67,10 +50,36 @@ export const $= Object.assign([ ...argv.slice(1) ], {
 
 	xdg,
 
-	get $(){ return process.pid; },
-	get env(){ return process.env; },
-
 	hasArgs(...needles){ return this.findIndex(a=> needles.indexOf(a)!==-1) !==-1; }
+});
+Reflect.defineProperty($, "is_silent", {
+	get(){ return config.silent; },
+	set(v){ config.silent= v; },
+});
+Reflect.defineProperty($, "is_verbose", {
+	get(){ return config.verbose; },
+	set(v){ return (config.verbose= v); },
+});
+Reflect.defineProperty($, "is_fatal", {
+	get(){ return config.fatal; },
+	set(v){ return (config.fatal= v); },
+});
+Reflect.defineProperty($, "glob_options", {
+	get(){ return ({
+		get is_off(){ return config.noglob; },
+		set is_off(v){ return (config.noglob= v); },
+		get options(){ return config.globOptions; },
+		set options(v){ return (config.globOptions= v); },
+	});},
+});
+Reflect.defineProperty($, "$", {
+	get(){ return process.pid; },
+});
+Reflect.defineProperty($, "env", {
+	get(){ return process.env; },
+});
+Reflect.defineProperty($, "version", {
+	get(){ return shelljs.cat(fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse).version; },
 });
 
 import sade from "sade";

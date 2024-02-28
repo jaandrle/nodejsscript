@@ -69,7 +69,8 @@ async function handleMyArgvs(candidate){
 	}
 	if(["--help", "-h"].includes(candidate)){
 		const { printCliUsage, printUsage }= await import("./info.mjs");
-		return argv.length===2 ? await printCliUsage() : await printUsage(argv[argv.length-1]);
+		const out= argv.length===2 ? await printCliUsage() : await printUsage(argv[argv.length-1]);
+		return $.exit(out || 0);
 	}
 	if("--inspect"===candidate){
 		const { inspect }= await import("./inspect.mjs");
@@ -112,7 +113,7 @@ function startRepl(){ return new Promise(function(){
 	const r= repl.start({
 		prompt: echo.format("%c❯ ", "color:lightgreen;"),
 		replMode: repl.REPL_MODE_STRICT,
-		//useGlobal: true,
+		useGlobal: true,
 		preview: true,
 		writer(res){
 			const is_shellScript= typeof res==="object" && "stdout" in res;
@@ -121,9 +122,17 @@ function startRepl(){ return new Promise(function(){
 				console.log("Shell"+(is_string ? "String" : "Array"));
 				res= is_string ? res.stdout : [...res];
 			}
-			return inspect(res, { colors: true });
+			return inspect(res, { colors: $.is_colors, compact: !$.is_verbose });
 		}
 	});
 	r.setupHistory(file_repl, () => {});
+	r.defineCommand("man", {
+		help: "Show help texts for nodejscript functions such as `s.cat`, `s.isMain`, `echo`, ….",
+		async action(expresion){
+			const { printUsage }= await import("./info.mjs");
+			await printUsage(expresion, false);
+			this.displayPrompt();
+		}
+	});
 	r.on("exit", $.exit.bind(null, 0));
 }); }

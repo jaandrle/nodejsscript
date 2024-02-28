@@ -12,7 +12,7 @@ export function jsconfigTypes(argv){
 		jsconfig_file.include.unshift(join(argv[1], "../../lib/node_modules/nodejsscript/index.d.ts"));
 	echo.use("-P", jsconfig_file);
 	pipe(
-		o=> JSON.stringify(o, undefined, 2),
+		o=> JSON.stringify(o, undefined, "\t"),
 		s.ShellString,
 		s=> s.to("jsconfig.json")
 	)(jsconfig_file);

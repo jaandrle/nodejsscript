@@ -12,7 +12,7 @@ export async function printUsage(name_full){
 	})[ns];
 	if(!url || !name){
 		echo(!ns ? globalThis[name] : name ? globalThis[ns][name] : globalThis[ns]);
-		$.exit(0);
+		return 1;
 	}
 	const docs= await fetch(url).then(res=> res.text()).catch(()=> "");
 	const i_start= docs.indexOf("### "+name);
@@ -21,7 +21,7 @@ export async function printUsage(name_full){
 		d=> d.trim()+"\n\nFor more information, please visit: "+url.slice(0, url.indexOf("/raw")),
 		d=> console.log(d)
 	)(docs);
-	$.exit(0);
+	return 0;
 }
 function sectionEnd(docs, i_start, name){
 	const candidate= new RegExp(`\n### (?!${name})`).exec(docs.slice(i_start))?.index;
