@@ -40,7 +40,16 @@ function $(config_next){
 		V: "verbose",
 		F: "fatal",
 		S: "silent",
-		g: "noglob"
+		g: "noglob",
+		v: "no-verbose",
+		f: "no-fatal",
+		s: "no-silent",
+		G: "no-noglob"
+	});
+	Object.keys(config_next).filter(k=> k.startsWith("no-")).forEach(k=> {
+		const v= config_next[k];
+		Reflect.deleteProperty(config_next, k);
+		if(v) Reflect.set(config_next, k.replace(/^no-/, ""), !v);
 	});
 	return new Proxy(this, {
 		get(target, p){

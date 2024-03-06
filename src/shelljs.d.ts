@@ -50,8 +50,9 @@ export interface DollarFunction{
 	 *	- "-S": silent (default)
 	 *	- "-F": fatal
 	 *	- "-g": noglob
+	 *	- to off option(s) use lower-case letters ("-v" to off verbosei, "-s" …, …, "-G" to enable glob)
 	 */
-	(options: "-V"|"-S"|"-F"|"-g"): ShellString;
+	(options: "-V"|"-S"|"-F"|"-g"|"-v"|"-s"|"-f"|"-G"): ShellString;
 	(): ShellString;
 }
 export const $: DollarFunction;

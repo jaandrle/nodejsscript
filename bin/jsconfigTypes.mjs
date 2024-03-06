@@ -4,7 +4,7 @@ export function jsconfigTypes(argv){
 	const jsconfig_file= pipe(
 		f=> f ? f : '{"include":[]}',
 		JSON.parse
-	)(s.$().cat("jsconfig.json").stdout);
+	)(s.$("-f").cat("jsconfig.json").stdout);
 	const include= new Set(jsconfig_file.include.filter(v=> v.indexOf("nodejsscript")===-1));
 	argv.slice(3).forEach(f=> include.add(f));
 	jsconfig_file.include= Array.from(include);

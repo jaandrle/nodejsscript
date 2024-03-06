@@ -125,6 +125,37 @@ function startRepl(){ return new Promise(async function(){
 			return inspect(res, { colors: $.is_colors, compact: !$.is_verbose });
 		}
 	});
+	const completer= r.completer.bind(r);
+	const ls_tmp= { pwd: "", ls: [] };
+	r.completer= function(line, callback){
+		completer.call(null, line, function(err, [ completions= [], line_ ]) {
+			if(err) return callback(err, [ completions, line_ ]);
+			let pwd= ".";
+			if(/(\(|,)\s*"[^"]*\/[^"]*$/.test(line)){
+				pwd= line.slice(line.lastIndexOf('"')+1, line.lastIndexOf("/"));
+				if(!pwd) pwd= "/";
+			}
+			if(pwd!==ls_tmp.pwd){
+				ls_tmp.pwd= pwd;
+				const map= pwd==="." ? l=> `"${l}"` : pwd==="/" ? l=> `"/${l}"` : l=> `"${pwd}/${l}"`;
+				try {
+					ls_tmp.ls= s.ls(pwd).concat("..").filter(l=> l!==pwd).map(map);
+				} catch(_){
+					ls_tmp.ls= [];
+				}
+			}
+			const { ls }= ls_tmp;
+			let todo= [];
+			if(/(\(|,)\s*"[^"]*$/.test(line)){
+				const candidate= line.slice(line.lastIndexOf('"'));
+				todo= ls.filter(l=> l.indexOf(candidate)===0).map(l=> line+l.slice(candidate.length));
+			} else if(line.at(-1)==="("){
+				todo= ls.map(l=> line+l);
+			}
+			callback(null, [ completions.concat(todo), line ]);
+			
+		})
+	}
 	r.setupHistory(file_repl, () => {});
 	r.defineCommand("man", {
 		help: "Show help texts for nodejscript functions such as `s.cat`, `s.isMain`, `echo`, ….",
