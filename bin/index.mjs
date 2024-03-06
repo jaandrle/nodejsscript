@@ -105,11 +105,11 @@ function printError(e){
 	Error.print(e);
 }
 
-import repl from "node:repl";
 import { inspect } from "node:util";
 import { file_repl } from "./config.mjs";
-function startRepl(){ return new Promise(function(){
+function startRepl(){ return new Promise(async function(){
 	echo("Use `.help` for help, use `_` to reuse last command result.");
+	const repl= await import("node:repl");
 	const r= repl.start({
 		prompt: echo.format("%c❯ ", "color:lightgreen;"),
 		replMode: repl.REPL_MODE_STRICT,

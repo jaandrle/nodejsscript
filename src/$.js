@@ -177,7 +177,9 @@ function question(query= "", options= {}){
 			},
 	});
 
-	return new Promise(resolve=>
+	return new Promise((resolve, reject)=> {
+		rl.on("SIGINT", ()=> { rl.close(); reject(); });
 		rl.question(query,
-			answer=> { rl.close(); resolve(answer); }));
+			answer=> { rl.close(); resolve(answer); });
+	});
 }
