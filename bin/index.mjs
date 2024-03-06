@@ -135,11 +135,13 @@ function startRepl(){ return new Promise(async function(){
 				pwd= line.slice(line.lastIndexOf('"')+1, line.lastIndexOf("/"));
 				if(!pwd) pwd= "/";
 			}
-			if(pwd!==ls_tmp.pwd){
+			if((pwd==="." ? s.pwd().trim() : pwd)!==ls_tmp.pwd){
 				ls_tmp.pwd= pwd;
 				const map= pwd==="." ? l=> `"${l}"` : pwd==="/" ? l=> `"/${l}"` : l=> `"${pwd}/${l}"`;
 				try {
-					ls_tmp.ls= s.ls(pwd).concat("..").filter(l=> l!==pwd).map(map);
+					const ls= s.ls(pwd).filter(l=> l!==pwd);
+					if(ls.length) ls_tmp.ls= ls.concat("..").map(map);
+					else throw null;
 				} catch(_){
 					ls_tmp.ls= [];
 				}
