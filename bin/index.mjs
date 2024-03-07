@@ -131,7 +131,8 @@ function startRepl(){ return new Promise(async function(){
 		completer.call(null, line, function(err, [ completions= [], line_ ]) {
 			if(err) return callback(err, [ completions, line_ ]);
 			let pwd= ".";
-			if(/(\(|,)\s*"[^"]*\/[^"]*$/.test(line)){
+			const is_open_function= "(\\(|,)\\s*\"[^\"]*"; //= detect line endings like “somethingA("somethingB”
+			if((new RegExp(is_open_function+"\\/[^\"]*$")).test(line)){ //-||- + somethingB is a nested path or starts as root
 				pwd= line.slice(line.lastIndexOf('"')+1, line.lastIndexOf("/"));
 				if(!pwd) pwd= "/";
 			}
@@ -148,17 +149,28 @@ function startRepl(){ return new Promise(async function(){
 			}
 			const { ls }= ls_tmp;
 			let todo= [];
-			if(/(\(|,)\s*"[^"]*$/.test(line)){
+			if((new RegExp(is_open_function+"$")).test(line)){
 				const candidate= line.slice(line.lastIndexOf('"'));
 				todo= ls.filter(l=> l.indexOf(candidate)===0).map(l=> line+l.slice(candidate.length));
 			} else if(line.at(-1)==="("){
 				todo= ls.map(l=> line+l);
 			}
-			callback(null, [ completions.concat(todo), line ]);
-			
+			callback(null, [ todo.concat(completions), todo.length ? line : line_ ]);
 		})
 	}
 	r.setupHistory(file_repl, () => {});
+	r.defineCommand("history", {
+		help: "Show history of used commands. Use `history <number>` to jump to a command.",
+		action(expresion){
+			const history= pipe(s.cat, s=> s.split("\n"))(file_repl);
+			if(!expresion){
+				console.log(Object.fromEntries(Object.entries(history)));
+				return this.displayPrompt();
+			}
+			this.displayPrompt();
+			this.write(history.at(Number.parseInt(expresion)));
+		}
+	})
 	r.defineCommand("man", {
 		help: "Show help texts for nodejscript functions such as `s.cat`, `s.isMain`, `echo`, ….",
 		async action(expresion){
@@ -166,6 +178,10 @@ function startRepl(){ return new Promise(async function(){
 			await printUsage(expresion, false);
 			this.displayPrompt();
 		}
+	});
+	r.defineCommand("q", {
+		help: "Exit the REPL. Alias for `.exit`.",
+		action(){ r.close(); }
 	});
 	r.on("exit", $.exit.bind(null, 0));
 }); }
