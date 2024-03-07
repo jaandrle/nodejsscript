@@ -46,12 +46,14 @@ export async function printCliUsage(){
 		css.T);
 	echo("%c             --help, -h    print help",
 		css.T);
-	echo("%c             --eval, -e    similar to `node -e …`",
+	echo("%c             --eval, -e    similar to `node -e …`, evaluates given string",
 		css.T);
 	echo("%c            --print, -p    similar to `node -p …`, infact (for now?) it wraps argument by `echo` function (splits given string by ';' and wraps last non-empty part)",
 		css.T);
 	echo("%c              --inspect    run given script in debug mode, see %c%s --inspect%c for more info",
 		css.T, css.code, css.unset, n);
+	echo("%c      --interactive, -i    similar to `node -i`, opens REPL, the interactive mode",
+		css.T);
 	echo("%c           --completion    register TAB completion for %c%s%c and your scripts, see %c%s --completion help%c for more info",
 		css.T, css.n, css.unset, css.code, css.unset, n, n);
 	echo("%c--global-jsconfig [add]    woraround for type checking of non-package scripts",
