@@ -2,9 +2,10 @@
 import { join } from "node:path";
 export function jsconfigTypes(argv){
 	const jsconfig_file= pipe(
-		f=> f ? f : '{"include":[]}',
+		f=> s.test("-e", f) ? s.cat(f) : '',
+		f=> f.trim() ? f : '{"include":[]}',
 		JSON.parse
-	)(s.$("-f").cat("jsconfig.json").stdout);
+	)("jsconfig.json");
 	const include= new Set(jsconfig_file.include.filter(v=> v.indexOf("nodejsscript")===-1));
 	argv.slice(3).forEach(f=> include.add(f));
 	jsconfig_file.include= Array.from(include);

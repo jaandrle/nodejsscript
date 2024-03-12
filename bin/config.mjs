@@ -24,7 +24,7 @@ export const file_rc= join(config, "nodejsscriptrc.mjs");
 export function importRC(){
 	if(s.test("-f", file_rc))
 		return import(file_rc);
-	return Promise.reject();
+	return Promise.resolve({});
 }
 
 export const file_repl= join(config, "repl_history");

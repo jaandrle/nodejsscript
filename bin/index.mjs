@@ -23,7 +23,7 @@ process.on('uncaughtException', printError);
 	const candidate= argv.splice(2, 1)[0] || "--help";
 	let filepath_tmp;
 	if(candidate[0]==="-")
-		filepath_tmp= await handleMyArgvs(candidate);
+		filepath_tmp= await handleBuildin(candidate);
 	const is_tmp= filepath_tmp !== undefined;
 
 	const filepath= is_tmp ?
@@ -41,7 +41,7 @@ process.on('uncaughtException', printError);
 	try{
 		if(!s.test("-f", filepath)) $.error(`File '${candidate}' not found.`);
 		$.is_fatal= is_fatal;
-		await importRC();
+		await importRC("script");
 		await import(url.pathToFileURL(filepath).toString());
 		if(is_tmp) s.rm("-f", filepath_tmp);
 	} catch(e){
@@ -51,17 +51,7 @@ process.on('uncaughtException', printError);
 		$.exit(e?.exitCode || 1);
 	}
 })();
-
-async function importRC(){
-	if(!config_env.rc || $.is_local)
-		return;
-	const c= await import("./config.mjs");
-	const {
-		uncaughtException }= await c.importRC();
-	
-	if(uncaughtException) printError= uncaughtException;
-}
-async function handleMyArgvs(candidate){
+async function handleBuildin(candidate){
 	if(["--version", "-v", "-V"].includes(candidate)){
 		const { info }= await import("./info.mjs");
 		echo(info("version")[0]);
@@ -83,12 +73,12 @@ async function handleMyArgvs(candidate){
 	}
 	if(["-e", "--eval"].includes(candidate)){
 		const { runEval }= await import("./runEval.mjs");
-		await importRC();
+		await importRC("eval");
 		return runEval(argv, 0);
 	}
 	if(["-p", "--print"].includes(candidate)){
 		const { runEval }= await import("./runEval.mjs");
-		await importRC();
+		await importRC("eval");
 		return runEval(argv, 1);
 	}
 	if("--completion"===candidate){
@@ -97,12 +87,25 @@ async function handleMyArgvs(candidate){
 	}
 	if(["-i", "--interactive"].includes(candidate)){
 		const { startRepl }= await import("./repl.mjs");
+		await importRC("repl");
 		return await startRepl(argv);
 	}
+}
+
+async function importRC(type){
+	if(!config_env.rc || $.is_local)
+		return;
+	const c= await import("./config.mjs");
+	const {
+		uncaughtException, ...events }= await c.importRC();
+	
+	if(uncaughtException) printError= uncaughtException;
+	type= "on"+type;
+	if(Object.prototype.hasOwnProperty.call(events, type))
+		events[type]();
 }
 function printError(e){
 	if(e instanceof $.Error)
 		return console.error(e.message);
 	Error.print(e);
 }
-
