@@ -49,8 +49,8 @@ export interface DollarFunction{
 	 *	- "-V": verbose
 	 *	- "-S": silent (default)
 	 *	- "-F": fatal
-	 *	- "-g": noglob
-	 *	- to off option(s) use lower-case letters ("-v" to off verbosei, "-s" …, …, "-G" to enable glob)
+	 *	- "-G": glob (evaluate `*` in paths)
+	 *	- to off option(s) use lower-case letters ("-v" no-verbose, "-s" …, …, **"-g" noglob**)
 	 */
 	(options: "-V"|"-S"|"-F"|"-g"|"-v"|"-s"|"-f"|"-G"): ShellString;
 	(): ShellString;
