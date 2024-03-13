@@ -13,7 +13,7 @@ export function startRepl(){ return new Promise(async function(){
 		useGlobal: true,
 		preview: true,
 		writer(res){
-			const is_shellScript= typeof res==="object" && "stdout" in res;
+			const is_shellScript= res && typeof res==="object" && "stdout" in res;
 			if(is_shellScript && !res.code){
 				const is_string= !Array.isArray(res);
 				console.log("Shell"+(is_string ? "String" : "Array"));
