@@ -10,6 +10,7 @@ export function startRepl(){ return new Promise(async function(){
 	const r= repl.start({
 		prompt: echo.format("%c❯ ", "color:lightgreen;"),
 		replMode: repl.REPL_MODE_STRICT,
+		breakEvalOnSigint: true,
 		useGlobal: true,
 		preview: true,
 		writer(res){
@@ -18,9 +19,14 @@ export function startRepl(){ return new Promise(async function(){
 				const is_string= !Array.isArray(res);
 				console.log("Shell"+(is_string ? "String" : "Array"));
 				res= is_string ? res.stdout : [...res];
+			} else if(is_shellScript){
+				const name= "ShellError: "+res.code;
+				if(!$.is_verbose) return name;
+				console.log(name);
+				res= res.stderr.trim() || res.stdout;
 			}
 			return inspect(res, { colors: $.is_colors, compact: !$.is_verbose });
-		}
+		},
 	});
 	const completer= r.completer.bind(r);
 	const ls_tmp= { pwd: "", ls: [] };
@@ -33,17 +39,21 @@ export function startRepl(){ return new Promise(async function(){
 				pwd= line.slice(line.lastIndexOf('"')+1, line.lastIndexOf("/"));
 				if(!pwd) pwd= "/";
 			}
-			if((pwd==="." ? s.pwd().trim() : pwd)!==ls_tmp.pwd){
+			const { is_verbose }= $;
+			$.is_verbose= false;
+			const s_= s.$("-vFgs");
+			if((pwd==="." ? s_.pwd().trim() : pwd)!==ls_tmp.pwd){
 				ls_tmp.pwd= pwd;
 				const map= pwd==="." ? l=> `"${l}"` : pwd==="/" ? l=> `"/${l}"` : l=> `"${pwd}/${l}"`;
 				try {
-					const ls= s.$("-vFgs").ls(pwd).filter(l=> l!==pwd);
+					const ls= s_.ls(pwd).filter(l=> l!==pwd);
 					if(ls.length) ls_tmp.ls= ls.concat("..").map(map);
 					else throw null;
 				} catch(_){
 					ls_tmp.ls= [];
 				}
 			}
+			$.is_verbose= is_verbose;
 			const { ls }= ls_tmp;
 			let todo= [];
 			if((new RegExp(is_open_function+"$")).test(line)){

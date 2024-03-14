@@ -36,21 +36,18 @@ function readFromPipe(is_raw){
 	return escape(["", ""], plugin.readFromPipe());
 }
 function $(config_next){
-	config_next= !config_next ? Object.assign({}, shelljs.config, { silent: true }) : plugin.parseOptions(config_next, {
-		V: "verbose",
-		F: "fatal",
-		S: "silent",
-		g: "noglob",
-		v: "no-verbose",
-		f: "no-fatal",
-		s: "no-silent",
-		G: "no-noglob"
-	});
-	Object.keys(config_next).filter(k=> k.startsWith("no-")).forEach(k=> {
-		const v= config_next[k];
-		Reflect.deleteProperty(config_next, k);
-		if(v) Reflect.set(config_next, k.replace(/^no-/, ""), !v);
-	});
+	config_next= !config_next ? Object.assign({}, shelljs.config, { silent: true }) : Object.fromEntries(
+		config_next.split("")
+			.flatMap(c=> {
+				switch(c.toLowerCase()){
+					case "v": return [ [ "verbose", c!=="v" ] ];
+					case "f": return [ [ "fatal", c!=="f" ] ];
+					case "s": return [ [ "silent", c!=="s" ] ];
+					case "g": return [ [ "noglob", c!=="g" ] ];
+				}
+				return [];
+			})
+	);
 	return new Proxy(this, {
 		get(target, p){
 			return function(...args){

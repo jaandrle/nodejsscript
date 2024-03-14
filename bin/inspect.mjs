@@ -34,5 +34,5 @@ export async function inspect(argv){
 		css.code, css.unset, css.code, css.unset, css.code);
 	$.env.NODE_INSPECT_RESUME_ON_START= 1;
 	const cmd= [ argv[0], "inspect", "--trace-uncaught" ];
-	return await s.runA`${cmd} ${argv.slice(1)}`;
+	return await s.$("-F").runA`${cmd} ${argv.slice(1)}`;
 }

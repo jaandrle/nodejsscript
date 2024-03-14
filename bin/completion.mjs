@@ -4,6 +4,7 @@ import { styles } from './styles.mjs';
 import { info } from './info.mjs';
 import { file_completions, readCompletions, updateCompletions } from './config.mjs';
 export function completion(argv){
+	$.configAssign({ fatal: true });
 	const option= argv[2];
 	const script_name= info("name")[0];
 	if(typeof option==="undefined" || [ "help", "--help", "-h" ].includes(option)){

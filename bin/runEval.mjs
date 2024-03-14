@@ -25,8 +25,8 @@ export function runEval(argv, is_print){
 		out_arr[0]= `${pre} const ${name_ret}= ${out}; echo(${name_ret} instanceof Promise ? await ${name_ret} : ${name_ret})`;
 		input= out_arr.reverse().join(";");
 	}
-	input+= ";$.exit(0);";
+	input+= ";";
 	const filepath= $.xdg.temp`nodejsscript-${is_print ? "print" : "eval"}-${randomUUID()}.mjs`;
-	s.echo(input).to(filepath);
+	s.echo(input).$("-F").to(filepath);
 	return filepath;
 }

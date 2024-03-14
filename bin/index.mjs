@@ -16,15 +16,13 @@ const config_env= ($.env.NODEJSSCRIPTOPTS || "").split(":")
 		acc[key]= val;
 		return acc;
 	}, { rc: true });
-const { is_fatal }= $;
-$.is_fatal= true;
 process.on('uncaughtException', printError);
 (async function main(){
 	const candidate= argv.splice(2, 1)[0] || "--help";
 	let filepath_tmp;
 	if(candidate[0]==="-")
 		filepath_tmp= await handleBuildin(candidate);
-	const is_tmp= filepath_tmp !== undefined;
+	const is_tmp= filepath_tmp !== undefined; // ≡is eval
 
 	const filepath= is_tmp ?
 		filepath_tmp : (
@@ -39,13 +37,15 @@ process.on('uncaughtException', printError);
 	$.push(...argv.slice(1));
 	await $.stdin[key_stdin]();
 	try{
-		if(!s.test("-f", filepath)) $.error(`File '${candidate}' not found.`);
-		$.is_fatal= is_fatal;
-		await importRC("script");
+		if(!s.$("-F").test("-f", filepath)) $.error(`File '${candidate}' not found.`);
+		await importRC(is_tmp ? "eval" : "script");
 		await import(url.pathToFileURL(filepath).toString());
-		if(is_tmp) s.rm("-f", filepath_tmp);
+		if(is_tmp){
+			s.$("-F").rm("-f", filepath_tmp);
+			$.exit(0);
+		}
 	} catch(e){
-		if(is_tmp) s.rm("-f", filepath_tmp);
+		if(is_tmp) s.$("-F").rm("-f", filepath_tmp);
 		if($.is_verbose) Error.print(e, 1);
 		else if(!$.is_silent) printError(e);
 		$.exit(e?.exitCode || 1);
@@ -73,12 +73,10 @@ async function handleBuildin(candidate){
 	}
 	if(["-e", "--eval"].includes(candidate)){
 		const { runEval }= await import("./runEval.mjs");
-		await importRC("eval");
 		return runEval(argv, 0);
 	}
 	if(["-p", "--print"].includes(candidate)){
 		const { runEval }= await import("./runEval.mjs");
-		await importRC("eval");
 		return runEval(argv, 1);
 	}
 	if("--completion"===candidate){

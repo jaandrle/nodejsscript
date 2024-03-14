@@ -81,6 +81,6 @@ export async function printCliUsage(){
 	$.exit(0);
 }
 export function info(...keys){
-	const info= s.cat(url.fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse);
+	const info= s.$("-F").cat(url.fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse);
 	return keys.map(key=> Reflect.get(info, key));
 }

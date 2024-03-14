@@ -1,6 +1,7 @@
 /* global pipe, s, $, echo */
 import { join } from "node:path";
 export function jsconfigTypes(argv){
+	$.configAssign({ fatal: true });
 	const jsconfig_file= pipe(
 		f=> s.test("-e", f) ? s.cat(f) : '',
 		f=> f.trim() ? f : '{"include":[]}',
