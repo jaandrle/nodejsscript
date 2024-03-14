@@ -8,7 +8,7 @@ echo.use("-P", "%cXDG dirs:", css.h1, [
 	$.xdg.data(),
 	$.xdg.root(),
 	$.xdg.cwd(),
-	$.xdg.script(),
+	$.xdg.main(),
 ]);
 
 echo.use("-P", "%cXDG dirs & subdir `test_dir` (using function``):", css.h1, [
@@ -18,7 +18,7 @@ echo.use("-P", "%cXDG dirs & subdir `test_dir` (using function``):", css.h1, [
 	$.xdg.data`test_dir`,
 	$.xdg.root`test_dir`,
 	$.xdg.cwd`test_dir`,
-	$.xdg.script`test_dir`,
+	$.xdg.main`test_dir`,
 ]);
 
 echo.use("-P", "%cXDG dirs & subdir `test_dir` (using function()):", css.h1, [
@@ -28,7 +28,7 @@ echo.use("-P", "%cXDG dirs & subdir `test_dir` (using function()):", css.h1, [
 	$.xdg.data("test_dir"),
 	$.xdg.root("test_dir"),
 	$.xdg.cwd("test_dir"),
-	$.xdg.script("test_dir"),
+	$.xdg.main("test_dir"),
 ]);
 
 $.exit(0);

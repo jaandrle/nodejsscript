@@ -28,7 +28,6 @@ export class ProcessPromise extends Promise{
 		const { prerun, command, options, stdio }= process_store.get(this);
 		prerun(); // In case $1.pipe($2), the $2 returned, and on $2._run() invoke $1._run().
 		const { spawn, prefix, shell, env }= getStore();
-		if(!Reflect.has(options, "cwd")) options.cwd= shelljs.pwd().toString();
 		if(Reflect.has(options, "pipe")) stdio[0]= "pipe";
 		this.child= spawn(prefix + command,
 			Object.assign({ shell: typeof shell === 'string' ? shell : true, windowsHide: true, env, stdio }, options));
