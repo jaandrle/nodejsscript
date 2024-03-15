@@ -21,13 +21,14 @@ pipe( $.xdg.temp, s.mkdir )("foo bar");
 …also see [examples](./examples).
 
 ## Goods
-<details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+<!-- #region --><details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
 
 Contains functions from [shelljs/shelljs](https://github.com/shelljs/shelljs) mimic the bash utilities and some additional added by nodejsscript.
 Typically `s.cat`/`s.grep`/…, to run other than buildin commands use `s.run`/`s.runA`.
 
+<!-- #endregion -->
 </details>
-<details> <summary><a href="./docs/modules/.md">$</a> (
+<!-- #region --><details> <summary><a href="./docs/modules/.md">$</a> (
 		<a href="./docs/modules/.md#api">$.api() #sade</a>,
 		<a href="./docs/modules/xdg_.xdg.md">$.xdg</a>,
 		…
@@ -42,16 +43,16 @@ Typically `s.cat`/`s.grep`/…, to run other than buildin commands use `s.run`/`
 - `$.stdin`: handles standard input when the script is run in shell pipe (can be helpful for `nodejsscript --eval`/`nodejsscript --print` bellow)
 - …for more see [related section in docs](./docs/modules/.md)
 
+<!-- #endregion -->
 </details>
-
-<details> <summary><a href="./docs/README.md#echo">echo() #css-in-console</a> function/namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+<!-- #region --><details> <summary><a href="./docs/README.md#echo">echo() #css-in-console</a> function/namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
 
 - prints to console, also supports styling using CSS like syntax
 - internally uses [css-in-console](https://www.npmjs.com/package/css-in-console)
 
+<!-- #endregion -->
 </details>
-
-<details> <summary><a href="./docs/README.md#pipe">pipe()</a> function <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+<!-- #region --><details> <summary><a href="./docs/README.md#pipe">pipe()</a> function <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
 
 Provides functional way to combine JavaScript functions.
 ```js
@@ -62,18 +63,18 @@ pipe(
 )("42");
 ```
 
+<!-- #endregion -->
 </details>
-
-<details> <summary><code>fetch()</code>, <code>new AbortController()</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><code>fetch()</code>, <code>new AbortController()</code> <i>(open to quick overview)</i> </summary>
 
 - these are supported in nodejsscript, uses native `fetch()`/`AbortController` or
 - [node-fetch - npm](https://www.npmjs.com/package/node-fetch)
 - [abort-controller - npm](https://www.npmjs.com/package/abort-controller)
 
 
+<!-- #endregion -->
 </details>
-
-<details> <summary><code>nodejsscript --eval</code>/<code>nodejsscript --print</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><code>nodejsscript --eval</code>/<code>nodejsscript --print</code> <i>(open to quick overview)</i> </summary>
 
 - quickly eval javascript code in terminal
 - *similar to `node --eval`/`node --print`*
@@ -85,60 +86,50 @@ nodejsscript -p '$.stdin.json()' Object.entries 'e=> e.filter(([_,v])=> Array.is
 ```
 …see [examples](./examples/eval_print.md).
 
+<!-- #endregion -->
 </details>
-
-<details> <summary><code>nodejsscript --inspect</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><code>nodejsscript --inspect</code> <i>(open to quick overview)</i> </summary>
 
 - use `nodejsscript --inspect`/`njs --inspect` to debug your script
 - similar to `node --inspect`
 
+<!-- #endregion -->
 </details>
+<!-- #region --><details> <summary><code>nodejsscript --interactive</code> <i>(open to quick overview)</i> </summary>
 
-<details> <summary><code>nodejsscript --interactive</code> <i>(open to quick overview)</i> </summary>
-
-- use `nodejsscript --interactive`/`njs --interactive`/`nodejsscript -i`/`njs -i` to run REPL
+- use to run REPL
 - similar to `node --interactive`/`node -i`
+- you can also call `nodejsscript --interactive`/`njs --interactive`/`nodejsscript -i`/`njs -i`
 
+<!-- #endregion -->
 </details>
-
-<details> <summary><code>nodejsscript --completion</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><code>nodejsscript --completion</code> <i>(open to quick overview)</i> </summary>
 
 - provide shell completion for nodejsscript and scripts written using nodejsscript (**using `$.api()`**)
 - **(for now) only for bash**
+- add `eval "$(nodejsscript --completion bash)"` to your '.bashrc' file
+- prepare your script cli API using `$.api()`
+- register your scritp autocompletion using `nodejsscript --completion register <target>`
+	- use global script name (your script must be also included in the PATH) to automatically enable completions on the shell start
+	- or (relative) path to enable completions on demand see ↙
+- use `eval "$(nodejsscript --completion bash-local [target])"`
+	- empty target or path to the directory enables completions for all scripts in the given directory recursively
+	- script path as target enables completions for specific script only
+- see help `nodejsscript --completion`/`nodejsscript --completion help`
 
-```
->_:njs --completion
-  Usage:
-    nodejsscript --completion [options]
-  Options:
-                        help . . . Print this help
-         bash-local [target] . . . Outputs bash completion code for use by eval to enable
-                                   scripts completions on demand (see `register`).
-                                   Use `eval "$(nodejsscript --completion bash-local)"` in terminal.
-                                   By default enable completions for all scripts in current directory recursively.
-                                   Use optional [target] to enable completions for specific script or subfolder.
-                        bash . . . Outputs bash completion code for use by eval.
-                                   Add `eval "$(nodejsscript --completion bash)"` to your '.bashrc' file.
-           register <target> . . . This enable completion for custom script created with nodejsscript (using `$.api`).
-                                   The <target> reffers to script itself/the text triggering the completion.
-                                   As <target> use global script name or (relative) path.
-                                   Completions for scripts registered by path is on demand, see `bash-local`.
-             remove <target> . . . This remove completion for custom script previously registered by <target>.
-                      config . . . Returns location of the completions config file.
-```
-
+<!-- #endregion -->
 </details>
-
-<details> <summary><code>~/.config/nodejsscript/nodejsscriptrc.mjs</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><code>~/.config/nodejsscript/nodejsscriptrc.mjs</code> <i>(open to quick overview)</i> </summary>
 
 **TODO**
 
+<!-- #endregion -->
 </details>
-
-<details> <summary><code>npx nodejsscript</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><code>npx nodejsscript</code> <i>(open to quick overview)</i> </summary>
 
 **TODO**
 
+<!-- #endregion -->
 </details>
 
 ## Quick links/info
@@ -173,8 +164,7 @@ Or via the `nodejsscript` executable:
 nodejsscript ./script.mjs
 ```
 
-<details>
-<summary>Alternatively when installed locally</summary>
+<!-- #region --><details> <summary>Alternatively when installed locally</summary>
 
 ```bash
 #!/usr/bin/env -S npx nodejsscript
@@ -183,6 +173,7 @@ nodejsscript ./script.mjs
 npx nodejsscript ./script.mjs
 ```
 
+<!-- #endregion -->
 </details>
 
 All function (`shelljs`, `fetch`, …) are registered as global namespaces/functions:
