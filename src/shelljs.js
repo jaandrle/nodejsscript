@@ -5,8 +5,10 @@ import { ProcessPromise } from "./runA-utils.js";
 import { ProcessOutput } from "./Error.js";
 export { ProcessPromise, ProcessOutput };
 
-shelljs.echo= shelljs.ShellString;
+const { ShellString }= shelljs;
+shelljs.echo= ShellString;
 
+plugin.register("read", read, { unix: false, canReceivePipe: false, wrapOutput: false });
 plugin.register("xargs", xargs, { canReceivePipe: true, wrapOutput: false,
 	cmdOptions: {
 		I: 'needle',
@@ -18,6 +20,35 @@ plugin.register("run", run, { unix: false, canReceivePipe: true, wrapOutput: fal
 plugin.register("runA", runA, { unix: false, canReceivePipe: true, wrapOutput: false });
 export default shelljs;
 
+async function read(options= {}){
+	const { stdin }= process;
+	stdin.setEncoding('utf8');
+	const has= Reflect.has.bind(null, options);
+	const get= Reflect.get.bind(null, options);
+	if(has("-p")) return promt(options, has, get);
+	/** @type {AbortSignal|null} */
+	const signal= options.signal instanceof global.AbortSignal ? options.signal : null;
+	if(signal && signal.aborted) return;
+	if(has("-n")){
+		const line= await stdin[Symbol.asyncIterator]().next();
+		return ShellString(line.value.slice(0, get("-n")));
+	}
+	let buf= $.stdin ? $.stdin.text("") : "";
+	if(has("-d")){
+		const needle= get("-d");
+		for await (const chunk of stdin){
+			if(signal && signal.aborted) return;
+			const i= chunk.indexOf(needle);
+			if(i!==-1) return ShellString(buf+chunk.slice(0, i));
+			buf+= chunk;
+		}
+	}
+	for await (const chunk of stdin){
+		if(signal && signal.aborted) return;
+		buf+= chunk;
+	}
+	return ShellString(buf);
+};
 function xargs({ needle, is_raw }, ...args){
 	if(!needle) needle= "{}";
 	const [ cmd, ...cmd_args ]= args;
@@ -103,4 +134,38 @@ function runA(pieces, ...args){
 	const pipe= plugin.readFromPipe();
 	if(pipe) options.pipe= pipe;
 	return ProcessPromise.create(command, Object.assign({}, shelljs.config, options));
+}
+
+function promt(options, has, get){
+	if(!get("-s")) options.output= process.stdout;
+	return question(get("-p"), options).then(function(promt){
+		if(get("-s")) echo();
+		const chars= has("-n") ? get("-n") : ( has("-d") ? promt.indexOf(get("-d")) : -1 );
+		return chars < 0 ? promt : promt.slice(0, chars);
+	});
+}
+import { createInterface } from "node:readline";
+function question(query= "", options= {}){
+	query= String(query);
+	if(!/\s$/.test(query)) query+= "\n"+echo.format('%c❯ ', "color:lightgreen");
+	if(!options.output) echo.use("-n", query);
+	
+	const rl= createInterface({
+		input: process.stdin,
+		output: options.output,
+		terminal: true,
+		signal: options.signal,
+		completer: !Array.isArray(options.completions) ? undefined : 
+			function completer(line){
+				const completions= options.completions;
+				const hits= completions.filter((c) => c.startsWith(line));
+				return [hits.length ? hits : completions, line];
+			},
+	});
+
+	return new Promise((resolve, reject)=> {
+		rl.on("SIGINT", ()=> { rl.close(); reject(); });
+		rl.question(query,
+			answer=> { rl.close(); resolve(answer); });
+	});
 }

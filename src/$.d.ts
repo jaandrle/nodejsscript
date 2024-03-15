@@ -5,7 +5,7 @@ import * as __sade from "sade";
 export { __sade };
 import * as xdg_ from "./xdg.d";
 export { xdg_ };
-import { ShellString } from 'shelljs';
+import { read as ReadType } from './shelljs.d';
 
 export namespace Dollar{
 	/**
@@ -133,29 +133,11 @@ export namespace Dollar{
 	 * */
 	function api(usage: string, is_single?: boolean): __sade.Sade
 	
-	interface ReadOptions{
-		/** Promt mode, value is used as question. It is possible to cobine with other options. */
-		"-p": string;
-		/** Make sence to combine only with `-p` to not show pressed keys (e.g. to prompt password). */
-		"-s": boolean;
-		/** Make sence to combine only with `-p` to provide tab suggestion/completions. */
-		"completions": string[];
-		/** Returns the `stdin` till given needle. */
-		"-d": string;
-		/** Choose given number of chars from `stdin`. */
-		"-n": number;
-	}
 	/**
-	 * This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
-	 * So, the function purpose is reading from `stdin`.
-	 * ```js
-	 * const answer= await $.read({ "-p": "Question" });
-	 * const color= await $.read({ "-p": "Your color", completions: [ "red", "green" ] });
-	 * if($.isFIFO(0)) await $.read().then(echo.bind(null, "E.g. for reading received input:"));
-	 * ```
-	 * @category Public
+	 * For backward compatibility, **use `s.read()` instead**.
+	 * @deprecated Use {@link ReadType} instead.
 	 * */
-	function read(options: ReadOptions): Promise<ShellString>;
+	const read: typeof ReadType;
 	
 	/**
 	 * @category Public
@@ -202,12 +184,6 @@ export namespace Dollar{
 		 * */
 		lines: <T>(_default: T)=> string[] | T;
 	}
-	/** @alias {@link STDIN.json}`(null)` */
-	const nojq: null | Array<any> | Record<any, any>;
-	/** @alias {@link STDIN.text}`("")` */
-	const nosed: string;
-	/** @alias {@link STDIN.lines}`([])` */
-	const noawk: string[];
 
 	/**
 	 * Throws user targeted error

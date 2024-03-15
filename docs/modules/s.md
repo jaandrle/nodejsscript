@@ -21,6 +21,7 @@ s.cat("./package.json").grep("version");
 - ['runA()'](../interfaces/s.RunAsyncFunction.md)
 - ['xargs()'](../interfaces/s.XargsFunction.md)
 - ['$()'](../interfaces/s.DollarFunction.md)
+- ['read()'](s.md#read)
 
 **Changes/recommenctions:**
 - use [echo](s.md#echo) instead of `s.echo`, this was changed to `s.ShellString` for easy file writing without logging to console `s.echo("Data").to("file.txt")`.
@@ -30,48 +31,11 @@ s.cat("./package.json").grep("version");
 
 ## Table of contents
 
-### Namespaces
+### Public Functions
 
-- [child](s.child.md)
+- [read](s.md#read)
 
-### Interfaces
-
-- [XargsOptions](../interfaces/s.XargsOptions.md)
-- [XargsFunction](../interfaces/s.XargsFunction.md)
-- [DollarFunction](../interfaces/s.DollarFunction.md)
-- [RunFunction](../interfaces/s.RunFunction.md)
-- [RunAsyncFunction](../interfaces/s.RunAsyncFunction.md)
-- [ShellReturnValue](../interfaces/s.ShellReturnValue.md)
-- [ListFunction](../interfaces/s.ListFunction.md)
-- [FindFunction](../interfaces/s.FindFunction.md)
-- [CopyFunction](../interfaces/s.CopyFunction.md)
-- [RemoveFunction](../interfaces/s.RemoveFunction.md)
-- [MoveFunction](../interfaces/s.MoveFunction.md)
-- [MkdirFunction](../interfaces/s.MkdirFunction.md)
-- [CatFunction](../interfaces/s.CatFunction.md)
-- [SedFunction](../interfaces/s.SedFunction.md)
-- [GrepFunction](../interfaces/s.GrepFunction.md)
-- [EchoFunction](../interfaces/s.EchoFunction.md)
-- [PushDirFunction](../interfaces/s.PushDirFunction.md)
-- [PopDirFunction](../interfaces/s.PopDirFunction.md)
-- [DirsFunction](../interfaces/s.DirsFunction.md)
-- [LinkFunction](../interfaces/s.LinkFunction.md)
-- [ExecFunction](../interfaces/s.ExecFunction.md)
-- [ExecOptions](../interfaces/s.ExecOptions.md)
-- [ExecOutputReturnValue](../interfaces/s.ExecOutputReturnValue.md)
-- [ShellStringConstructor](../interfaces/s.ShellStringConstructor.md)
-- [ChmodFunction](../interfaces/s.ChmodFunction.md)
-- [TouchOptionsArray](../interfaces/s.TouchOptionsArray.md)
-- [TouchFunction](../interfaces/s.TouchFunction.md)
-- [HeadOptions](../interfaces/s.HeadOptions.md)
-- [HeadFunction](../interfaces/s.HeadFunction.md)
-- [SortFunction](../interfaces/s.SortFunction.md)
-- [TailOptions](../interfaces/s.TailOptions.md)
-- [TailFunction](../interfaces/s.TailFunction.md)
-- [UniqFunction](../interfaces/s.UniqFunction.md)
-- [ShellConfig](../interfaces/s.ShellConfig.md)
-
-### Functions
+### Internal Functions
 
 - [$](s.md#$)
 - [run](s.md#run)
@@ -107,6 +71,48 @@ s.cat("./package.json").grep("version");
 - [tail](s.md#tail)
 - [uniq](s.md#uniq)
 
+### Namespaces
+
+- [child](s.child.md)
+
+### Interfaces
+
+- [XargsOptions](../interfaces/s.XargsOptions.md)
+- [XargsFunction](../interfaces/s.XargsFunction.md)
+- [DollarFunction](../interfaces/s.DollarFunction.md)
+- [RunFunction](../interfaces/s.RunFunction.md)
+- [RunAsyncFunction](../interfaces/s.RunAsyncFunction.md)
+- [ReadOptions](../interfaces/s.ReadOptions.md)
+- [ShellReturnValue](../interfaces/s.ShellReturnValue.md)
+- [ListFunction](../interfaces/s.ListFunction.md)
+- [FindFunction](../interfaces/s.FindFunction.md)
+- [CopyFunction](../interfaces/s.CopyFunction.md)
+- [RemoveFunction](../interfaces/s.RemoveFunction.md)
+- [MoveFunction](../interfaces/s.MoveFunction.md)
+- [MkdirFunction](../interfaces/s.MkdirFunction.md)
+- [CatFunction](../interfaces/s.CatFunction.md)
+- [SedFunction](../interfaces/s.SedFunction.md)
+- [GrepFunction](../interfaces/s.GrepFunction.md)
+- [EchoFunction](../interfaces/s.EchoFunction.md)
+- [PushDirFunction](../interfaces/s.PushDirFunction.md)
+- [PopDirFunction](../interfaces/s.PopDirFunction.md)
+- [DirsFunction](../interfaces/s.DirsFunction.md)
+- [LinkFunction](../interfaces/s.LinkFunction.md)
+- [ExecFunction](../interfaces/s.ExecFunction.md)
+- [ExecOptions](../interfaces/s.ExecOptions.md)
+- [ExecOutputReturnValue](../interfaces/s.ExecOutputReturnValue.md)
+- [ShellStringConstructor](../interfaces/s.ShellStringConstructor.md)
+- [ChmodFunction](../interfaces/s.ChmodFunction.md)
+- [TouchOptionsArray](../interfaces/s.TouchOptionsArray.md)
+- [TouchFunction](../interfaces/s.TouchFunction.md)
+- [HeadOptions](../interfaces/s.HeadOptions.md)
+- [HeadFunction](../interfaces/s.HeadFunction.md)
+- [SortFunction](../interfaces/s.SortFunction.md)
+- [TailOptions](../interfaces/s.TailOptions.md)
+- [TailFunction](../interfaces/s.TailFunction.md)
+- [UniqFunction](../interfaces/s.UniqFunction.md)
+- [ShellConfig](../interfaces/s.ShellConfig.md)
+
 ### Type Aliases
 
 - [RunOptions](s.md#runoptions)
@@ -127,7 +133,33 @@ s.cat("./package.json").grep("version");
 - [env](s.md#env)
 - [config](s.md#config)
 
-## Functions
+## Public Functions
+
+### read
+
+▸ **read**(`options`): `Promise`<[`ShellString`](s.md#shellstring)\>
+
+This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
+So, the function purpose is reading from `stdin`.
+```js
+const answer= await $.read({ "-p": "Question" });
+const color= await $.read({ "-p": "Your color", completions: [ "red", "green" ] });
+if($.isFIFO(0)) await $.read().then(echo.bind(null, "E.g. for reading received input:"));
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options` | [`ReadOptions`](../interfaces/s.ReadOptions.md) |
+
+#### Returns
+
+`Promise`<[`ShellString`](s.md#shellstring)\>
+
+___
+
+## Internal Functions
 
 ### $
 
@@ -156,7 +188,7 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | ``"-S"`` \| ``"-V"`` \| ``"-F"`` \| ``"-g"`` | Options - "-V": verbose - "-S": silent (default) - "-F": fatal - "-g": noglob |
+| `options` | ``"-f"`` \| ``"-S"`` \| ``"-V"`` \| ``"-F"`` \| ``"-g"`` \| ``"-v"`` \| ``"-s"`` \| ``"-G"`` | Options - "-V": verbose - "-S": silent (default) - "-F": fatal - "-G": glob (evaluate `*` in paths) - to off option(s) use lower-case letters ("-v" no-verbose, "-s" …, …, **"-g" noglob**) |
 
 #### Returns
 

@@ -1,5 +1,3 @@
-**The package is in early stage, some changes (in API) may be made until version 1.0.0.!**
-
 # NodeJS Script – Easy cross-platform scripting
 This package serves as an alternative to [google/zx](https://github.com/google/zx) for example.
 The key difference is to provide Unix shell commands in a cross-platform compatible way and usable inside JavaScript.
@@ -11,37 +9,147 @@ You can compare the final script code to `zx` example:
 
 echo(s.grep("name", "package.json"));
 
-s.run("git branch --show-current")
+s.run`git branch --show-current`
 .xargs(s.run, "dep deploy --branch={}");
 
-s.run("sleep 1; echo 1");
-s.run("sleep 2; echo 2");
-s.run("sleep 3; echo 3");
+s.run`sleep 1; echo 1`;
+s.run`sleep 2; echo 2`;
+s.run`sleep 3; echo 3`;
 
-const name= "foo bar";
-s.mkdir($.xdg.temp(name));
+pipe( $.xdg.temp, s.mkdir )("foo bar");
 ```
-…also see [examples](./examples). You can also use `nodejsscript -e`/`nodejsscript -p` in shell:
+…also see [examples](./examples).
+
+## Goods
+<details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+
+Contains functions from [shelljs/shelljs](https://github.com/shelljs/shelljs) mimic the bash utilities and some additional added by nodejsscript.
+Typically `s.cat`/`s.grep`/…, to run other than buildin commands use `s.run`/`s.runA`.
+
+</details>
+<details> <summary><a href="./docs/modules/.md">$</a> (
+		<a href="./docs/modules/.md#api">$.api() #sade</a>,
+		<a href="./docs/modules/xdg_.xdg.md">$.xdg</a>,
+		…
+	)
+	namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+
+- contains cli/nodejsscript related functions
+- for processing script arguments you can use `$[0]`/`$[1]`/… (compare with bash `$0`/`$1`/…) or
+- **`$.api()`: allows to quickly create script cli API, uses [sade](https://github.com/lukeed/sade) library (compare with [commander](https://github.com/tj/commander.js))**
+- `$.isMain`: detects if the script is executed as main or if it is imported from another script file
+- `$.xdg`: provides cross-platform file system access for specific locations (home, temp, config, … directory)
+- `$.stdin`: handles standard input when the script is run in shell pipe (can be helpful for `nodejsscript --eval`/`nodejsscript --print` bellow)
+- …for more see [related section in docs](./docs/modules/.md)
+
+</details>
+
+<details> <summary><a href="./docs/README.md#echo">echo() #css-in-console</a> function/namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+
+- prints to console, also supports styling using CSS like syntax
+- internally uses [css-in-console](https://www.npmjs.com/package/css-in-console)
+
+</details>
+
+<details> <summary><a href="./docs/README.md#pipe">pipe()</a> function <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+
+Provides functional way to combine JavaScript functions.
+```js
+pipe(
+	Number,
+	v=> `Result is: ${v}`,
+	echo
+)("42");
+```
+
+</details>
+
+<details> <summary><code>fetch()</code>, <code>new AbortController()</code> <i>(open to quick overview)</i> </summary>
+
+- these are supported in nodejsscript, uses native `fetch()`/`AbortController` or
+- [node-fetch - npm](https://www.npmjs.com/package/node-fetch)
+- [abort-controller - npm](https://www.npmjs.com/package/abort-controller)
+
+
+</details>
+
+<details> <summary><code>nodejsscript --eval</code>/<code>nodejsscript --print</code> <i>(open to quick overview)</i> </summary>
+
+- quickly eval javascript code in terminal
+- *similar to `node --eval`/`node --print`*
+- you can use less verbose syntax `njs -e`/`njs -p`
+
 ```bash
-curl https://api.spacexdata.com/v4/launches/latest | nodejsscript -p 'Object.entries($.nojq).filter(([_,v])=> Array.isArray(v))'
+curl https://api.spacexdata.com/v4/launches/latest | \
+nodejsscript -p '$.stdin.json()' Object.entries 'e=> e.filter(([_,v])=> Array.isArray(v))'
 ```
-…see [examples](./examples/eval_print.md) again.
+…see [examples](./examples/eval_print.md).
+
+</details>
+
+<details> <summary><code>nodejsscript --inspect</code> <i>(open to quick overview)</i> </summary>
+
+- use `nodejsscript --inspect`/`njs --inspect` to debug your script
+- similar to `node --inspect`
+
+</details>
+
+<details> <summary><code>nodejsscript --interactive</code> <i>(open to quick overview)</i> </summary>
+
+- use `nodejsscript --interactive`/`njs --interactive`/`nodejsscript -i`/`njs -i` to run REPL
+- similar to `node --interactive`/`node -i`
+
+</details>
+
+<details> <summary><code>nodejsscript --completion</code> <i>(open to quick overview)</i> </summary>
+
+- provide shell completion for nodejsscript and scripts written using nodejsscript (**using `$.api()`**)
+- **(for now) only for bash**
+
+```
+>_:njs --completion
+  Usage:
+    nodejsscript --completion [options]
+  Options:
+                        help . . . Print this help
+         bash-local [target] . . . Outputs bash completion code for use by eval to enable
+                                   scripts completions on demand (see `register`).
+                                   Use `eval "$(nodejsscript --completion bash-local)"` in terminal.
+                                   By default enable completions for all scripts in current directory recursively.
+                                   Use optional [target] to enable completions for specific script or subfolder.
+                        bash . . . Outputs bash completion code for use by eval.
+                                   Add `eval "$(nodejsscript --completion bash)"` to your '.bashrc' file.
+           register <target> . . . This enable completion for custom script created with nodejsscript (using `$.api`).
+                                   The <target> reffers to script itself/the text triggering the completion.
+                                   As <target> use global script name or (relative) path.
+                                   Completions for scripts registered by path is on demand, see `bash-local`.
+             remove <target> . . . This remove completion for custom script previously registered by <target>.
+                      config . . . Returns location of the completions config file.
+```
+
+</details>
+
+<details> <summary><code>~/.config/nodejsscript/nodejsscriptrc.mjs</code> <i>(open to quick overview)</i> </summary>
+
+**TODO**
+
+</details>
+
+<details> <summary><code>npx nodejsscript</code> <i>(open to quick overview)</i> </summary>
+
+**TODO**
+
+</details>
 
 ## Quick links/info
+- migration from *0.9.\**: **TODO**
 - migration from *0.8.\**: see [API changes 0.8 → 0.9](#api-changes-08--09)
-- potencial changes for *1.x.y*: see [issues](https://github.com/jaandrle/nodejsscript/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
+- [Contribute](#contribute)
 
 ## Installation
 
 1. tested/used on *NodeJS*: `node@v16.13.0` and `node@v17.9.1` ⇒ for installation follow [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^ORnpm]
 1. `npm install nodejsscript --location=global` … alternatively install locally: `npm install nodejsscript`[^ORnjs]
-
-## Goods
-[s #shelljs](./docs/modules/s.md)
- · [$](./docs/modules/.md) ([$.api() #sade](./docs/modules/.md#api), [$.read()](./docs/modules/.md#read), [$.xdg](./docs/modules/xdg_.xdg.md), …)
- · [echo() #css-in-console](./docs/README.md#echo)
- · [fetch() #node-fetch](./docs/README.md#fetch)
- · [pipe()](./docs/README.md#pipe)
 
 ## Documentation
 Write your scripts in a file with an `.mjs` extension in order to

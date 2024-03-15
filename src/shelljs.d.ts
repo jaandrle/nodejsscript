@@ -198,10 +198,34 @@ export const run: RunFunction;
  * @return Returns {@link ProcessPromise}.
  */
 export const runA: RunAsyncFunction;
+export interface ReadOptions{
+	/** Promt mode, value is used as question. It is possible to cobine with other options. */
+	"-p": string;
+	/** Make sence to combine only with `-p` to not show pressed keys (e.g. to prompt password). */
+	"-s": boolean;
+	/** Make sence to combine only with `-p` to provide tab suggestion/completions. */
+	"completions": string[];
+	/** Returns the `stdin` till given needle. */
+	"-d": string;
+	/** Choose given number of chars from `stdin`. */
+	"-n": number;
+}
+/**
+	* This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
+	* So, the function purpose is reading from `stdin`.
+	* ```js
+	* const answer= await $.read({ "-p": "Question" });
+	* const color= await $.read({ "-p": "Your color", completions: [ "red", "green" ] });
+	* if($.isFIFO(0)) await $.read().then(echo.bind(null, "E.g. for reading received input:"));
+	* ```
+	* @category Public
+	* */
+export function read(options: ReadOptions): Promise<ShellString>;
 
 export interface ShellReturnValue{
 	xargs: XargsFunction
 	$: DollarFunction,
 	run: RunFunction
-	runA: RunAsyncFunction
+	runA: RunAsyncFunction,
+	read: typeof read
 }

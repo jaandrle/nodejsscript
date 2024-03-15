@@ -1,7 +1,7 @@
 import "./src/Error.js";
 import { echo } from "./src/echo.js";
 import s from "./src/shelljs.js";
-import nodeFetch from 'node-fetch';
+const nodeFetch= globalThis.fetch || await import('node-fetch').then(m=> m.default || m);
 function fetch(url, init){
 	if(s.config.verbose) echo("fetch(", url, ",", init, ")");
 	return nodeFetch(url, init);
@@ -18,5 +18,5 @@ Object.assign(globalThis, {
 });
 
 /* jshint ignore:start */
-if(!globalThis.AbortController) globalThis.AbortController= await import('abort-controller');
+if(!globalThis.AbortController) globalThis.AbortController= await import('abort-controller').then(m=> m.default || m);
 /* jshint ignore:end */

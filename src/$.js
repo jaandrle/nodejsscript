@@ -72,15 +72,10 @@ Reflect.defineProperty($, "glob_options", {
 		set options(v){ return (config.globOptions= v); },
 	});},
 });
-Reflect.defineProperty($, "$", {
-	get(){ return process.pid; },
-});
-Reflect.defineProperty($, "env", {
-	get(){ return process.env; },
-});
-Reflect.defineProperty($, "version", {
-	get(){ return shelljs.cat(fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse).version; },
-});
+Reflect.defineProperty($, 	    "$", { get(){ return process.pid; } });
+Reflect.defineProperty($, 	  "env", { get(){ return process.env; } });
+Reflect.defineProperty($, "version", { get(){ return shelljs.cat(fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse).version; } });
+Reflect.defineProperty($, 	 "read", { get(){ return shelljs.read; } });
 
 import sade from "sade";
 $.api= function(usage, is_single= false){
@@ -118,68 +113,4 @@ function sadeOut(sade){
 		return this._parse(argv, options);
 	};
 	return sade;
-}
-
-$.read= async function(options= {}){
-	const { stdin }= process;
-	stdin.setEncoding('utf8');
-	const has= Reflect.has.bind(null, options);
-	const get= Reflect.get.bind(null, options);
-	if(has("-p")) return promt(options, has, get);
-	/** @type {AbortSignal|null} */
-	const signal= options.signal instanceof global.AbortSignal ? options.signal : null;
-	if(signal && signal.aborted) return;
-	if(has("-n")){
-		const line= await stdin[Symbol.asyncIterator]().next();
-		return ShellString(line.value.slice(0, get("-n")));
-	}
-	let buf= $.stdin ? $.stdin.text("") : "";
-	if(has("-d")){
-		const needle= get("-d");
-		for await (const chunk of stdin){
-			if(signal && signal.aborted) return;
-			const i= chunk.indexOf(needle);
-			if(i!==-1) return ShellString(buf+chunk.slice(0, i));
-			buf+= chunk;
-		}
-	}
-	for await (const chunk of stdin){
-		if(signal && signal.aborted) return;
-		buf+= chunk;
-	}
-	return ShellString(buf);
-};
-
-function promt(options, has, get){
-	if(!get("-s")) options.output= process.stdout;
-	return question(get("-p"), options).then(function(promt){
-		if(get("-s")) echo();
-		const chars= has("-n") ? get("-n") : ( has("-d") ? promt.indexOf(get("-d")) : -1 );
-		return chars < 0 ? promt : promt.slice(0, chars);
-	});
-}
-import { createInterface } from "node:readline";
-function question(query= "", options= {}){
-	query= String(query);
-	if(!/\s$/.test(query)) query+= "\n"+echo.format('%c❯ ', "color:lightgreen");
-	if(!options.output) echo.use("-n", query);
-	
-	const rl= createInterface({
-		input: process.stdin,
-		output: options.output,
-		terminal: true,
-		signal: options.signal,
-		completer: !Array.isArray(options.completions) ? undefined : 
-			function completer(line){
-				const completions= options.completions;
-				const hits= completions.filter((c) => c.startsWith(line));
-				return [hits.length ? hits : completions, line];
-			},
-	});
-
-	return new Promise((resolve, reject)=> {
-		rl.on("SIGINT", ()=> { rl.close(); reject(); });
-		rl.question(query,
-			answer=> { rl.close(); resolve(answer); });
-	});
 }

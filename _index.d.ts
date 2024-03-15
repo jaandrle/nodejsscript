@@ -43,6 +43,7 @@ export function pipe(...funs: Function[]): (input: any)=> any;
  * - {@link s.RunAsyncFunction 'runA()'}
  * - {@link s.XargsFunction 'xargs()'}
  * - {@link s.DollarFunction '$()'}
+ * - {@link s.read 'read()'}
  *
  * **Changes/recommenctions:**
  * - use {@link echo} instead of `s.echo`, this was changed to `s.ShellString` for easy file writing without logging to console `s.echo("Data").to("file.txt")`.

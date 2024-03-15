@@ -8,7 +8,6 @@ nodejsscript
 
 - [pipe](README.md#pipe)
 - [fetch](README.md#fetch)
-- [cyclicLoop](README.md#cyclicloop)
 - [echo](README.md#echo)
 
 ### Internal Functions
@@ -116,48 +115,6 @@ try{
 #### Returns
 
 [`Response`](classes/fetch.Response.md)
-
-___
-
-### cyclicLoop
-
-▸ **cyclicLoop**<`T`\>(`items`): `Generator`<`T`[], `any`, `T`\>
-
-Repeatedly loops through the given chars/strings/….
-Typical usage is to create a spinner (by default):
-
-```js
-import { setTimeout } from "node:timers/promises";
-const spinEnd= spinner(); //output=> ⠋ Waiting…
-setTimeout(10*750).then(spinEnd);
-
-function spinner(message= "Waiting…"){
-	const animation= cyclicLoop();
-	const echoSpin= ()=> echo.use("-R", `${animation.next().value} ${message}`);
-	const id= setInterval(echoSpin, 750);
-	return function(){
-		clearInterval(id);
-		echo.use("-r");
-	};
-}
-```
-…also see [spinner example](../examples/spinner.mjs).
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `items` | `T`[] |
-
-#### Returns
-
-`Generator`<`T`[], `any`, `T`\>
 
 ___
 
