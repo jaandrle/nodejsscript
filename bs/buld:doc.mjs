@@ -1,16 +1,18 @@
 #!/usr/bin/env -S npx nodejsscript
 /* jshint esversion: 11,-W097, -W040, module: true, node: true, expr: true, undef: true *//* global echo, $, pipe, s, fetch, cyclicLoop */
 $.configAssign({ fatal: true });
-// s.run([
-// 	"npx typedoc",
-// 	"_index.d.ts",
-// 	"--readme none",
-// 	"--defaultCategory 'Internal'",
-// 	"--categoryOrder 'Public'",
-// 	"--categoryOrder 'Internal'",
-// 	"--sort visibility --disableSources"
-// ].join(" "));
+s.run([
+	"npx typedoc",
+	"_index.d.ts",
+	"--readme none",
+	"--defaultCategory 'Internal'",
+	"--categoryOrder 'Public'",
+	"--categoryOrder 'Internal'",
+	"--sort visibility --disableSources"
+].join(" "));
 
+echo();
+echo("Generating man pages...");
 const path_man= "man.md";
 // shelljs original
 await fetch("https://github.com/shelljs/shelljs/raw/master/README.md")
@@ -29,6 +31,13 @@ await fetch("https://github.com/shelljs/shelljs/raw/master/README.md")
 	))
 // shelljs from nodejsscript
 mdFromDts("src/shelljs.d.ts").toEnd(path_man);
+// dollar
+mdFromDts("src/$.d.ts").toEnd(path_man);
+// echo
+mdFromDts("src/echo.d.ts").toEnd(path_man);
+// pipe
+mdFromDts("_index.d.ts").toEnd(path_man);
+echo("%c✓ Done", "color: lightgreen");
 
 function mdFromDts(path){
 	const file= s.cat(path).trim().split("\n");
@@ -48,7 +57,7 @@ function mdFromDts(path){
 		}
 		if(!line.startsWith("/*") && !line.startsWith("*"))
 			continue;
-		if(line.startsWith("*/") || line.startsWith("/**")) // || /^\* ?@/.test(line))
+		if(line.startsWith("*/") || line.startsWith("/**") || line.includes("@category")) // || /^\* ?@/.test(line))
 			continue;
 		out.push(
 			line.slice(
@@ -57,7 +66,7 @@ function mdFromDts(path){
 			).trim()
 		);
 	}
-	return s.echo(out.join("\n").trimEnd());
+	return s.echo(out.join("\n"));
 }
 function getIndexOrLineEnd(idx, { length }){
 	return idx < 1 ? length : idx;

@@ -6,18 +6,39 @@
 
 ## Table of contents
 
-### Public Properties
-
-- [read](s.ShellReturnValue.md#read)
-
-### Internal Properties
+### Properties
 
 - [xargs](s.ShellReturnValue.md#xargs)
 - [$](s.ShellReturnValue.md#$)
 - [run](s.ShellReturnValue.md#run)
 - [runA](s.ShellReturnValue.md#runa)
+- [read](s.ShellReturnValue.md#read)
 
-## Public Properties
+## Properties
+
+### xargs
+
+• **xargs**: [`XargsFunction`](s.XargsFunction.md)
+
+___
+
+### $
+
+• **$**: [`DollarFunction`](s.DollarFunction.md)
+
+___
+
+### run
+
+• **run**: [`RunFunction`](s.RunFunction.md)
+
+___
+
+### runA
+
+• **runA**: [`RunAsyncFunction`](s.RunAsyncFunction.md)
+
+___
 
 ### read
 
@@ -44,29 +65,3 @@ if($.isFIFO(0)) await $.read().then(echo.bind(null, "E.g. for reading received i
 ##### Returns
 
 `Promise`<[`ShellString`](../modules/s.md#shellstring)\>
-
-___
-
-## Internal Properties
-
-### xargs
-
-• **xargs**: [`XargsFunction`](s.XargsFunction.md)
-
-___
-
-### $
-
-• **$**: [`DollarFunction`](s.DollarFunction.md)
-
-___
-
-### run
-
-• **run**: [`RunFunction`](s.RunFunction.md)
-
-___
-
-### runA
-
-• **runA**: [`RunAsyncFunction`](s.RunAsyncFunction.md)

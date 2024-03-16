@@ -640,3 +640,227 @@ const answer= await $.read({ "-p": "Question" });
 const color= await $.read({ "-p": "Your color", completions: [ "red", "green" ] });
 if($.isFIFO(0)) await $.read().then(echo.bind(null, "E.g. for reading received input:"));
 ```
+
+### $.version
+
+Holds current nodejsscript version
+
+
+### $.isMain(import.meta)
+
+This is small helper function to determine if current script file was launched as main one.
+```js
+//nodejsscript main.js
+
+//main.js
+if($.isMain(import.meta)) echo("This is main script");
+import 'nomain.js';
+
+//nomain.js
+if($.isMain(import.meta)) echo("This is NOT main script ⇒ never echo");
+```
+This can be helpful for writing importable scripts.
+It is very similar to [`__name__ == '__main__'`](https://docs.python.org/3/library/__main__.html).
+For this use case, be careful to use `$.exit` correctly (when the script is imported, you probably don't want to use it).
+
+
+### $.is_silent: boolean
+
+Suppresses all command output if `true`, except for `echo()` call.
+### $.is_verbose: boolean
+
+Will print each executed command to the screen.
+### $.is_fatal: boolean
+
+If `true`, the script will throw a JavaScript error when any `shell.js` command encounters an error. This is analogous to Bash's `set -e`.
+### $.glob_options: { is_off: boolean, options: boolean }
+
++ glob: disable filename expansion (globbing), options for `glob.sync()`
+
+
+### $.configAssign({ verbose?: boolean, fatal?: boolean, silent?: boolean })
+
+Set multiple options except `glob_options` with one command.
+```js
+const { is_verbose, is_fatal }= $;
+$.is_silent= true;
+const $.configAssign({ verbose: true, silent: false });
+```
+
+
+### $.isFIFO(0|1)
+
+Method to check whether script stdin/stdout (0/1) is a first-in-first-out (FIFO) pipe or not.
+```bash
+node pipes.js | … # — test by $.isFIFO(1)
+… | node pipes.js # — test by $.isFIFO(0)
+```
+
+### $.api([usage])
+### $.api(usage, true)
+
+A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
+
+
+### $.xdg: { home, temp, data, config, cache, root, cwd, main }
+
+Returns the directory/file path based on `$.xdg.<tag>()`.
+```js
+$.xdg.<tag>`…`
+$.xdg.<tag>("…")
+$.xdg.<tag>()
+```
+
+
+### $.$
+
+Returns the PID of the process. Compare to bash `$$` vs `$.$`.
+@alias process.pid
+
+### $.env
+
+{@link _env}. Compare to bash `$var` vs `$.env['var']`.
+@alias process.env
+
+### $.stdin: { text, json, lines }
+
+Holding `stdin` when script was executed.
+```bash
+echo TEST | nodejsscript script.js
+```
+```javascript
+echo($.stdin.text());//= "TEST"
+```
+
+### $.error(message)
+
+Throws user targeted error
+```js
+const number= await $.read({ "-p". "Insert a number:" });
+if(Number.isNaN(Number(number))) $.error(`Provided text '${number}' is not a number`);
+```
+
+
+### $.exit(code[, ...ignore])
+
+Just an alias for {@link _exit}. Any other argument is ignored, so you can use:
+```js
+if($.hasArgs("-v", "--version")) $.exit(0, echo("v0.0.1"));
+```
+
+### $.hasArgs(...needles)
+
+Returns boolean value that script has been executed with given arguments (`needles`).
+```js
+if($.hasArgs("-v", "--version")) $.exit(0, echo("v0.0.1"));
+```
+### echo([as console.log()])
+
+Prints to `stdout` with newline. Multiple arguments can be passed, with the
+first used as the primary message and all additional used as substitution
+values similar to [`printf(3)`](http://man7.org/linux/man-pages/man3/printf.3.html) (the arguments are all passed to `util.format()`).
+Internally uses `console.log`. Stringify inputs except objects and errors in case of `$.is_verbose`.
+Supports basic styling, see {@link css}.
+
+```js
+const count = 5;
+echo('count: %d', count);
+// Prints: count: 5, to stdout
+echo('count:', count);
+// Prints: count: 5, to stdout
+echo({ count });
+// Prints: { count: 5 }, to stdout
+echo(new Error("Test"));
+// Prints: 'Error: Test', when `config.verbose= false`
+echo("%cRed", "color: red");
+// Prints 'Red' in red
+```
+
+@param message The text to print.
+@return	   Returns processed string with additional utility methods like .to().
+
+### echo.use(options, [as echo()])
+
+Similarly to {@link s.echo}, the first argument accepts options string starting with `-`:
+- `-n`: Don’t append **n**ew line
+- `-1`/`-2`: Outputs to `stdout`/`stderr`
+- `-c`: Don’t **c**olorize output (e.g. objects)
+- `-P`: Outputs objects in **p**rettier format
+- `-R`/`-r`: Starts/Ends **r**ewritable mode (for spinners, progress bars, etc.). Mode can be ended with any other `echo` without `-R`.
+- `-S`: silent mode ⇒ just return processed final string (ignores: `-1`, `-2`, `R`)
+
+```js
+echo.use("-R", "0%");
+// …
+echo.use("-r", "100%");
+// combination
+echo.use("-2cP", { a: "A" });
+```
+@param options Available options: `-n`, `-1`/`-2`, `-c`, `-P`, `-R`/`-r`.
+@param message The text to print.
+@return	   Returns processed string with additional utility methods like .to().
+
+### echo.css`styles`
+### echo.css(...styles)
+
+In `echo`, you can use `%c` for styling:
+```js
+echo("%cHello %cWorld!", "color: red", "color: blue");
+```
+**But**, implementation for `echo` is much more limited. There is no CSS parser, just keywords see [css_rules](https://github.com/jaandrle/css-in-console/blob/main/docs/README.md#css_rules).
+**Internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)**.
+
+You can pre-define css class with this method:
+```js
+const css= echo.css(".red { color: red; }", ".blue { color: blue; }");
+echo("%cRed text", css.red);
+echo("%cBlue text", css.blue);
+```
+…there is special style name `*` which applies to all defined classes:
+```js
+const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue { color: blue; }");
+echo("%cRed and bold text", css.red);
+echo("%cBlue and bold text", css.blue);
+```
+…there is also helpers (see {@link EchoFunction.format} and {@link EchoFunction.formatWithOptions}) to just return finally formated text:
+```js
+const css= echo.css`
+* { font-weight: bold; }
+.red { color: red; }
+.blue { color: blue; }
+`;
+const text= echo.format("%cRed and bold text", css.red);
+echo(text);
+```
+For further information, see:
+<br>- [css-in-console - npm](https://www.npmjs.com/package/css-in-console)
+<br>- [Styling console output](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output)
+<br>- [Util.format | Node.js v19.1.0 Documentation](https://nodejs.org/api/util.html#utilformatformat-args)
+
+### echo.format([as echo()])
+
+A helper method returning formated text as it processed by {@link echo}, but not printed into the console.
+(So infact, it is an alias `echo.use("-S", …);`)
+@param message The text to print.
+@return	   Returns processed string with additional utility methods like .to().
+
+
+### echo.formatWithOptions([as echo.use()])
+
+A helper method returning formated text as it processed by {@link echo}, but not printed into the console.
+(So infact, it is an alias `echo.use("-S"+…, …);`)
+@param options Available options: `-n`, `-c`, `-P` (these are available, but ignored: `-1`/`-2`, `-R`/`-r`).
+@param message The text to print.
+@return	   Returns processed string with additional utility methods like .to().
+
+### pipe
+
+Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe). Provides functional way to combine commands/functions.
+
+```js
+pipe(
+Number,
+v=> `Result is: ${v}`,
+echo
+)(await question("Choose number:"));
+```

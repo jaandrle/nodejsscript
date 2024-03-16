@@ -9,6 +9,9 @@ export { xdg_, __sade, _env, _exit } from './src/$.d';
  * @category Public 
  */
 export { Dollar as $ } from './src/$.d';
+/* man-start
+ * ### pipe
+ * */
 /**
  * Function similar to [Ramda `R.pipe`](https://ramdajs.com/docs/#pipe). Provides functional way to combine commands/functions.
  * 
@@ -22,6 +25,7 @@ export { Dollar as $ } from './src/$.d';
  * @category Public
 */
 export function pipe(...funs: Function[]): (input: any)=> any;
+/* man-end */
 
 /**
  * This namespace refers to `shelljs`, for docs visits [shelljs/shelljs](https://github.com/shelljs/shelljs).

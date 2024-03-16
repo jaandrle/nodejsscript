@@ -24,6 +24,8 @@ echo({ count });
 // Prints: { count: 5 }, to stdout
 echo(new Error("Test"));
 // Prints: 'Error: Test', when `config.verbose= false`
+echo("%cRed", "color: red");
+// Prints 'Red' in red
 ```
 
 #### Parameters

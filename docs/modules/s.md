@@ -31,12 +31,9 @@ s.cat("./package.json").grep("version");
 
 ## Table of contents
 
-### Public Functions
+### Functions
 
 - [read](s.md#read)
-
-### Internal Functions
-
 - [$](s.md#$)
 - [run](s.md#run)
 - [runA](s.md#runa)
@@ -133,7 +130,7 @@ s.cat("./package.json").grep("version");
 - [env](s.md#env)
 - [config](s.md#config)
 
-## Public Functions
+## Functions
 
 ### read
 
@@ -158,8 +155,6 @@ if($.isFIFO(0)) await $.read().then(echo.bind(null, "E.g. for reading received i
 `Promise`<[`ShellString`](s.md#shellstring)\>
 
 ___
-
-## Internal Functions
 
 ### $
 
