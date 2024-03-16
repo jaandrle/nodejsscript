@@ -2,29 +2,25 @@
 import url from "node:url";
 import { join } from "node:path";
 import { file_rc } from './config.mjs';
-export async function printUsage(name_full){
-	const [ name, ns ]= name_full.split(".").reverse();
-	const url= ({
-		s: "https://github.com/shelljs/shelljs/raw/master/README.md",
-		echo: "https://raw.githubusercontent.com/jaandrle/nodejsscript/main/docs/interfaces/EchoFunction.md",
-		$: "https://raw.githubusercontent.com/jaandrle/nodejsscript/main/docs/modules/.md",
-		[undefined]: "https://github.com/jaandrle/nodejsscript/raw/main/docs/README.md"
-	})[ns];
-	if(!url || !name){
-		echo(!ns ? globalThis[name] : name ? globalThis[ns][name] : globalThis[ns]);
-		return 1;
+export async function printUsage(name){
+	const docs= s.cat(new URL("../man.md", import.meta.url));
+	if(name.endsWith(".")){
+		const candidates= docs.split("\n")
+			.filter(line=> line.startsWith("### "+name));
+		if(!candidates.length) throw new Error("Not found: "+name);
+		candidates.forEach(line=> console.log(line.slice(line.indexOf(" ")+1)));
+		return 0;
 	}
-	const docs= await fetch(url).then(res=> res.text()).catch(()=> "");
 	const i_start= docs.indexOf("### "+name);
 	pipe(
-		d=> d.slice(i_start, sectionEnd(docs, i_start, name)),
-		d=> d.trim()+"\n\nFor more information, please visit: "+url.slice(0, url.indexOf("/raw")),
+		d=> i_start===-1 ? (()=> { throw new Error("Not found: "+name) })() : d.slice(i_start, sectionEnd(docs, i_start, name)),
+		d=> d.trim()+"\n\nFor more information, please visit: "+info("homepage"),
 		d=> console.log(d)
 	)(docs);
 	return 0;
 }
 function sectionEnd(docs, i_start, name){
-	const candidate= new RegExp(`\n### (?!${name})`).exec(docs.slice(i_start))?.index;
+	const candidate= new RegExp(`\n### (?!${name.replace("$", "\\$")}\\()`).exec(docs.slice(i_start))?.index;
 	if(!candidate) return docs.length;
 	return candidate+i_start;
 }
@@ -38,29 +34,41 @@ export async function printCliUsage(){
 		css.T);
 	echo(`%cUsage%c:`,
 		css.H);
-	echo(`%c${n} [options] <script>`,
+	echo(`%c${n} <script.js|script.mjs>`,
+		css.T);
+	echo(`%c${n} [options] <script.js|script.mjs|expression>`,
+		css.T);
+	echo(`%cDetailed help%c:`,
+		css.H);
+	echo(`%c${n} --completion`,
+		css.T);
+	echo(`%c${n} --inspect`,
 		css.T);
 	echo(`%cOptions%c:`,
 		css.H);
-	echo(`%c          --version, -v    print current ${n} version`,
+	echo("%c              <script.js|script.mjs>    run given script file",
 		css.T);
-	echo("%c             --help, -h    print help",
+	echo("%c             --eval, -e <expression>    similar to `node -e …`, evaluates given string",
 		css.T);
-	echo("%c             --eval, -e    similar to `node -e …`, evaluates given string",
+	echo("%c            --print, -p <expression>    similar to `node -p …`, infact (for now?) it wraps argument by `echo` function (splits given string by ';' and wraps last non-empty part)",
 		css.T);
-	echo("%c            --print, -p    similar to `node -p …`, infact (for now?) it wraps argument by `echo` function (splits given string by ';' and wraps last non-empty part)",
-		css.T);
-	echo("%c              --inspect    run given script in debug mode, see %c%s --inspect%c for more info",
+	echo("%c    --inspect <script.js|script.mjs>    run given script in debug mode, see %c%s --inspect%c for more info",
 		css.T, css.code, css.unset, n);
-	echo("%c      --interactive, -i    similar to `node -i`, opens REPL, the interactive mode",
+	echo("%c                   --interactive, -i    similar to `node -i`, opens REPL, the interactive mode",
 		css.T);
-	echo("%c           --completion    register TAB completion for %c%s%c and your scripts, see %c%s --completion help%c for more info",
+	echo("%c                        --completion    register TAB completion for %c%s%c and your scripts, see %c%s --completion help%c for more info",
 		css.T, css.n, css.unset, css.code, css.unset, n, n);
-	echo("%c--global-jsconfig [add]    woraround for type checking of non-package scripts",
+	echo("%c             --global-jsconfig [add]    woraround for type checking of non-package scripts",
+		css.T);
+	echo("%c                  --man <expression>    print quick documentation for given command",
+		css.T);
+	echo(`%c                       --version, -v    print current ${n} version`,
+		css.T);
+	echo("%c                          --help, -h    print this help",
 		css.T);
 	echo("%cExamples%c:",
 		css.H);
-	echo(`%c${n} script.js`,
+	echo(`%c${n} ./script.js`,
 		css.T);
 	echo(`%c${n} --help`,
 		css.T);

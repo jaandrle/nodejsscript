@@ -3,6 +3,15 @@ import child= require('child_process');
 export { child };
 export * from "shelljs";
 
+/* man-start
+ * ### s.xargs([options,], cmd[, cmd_args])
+ *
+ * Available options:
+ *
+ * + `-I`: Next parameter represents to be replaced in `cmd_args`.
+ * + `-R`: Raw piped string ⇒ turn off escaping piped string (by default).
+ *
+ * */
 export interface XargsOptions{
 	/** Next parameter represents to be replaced in `cmd_args`. */
 	"-I": string,
@@ -17,6 +26,7 @@ export interface XargsFunction {
 	 * s.run("git branch --show-current").xargs({ "-I": "§" }, s.run, "dep deploy --branch=§");
 	 * ```
 	 * *xarg() by default escapes piped string, this can be off by passing `-R` option.*
+	 * 
 	 * @param options	Defaults to `-I {}`
 	 * @param cmd		ShellJS method from {@link ShellReturnValue}
 	 * @param cmd_args	Arguments for `cmd`
@@ -25,6 +35,11 @@ export interface XargsFunction {
 	<T extends (...args: any[])=> any>(options: XargsOptions, cmd: T, ...cmd_args: Parameters<T>): ReturnType<T>;
 	<T extends (...args: any[])=> any>(cmd: T, ...cmd_args: Parameters<T>): ReturnType<T>;
 }
+/* man-end */
+/* man-start
+ * ### s.$()
+ * ### s.$(options)
+ * */
 export interface DollarFunction{
 	/**
 	 * Modifies {@link config} for next command in chain. The `$()` runs next command in silent mode:
@@ -45,6 +60,7 @@ export interface DollarFunction{
 	 *
 	 * s.$("-g").rm("*.tx"); //remove only "*.txt" file
 	 * ```
+	 * 
 	 * @param options Options
 	 *	- "-V": verbose
 	 *	- "-S": silent (default)
@@ -55,6 +71,7 @@ export interface DollarFunction{
 	(options: "-V"|"-S"|"-F"|"-g"|"-v"|"-s"|"-f"|"-G"): ShellString;
 	(): ShellString;
 }
+/* man-end */
 export const $: DollarFunction;
 
 export type RunOptions=  ExecOptions & {
@@ -87,6 +104,11 @@ export interface RunFunction {
 	 */
 	(command: string, vars?: {}): ShellString;
 
+/* man-start
+ * ### s.run`cmd`
+ * ### s.run(cmd[, vars][, options])
+ * */
+
 	/**
 	 * Executes the given command synchronously, because of that it does not know whether it will be piped,
 	 * so by default prints the command output. You can off that by prepend `….$().run`.
@@ -104,6 +126,17 @@ export interface RunFunction {
 	 */
 	(command: string, vars: {} | false, options: RunOptions): ShellString;
 }
+/*
+ * another examples:
+ * ```js
+ * s.run`echo ${"Hi"}`;
+ * s.run("echo 'HI'");
+ * s.run("echo 'HI'", null, { cwd: "../" });
+ * s.run("echo ::var::", { var: "Hi" });
+ * s.run("echo ::var::", { var: "Hi" }, { cwd: "../" });
+ * ```
+ * */
+/* man-end */
 import { Readable, Writable } from 'node:stream';
 import { inspect } from 'node:util';
 import { ChildProcess, StdioNull, StdioPipe } from 'node:child_process';
@@ -175,6 +208,10 @@ export interface RunAsyncFunction {
  * @return Returns {@link ShellString}.
  */
 export const run: RunFunction;
+/* man-start
+ * ### s.runA`cmd`
+ * ### s.runA(cmd[, vars][, options])
+ * */
 /**
  * Executes the given command asynchronously.
  * ```js
@@ -198,6 +235,19 @@ export const run: RunFunction;
  * @return Returns {@link ProcessPromise}.
  */
 export const runA: RunAsyncFunction;
+/* man-end */
+/* man-start
+ * ### s.read()
+ * ### s.read(options)
+ *
+ * Available options:
+ * + `-p`: Promt mode, value is used as question. It is possible to cobine with other options.
+ * + `-s`: Make sence to combine only with `-p` to not show pressed keys (e.g. to prompt password).
+ * + `completions`: Make sence to combine only with `-p` to provide tab suggestion/completions.
+ * + `-d`: Returns the `stdin` till given needle.
+ * + `-n`: Choose given number of chars from `stdin`.
+ * 
+ * */
 export interface ReadOptions{
 	/** Promt mode, value is used as question. It is possible to cobine with other options. */
 	"-p": string;
@@ -211,16 +261,16 @@ export interface ReadOptions{
 	"-n": number;
 }
 /**
-	* This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
-	* So, the function purpose is reading from `stdin`.
-	* ```js
-	* const answer= await $.read({ "-p": "Question" });
-	* const color= await $.read({ "-p": "Your color", completions: [ "red", "green" ] });
-	* if($.isFIFO(0)) await $.read().then(echo.bind(null, "E.g. for reading received input:"));
-	* ```
-	* @category Public
-	* */
+ * This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
+ * So, the function purpose is reading from `stdin`.
+ * ```js
+ * const answer= await $.read({ "-p": "Question" });
+ * const color= await $.read({ "-p": "Your color", completions: [ "red", "green" ] });
+ * if($.isFIFO(0)) await $.read().then(echo.bind(null, "E.g. for reading received input:"));
+ * ```
+ * */
 export function read(options: ReadOptions): Promise<ShellString>;
+/* man-end */
 
 export interface ShellReturnValue{
 	xargs: XargsFunction

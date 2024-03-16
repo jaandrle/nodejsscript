@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"author": "Jan Andrle <andrle.jan@centrum.cz>",
 	"license": "MIT",
-	"description": "A tool for writing better scripts",
+	"description": "A tool for writing better “one–file” scripts",
 	"homepage": "https://github.com/jaandrle/nodejsscript",
 	"repository": {
 		"type": "git",
@@ -26,7 +26,8 @@
 		"_index.d.ts",
 		"index.d.ts",
 		"index.js",
-		"src"
+		"src",
+		"man.md"
 	],
 	"types": "index.d.ts",
 	"typesVersions": {
@@ -37,10 +38,9 @@
 		}
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build:doc": "npx typedoc _index.d.ts --readme none --defaultCategory 'Internal' --categoryOrder 'Public' --categoryOrder 'Internal' --sort visibility --disableSources",
-		"build:lint": "npx jshint **/*.js --show-non-errors",
-		"build": "npm run build:lint && npm run build:doc"
+		"build:doc": "bs/buld:doc.mjs",
+		"build:lint": "bs/buld:lint.mjs",
+		"build": "bs/buld.mjs"
 	},
 	"engines": {
 		"node": ">= 16.0.0"

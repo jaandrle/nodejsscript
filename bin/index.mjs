@@ -57,10 +57,15 @@ async function handleBuildin(candidate){
 		echo(info("version")[0]);
 		return $.exit(0);
 	}
-	if(["--help", "-h"].includes(candidate)){
+	if(["--help", "-h", "--man"].includes(candidate)){
 		const { printCliUsage, printUsage }= await import("./info.mjs");
-		const out= argv.length===2 ? await printCliUsage() : await printUsage(argv[argv.length-1]);
-		return $.exit(out || 0);
+		try{
+			const out= "--man"!==candidate ? await printCliUsage() : await printUsage(argv[argv.length-1]);
+			return $.exit(out || 0);
+		} catch(e){
+			printError(e);
+			return $.exit(e?.exitCode || 1);
+		}
 	}
 	if("--inspect"===candidate){
 		const { inspect }= await import("./inspect.mjs");

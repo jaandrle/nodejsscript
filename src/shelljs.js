@@ -1,4 +1,5 @@
 import shelljs from "shelljs";
+import { echo } from "./echo.js";
 import plugin from "shelljs/plugin.js";
 import escape from "shell-escape-tag";
 import { ProcessPromise } from "./runA-utils.js";
@@ -48,7 +49,7 @@ async function read(options= {}){
 		buf+= chunk;
 	}
 	return ShellString(buf);
-};
+}
 function xargs({ needle, is_raw }, ...args){
 	if(!needle) needle= "{}";
 	const [ cmd, ...cmd_args ]= args;

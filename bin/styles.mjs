@@ -5,8 +5,8 @@ export function styles(){
 		.v { color: lightgreen; }
 		.code { font-style: italic; color: cyan; }
 		.code::before, .code::after{ content: "\`"; }
-		.H { color: yellow; margin-left: 2; }
-		.T { margin-left: 4; }
+		.H { color: yellow; }
+		.T { margin-left: 2; }
 		.success { color: lightgreen; }
 		.li, .li2 { display: list-item; }
 		.li2 { margin-left: 2ch; }
