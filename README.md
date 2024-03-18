@@ -26,7 +26,7 @@ Open ‘▸’ sections for quick overview and/or navigate to link(s) for docume
 <!-- #region --><details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <i>(unix shell-like commands in JavaScript)</i></summary>
 
 Contains functions from [shelljs/shelljs](https://github.com/shelljs/shelljs) library mimic the bash utilities and some additional added by nodejsscript.
-Typically `s.cat`/`s.grep`/…, to run other than buildin commands use `s.run`/`s.runA`.
+Typically `s.cat`/`s.grep`/…, to run other than builtin commands use `s.run`/`s.runA`.
 
 <!-- #endregion -->
 </details>
@@ -263,12 +263,12 @@ Note that there are also built-in `'node:*'` modules:
 import { setTimeout } from "node:timers/promises";
 import { join, resolve } from "node:path";
 
-//.current file url
+//.current file URL
 import.meta.url;
-//.url to path
+//.URL to path
 import { fileURLToPath } from "node:url";
 const file_path= fileURLToPath(import.meta.url);
-// url is supported! (see relative reading)
+// URL is supported! (see relative reading)
 s.cat(new URL('relative_file', import.meta.url));
 
 //.crypto utils
@@ -299,9 +299,9 @@ curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $H
 
 …*Note: The ['xargs()'](../interfaces/s.XargsFunction.md) by default also escapes piped strings.*
 
-*…Note 2: `s.run(…cmd, …vars)` is also helpul for escaping parameters passed as variables (e.g. arrays).*
+*…Note 2: `s.run(…cmd, …vars)` is also helpful for escaping parameters passed as variables (e.g. arrays).*
 
-*…Note 3: ShellJS also provides `s.exec`, but `s.run` should be prefered way to execute commands.*
+*…Note 3: ShellJS also provides `s.exec`, but `s.run` should be preferred way to execute commands.*
 
 **Glob injection (all commands)**: Most ShellJS commands support [glob](https://github.com/isaacs/node-glob) expansion,
 expanding wildcards such as `*` to match files. While this is very powerful,
@@ -333,7 +333,7 @@ echo(s.grep("name", "package.json"));
 ```
 
 ## Contribute
-- [Contributor Covenant Code of Conduc](./CODE_OF_CONDUCT.md)
+- [Contributor Covenant Code of Conduct](./CODE_OF_CONDUCT.md)
 - [How to contribute](./CONTRIBUTING.md)
 
 [^ORnpm]: Alternatively `curl -sL install-node.vercel.app/16.13.0 | bash`
