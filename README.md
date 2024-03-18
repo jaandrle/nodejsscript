@@ -139,6 +139,16 @@ Use to debug your script, similar to [`node inspect`](https://nodejs.org/api/deb
 
 Use to run [REPL, similar to `node`/`node --interactive`/`node -i`](https://nodejs.org/en/learn/command-line/how-to-use-the-nodejs-repl).
 
+*Idea*: you can use REPL to analyze your JSON log files (pseudo code):
+
+```js
+// njs --interactive
+> s.ls("*.json").flatMap(f=> s.cat(f).xargs(JSON.parse)).filter(x=> x.error)
+> _.map(x=> x.error===404)
+```
+
+REPL supports tab-completion (also for folders and files).
+
 <!-- #endregion -->
 </details>
 <!-- #region --><details> <summary><code>nodejsscript --completion</code> <i>(bash completions for nodejsscript and scripts)</i></summary>
@@ -207,7 +217,7 @@ You can install/use `nodejsscript` for specific project, for example in combinat
 
 ## Installation
 
-1. tested/used on *NodeJS*: `node@v16.13.0` and `node@v17.9.1` ⇒ for installation follow [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^ORnpm]
+1. install *NodeJS* using [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^ORnpm] — tested/used on `node@v16`, `node@v17` and `node@v18`
 1. `npm install nodejsscript --location=global` … alternatively install locally: `npm install nodejsscript`[^ORnjs]
 
 ## Usage
