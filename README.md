@@ -18,7 +18,7 @@ s.run`sleep 3; echo 3`;
 
 pipe( $.xdg.temp, s.mkdir )("foo bar");
 ```
-…also see [examples](./examples).
+…also see [examples](./examples) or [Show And Tell · Discussions](https://github.com/jaandrle/nodejsscript/discussions/categories/show-and-tell).
 
 ## Goods
 Open ‘▸’ sections for quick overview and/or navigate to link(s) for documentation.
@@ -213,6 +213,7 @@ You can install/use `nodejsscript` for specific project, for example in combinat
 ## Quick links/info
 - migration from *0.9.\**: see [API changes 0.9 → 1.0](https://github.com/jaandrle/nodejsscript/pull/32)
 - migration from *0.8.\**: see [API changes 0.8 → 0.9](https://github.com/jaandrle/nodejsscript/blob/e9c4d9d/README.md#api-changes-08--09)
+- [Ideas (for new features)](https://github.com/jaandrle/nodejsscript/discussions/categories/ideas)
 - [Contribute](#contribute)
 
 ## Installation
