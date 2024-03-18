@@ -1,4 +1,16 @@
 #!/usr/bin/env nodejsscript
+/*
+	You can create quick spinner animation using `css-in-console`:
+	```js
+	const css= echo.css`
+		.spin { list-style: --terminal-spin; }
+	`;
+	```
+	… and
+	```js
+	echo.use("-R", "%c", css.spin);
+	```
+*/
 /* jshint esversion: 8,-W097, -W040, node: true, expr: true, undef: true *//* global echo, $, cyclicLoop */
 const css= echo.css`
 	.spin { color: lightmagenta; list-style-type: --terminal-spin; }

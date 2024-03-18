@@ -21,7 +21,9 @@ pipe( $.xdg.temp, s.mkdir )("foo bar");
 …also see [examples](./examples).
 
 ## Goods
-<!-- #region --><details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+Open ‘▸’ sections for quick overview and/or navigate to link(s) for documentation.
+
+<!-- #region --><details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <i>(unix shell-like commands in JavaScript)</i></summary>
 
 Contains functions from [shelljs/shelljs](https://github.com/shelljs/shelljs) library mimic the bash utilities and some additional added by nodejsscript.
 Typically `s.cat`/`s.grep`/…, to run other than buildin commands use `s.run`/`s.runA`.
@@ -33,7 +35,7 @@ Typically `s.cat`/`s.grep`/…, to run other than buildin commands use `s.run`/`
 		<a href="./docs/modules/xdg_.xdg.md">$.xdg</a>,
 		…
 	)
-	namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+	namespace <i>(nodejsscript/cli related functions/variables)</i></summary>
 
 ```js
 // ls.mjs
@@ -68,18 +70,17 @@ $.api()
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><a href="./docs/README.md#echo">echo() #css-in-console</a> function/namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+<!-- #region --><details> <summary><a href="./docs/README.md#echo">echo() #css-in-console</a> function/namespace</summary>
 
 ```js
 const css= echo.css`
 	.blue { color: blue; }
-	.spin, .success { display: list-item; }
 	.spin { list-style: --terminal-spin; }
 	.success { color: green; list-style: "✓ "; }
 `;
 echo("Hello %cWorld", css.blue);
 for(let i= 0; i < 10; i++){
-	echo.use("-R", "%c Loading…", css.spin);
+	echo.use("-R", "%cLoading…", css.spin);
 	s.run`sleep .5`;
 }
 echo.use("-r", "%cDone", css.success);
@@ -90,7 +91,7 @@ echo.use("-r", "%cDone", css.success);
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><a href="./docs/README.md#pipe">pipe()</a> function <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+<!-- #region --><details> <summary><a href="./docs/README.md#pipe">pipe()</a> function</summary>
 
 ```js
 pipe(
@@ -103,11 +104,12 @@ Provides functional way to combine JavaScript functions.
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><code>fetch()</code>, <code>new AbortController()</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><code>fetch()</code>, <code>new AbortController()</code></summary>
 
-- these are supported in nodejsscript,
+These are supported in nodejsscript:
+
 - uses native `fetch()`/`AbortController` or
-- uses fallbacks
+- fallbacks
 	- [node-fetch - npm](https://www.npmjs.com/package/node-fetch)
 	- [abort-controller - npm](https://www.npmjs.com/package/abort-controller)
 
@@ -115,32 +117,31 @@ Provides functional way to combine JavaScript functions.
 <!-- #endregion -->
 </details>
 <!-- #region --><details> <summary><a href="./examples/eval_print.md"
-	><code>nodejsscript --eval</code>/<code>nodejsscript --print</code></a> <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
+	><code>nodejsscript --eval</code>/<code>nodejsscript --print</code></a> <i>(quickly eval javascript code in terminal)</i></summary>
 
 ```bash
 curl https://api.spacexdata.com/v4/launches/latest | \
 nodejsscript -p '$.stdin.json()' Object.entries 'e=> e.filter(([_,v])=> Array.isArray(v))'
 ```
 
-- quickly eval javascript code in terminal
 - *similar to `node --eval`/`node --print`*
 - you can use less verbose syntax `njs -e`/`njs -p`
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><code>nodejsscript --inspect</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><code>nodejsscript --inspect</code></summary>
 
-Use to debug your script, similar to [`node --inspect`](https://nodejs.org/en/learn/getting-started/debugging).
+Use to debug your script, similar to [`node inspect`](https://nodejs.org/api/debugger.html) ([Node.js — Debugging Node.js](https://nodejs.org/en/learn/getting-started/debugging)).
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><code>nodejsscript --interactive</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><code>nodejsscript --interactive</code> <i>(REPL)</i></summary>
 
 Use to run [REPL, similar to `node`/`node --interactive`/`node -i`](https://nodejs.org/en/learn/command-line/how-to-use-the-nodejs-repl).
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><code>nodejsscript --completion</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><code>nodejsscript --completion</code> <i>(bash completions for nodejsscript and scripts)</i></summary>
 
 - provide shell completion for nodejsscript and scripts written using nodejsscript (**using `$.api()`**)
 - **(for now) only for bash**
@@ -157,7 +158,7 @@ Use to run [REPL, similar to `node`/`node --interactive`/`node -i`](https://node
 <!-- #endregion -->
 </details>
 <!-- #region --><details> <summary><a href="./examples/nodejsscriptrc.md"
-	><code>~/.config/nodejsscript/nodejsscriptrc.mjs</code></a> <i>(open to quick overview)</i> </summary>
+	><code>~/.config/nodejsscript/nodejsscriptrc.mjs</code></a> <i>(<code>.bashrc</code> for nodejsscript)</i></summary>
 
 ```js
 //nodejsscriptrc.mjs
@@ -177,15 +178,30 @@ This is very similar to `.bashrc` file, but for nodejsscript.
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><code>npx nodejsscript</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><code>njs</code> alias for <code>nodejsscript</code></summary>
 
-**TODO**
+You can use `njs` instead of `nodejsscript`, so for use less verbose syntax
+
+- `njs -e`/`njs -p`
+- `njs --inspect`
+- `njs`/`njs --interactive`
+- `njs --completion`
+
+<!-- #endregion -->
+</details>
+<!-- #region --><details> <summary><code>npx nodejsscript</code></summary>
+
+```js
+// some script file
+#!/usr/bin/env -S npx nodejsscript
+```
+You can install/use `nodejsscript` for specific project, for example in combination with [jaandrle/bs: The simplest possible build system using executables](https://github.com/jaandrle/bs).
 
 <!-- #endregion -->
 </details>
 
 ## Quick links/info
-- migration from *0.9.\**: **TODO**
+- migration from *0.9.\**: see [API changes 0.9 → 1.0](#api-changes-09--10)
 - migration from *0.8.\**: see [API changes 0.8 → 0.9](#api-changes-08--09)
 - [Contribute](#contribute)
 
@@ -194,7 +210,7 @@ This is very similar to `.bashrc` file, but for nodejsscript.
 1. tested/used on *NodeJS*: `node@v16.13.0` and `node@v17.9.1` ⇒ for installation follow [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^ORnpm]
 1. `npm install nodejsscript --location=global` … alternatively install locally: `npm install nodejsscript`[^ORnjs]
 
-## Documentation
+## Usage
 Write your scripts in a file with an `.mjs` extension in order to
 use `await` at the top level. If you prefer the `.js` extension,
 wrap your scripts in something like `(async function () {...})()`.
