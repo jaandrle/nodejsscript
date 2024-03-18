@@ -201,8 +201,8 @@ You can install/use `nodejsscript` for specific project, for example in combinat
 </details>
 
 ## Quick links/info
-- migration from *0.9.\**: see [API changes 0.9 → 1.0](#api-changes-09--10)
-- migration from *0.8.\**: see [API changes 0.8 → 0.9](#api-changes-08--09)
+- migration from *0.9.\**: see [API changes 0.9 → 1.0](https://github.com/jaandrle/nodejsscript/pull/32)
+- migration from *0.8.\**: see [API changes 0.8 → 0.9](https://github.com/jaandrle/nodejsscript/blob/e9c4d9d/README.md#api-changes-08--09)
 - [Contribute](#contribute)
 
 ## Installation
@@ -320,10 +320,6 @@ echo(s.cat("package.json").grep("name"));
 // or
 echo(s.grep("name", "package.json"));
 ```
-## API changes *0.8* → **0.9**
-1. `cli` renamed to `$`
-1. `style` (`ansi-colors`) removed in favour of using “CSS” in `echo`
-1. `exit` removed in favour of `$.exit`
 
 ## Contribute
 - [Contributor Covenant Code of Conduc](./CODE_OF_CONDUCT.md)
