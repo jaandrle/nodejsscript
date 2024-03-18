@@ -105,9 +105,11 @@ Provides functional way to combine JavaScript functions.
 </details>
 <!-- #region --><details> <summary><code>fetch()</code>, <code>new AbortController()</code> <i>(open to quick overview)</i> </summary>
 
-- these are supported in nodejsscript, uses native `fetch()`/`AbortController` or
-- [node-fetch - npm](https://www.npmjs.com/package/node-fetch)
-- [abort-controller - npm](https://www.npmjs.com/package/abort-controller)
+- these are supported in nodejsscript,
+- uses native `fetch()`/`AbortController` or
+- uses fallbacks
+	- [node-fetch - npm](https://www.npmjs.com/package/node-fetch)
+	- [abort-controller - npm](https://www.npmjs.com/package/abort-controller)
 
 
 <!-- #endregion -->
@@ -128,16 +130,13 @@ nodejsscript -p '$.stdin.json()' Object.entries 'e=> e.filter(([_,v])=> Array.is
 </details>
 <!-- #region --><details> <summary><code>nodejsscript --inspect</code> <i>(open to quick overview)</i> </summary>
 
-- use `nodejsscript --inspect`/`njs --inspect` to debug your script
-- similar to `node --inspect`
+Use to debug your script, similar to [`node --inspect`](https://nodejs.org/en/learn/getting-started/debugging).
 
 <!-- #endregion -->
 </details>
 <!-- #region --><details> <summary><code>nodejsscript --interactive</code> <i>(open to quick overview)</i> </summary>
 
-- use to run REPL
-- similar to `node --interactive`/`node -i`
-- you can also call `nodejsscript --interactive`/`njs --interactive`/`nodejsscript -i`/`njs -i`
+Use to run [REPL, similar to `node`/`node --interactive`/`node -i`](https://nodejs.org/en/learn/command-line/how-to-use-the-nodejs-repl).
 
 <!-- #endregion -->
 </details>
@@ -160,7 +159,21 @@ nodejsscript -p '$.stdin.json()' Object.entries 'e=> e.filter(([_,v])=> Array.is
 <!-- #region --><details> <summary><a href="./examples/nodejsscriptrc.md"
 	><code>~/.config/nodejsscript/nodejsscriptrc.mjs</code></a> <i>(open to quick overview)</i> </summary>
 
-**TODO**
+```js
+//nodejsscriptrc.mjs
+// … my code evaluated for each nodejsscript invocation
+
+/** Custom uncaughtException function */
+export function uncaughtException(){};
+/** Place for custom code when script starts */
+export function onscript(){}
+/** Place for custom code when REPL starts (`--interactive`) */
+export function onrepl(){}
+/** Place for custom code when eval starts (`--eval`/`--print`) */
+export function oneval(){}
+```
+
+This is very similar to `.bashrc` file, but for nodejsscript.
 
 <!-- #endregion -->
 </details>
