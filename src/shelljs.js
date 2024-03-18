@@ -95,14 +95,13 @@ function $(config_next){
 function runArgumentsToCommand(pieces, args){
 	if(typeof pieces === "string"){
 		const [ vars= {}, options= {} ]= args;
+		if(!vars || !Object.keys(vars).length)
+			return [ pieces, options ];
 		const { needle= /::([^:]+)::/g }= options;
 		Reflect.deleteProperty(options, "needle");
-		if(vars && Object.keys(vars).length)
-			return [ pieces.replace(needle, function replace(_, key){
-				return escape([ "" ], vars[key]);
-			}), options ];
-		else
-			return [ pieces, options ];
+		return [ pieces.replace(needle, function replace(_, key){
+			return escape([ "" ], vars[key]);
+		}), options ];
 	} else if(pieces.some((p)=> p == undefined)) {
 		throw new Error("Malformed command");
 	} else {
@@ -111,6 +110,9 @@ function runArgumentsToCommand(pieces, args){
 }
 /** @this {shelljs} */
 function run(pieces, ...args){
+	// TODO candidate `s.run(options)\`cmd\``, but needs improve `s.$()`, similarly for `s.runA()`
+	// if(typeof pieces !== "string" && !Array.isArray(pieces))
+	// 	return (p, ...a)=> run.call(this, escape(p, ...a), null, pieces);
 	/* jshint ignore:start */
 	const s= this || shelljs;
 	/* jshint ignore:end *//* global s */

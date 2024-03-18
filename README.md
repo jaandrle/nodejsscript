@@ -23,7 +23,7 @@ pipe( $.xdg.temp, s.mkdir )("foo bar");
 ## Goods
 <!-- #region --><details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
 
-Contains functions from [shelljs/shelljs](https://github.com/shelljs/shelljs) mimic the bash utilities and some additional added by nodejsscript.
+Contains functions from [shelljs/shelljs](https://github.com/shelljs/shelljs) library mimic the bash utilities and some additional added by nodejsscript.
 Typically `s.cat`/`s.grep`/…, to run other than buildin commands use `s.run`/`s.runA`.
 
 <!-- #endregion -->
@@ -35,10 +35,33 @@ Typically `s.cat`/`s.grep`/…, to run other than buildin commands use `s.run`/`
 	)
 	namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
 
+```js
+// ls.mjs
+$.api()
+.command("ls [folder]")
+.description("list files")
+.option("-a", "list all files")
+.action((folder, options)=> {
+	if(Object.keys(options).length === 0)
+		s.ls(folder);
+	else {
+		const opts= pipe(
+			Object.entries,
+			o=> o.map(([k, v])=> [ "-"+k, v ]),
+			Object.fromEntries
+		)(options);
+		s.ls(opts, folder);
+	}
+	$.exit(0);
+})
+.parse();
+// ls.mjs ls -a
+```
+
 - contains cli/nodejsscript related functions
 - for processing script arguments you can use `$[0]`/`$[1]`/… (compare with bash `$0`/`$1`/…) or
-- **`$.api()`: allows to quickly create script cli API, uses [sade](https://github.com/lukeed/sade) library (compare with [commander](https://github.com/tj/commander.js))**
-- `$.isMain`: detects if the script is executed as main or if it is imported from another script file
+- **`$.api()`: allows to quickly create script cli API, internally uses [sade](https://github.com/lukeed/sade) library (compare with [commander](https://github.com/tj/commander.js))**
+- `$.isMain()`: detects if the script is executed as main or if it is imported from another script file
 - `$.xdg`: provides cross-platform file system access for specific locations (home, temp, config, … directory)
 - `$.stdin`: handles standard input when the script is run in shell pipe (can be helpful for `nodejsscript --eval`/`nodejsscript --print` bellow)
 - …for more see [related section in docs](./docs/modules/.md)
@@ -47,6 +70,21 @@ Typically `s.cat`/`s.grep`/…, to run other than buildin commands use `s.run`/`
 </details>
 <!-- #region --><details> <summary><a href="./docs/README.md#echo">echo() #css-in-console</a> function/namespace <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
 
+```js
+const css= echo.css`
+	.blue { color: blue; }
+	.spin, .success { display: list-item; }
+	.spin { list-style: --terminal-spin; }
+	.success { color: green; list-style: "✓ "; }
+`;
+echo("Hello %cWorld", css.blue);
+for(let i= 0; i < 10; i++){
+	echo.use("-R", "%c Loading…", css.spin);
+	s.run`sleep .5`;
+}
+echo.use("-r", "%cDone", css.success);
+```
+
 - prints to console, also supports styling using CSS like syntax
 - internally uses [css-in-console](https://www.npmjs.com/package/css-in-console)
 
@@ -54,7 +92,6 @@ Typically `s.cat`/`s.grep`/…, to run other than buildin commands use `s.run`/`
 </details>
 <!-- #region --><details> <summary><a href="./docs/README.md#pipe">pipe()</a> function <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
 
-Provides functional way to combine JavaScript functions.
 ```js
 pipe(
 	Number,
@@ -62,6 +99,7 @@ pipe(
 	echo
 )("42");
 ```
+Provides functional way to combine JavaScript functions.
 
 <!-- #endregion -->
 </details>
@@ -74,17 +112,17 @@ pipe(
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><code>nodejsscript --eval</code>/<code>nodejsscript --print</code> <i>(open to quick overview)</i> </summary>
-
-- quickly eval javascript code in terminal
-- *similar to `node --eval`/`node --print`*
-- you can use less verbose syntax `njs -e`/`njs -p`
+<!-- #region --><details> <summary><a href="./examples/eval_print.md"
+	><code>nodejsscript --eval</code>/<code>nodejsscript --print</code></a> <i>(open to quick overview, navigate to link(s) for documentation)</i> </summary>
 
 ```bash
 curl https://api.spacexdata.com/v4/launches/latest | \
 nodejsscript -p '$.stdin.json()' Object.entries 'e=> e.filter(([_,v])=> Array.isArray(v))'
 ```
-…see [examples](./examples/eval_print.md).
+
+- quickly eval javascript code in terminal
+- *similar to `node --eval`/`node --print`*
+- you can use less verbose syntax `njs -e`/`njs -p`
 
 <!-- #endregion -->
 </details>
@@ -119,7 +157,8 @@ nodejsscript -p '$.stdin.json()' Object.entries 'e=> e.filter(([_,v])=> Array.is
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><code>~/.config/nodejsscript/nodejsscriptrc.mjs</code> <i>(open to quick overview)</i> </summary>
+<!-- #region --><details> <summary><a href="./examples/nodejsscriptrc.md"
+	><code>~/.config/nodejsscript/nodejsscriptrc.mjs</code></a> <i>(open to quick overview)</i> </summary>
 
 **TODO**
 
