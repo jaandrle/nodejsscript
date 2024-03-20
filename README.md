@@ -231,8 +231,8 @@ in combination with [jaandrle/bs: The simplest possible build system using execu
 ## Getting Started
 One-paragraph guide: install npm package
 `npm install nodejsscript --location=global`, create executable script file
-`touch script.mjs` with shebang `#!/usr/bin/env nodejsscript` and run it
-`./script.mjs`.
+`touch script.mjs && chmod +x script.mjs` with shebang
+`#!/usr/bin/env nodejsscript` and run it `./script.mjs`.
 
 ### Installation
 
