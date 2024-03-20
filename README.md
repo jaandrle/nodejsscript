@@ -1,7 +1,7 @@
 # NodeJS Script – Easy cross-platform “one–file” scripting
-This package serves as an alternative to [google/zx](https://github.com/google/zx) for example.
-The key difference is to provide Unix shell commands in a cross-platform compatible way and usable inside JavaScript.
-This is primarily achieved by using [shelljs/shelljs](https://github.com/shelljs/shelljs) library.
+This package serves as an alternative to [google/zx](https://github.com/google/zx) for example. The key difference
+is to provide Unix shell commands in a cross-platform compatible way and usable
+inside JavaScript.  This is primarily achieved by using [shelljs/shelljs](https://github.com/shelljs/shelljs) library.
 
 You can compare the final script code to `zx` example:
 ```javascript
@@ -21,12 +21,14 @@ pipe( $.xdg.temp, s.mkdir )("foo bar");
 …also see [examples](./examples) or [Show And Tell · Discussions](https://github.com/jaandrle/nodejsscript/discussions/categories/show-and-tell).
 
 ## Goods
-Open ‘▸’ sections for quick overview and/or navigate to link(s) for documentation.
+Open ‘▸’ sections for quick overview and/or navigate to link(s) for more detailed
+information and documentation.
 
 <!-- #region --><details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <i>(unix shell-like commands in JavaScript)</i></summary>
 
-Contains functions from [shelljs/shelljs](https://github.com/shelljs/shelljs) library mimic the bash utilities and some additional added by nodejsscript.
-Typically `s.cat`/`s.grep`/…, to run other than builtin commands use `s.run`/`s.runA`.
+Contains functions from [shelljs/shelljs](https://github.com/shelljs/shelljs) library mimic the bash utilities
+and some additional added by nodejsscript. Typically `s.cat`/`s.grep`/…,
+to run other than builtin commands use `s.run`/`s.runA`.
 
 <!-- #endregion -->
 </details>
@@ -61,11 +63,16 @@ $.api()
 ```
 
 - contains cli/nodejsscript related functions
-- for processing script arguments you can use `$[0]`/`$[1]`/… (compare with bash `$0`/`$1`/…) or
-- **`$.api()`: allows to quickly create script cli API, internally uses [sade](https://github.com/lukeed/sade) library (compare with [commander](https://github.com/tj/commander.js))**
-- `$.isMain()`: detects if the script is executed as main or if it is imported from another script file
-- `$.xdg`: provides cross-platform file system access for specific locations (home, temp, config, … directory)
-- `$.stdin`: handles standard input when the script is run in shell pipe (can be helpful for `nodejsscript --eval`/`nodejsscript --print` bellow)
+- for processing script arguments you can use `$[0]`/`$[1]`/… (compare with bash
+  `$0`/`$1`/…) or
+- **`$.api()`: allows to quickly create script cli API, internally uses [sade](https://github.com/lukeed/sade)
+  library (compare with [commander](https://github.com/tj/commander.js))**
+- `$.isMain()`: detects if the script is executed as main or if it is imported
+  from another script file
+- `$.xdg`: provides cross-platform file system access for specific locations
+  (home, temp, config, … directory)
+- `$.stdin`: handles standard input when the script is run in shell pipe (can be
+  helpful for `nodejsscript --eval`/`nodejsscript --print` bellow)
 - …for more see [related section in docs](./docs/modules/.md)
 
 <!-- #endregion -->
@@ -153,15 +160,19 @@ REPL supports tab-completion (also for folders and files).
 </details>
 <!-- #region --><details> <summary><code>nodejsscript --completion</code> <i>(bash completions for nodejsscript and scripts)</i></summary>
 
-- provide shell completion for nodejsscript and scripts written using nodejsscript (**using `$.api()`**)
+- provide shell completion for nodejsscript and scripts written using
+  nodejsscript (**using `$.api()`**)
 - **(for now) only for bash**
 - add `eval "$(nodejsscript --completion bash)"` to your '.bashrc' file
 - prepare your script cli API using `$.api()`
-- register your scritp autocompletion using `nodejsscript --completion register <target>`
-	- use global script name (your script must be also included in the PATH) to automatically enable completions on the shell start
+- register your scritp autocompletion using
+  `nodejsscript --completion register <target>`
+	- use global script name (your script must be also included in the PATH)
+	  to automatically enable completions on the shell start
 	- or (relative) path to enable completions on demand see ↙
 - use `eval "$(nodejsscript --completion bash-local [target])"`
-	- empty target or path to the directory enables completions for all scripts in the given directory recursively
+	- empty target or path to the directory enables completions for all scripts
+	  in the given directory recursively
 	- script path as target enables completions for specific script only
 - see help `nodejsscript --completion`/`nodejsscript --completion help`
 
@@ -205,7 +216,8 @@ You can use `njs` instead of `nodejsscript`, so for use less verbose syntax
 // some script file
 #!/usr/bin/env -S npx nodejsscript
 ```
-You can install/use `nodejsscript` for specific project, for example in combination with [jaandrle/bs: The simplest possible build system using executables](https://github.com/jaandrle/bs).
+You can install/use `nodejsscript` for specific project, for example
+in combination with [jaandrle/bs: The simplest possible build system using executables](https://github.com/jaandrle/bs).
 
 <!-- #endregion -->
 </details>
@@ -216,15 +228,24 @@ You can install/use `nodejsscript` for specific project, for example in combinat
 - [Ideas (for new features)](https://github.com/jaandrle/nodejsscript/discussions/categories/ideas)
 - [Contribute](#contribute)
 
-## Installation
+## Getting Started
+One-paragraph guide: install npm package
+`npm install nodejsscript --location=global`, create executable script file
+`touch script.mjs` with shebang `#!/usr/bin/env nodejsscript` and run it
+`./script.mjs`.
 
-1. install *NodeJS* using [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^ORnpm] — tested/used on `node@v16`, `node@v17` and `node@v18`
-1. `npm install nodejsscript --location=global` … alternatively install locally: `npm install nodejsscript`[^ORnjs]
+### Installation
 
-## Usage
-Write your scripts in a file with an `.mjs` extension in order to
-use `await` at the top level. If you prefer the `.js` extension,
-wrap your scripts in something like `(async function () {...})()`.
+1. install *NodeJS* using [nvm-sh/nvm: Node Version Manager](https://github.com/nvm-sh/nvm)[^ORnpm] — tested/used on
+   `node@v20`–`node@v16`
+1. install `nodejsscript` package from npm registry[^ORnjs]
+	- `npm install nodejsscript --location=global`: to use globally
+	- `npm install nodejsscript`: to use locally in the package
+
+### Usage
+Write your scripts in a file with an `.mjs` extension in order to use `await`
+at the top level. If you prefer the `.js` extension, wrap your scripts
+in something like `(async function () {...})()`.
 
 Add the following shebang to the beginning of your `nodejsscript` scripts:
 ```bash
@@ -255,8 +276,9 @@ npx nodejsscript ./script.mjs
 <!-- #endregion -->
 </details>
 
-All function (`shelljs`, `fetch`, …) are registered as global namespaces/functions:
-… *The entry point for documentation of all **Public** items is in the* [**docs/**](./docs/README.md).
+All function (`shelljs`, `fetch`, …) are registered as global
+namespaces/functions: … *The entry point for documentation of all **Public**
+items is in the* [**docs/**](./docs/README.md).
 
 Note that there are also built-in `'node:*'` modules:
 ```js
@@ -276,32 +298,38 @@ import { randomUUID } from "node:crypto";
 
 // …
 ```
-…and more, see [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
+…and more, see for example [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
 
 ## Security guidelines
-**`run()`/`runA()` command injection**: this advice applies to `child_process.exec()` just as
-much as it applies to `s.run()`. It is potentially risky to run commands passed
-for example by user input:
+**`run()`/`runA()` command injection**: this advice applies to
+`child_process.exec()` just as much as it applies to `s.run()`. It is
+potentially risky to run commands passed for example by user input:
 ```js
 function curlUnsafe(urlToDownload){ return s.run('curl ' + urlToDownload); }
-curlUnsafe('https://some/url ; rm -rf $HOME'); //=> curl https://some/url ; rm -rf $HOME
+curlUnsafe('https://some/url ; rm -rf $HOME');
+//=> curl https://some/url ; rm -rf $HOME
 ```
 Therefore, `nodejsscript`s `s.run()` provide way to escapes untrusted parameters:
 ```js
 function curl(url){ return s.run("curl ::url::", { url }); }
-curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'
+curl('https://some/url ; rm -rf $HOME');
+//=> curl 'https://some/url ; rm -rf $HOME'
 ```
 …you can also use as template function (but without command specific options):
 ```js
 function curl(url){ return s.run`curl ${url}`; }
-curl('https://some/url ; rm -rf $HOME'); //=> curl 'https://some/url ; rm -rf $HOME'
+curl('https://some/url ; rm -rf $HOME');
+//=> curl 'https://some/url ; rm -rf $HOME'
 ```
 
-…*Note: The ['xargs()'](../interfaces/s.XargsFunction.md) by default also escapes piped strings.*
+…*Note: The ['xargs()'](../interfaces/s.XargsFunction.md) by default also
+escapes piped strings.*
 
-*…Note 2: `s.run(…cmd, …vars)` is also helpful for escaping parameters passed as variables (e.g. arrays).*
+*…Note 2: `s.run(…cmd, …vars)` is also helpful for escaping parameters passed
+as variables (e.g. arrays).*
 
-*…Note 3: ShellJS also provides `s.exec`, but `s.run` should be preferred way to execute commands.*
+*…Note 3: ShellJS also provides `s.exec`, but `s.run` should be preferred way
+to execute commands.*
 
 **Glob injection (all commands)**: Most ShellJS commands support [glob](https://github.com/isaacs/node-glob) expansion,
 expanding wildcards such as `*` to match files. While this is very powerful,
@@ -336,5 +364,5 @@ echo(s.grep("name", "package.json"));
 - [Contributor Covenant Code of Conduct](./CODE_OF_CONDUCT.md)
 - [How to contribute](./CONTRIBUTING.md)
 
-[^ORnpm]: Alternatively `curl -sL install-node.vercel.app/16.13.0 | bash`
+[^ORnpm]: Alternatively `curl -sL install-node.vercel.app/20 | bash`
 [^ORnjs]: Or: `npm install https://github.com/jaandrle/nodejsscript --global`
