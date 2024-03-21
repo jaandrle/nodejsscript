@@ -201,11 +201,11 @@ This is very similar to `.bashrc` file, but for nodejsscript.
 </details>
 <!-- #region --><details> <summary><code>njs</code> alias for <code>nodejsscript</code></summary>
 
-You can use `njs` instead of `nodejsscript`, so for use less verbose syntax
+You can use `njs` instead of `nodejsscript`, so see less verbose syntax:
 
 - `njs -e`/`njs -p`
 - `njs --inspect`
-- `njs`/`njs --interactive`
+- `njs`/`njs -i`/`njs --interactive`
 - `njs --completion`
 
 <!-- #endregion -->
@@ -244,14 +244,32 @@ import { randomUUID } from "node:crypto";
 
 <!-- #endregion -->
 </details>
+<!-- #region --><details> <summary><code>nodejsscript --global-jsconfig</code> <em>(experimental helper for developing)</em></summary>
+
+```bash
+nodejsscript --global-jsconfig add script_file
+```
+…this creates `jsconfig.json` in current working directory with `include`
+property containing `script_file` and current path to the `nodejsscript`
+to enable proper suggestions in IDEs (and type checking). Tested for
+VSCode and Vim with [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim).
+
+You don’t need this hack if you use `nodejsscript` in your project locally.
+
+<!-- #endregion -->
+</details>
 
 ## Quick links/info
 - migration from *0.9.\**: see [API changes 0.9 → 1.0](https://github.com/jaandrle/nodejsscript/pull/32)
 - migration from *0.8.\**: see [API changes 0.8 → 0.9](https://github.com/jaandrle/nodejsscript/blob/e9c4d9d/README.md#api-changes-08--09)
+- [migration from `zx`](#migration-from-zx)
 - [Ideas (for new features)](https://github.com/jaandrle/nodejsscript/discussions/categories/ideas)
+- Examples: [examples folder](./examples) or [Show And Tell · Discussions](https://github.com/jaandrle/nodejsscript/discussions/categories/show-and-tell)
+- [Security guidelines](#security-guidelines) — use `s.run`/`s.runA`, watch out globbing
 - [Contribute](#contribute)
+- Getting started ↙ — installation and first steps (usage)
 
-## Getting Started
+## Getting started
 One-paragraph guide: install npm package
 `npm install nodejsscript --location=global`, create executable script file
 `touch script.mjs && chmod +x script.mjs` with shebang
@@ -286,6 +304,7 @@ Or via the `nodejsscript` executable:
 ```bash
 nodejsscript ./script.mjs
 ```
+- - -
 
 <!-- #region --><details> <summary>Alternatively when installed locally</summary>
 
@@ -299,9 +318,12 @@ npx nodejsscript ./script.mjs
 <!-- #endregion -->
 </details>
 
+- - -
+
 All function (`shelljs`, `fetch`, …) are registered as global
-namespaces/functions: … *The entry point for documentation of all **Public**
-items is in the* [**docs/**](./docs/README.md).
+namespaces/functions: … **see [Goods](#goods)** or full
+*documentation generated from type definitions (focus on **Public**
+items)*: [**docs/**](./docs/README.md).
 
 ## Security guidelines
 **`run()`/`runA()` command injection**: this advice applies to
@@ -343,12 +365,6 @@ Keep in mind that you can always turn off this for next command by using:
 ```js
 s.$("-g").rm("*.txt");
 ```
-
-## Helper(s) for developing
-You can create `jsconfig.json` to help your editor provide proper suggestions.
-As editor you can use VSCode or Vim with for example [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim).
-NodeJSScript provides `nodejsscript --global-jsconfig add script_file` to
-help generate `jsconfig.json`.
 
 ## Migration from `zx`
 The `runA` is almost identical to `$`:
