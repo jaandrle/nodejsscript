@@ -24,7 +24,7 @@ pipe( $.xdg.temp, s.mkdir )("foo bar");
 Open ‘▸’ sections for quick overview and/or navigate to link(s) for more detailed
 information and documentation.
 
-<!-- #region --><details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <i>(unix shell-like commands in JavaScript)</i></summary>
+<!-- #region --><details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <em>(unix shell-like commands in JavaScript)</em></summary>
 
 Contains functions from [shelljs/shelljs](https://github.com/shelljs/shelljs) library mimic the bash utilities
 and some additional added by nodejsscript. Typically `s.cat`/`s.grep`/…,
@@ -37,7 +37,7 @@ to run other than builtin commands use `s.run`/`s.runA`.
 		<a href="./docs/modules/xdg_.xdg.md">$.xdg</a>,
 		…
 	)
-	namespace <i>(nodejsscript/cli related functions/variables)</i></summary>
+	namespace <em>(nodejsscript/cli related functions/variables)</em></summary>
 
 ```js
 // ls.mjs
@@ -124,7 +124,7 @@ These are supported in nodejsscript:
 <!-- #endregion -->
 </details>
 <!-- #region --><details> <summary><a href="./examples/eval_print.md"
-	><code>nodejsscript --eval</code>/<code>nodejsscript --print</code></a> <i>(quickly eval javascript code in terminal)</i></summary>
+	><code>nodejsscript --eval</code>/<code>nodejsscript --print</code></a> <em>(quickly eval javascript code in terminal)</em></summary>
 
 ```bash
 curl https://api.spacexdata.com/v4/launches/latest | \
@@ -142,7 +142,7 @@ Use to debug your script, similar to [`node inspect`](https://nodejs.org/api/deb
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><code>nodejsscript --interactive</code> <i>(REPL)</i></summary>
+<!-- #region --><details> <summary><code>nodejsscript --interactive</code> <em>(REPL)</em></summary>
 
 Use to run [REPL, similar to `node`/`node --interactive`/`node -i`](https://nodejs.org/en/learn/command-line/how-to-use-the-nodejs-repl).
 
@@ -158,7 +158,7 @@ REPL supports tab-completion (also for folders and files).
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><code>nodejsscript --completion</code> <i>(bash completions for nodejsscript and scripts)</i></summary>
+<!-- #region --><details> <summary><code>nodejsscript --completion</code> <em>(bash completions for nodejsscript and scripts)</em></summary>
 
 - provide shell completion for nodejsscript and scripts written using
   nodejsscript (**using `$.api()`**)
@@ -179,7 +179,7 @@ REPL supports tab-completion (also for folders and files).
 <!-- #endregion -->
 </details>
 <!-- #region --><details> <summary><a href="./examples/nodejsscriptrc.md"
-	><code>~/.config/nodejsscript/nodejsscriptrc.mjs</code></a> <i>(<code>.bashrc</code> for nodejsscript)</i></summary>
+	><code>~/.config/nodejsscript/nodejsscriptrc.mjs</code></a> <em>(<code>.bashrc</code> for nodejsscript)</em></summary>
 
 ```js
 //nodejsscriptrc.mjs
@@ -218,6 +218,29 @@ You can use `njs` instead of `nodejsscript`, so for use less verbose syntax
 ```
 You can install/use `nodejsscript` for specific project, for example
 in combination with [jaandrle/bs: The simplest possible build system using executables](https://github.com/jaandrle/bs).
+
+<!-- #endregion -->
+</details>
+<!-- #region --><details> <summary><code>import … from "node:…";</code> <em>(node JS built-ins for <strong>“free”</strong>)</em></summary>
+
+```js
+import { setTimeout } from "node:timers/promises";
+import { join, resolve } from "node:path";
+
+//.current file URL
+import.meta.url;
+//.URL to path
+import { fileURLToPath } from "node:url";
+const file_path= fileURLToPath(import.meta.url);
+// URL is supported! (see relative reading)
+s.cat(new URL('relative_file', import.meta.url));
+
+//.crypto utils
+import { randomUUID } from "node:crypto";
+
+// …
+```
+…and more, see for example [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
 
 <!-- #endregion -->
 </details>
@@ -279,26 +302,6 @@ npx nodejsscript ./script.mjs
 All function (`shelljs`, `fetch`, …) are registered as global
 namespaces/functions: … *The entry point for documentation of all **Public**
 items is in the* [**docs/**](./docs/README.md).
-
-Note that there are also built-in `'node:*'` modules:
-```js
-import { setTimeout } from "node:timers/promises";
-import { join, resolve } from "node:path";
-
-//.current file URL
-import.meta.url;
-//.URL to path
-import { fileURLToPath } from "node:url";
-const file_path= fileURLToPath(import.meta.url);
-// URL is supported! (see relative reading)
-s.cat(new URL('relative_file', import.meta.url));
-
-//.crypto utils
-import { randomUUID } from "node:crypto";
-
-// …
-```
-…and more, see for example [Node.js v17.9.1 Documentation](https://nodejs.org/docs/latest-v17.x/api/documentation.html#stability-overview).
 
 ## Security guidelines
 **`run()`/`runA()` command injection**: this advice applies to

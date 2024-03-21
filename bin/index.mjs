@@ -18,9 +18,11 @@ const config_env= ($.env.NODEJSSCRIPTOPTS || "").split(":")
 	}, { rc: true });
 process.on('uncaughtException', printError);
 (async function main(){
-	const candidate= argv.splice(2, 1)[0] || "--interactive";
+	let candidate= argv.splice(2, 1)[0] || "--interactive";
 	let filepath_tmp;
-	if(candidate[0]==="-")
+	if(candidate==="--") // TODO: indicate the end of njs options
+		candidate= argv.splice(2, 1)[0];
+	else if(candidate[0]==="-")
 		filepath_tmp= await handleBuildin(candidate);
 	const is_tmp= filepath_tmp !== undefined; // ≡is eval
 

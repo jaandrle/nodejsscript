@@ -5,27 +5,46 @@
 This namespace refers to `shelljs`, for docs visits [shelljs/shelljs](https://github.com/shelljs/shelljs).
 You can pipe commands when make sense by chaining, see [**Pipes**](https://github.com/shelljs/shelljs#pipes).
 
-Available commands: [cat](https://github.com/shelljs/shelljs#catoptions-file--file-) · [cd](https://github.com/shelljs/shelljs#cddir) · [chmod](https://github.com/shelljs/shelljs#chmodoptions-octal_mode--octal_string-file) · [cp](https://github.com/shelljs/shelljs#cpoptions-source--source--dest)
- · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n) · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n) · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n)
- · [find](https://github.com/shelljs/shelljs#findpath--path-) · [grep](https://github.com/shelljs/shelljs#grepoptions-regex_filter-file--file-) · [head](https://github.com/shelljs/shelljs#head-n-num-file--file-) · [ln](https://github.com/shelljs/shelljs#lnoptions-source-dest)
- · [ls](https://github.com/shelljs/shelljs#lsoptions-path-) · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-) · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest) · [pwd](https://github.com/shelljs/shelljs#pwd)
- · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
- · [tail](https://github.com/shelljs/shelljs#tail-n-num-file--file-) · [test](https://github.com/shelljs/shelljs#testexpression) · [touch](https://github.com/shelljs/shelljs#touchoptions-file--file-)
- · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output) · [which](https://github.com/shelljs/shelljs#whichcommand) · [error](https://github.com/shelljs/shelljs#error) · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
+Available commands:
+   [cat](https://github.com/shelljs/shelljs#catoptions-file--file-)
+ · [cd](https://github.com/shelljs/shelljs#cddir)
+ · [chmod](https://github.com/shelljs/shelljs#chmodoptions-octal_mode--octal_string-file)
+ · [cp](https://github.com/shelljs/shelljs#cpoptions-source--source--dest)
+ · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n)
+ · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n)
+ · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n)
+ · [find](https://github.com/shelljs/shelljs#findpath--path-)
+ · [grep](https://github.com/shelljs/shelljs#grepoptions-regex_filter-file--file-)
+ · [head](https://github.com/shelljs/shelljs#head-n-num-file--file-)
+ · [ln](https://github.com/shelljs/shelljs#lnoptions-source-dest)
+ · [ls](https://github.com/shelljs/shelljs#lsoptions-path-)
+ · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-)
+ · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest)
+ · [pwd](https://github.com/shelljs/shelljs#pwd)
+ · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-)
+ · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-)
+ · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
+ · [tail](https://github.com/shelljs/shelljs#tail-n-num-file--file-)
+ · [test](https://github.com/shelljs/shelljs#testexpression)
+ · [touch](https://github.com/shelljs/shelljs#touchoptions-file--file-)
+ · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output)
+ · [which](https://github.com/shelljs/shelljs#whichcommand)
+ · [error](https://github.com/shelljs/shelljs#error)
+ · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
 
 ```js
 s.cat("./package.json").grep("version");
 ```
 … this library adds:
-- ['run()'](../interfaces/s.RunFunction.md)
-- ['runA()'](../interfaces/s.RunAsyncFunction.md)
+- ['run()'](s.md#run)
+- ['runA()'](s.md#runa)
 - ['xargs()'](../interfaces/s.XargsFunction.md)
 - ['$()'](../interfaces/s.DollarFunction.md)
 - ['read()'](s.md#read)
 
 **Changes/recommenctions:**
 - use [echo](s.md#echo) instead of `s.echo`, this was changed to `s.ShellString` for easy file writing without logging to console `s.echo("Data").to("file.txt")`.
-- use ['run()'](../interfaces/s.RunFunction.md)/['runA()'](../interfaces/s.RunAsyncFunction.md) instead of `s.exec`, because of options for passing arguments in secure way.
+- use ['run()'](s.md#run)/['runA()'](s.md#runa) instead of `s.exec`, because of options for passing arguments in secure way.
 - use ['$()'](../interfaces/s.DollarFunction.md) instead of `s.set()`, because `$()` allows chaining (you can also access config with [$](s.md#$)s `.is_*` keys).
 - use [xdg](.md#xdg)`.temp` instead of `s.tempdir()` – the `$.xdg.*` provides more paths than just temp directory.
 
@@ -201,8 +220,36 @@ ___
 
 ▸ **run**(`command`, `vars?`): [`ShellString`](s.md#shellstring)
 
-Executes the given command synchronously, because of that it does not know whether it will be piped,
-so by default prints the command output. You can off that by prepend `….$().run`.
+You can use this function to run executable commands not listed
+in the shelljs (`s` namespace). For example (the simplest one):
+```js
+s.run`git branch --show-current`;
+```
+…you can also pass variables and function automatically escapes
+them.
+```js
+const var= "Hello World";
+s.run`echo ${var}`;
+```
+…alternatively you can use classic function approach:
+```js
+s.run("echo ::var::", { var: "Hello World" });
+```
+…this way you can also pass additional options:
+```js
+s.run("echo 'HI'", null, { cwd: "../" });
+s.run("echo ::var::", { var: "Hi" }, { cwd: "../" });
+```
+Internally the [`child_process.execFileSync`](https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback)
+is used to execute the command, so use any of the options
+supported by that function.
+
+By default the function prints the output of the command
+to stdout. You can use `$.is_silent= false` or [$](s.md#$):
+```js
+const branch= s.$().run`git branch --show-current`.stdout;
+echo(branch);
+```
 
 #### Parameters
 
@@ -219,8 +266,36 @@ Returns [ShellString](s.md#shellstring).
 
 ▸ **run**(`command`, `vars`, `options`): [`ShellString`](s.md#shellstring)
 
-Executes the given command synchronously, because of that it does not know whether it will be piped,
-so by default prints the command output. You can off that by prepend `….$().run`.
+You can use this function to run executable commands not listed
+in the shelljs (`s` namespace). For example (the simplest one):
+```js
+s.run`git branch --show-current`;
+```
+…you can also pass variables and function automatically escapes
+them.
+```js
+const var= "Hello World";
+s.run`echo ${var}`;
+```
+…alternatively you can use classic function approach:
+```js
+s.run("echo ::var::", { var: "Hello World" });
+```
+…this way you can also pass additional options:
+```js
+s.run("echo 'HI'", null, { cwd: "../" });
+s.run("echo ::var::", { var: "Hi" }, { cwd: "../" });
+```
+Internally the [`child_process.execFileSync`](https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback)
+is used to execute the command, so use any of the options
+supported by that function.
+
+By default the function prints the output of the command
+to stdout. You can use `$.is_silent= false` or [$](s.md#$):
+```js
+const branch= s.$().run`git branch --show-current`.stdout;
+echo(branch);
+```
 
 #### Parameters
 
@@ -242,20 +317,27 @@ ___
 
 ▸ **runA**(`command`, `vars`): [`ProcessPromise`](../classes/s.ProcessPromise.md)
 
-Executes the given command asynchronously.
+Executes the given command asynchronously, the function arguments
+are the same as for [run](s.md#run) function except that the
+[`child_process.spawn`](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options)
+is used internally.
 ```js
-s.$().runA("git branch --show-current")
-.pipe(echo.bind(echo, "success:"))
-.catch(echo.bind(echo, "error:"))
+s.runA`git branch --show-current`;
+s.runA`echa ${"Hello World"}`;
+s.runA("echo ::var::", { var: "Hello World" });
+s.runA("echo 'HI'", null, { cwd: "../" });
+```
 
-const ch= s.$().runA("git branch --show-current");
-ch.child.on("data", echo);
-
+The function returns a [ProcessPromise](../classes/s.ProcessPromise.md) object.
+```js
 const result_a= await s.$().runA("git branch --show-current");
 echo(result_a.toString());
 
 const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
 echo(result_b.toString());
+
+const ch= s.$().runA`git branch --show-current`;
+ch.child.on("data", echo);
 ```
 
 #### Parameters
@@ -273,20 +355,27 @@ Returns [ProcessPromise](../classes/s.ProcessPromise.md).
 
 ▸ **runA**(`command`, `vars`, `options`): [`ProcessPromise`](../classes/s.ProcessPromise.md)
 
-Executes the given command asynchronously.
+Executes the given command asynchronously, the function arguments
+are the same as for [run](s.md#run) function except that the
+[`child_process.spawn`](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options)
+is used internally.
 ```js
-s.$().runA("git branch --show-current")
-.pipe(echo.bind(echo, "success:"))
-.catch(echo.bind(echo, "error:"))
+s.runA`git branch --show-current`;
+s.runA`echa ${"Hello World"}`;
+s.runA("echo ::var::", { var: "Hello World" });
+s.runA("echo 'HI'", null, { cwd: "../" });
+```
 
-const ch= s.$().runA("git branch --show-current");
-ch.child.on("data", echo);
-
+The function returns a [ProcessPromise](../classes/s.ProcessPromise.md) object.
+```js
 const result_a= await s.$().runA("git branch --show-current");
 echo(result_a.toString());
 
 const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
 echo(result_b.toString());
+
+const ch= s.$().runA`git branch --show-current`;
+ch.child.on("data", echo);
 ```
 
 #### Parameters
@@ -1880,6 +1969,14 @@ Filter adjacent matching lines from input.
 ### RunOptions
 
 Ƭ **RunOptions**: [`ExecOptions`](../interfaces/s.ExecOptions.md) & { `needle?`: `RegExp`  }
+
+Use options as for:
+
+- [`child_process.spawn`](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options)
+- [`child_process.execFileSync`](https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback)
+
+…in addition, use `needle` to replace `::var::` in `command` with actual
+`var` value.
 
 ___
 

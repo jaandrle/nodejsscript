@@ -73,7 +73,15 @@ export interface DollarFunction{
 }
 /* man-end */
 export const $: DollarFunction;
-
+/**
+ * Use options as for:
+ *
+ * - [`child_process.spawn`](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options)
+ * - [`child_process.execFileSync`](https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback)
+ *
+ * …in addition, use `needle` to replace `::var::` in `command` with actual
+ * `var` value.
+ * */
 export type RunOptions=  ExecOptions & {
 	/**
 	 * Pattern in `command` to be replacced by variables.
@@ -84,41 +92,12 @@ export type RunOptions=  ExecOptions & {
 }
 export interface RunFunction {
 	/**
-	 * Executes the given command synchronously, because of that it does not know whether it will be piped,
-	 * so by default prints the command output. You can off that by prepend `….$().run`.
-	 *
-	 * *Synchronous simple examples*:
-	 * ```js
-	 * s.run("node --version");
-	 * const version= s.$().run("node --version").stdout;
-	 * ```
-	 * *Passing variables*:
-	 * ```js
-	 * const branch= s.$().run("git branch --show-current").stdout;
-	 * s.run("echo ::branch::", { branch });
-	 * ```
-	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
 	 * @return		  Returns an object containing the return code and output as {@link ShellString}.
 	 */
 	(command: string, vars?: {}): ShellString;
-
-/* man-start
- * ### s.run`cmd`
- * ### s.run(cmd[, vars][, options])
- * */
-
 	/**
-	 * Executes the given command synchronously, because of that it does not know whether it will be piped,
-	 * so by default prints the command output. You can off that by prepend `….$().run`.
-	 *
-	 * *Passing variables*:
-	 * ```js
-	 * const branch= s.$().run("git branch --show-current").stdout;
-	 * s.run("echo ::branch::", { branch });
-	 * ```
-	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
 	 * @param options Silence and options.
@@ -126,17 +105,6 @@ export interface RunFunction {
 	 */
 	(command: string, vars: {} | false, options: RunOptions): ShellString;
 }
-/*
- * another examples:
- * ```js
- * s.run`echo ${"Hi"}`;
- * s.run("echo 'HI'");
- * s.run("echo 'HI'", null, { cwd: "../" });
- * s.run("echo ::var::", { var: "Hi" });
- * s.run("echo ::var::", { var: "Hi" }, { cwd: "../" });
- * ```
- * */
-/* man-end */
 import { Readable, Writable } from 'node:stream';
 import { inspect } from 'node:util';
 import { ChildProcess, StdioNull, StdioPipe } from 'node:child_process';
@@ -163,44 +131,53 @@ export declare class ProcessPromise extends Promise<ProcessOutput> {
 }
 export interface RunAsyncFunction {
 	/**
-	 * Executes the given command asynchronously.
-	 * ```js
-	 * s.$().runA("git branch --show-current")
-	 * .then(echo.bind(echo, "success:"))
-	 * .catch(echo.bind(echo, "error:"));
-	 *
-	 * s.$().runA("npm list")
-	 * .pipe(s=> echo(s.grep("types")))
-	 * .catch(echo.bind(echo, "error:"));
-	 *
-	 * const ch= s.$().runA("git branch --show-current");
-	 * ch.child.on("data", echo);
-	 *
-	 * const result_a= await s.$().runA("git branch --show-current");
-	 * echo(result_a.toString());
-	 * ```
-	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
 	 */
 	(command: string, vars: {} | false): ProcessPromise;
 
 	/**
-	 * Executes the given command asynchronously.
-	 * ```js
-	 * const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
-	 * echo(result_b.toString());
-	 * ```
-	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
 	 * @param options Silence and options.
 	 */
 	(command: string, vars: {} | false, options: RunOptions): ProcessPromise;
 }
+/* man-start
+ * ### s.run`cmd`
+ * ### s.run(cmd[, vars][, options])
+ * */
 /**
- * Executes the given command synchronously, because of that it does not know whether it will be piped,
- * so by default prints the command output. You can off that by prepend `….$().run`.
+ * You can use this function to run executable commands not listed
+ * in the shelljs (`s` namespace). For example (the simplest one):
+ * ```js
+ * s.run`git branch --show-current`;
+ * ```
+ * …you can also pass variables and function automatically escapes
+ * them.
+ * ```js
+ * const var= "Hello World";
+ * s.run`echo ${var}`;
+ * ```
+ * …alternatively you can use classic function approach:
+ * ```js
+ * s.run("echo ::var::", { var: "Hello World" });
+ * ```
+ * …this way you can also pass additional options:
+ * ```js
+ * s.run("echo 'HI'", null, { cwd: "../" });
+ * s.run("echo ::var::", { var: "Hi" }, { cwd: "../" });
+ * ```
+ * Internally the [`child_process.execFileSync`](https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback)
+ * is used to execute the command, so use any of the options
+ * supported by that function.
+ *
+ * By default the function prints the output of the command
+ * to stdout. You can use `$.is_silent= false` or {@link s.$}:
+ * ```js
+ * const branch= s.$().run`git branch --show-current`.stdout;
+ * echo(branch);
+ * ```
  *
  * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
  * @param vars Arguments for `command`.
@@ -208,25 +185,33 @@ export interface RunAsyncFunction {
  * @return Returns {@link ShellString}.
  */
 export const run: RunFunction;
+/* man-end */
 /* man-start
  * ### s.runA`cmd`
  * ### s.runA(cmd[, vars][, options])
  * */
 /**
- * Executes the given command asynchronously.
+ * Executes the given command asynchronously, the function arguments
+ * are the same as for {@link s.run} function except that the
+ * [`child_process.spawn`](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options)
+ * is used internally.
  * ```js
- * s.$().runA("git branch --show-current")
- * .pipe(echo.bind(echo, "success:"))
- * .catch(echo.bind(echo, "error:"))
+ * s.runA`git branch --show-current`;
+ * s.runA`echa ${"Hello World"}`;
+ * s.runA("echo ::var::", { var: "Hello World" });
+ * s.runA("echo 'HI'", null, { cwd: "../" });
+ * ```
  *
- * const ch= s.$().runA("git branch --show-current");
- * ch.child.on("data", echo);
- *
+ * The function returns a {@link ProcessPromise} object.
+ * ```js
  * const result_a= await s.$().runA("git branch --show-current");
  * echo(result_a.toString());
  *
  * const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
  * echo(result_b.toString());
+ *
+ * const ch= s.$().runA`git branch --show-current`;
+ * ch.child.on("data", echo);
  * ```
  *
  * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.

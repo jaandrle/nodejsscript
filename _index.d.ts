@@ -31,27 +31,46 @@ export function pipe(...funs: Function[]): (input: any)=> any;
  * This namespace refers to `shelljs`, for docs visits [shelljs/shelljs](https://github.com/shelljs/shelljs).
  * You can pipe commands when make sense by chaining, see [**Pipes**](https://github.com/shelljs/shelljs#pipes).
  * 
- * Available commands: [cat](https://github.com/shelljs/shelljs#catoptions-file--file-) · [cd](https://github.com/shelljs/shelljs#cddir) · [chmod](https://github.com/shelljs/shelljs#chmodoptions-octal_mode--octal_string-file) · [cp](https://github.com/shelljs/shelljs#cpoptions-source--source--dest)
- *  · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n) · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n) · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n)
- *  · [find](https://github.com/shelljs/shelljs#findpath--path-) · [grep](https://github.com/shelljs/shelljs#grepoptions-regex_filter-file--file-) · [head](https://github.com/shelljs/shelljs#head-n-num-file--file-) · [ln](https://github.com/shelljs/shelljs#lnoptions-source-dest)
- *  · [ls](https://github.com/shelljs/shelljs#lsoptions-path-) · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-) · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest) · [pwd](https://github.com/shelljs/shelljs#pwd)
- *  · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-) · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-) · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
- *  · [tail](https://github.com/shelljs/shelljs#tail-n-num-file--file-) · [test](https://github.com/shelljs/shelljs#testexpression) · [touch](https://github.com/shelljs/shelljs#touchoptions-file--file-)
- *  · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output) · [which](https://github.com/shelljs/shelljs#whichcommand) · [error](https://github.com/shelljs/shelljs#error) · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
+ * Available commands:
+ *    [cat](https://github.com/shelljs/shelljs#catoptions-file--file-)
+ *  · [cd](https://github.com/shelljs/shelljs#cddir)
+ *  · [chmod](https://github.com/shelljs/shelljs#chmodoptions-octal_mode--octal_string-file)
+ *  · [cp](https://github.com/shelljs/shelljs#cpoptions-source--source--dest)
+ *  · [pushd](https://github.com/shelljs/shelljs#pushdoptions-dir---n--n)
+ *  · [popd](https://github.com/shelljs/shelljs#popdoptions--n--n)
+ *  · [dirs](https://github.com/shelljs/shelljs#dirsoptions--n---n)
+ *  · [find](https://github.com/shelljs/shelljs#findpath--path-)
+ *  · [grep](https://github.com/shelljs/shelljs#grepoptions-regex_filter-file--file-)
+ *  · [head](https://github.com/shelljs/shelljs#head-n-num-file--file-)
+ *  · [ln](https://github.com/shelljs/shelljs#lnoptions-source-dest)
+ *  · [ls](https://github.com/shelljs/shelljs#lsoptions-path-)
+ *  · [mkdir](https://github.com/shelljs/shelljs#mkdiroptions-dir--dir-)
+ *  · [mv](https://github.com/shelljs/shelljs#mvoptions--source--source--dest)
+ *  · [pwd](https://github.com/shelljs/shelljs#pwd)
+ *  · [rm](https://github.com/shelljs/shelljs#rmoptions-file--file-)
+ *  · [sed](https://github.com/shelljs/shelljs#sedoptions-search_regex-replacement-file--file-)
+ *  · [sort](https://github.com/shelljs/shelljs#sortoptions-file--file-)
+ *  · [tail](https://github.com/shelljs/shelljs#tail-n-num-file--file-)
+ *  · [test](https://github.com/shelljs/shelljs#testexpression)
+ *  · [touch](https://github.com/shelljs/shelljs#touchoptions-file--file-)
+ *  · [uniq](https://github.com/shelljs/shelljs#uniqoptions-input-output)
+ *  · [which](https://github.com/shelljs/shelljs#whichcommand)
+ *  · [error](https://github.com/shelljs/shelljs#error)
+ *  · [errorCode](https://github.com/shelljs/shelljs#errorcode) 
  *
  * ```js
  * s.cat("./package.json").grep("version");
  * ```
  * … this library adds:
- * - {@link s.RunFunction 'run()'}
- * - {@link s.RunAsyncFunction 'runA()'}
+ * - {@link s.run 'run()'}
+ * - {@link s.runA 'runA()'}
  * - {@link s.XargsFunction 'xargs()'}
  * - {@link s.DollarFunction '$()'}
  * - {@link s.read 'read()'}
  *
  * **Changes/recommenctions:**
  * - use {@link echo} instead of `s.echo`, this was changed to `s.ShellString` for easy file writing without logging to console `s.echo("Data").to("file.txt")`.
- * - use {@link s.RunFunction 'run()'}/{@link s.RunAsyncFunction 'runA()'} instead of `s.exec`, because of options for passing arguments in secure way.
+ * - use {@link s.run 'run()'}/{@link s.runA 'runA()'} instead of `s.exec`, because of options for passing arguments in secure way.
  * - use {@link s.DollarFunction '$()'} instead of `s.set()`, because `$()` allows chaining (you can also access config with {@link $}s `.is_*` keys).
  * - use {@link $.xdg}`.temp` instead of `s.tempdir()` – the `$.xdg.*` provides more paths than just temp directory.
  * @category Public

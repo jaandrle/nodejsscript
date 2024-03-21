@@ -574,47 +574,66 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 ### s.run`cmd`
 ### s.run(cmd[, vars][, options])
 
-Executes the given command synchronously, because of that it does not know whether it will be piped,
-so by default prints the command output. You can off that by prepend `….$().run`.
-
-*Passing variables*:
+You can use this function to run executable commands not listed
+in the shelljs (`s` namespace). For example (the simplest one):
 ```js
-const branch= s.$().run("git branch --show-current").stdout;
-s.run("echo ::branch::", { branch });
+s.run`git branch --show-current`;
+```
+…you can also pass variables and function automatically escapes
+them.
+```js
+const var= "Hello World";
+s.run`echo ${var}`;
+```
+…alternatively you can use classic function approach:
+```js
+s.run("echo ::var::", { var: "Hello World" });
+```
+…this way you can also pass additional options:
+```js
+s.run("echo 'HI'", null, { cwd: "../" });
+s.run("echo ::var::", { var: "Hi" }, { cwd: "../" });
+```
+Internally the [`child_process.execFileSync`](https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback)
+is used to execute the command, so use any of the options
+supported by that function.
+
+By default the function prints the output of the command
+to stdout. You can use `$.is_silent= false` or {@link s.$}:
+```js
+const branch= s.$().run`git branch --show-current`.stdout;
+echo(branch);
 ```
 
 @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 @param vars Arguments for `command`.
-@param options Silence and options.
-@return		  Returns an object containing the return code and output as {@link ShellString}.
-
-another examples:
-```js
-s.run`echo ${"Hi"}`;
-s.run("echo 'HI'");
-s.run("echo 'HI'", null, { cwd: "../" });
-s.run("echo ::var::", { var: "Hi" });
-s.run("echo ::var::", { var: "Hi" }, { cwd: "../" });
-```
-
+@param options Silence and synchronous options.
+@return Returns {@link ShellString}.
 
 ### s.runA`cmd`
 ### s.runA(cmd[, vars][, options])
 
-Executes the given command asynchronously.
+Executes the given command asynchronously, the function arguments
+are the same as for {@link s.run} function except that the
+[`child_process.spawn`](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options)
+is used internally.
 ```js
-s.$().runA("git branch --show-current")
-.pipe(echo.bind(echo, "success:"))
-.catch(echo.bind(echo, "error:"))
+s.runA`git branch --show-current`;
+s.runA`echa ${"Hello World"}`;
+s.runA("echo ::var::", { var: "Hello World" });
+s.runA("echo 'HI'", null, { cwd: "../" });
+```
 
-const ch= s.$().runA("git branch --show-current");
-ch.child.on("data", echo);
-
+The function returns a {@link ProcessPromise} object.
+```js
 const result_a= await s.$().runA("git branch --show-current");
 echo(result_a.toString());
 
 const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
 echo(result_b.toString());
+
+const ch= s.$().runA`git branch --show-current`;
+ch.child.on("data", echo);
 ```
 
 @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
