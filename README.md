@@ -1,4 +1,5 @@
 # NodeJS Script – Easy cross-platform “one–file” scripting
+
 This package serves as an alternative to [google/zx](https://github.com/google/zx) for example. The key difference
 is to provide Unix shell commands in a cross-platform compatible way and usable
 inside JavaScript.  This is primarily achieved by using [shelljs/shelljs](https://github.com/shelljs/shelljs) library.
@@ -263,9 +264,10 @@ You don’t need this hack if you use `nodejsscript` in your project locally.
 - migration from *0.9.\**: see [API changes 0.9 → 1.0](https://github.com/jaandrle/nodejsscript/pull/32)
 - migration from *0.8.\**: see [API changes 0.8 → 0.9](https://github.com/jaandrle/nodejsscript/blob/e9c4d9d/README.md#api-changes-08--09)
 - [migration from `zx`](#migration-from-zx)
+- [**You (may) not need to use `nodejsscript`**](./examples/no-nodejsscript.md)
 - [Ideas (for new features)](https://github.com/jaandrle/nodejsscript/discussions/categories/ideas)
 - Examples: [examples folder](./examples) or [Show And Tell · Discussions](https://github.com/jaandrle/nodejsscript/discussions/categories/show-and-tell)
-- [Security guidelines](#security-guidelines) — use `s.run`/`s.runA`, watch out globbing
+- **[Security guidelines](#security-guidelines) — “use `s.run`/`s.runA`, watch out globbing”**
 - [Contribute](#contribute)
 - Getting started ↙ — installation and first steps (usage)
 
@@ -380,6 +382,7 @@ echo(s.grep("name", "package.json"));
 ```
 
 ## Contribute
+- [![git3moji–v1.0](https://img.shields.io/badge/git3moji–v1.0-%E2%9A%A1%EF%B8%8F%F0%9F%90%9B%F0%9F%93%BA%F0%9F%91%AE%F0%9F%94%A4-fffad8.svg?style=flat-square)](https://robinpokorny.github.io/git3moji/)
 - [Contributor Covenant Code of Conduct](./CODE_OF_CONDUCT.md)
 - [How to contribute](./CONTRIBUTING.md)
 
