@@ -50,6 +50,32 @@ apt list --installed | nodejsscript -p '$.stdin.lines().filter(l=> l.indexOf("li
 # you can also use
 apt list --installed | nodejsscript -p '$.noawk.filter(l=> l.indexOf("libreoffice")!==-1).length'
 ```
+## Custom error handler/printer
+You can define your own error handler which can print the error message
+into the console.
+
+```js
+/** Custom uncaughtException function */
+export function uncaughtException(e){
+	echo("There was an error:", e);
+};
+```
+
+## Targets
+You can specify in which kind of nodejsscript invocation you want to use
+your definitions:
+
+```js
+//nodejsscriptrc.mjs
+// … my code evaluated for each nodejsscript invocation
+
+/** Place for custom code when script starts */
+export function onscript(){}
+/** Place for custom code when REPL starts (`--interactive`) */
+export function onrepl(){}
+/** Place for custom code when eval starts (`--eval`/`--print`) */
+export function oneval(){}
+```
 
 ## Processing (modifications)
 You can use `norc` in environmental variable `NODEJSSCRIPTOPTS`, for example:
