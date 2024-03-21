@@ -3,6 +3,9 @@ You can define `nodejsscriptrc.mjs` file in your config location.
 That corresponds to [`$.xdg.config("nodejsscript")`](../docs/modules/xdg_.xdg.md#config) folder.
 In linux the full location should be `~/.config/nodejsscript/nodejsscriptrc.mjs`.
 
+Use `nodejsscript --help` to find out the location of
+the `nodejsscriptrc.mjs` file.
+
 ## Ideas
 This script corresponds to what the `.bashrc` if for bash. It is imported before
 requested script.

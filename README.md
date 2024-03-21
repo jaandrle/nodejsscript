@@ -197,6 +197,8 @@ export function oneval(){}
 ```
 
 This is very similar to `.bashrc` file, but for nodejsscript.
+Use `nodejsscript --help` to find out the location of
+the `nodejsscriptrc.mjs` file.
 
 <!-- #endregion -->
 </details>
