@@ -1,4 +1,4 @@
-import { ShellString, ExecOptions, ExecCallback } from "shelljs";
+import { ShellString, ShellArray, ShellReturnValue, ExecOptions, ExecCallback } from "shelljs";
 import child= require('child_process');
 export { child };
 export * from "shelljs";
@@ -257,7 +257,7 @@ export interface ReadOptions{
 export function read(options: ReadOptions): Promise<ShellString>;
 /* man-end */
 
-export interface ShellReturnValue{
+export interface ShellReturnValueNJS extends ShellReturnValue {
 	xargs: XargsFunction
 	$: DollarFunction,
 	run: RunFunction

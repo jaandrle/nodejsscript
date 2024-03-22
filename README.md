@@ -27,9 +27,29 @@ information and documentation.
 
 <!-- #region --><details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <em>(unix shell-like commands in JavaScript)</em></summary>
 
+```js
+s.ls().forEach(echo); // ShellArray
+s.cat("package.json").xargs(JSON.parse).trim(); // ShellString
+s.read().then(echo); // Promise<ShellString>
+s.runA`git branch --show-current`.then(echo); // Promise<ShellString>
+
+const { code, stdout, stderr } = s.run`git branch --show-current`; // ShellString
+```
+
 Contains functions from [shelljs/shelljs](https://github.com/shelljs/shelljs) library mimic the bash utilities
 and some additional added by nodejsscript. Typically `s.cat`/`s.grep`/…,
 to run other than builtin commands use `s.run`/`s.runA`.
+
+These functions returns `ShellArray`/`ShellString`/`Promise<ShellString>`,
+these types are union types of `string[]`/`string` with [`ShellReturnValueNJS`](./docs/interfaces/s.ShellReturnValueNJS.md).
+In simple terms, you can use it as `string[]`/`string`/`Promise<string>` or
+read the commad exit `code` and `stdout`/`stderr`. If it makes sence, you can
+pipe output to other shelljs commands. Special pipeing is `to`/`toEnd` for
+redirectiong output to the file.
+
+```js
+s.echo("Hello World!").to("hello.txt");
+```
 
 <!-- #endregion -->
 </details>

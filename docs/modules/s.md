@@ -99,7 +99,7 @@ s.cat("./package.json").grep("version");
 - [RunFunction](../interfaces/s.RunFunction.md)
 - [RunAsyncFunction](../interfaces/s.RunAsyncFunction.md)
 - [ReadOptions](../interfaces/s.ReadOptions.md)
-- [ShellReturnValue](../interfaces/s.ShellReturnValue.md)
+- [ShellReturnValueNJS](../interfaces/s.ShellReturnValueNJS.md)
 - [ListFunction](../interfaces/s.ListFunction.md)
 - [FindFunction](../interfaces/s.FindFunction.md)
 - [CopyFunction](../interfaces/s.CopyFunction.md)
@@ -117,6 +117,7 @@ s.cat("./package.json").grep("version");
 - [ExecFunction](../interfaces/s.ExecFunction.md)
 - [ExecOptions](../interfaces/s.ExecOptions.md)
 - [ExecOutputReturnValue](../interfaces/s.ExecOutputReturnValue.md)
+- [ShellReturnValue](../interfaces/s.ShellReturnValue.md)
 - [ShellStringConstructor](../interfaces/s.ShellStringConstructor.md)
 - [ChmodFunction](../interfaces/s.ChmodFunction.md)
 - [TouchOptionsArray](../interfaces/s.TouchOptionsArray.md)
@@ -2016,13 +2017,13 @@ ___
 
 ### ShellString
 
-Ƭ **ShellString**: `string` & `ShellReturnValue`
+Ƭ **ShellString**: `string` & [`ShellReturnValue`](../interfaces/s.ShellReturnValue.md)
 
 ___
 
 ### ShellArray
 
-Ƭ **ShellArray**: `string`[] & `ShellReturnValue`
+Ƭ **ShellArray**: `string`[] & [`ShellReturnValue`](../interfaces/s.ShellReturnValue.md)
 
 ___
 

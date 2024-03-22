@@ -17,7 +17,7 @@ const section= async (name, fn)=> {
 };
 
 await section("Generating documentation from `*.d.ts`...", () => {
-	const tds= s.$().run([
+	const tds= s.$("-fS").run([
 		"npx typedoc",
 		"_index.d.ts",
 		"--readme none",
