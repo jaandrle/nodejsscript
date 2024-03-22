@@ -6,24 +6,24 @@ export async function printUsage(name){
 	if(!name){
 		const [ n ]= info("name");
 		const { css, echoOption, echoHead }= await import("./styles.mjs");
-		await echoHead("--man <expression>");
+		await echoHead("--tldr <expression>");
 		echo("%cUse to get quick overview of nodejsscript commands and their usage.", css.T);
 		echo("%cUsage%c:", css.H);
-		echo(`%c${n} --man <namespace.>`, css.T);
-		echo(`%c${n} --man [namespace.]<function>`, css.T);
+		echo(`%c${n} --tldr <namespace.>`, css.T);
+		echo(`%c${n} --tldr [namespace.]<function>`, css.T);
 		echo("%cOption%c:", css.H);
 		echoOption("<namespace.>",
 			"Lists all commands in <namespace>");
 		echoOption("[namespace.]<function>",
 			"Prints usage of <function>");
 		echo("%cExamples%c:", css.H);
-		echo(`%c${n} --man s.`, css.T);
-		echo(`%c${n} --man s.cat`, css.T);
+		echo(`%c${n} --tldr s.`, css.T);
+		echo(`%c${n} --tldr s.cat`, css.T);
 		echo("%cNote%c:", css.H);
-		echo("%cYou can use this also in REPL with %c.man <expression>", css.T, css.code);
+		echo("%cYou can use this also in REPL with %c.tldr <expression>", css.T, css.code);
 		return 0;
 	}
-	const docs= s.cat(new URL("../man.md", import.meta.url));
+	const docs= s.cat(new URL("../tldr.md", import.meta.url));
 	if(name.endsWith(".")){
 		const candidates= docs.split("\n")
 			.filter(line=> line.startsWith("### "+name));
@@ -74,7 +74,7 @@ export async function printCliUsage(){
 	echoOption("--completion <...args>",
 		"register TAB completion for %c%s%c and your scripts "+more.text("args"),
 		css.n, css.unset, ...more.css, n);
-	echoOption("--man <expression>",
+	echoOption("--tldr <expression>",
 		"print quick usage for given command "+more.text("expression"), ...more.css);
 	echoOption("--global-jsconfig [add] <s>",
 		"woraround for type checking of non-package scripts");

@@ -8,15 +8,15 @@ export { xdg_ };
 import { read as ReadType } from './shelljs.d';
 
 export namespace Dollar{
-	/* man-start
+	/* tldr-start
 	 * ### $.version
 	 * */
 	/**
 	 * Holds current nodejsscript version
 	 * */
 	const version: string;
-	/* man-end */
-	/* man-start
+	/* tldr-end */
+	/* tldr-start
 	 * ### $.isMain(import.meta)
 	 * */
 	/**
@@ -37,8 +37,8 @@ export namespace Dollar{
 	 * @category Public
 	 * */
 	function isMain(import_meta: ImportMeta): boolean;
-	/* man-end */
-	/* man-start
+	/* tldr-end */
+	/* tldr-start
 	 * ### $.is_silent: boolean
 	 *
 	 * Suppresses all command output if `true`, except for `echo()` call.
@@ -52,7 +52,7 @@ export namespace Dollar{
 	 *
 	 * + glob: disable filename expansion (globbing), options for `glob.sync()`
 	 * */
-	/* man-end */
+	/* tldr-end */
 	/**
 	 * Suppresses all command output if `true`, except for `echo()` call.
 	 * @default false
@@ -86,7 +86,7 @@ export namespace Dollar{
 		options: IOptions;
 	}
 
-	/* man-start
+	/* tldr-start
 	 * ### $.configAssign({ verbose?: boolean, fatal?: boolean, silent?: boolean })
 	 * */
 	/**
@@ -99,9 +99,9 @@ export namespace Dollar{
 	 * @category Public
 	 * */
 	function configAssign(...c: Record<"verbose"|"fatal"|"silent",boolean>[]): void;
-	/* man-end */
+	/* tldr-end */
 
-	/* man-start
+	/* tldr-start
 	 * ### $.isFIFO(0|1)
 	 * */
 	/**
@@ -113,14 +113,14 @@ export namespace Dollar{
 	 * @category Public
 	 */
 	function isFIFO(stream_id: 0|1): boolean;
-	/* man-end */
-	/* man-start
+	/* tldr-end */
+	/* tldr-start
 	 * ### $.api([usage])
 	 * ### $.api(usage, true)
 	 * 
 	 * A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
 	 * */
-	/* man-end */
+	/* tldr-end */
 	/**
 	 * A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
 	 * In addition to the origin, `$.api()` supports to fill script name from script file name.
@@ -176,7 +176,7 @@ export namespace Dollar{
 	 * */
 	const read: typeof ReadType;
 	
-	/* man-start
+	/* tldr-start
 	 * ### $.xdg: { home, temp, data, config, cache, root, cwd, main }
 	 *
 	 * Returns the directory/file path based on `$.xdg.<tag>()`.
@@ -186,13 +186,13 @@ export namespace Dollar{
 	 * $.xdg.<tag>()
 	 * ```
 	 * */
-	/* man-end */
+	/* tldr-end */
 	/**
 	 * @category Public
 	 */
 	const xdg: typeof xdg_.xdg;
 
-	/* man-start
+	/* tldr-start
 	 * ### $.$
 	 * */
 	/**
@@ -201,8 +201,8 @@ export namespace Dollar{
 	 * @alias process.pid
 	 */
 	const $: typeof process.pid;
-	/* man-end */
-	/* man-start
+	/* tldr-end */
+	/* tldr-start
 	 * ### $.env
 	 * */
 	/**
@@ -211,8 +211,8 @@ export namespace Dollar{
 	 * @alias process.env
 	 */
 	const env: typeof _env;
-	/* man-end */
-	/* man-start
+	/* tldr-end */
+	/* tldr-start
 	 * ### $.stdin: { text, json, lines }
 	 * */
 	/**
@@ -226,7 +226,7 @@ export namespace Dollar{
 	 * @category Public
 	 */
 	const stdin: STDIN;
-	/* man-end */
+	/* tldr-end */
 	interface STDIN {
 		/**
 		 * Returns stdin as a text.
@@ -245,7 +245,7 @@ export namespace Dollar{
 		lines: <T>(_default: T)=> string[] | T;
 	}
 
-	/* man-start
+	/* tldr-start
 	 * ### $.error(message)
 	 * */
 	/**
@@ -257,11 +257,11 @@ export namespace Dollar{
 	 * @category Public
 	 * */
 	function error(message: string): Error;
-	/* man-end */
+	/* tldr-end */
 
 	const Error: typeof global.Error;
 
-	/* man-start
+	/* tldr-start
 	 * ### $.exit(code[, ...ignore])
 	 * */
 	/**
@@ -272,9 +272,9 @@ export namespace Dollar{
 	 * @category Public
 	 */
 	function exit(code?: number, ...ignore: any[]): never;
-	/* man-end */
+	/* tldr-end */
 	
-	/* man-start
+	/* tldr-start
 	 * ### $.hasArgs(...needles)
 	 * */
 	/**
@@ -285,5 +285,5 @@ export namespace Dollar{
 	 * @category Public
 	 */
 	function hasArgs(...needles: string[]): boolean;
-	/* man-end */
+	/* tldr-end */
 }

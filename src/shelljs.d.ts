@@ -3,7 +3,7 @@ import child= require('child_process');
 export { child };
 export * from "shelljs";
 
-/* man-start
+/* tldr-start
  * ### s.xargs([options,], cmd[, cmd_args])
  *
  * Available options:
@@ -35,8 +35,8 @@ export interface XargsFunction {
 	<T extends (...args: any[])=> any>(options: XargsOptions, cmd: T, ...cmd_args: Parameters<T>): ReturnType<T>;
 	<T extends (...args: any[])=> any>(cmd: T, ...cmd_args: Parameters<T>): ReturnType<T>;
 }
-/* man-end */
-/* man-start
+/* tldr-end */
+/* tldr-start
  * ### s.$()
  * ### s.$(options)
  * */
@@ -71,7 +71,7 @@ export interface DollarFunction{
 	(options: "-V"|"-S"|"-F"|"-g"|"-v"|"-s"|"-f"|"-G"): ShellString;
 	(): ShellString;
 }
-/* man-end */
+/* tldr-end */
 export const $: DollarFunction;
 /**
  * Use options as for:
@@ -143,7 +143,7 @@ export interface RunAsyncFunction {
 	 */
 	(command: string, vars: {} | false, options: RunOptions): ProcessPromise;
 }
-/* man-start
+/* tldr-start
  * ### s.run`cmd`
  * ### s.run(cmd[, vars][, options])
  * */
@@ -185,8 +185,8 @@ export interface RunAsyncFunction {
  * @return Returns {@link ShellString}.
  */
 export const run: RunFunction;
-/* man-end */
-/* man-start
+/* tldr-end */
+/* tldr-start
  * ### s.runA`cmd`
  * ### s.runA(cmd[, vars][, options])
  * */
@@ -220,8 +220,8 @@ export const run: RunFunction;
  * @return Returns {@link ProcessPromise}.
  */
 export const runA: RunAsyncFunction;
-/* man-end */
-/* man-start
+/* tldr-end */
+/* tldr-start
  * ### s.read()
  * ### s.read(options)
  *
@@ -255,7 +255,7 @@ export interface ReadOptions{
  * ```
  * */
 export function read(options: ReadOptions): Promise<ShellString>;
-/* man-end */
+/* tldr-end */
 
 export interface ShellReturnValueNJS extends ShellReturnValue {
 	xargs: XargsFunction

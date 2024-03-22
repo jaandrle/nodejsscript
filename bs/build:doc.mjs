@@ -65,8 +65,8 @@ await section("Cleanup documentation...", ()=> {
 	].join("\n")).to(file);
 });
 
-await section("Generating man pages...", async ()=> {
-	const path_man= "man.md";
+await section("Generating tldr pages...", async ()=> {
+	const path_tldr= "tldr.md";
 	// shelljs original
 	await fetch("https://github.com/shelljs/shelljs/raw/master/README.md")
 		.then(res=> res.text())
@@ -80,16 +80,16 @@ await section("Generating man pages...", async ()=> {
 				cutOut("exit"),
 			),
 			md=> md.replaceAll("### ", "### s."),
-			md=> s.echo(md).to(path_man)
+			md=> s.echo(md).to(path_tldr)
 		))
 	// shelljs from nodejsscript
-	mdFromDts("src/shelljs.d.ts").toEnd(path_man);
+	mdFromDts("src/shelljs.d.ts").toEnd(path_tldr);
 	// dollar
-	mdFromDts("src/$.d.ts").toEnd(path_man);
+	mdFromDts("src/$.d.ts").toEnd(path_tldr);
 	// echo
-	mdFromDts("src/echo.d.ts").toEnd(path_man);
+	mdFromDts("src/echo.d.ts").toEnd(path_tldr);
 	// pipe
-	mdFromDts("_index.d.ts").toEnd(path_man);
+	mdFromDts("_index.d.ts").toEnd(path_tldr);
 });
 
 function mdFromDts(path){
@@ -99,11 +99,11 @@ function mdFromDts(path){
 	for(const line_ of file){
 		const line= line_.trim();
 		if(!is_collecting){
-			if(line.startsWith("/* man-start"))
+			if(line.startsWith("/* tldr-start"))
 				is_collecting= true;
 			continue;
 		}
-		if(line.startsWith("/* man-end")){
+		if(line.startsWith("/* tldr-end")){
 			is_collecting= false;
 			out.push("");
 			continue;

@@ -2,7 +2,7 @@ import * as s from "shelljs";
 export type Options= `-${string}`;
 import { style } from 'css-in-console';
 export interface EchoFunction {
-	/* man-start
+	/* tldr-start
 	 * ### echo([as console.log()])
 	 * */
 	/**
@@ -30,8 +30,8 @@ export interface EchoFunction {
 	 * @return	   Returns processed string with additional utility methods like .to().
 	 */
 	(message?: any, ...optionalParams: any[]): s.ShellString;
-	/* man-end */
-	/* man-start
+	/* tldr-end */
+	/* tldr-start
 	 * ### echo.use(options, [as echo()])
 	 * */
 	/**
@@ -55,9 +55,9 @@ export interface EchoFunction {
 	 * @return	   Returns processed string with additional utility methods like .to().
 	 */
 	use(options: Options, message?: any, ...optionalParams: any[]): s.ShellString;
-	/* man-end */
+	/* tldr-end */
 
-	/* man-start
+	/* tldr-start
 	 * ### echo.css`styles`
 	 * ### echo.css(...styles)
 	 * */
@@ -97,8 +97,8 @@ export interface EchoFunction {
 	 * <br>- [Util.format | Node.js v19.1.0 Documentation](https://nodejs.org/api/util.html#utilformatformat-args)
 	 */
 	css: typeof style;
-	/* man-end */
-	/* man-start
+	/* tldr-end */
+	/* tldr-start
 	 * ### echo.format([as echo()])
 	 * */
 	/**
@@ -108,8 +108,8 @@ export interface EchoFunction {
 	 * @return	   Returns processed string with additional utility methods like .to().
 	 * */
 	format(message?: any, ...optionalParams: any[]): s.ShellString;
-	/* man-end */
-	/* man-start
+	/* tldr-end */
+	/* tldr-start
 	 * ### echo.formatWithOptions([as echo.use()])
 	 * */
 	/**
@@ -120,7 +120,7 @@ export interface EchoFunction {
 	 * @return	   Returns processed string with additional utility methods like .to().
 	 * */
 	formatWithOptions(options: Options, message?: any, ...optionalParams: any[]): s.ShellString;
-	/* man-end */
+	/* tldr-end */
 }
 /**
  * This is mixed function between bash’s `echo` and `console.log`.

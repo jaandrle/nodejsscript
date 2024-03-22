@@ -9,7 +9,7 @@ export { xdg_, __sade, _env, _exit } from './src/$.d';
  * @category Public 
  */
 export { Dollar as $ } from './src/$.d';
-/* man-start
+/* tldr-start
  * ### pipe
  * */
 /**
@@ -25,7 +25,7 @@ export { Dollar as $ } from './src/$.d';
  * @category Public
 */
 export function pipe(...funs: Function[]): (input: any)=> any;
-/* man-end */
+/* tldr-end */
 
 /**
  * This namespace refers to `shelljs`, for docs visits [shelljs/shelljs](https://github.com/shelljs/shelljs).

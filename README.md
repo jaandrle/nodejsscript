@@ -267,14 +267,14 @@ import { randomUUID } from "node:crypto";
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><code>nodejsscript --man</code> <em>(show quick summary of nodejsscript functions)</em></summary>
+<!-- #region --><details> <summary><code>nodejsscript --tldr</code> <em>(show quick summary of nodejsscript functions)</em></summary>
 
 ```bash
-nodejsscript --man s.
-nodejsscript --man s.cat
+nodejsscript --tldr s.
+nodejsscript --tldr s.cat
 ```
 …this shows lits all functions and variables in `s.*` and quick summary
-of `s.cat()`. You can see all manuals in [./man.md](./man.md).
+of `s.cat()`. You can see all manuals in [./tldr.md](./tldr.md).
 
 <!-- #endregion -->
 </details>

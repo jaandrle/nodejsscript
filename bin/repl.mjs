@@ -83,7 +83,7 @@ export function startRepl(){ return new Promise(async function(){
 			this.write(history.at(Number.parseInt(expresion)));
 		}
 	})
-	r.defineCommand("man", {
+	r.defineCommand("tldr", {
 		help: "Show help texts for nodejscript functions such as `s.cat`, `s.isMain`, `echo`, ….",
 		async action(expresion){
 			const { printUsage }= await import("./info.mjs");

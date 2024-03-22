@@ -71,7 +71,7 @@ function complete(script_name, argv){
 	const returnResult= arr=> { echo(matches(arr)); return $.exit(0); };
 	if(script_name===trigger||alias===trigger){
 		if(!level_num && !now?.includes("/"))
-			return returnResult([ "--completion", "--help", "--version", "--eval", "--print", "--global-jsconfig", "--inspect", "--interactive" ]);
+			return returnResult([ "--completion", "--help", "--tldr", "--version", "--eval", "--print", "--global-jsconfig", "--inspect", "--interactive" ]);
 		if("--completion"===prev)
 			return returnResult([ "help", "bash", "register", "remove", "config" ]);
 		if("--global-jsconfig"===prev)

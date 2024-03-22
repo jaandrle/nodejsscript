@@ -59,10 +59,10 @@ async function handleBuildin(candidate){
 		echo(info("version")[0]);
 		return $.exit(0);
 	}
-	if(["--help", "-h", "--man"].includes(candidate)){
+	if(["--help", "-h", "--tldr"].includes(candidate)){
 		const { printCliUsage, printUsage }= await import("./info.mjs");
 		try{
-			const out= "--man"!==candidate ? await printCliUsage() : await printUsage(argv.slice(2)[0]);
+			const out= "--tldr"!==candidate ? await printCliUsage() : await printUsage(argv.slice(2)[0]);
 			return $.exit(out || 0);
 		} catch(e){
 			printError(e);
