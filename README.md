@@ -247,6 +247,17 @@ import { randomUUID } from "node:crypto";
 
 <!-- #endregion -->
 </details>
+<!-- #region --><details> <summary><code>nodejsscript --man</code> <em>(show quick summary of nodejsscript functions)</em></summary>
+
+```bash
+nodejsscript --man s.
+nodejsscript --man s.cat
+```
+…this shows lits all functions and variables in `s.*` and quick summary
+of `s.cat()`. You can see all manuals in [./man.md](./man.md).
+
+<!-- #endregion -->
+</details>
 <!-- #region --><details> <summary><code>nodejsscript --global-jsconfig</code> <em>(experimental helper for developing)</em></summary>
 
 ```bash
@@ -288,9 +299,12 @@ One-paragraph guide: install npm package
 	- `npm install nodejsscript`: to use locally in the package
 
 ### Usage
-Write your scripts in a file with an `.mjs` extension in order to use `await`
-at the top level. If you prefer the `.js` extension, wrap your scripts
-in something like `(async function () {...})()`.
+Write your scripts in a file with an `.mjs` extension in order to process
+the script as an ESM module. This is preferred way as it is more compatible
+with current JavaScript standards. E. g. you can use `await` at the top level.
+
+Alternatively, use the `.js` extension to use “old style” commonJS code.
+E. g. you must wrap your scripts in something like `(async function () {...})()`.
 
 Add the following shebang to the beginning of your `nodejsscript` scripts:
 ```bash
