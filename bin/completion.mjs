@@ -1,38 +1,51 @@
 /* global echo, $, s, pipe */
 import { resolve } from "node:path";
-import { styles } from './styles.mjs';
 import { info } from './info.mjs';
 import { file_completions, readCompletions, updateCompletions } from './config.mjs';
-export function completion(argv){
+export async function completion(argv){
 	$.configAssign({ fatal: true });
 	const option= argv[2];
 	const script_name= info("name")[0];
 	if(typeof option==="undefined" || [ "help", "--help", "-h" ].includes(option)){
-		const css= styles();
-		echo(`%cUsage:\n%c%c${script_name}%c --completion [options]`, css.H, css.T, css.n);
-		echo("%cOptions%c:", css.H);
-		echo("%c                    help . . . Print this help", css.T);
-		echo("%c     bash-local [target] . . . Outputs bash completion code for use by eval to enable", css.T);
-		echo("%c                        	scripts completions on demand (see %cregister%c).", css.T, css.code);
-		echo(`%c                        	Use %ceval "$(${script_name} --completion bash-local)"%c in terminal.`, css.T, css.code);
-		echo(`%c                        	By default enable completions for all scripts in current directory recursively.`, css.T);
-		echo(`%c                        	Use optional [target] to enable completions for specific script or subfolder.`, css.T);
-		echo("%c                    bash . . . Outputs bash completion code for use by eval.", css.T);
-		echo(`%c                        	Add %ceval "$(${script_name} --completion bash)"%c to your '.bashrc' file.`, css.T, css.code);
-		echo("%c       register <target> . . . This enable completion for custom script created with nodejsscript (using %c$.api%c).", css.T, css.code);
-		echo(`%c                        	The <target> reffers to script itself/the text triggering the completion.`, css.T);
-		echo(`%c                        	As <target> use global script name or (relative) path.`, css.T);
-		echo(`%c                        	Completions for scripts registered by path is on demand, see %cbash-local%c.`, css.T, css.code);
-		echo("%c         remove <target> . . . This remove completion for custom script previously registered by <target>.", css.T);
-		echo(`%c                  config . . . Returns location of the completions config file.`, css.T);
+		const { css, echoHead, echoOption }= await import("./styles.mjs");
+		await echoHead("--completion <command> [options]");
+		echo(`%cManage ${script_name}/scripts completions`, css.T);
+		echo("%cCommands/Options%c:", css.H);
+		echoOption("help",
+			"Print this help");
+		echoOption("bash-local [target]", [
+			"Outputs bash completion code for use by eval to enable scripts completions on demand (see %cregister%c).",
+			`Use %ceval "$(${script_name} --completion bash-local)"%c in terminal.`,
+			"By default enable completions for all scripts in current directory recursively.",
+			"Use optional [target] to enable completions for specific script or subfolder."
+		], css.code, css.unset, css.code, css.unset);
+		echoOption("bash", [
+			"Outputs bash completion code for use by eval.",
+			`Add %ceval "$(${script_name} --completion bash)"%c to your '.bashrc' file.`
+		], css.code);
+		echoOption("register <target>", [
+			"This enable completion for custom script created with nodejsscript (using %c$.api%c).",
+			"The <target> reffers to script itself/the text triggering the completion.",
+			"As <target> use global script name or (relative) path.",
+			"Completions for scripts registered by path is on demand, see %cbash-local%c."
+		] , css.code, css.unset, css.code);
+		echoOption("remove <target>",
+			"This remove completion for custom script previously registered by <target>.");
+		echoOption("config",
+			"Returns location of the completions config file.");
+		echo("%cExamples%c:", css.H);
+		echo(`%ceval $(${script_name} --completion bash)`, css.T+css.code);
+		echo(`%ceval $(${script_name} --completion bash-local)`, css.T+css.code);
+		echo(`%c${script_name} --completion register global-script.mjs`, css.T+css.code);
+		echo(`%c${script_name} --completion register ./local-script.mjs`, css.T+css.code);
 		$.exit(0);
 	}
 	if("config"===option)
 		return $.exit(0, echo(file_completions));
 	if("remove"===option)
-		return remove(argv);
+		return await remove(argv);
 	if("register"===option)
-		return register(argv);
+		return await register(argv);
 	$.is_color= 0;
 	if("complete"===option)
 		return complete(script_name, argv);
@@ -91,8 +104,8 @@ function complete(script_name, argv){
 	returnResult(( typeof o==="string" ? Reflect.get(c.completions, o) : o ).concat(...c.completions_all));
 	$.exit(0);
 }
-function remove(argv){
-	const css= styles();
+async function remove(argv){
+	const { css }= await import("./styles.mjs");
 	let [ name ]= argv.slice(3);
 	const { version, scripts }= readCompletions();
 	if(isPath(name)) name= resolve(name);
@@ -105,8 +118,8 @@ function remove(argv){
 	echo(`%cSuccessfully removed completion for %c${name}%c.`, css.success, css.code);
 	$.exit(0);
 }
-function register(argv){
-	const css= styles();
+async function register(argv){
+	const { css }= await import("./styles.mjs");
 	let [ target ]= argv.slice(3);
 	const { version, scripts }= readCompletions();
 	if(!version.toString().startsWith("1"))

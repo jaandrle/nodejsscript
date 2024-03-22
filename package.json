@@ -60,20 +60,22 @@
 		"maxdepth": 4,
 		"maxcomplexity": 15
 	},
+	"peerDependencies": {
+		"shelljs": "~0.8"
+	},
 	"dependencies": {
-		"@types/sade": "^1.7.4",
-		"@types/shelljs": "^0.8.11",
-		"abort-controller": "^3.0.0",
-		"css-in-console": "^2.0.0",
-		"log-update-async-hook": "^2.0.7",
-		"node-fetch": "^3.3.0",
-		"sade": "^1.8.1",
-		"shell-escape-tag": "^2.0.2",
-		"shelljs": "^0.8.5"
+		"@types/sade": "~1.7",
+		"@types/shelljs": "~0.8",
+		"abort-controller": "~3.0",
+		"css-in-console": "~2.0",
+		"log-update-async-hook": "~2.0",
+		"node-fetch": "~3.3",
+		"sade": "~1.8",
+		"shell-escape-tag": "~2.0"
 	},
 	"devDependencies": {
-		"jshint": "^2.13.6",
-		"typedoc": "^0.23.25",
-		"typedoc-plugin-markdown": "^3.14.0"
+		"jshint": "~2.13",
+		"typedoc": "~0.23",
+		"typedoc-plugin-markdown": "~3.14"
 	}
 }

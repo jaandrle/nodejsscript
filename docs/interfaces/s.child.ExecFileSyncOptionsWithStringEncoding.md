@@ -63,6 +63,16 @@ ___
 
 • `Optional` **stdio**: [`StdioOptions`](../modules/s.child.md#stdiooptions)
 
+Can be set to 'pipe', 'inherit, or 'ignore', or an array of these strings.
+If passed as an array, the first element is used for `stdin`, the second for
+`stdout`, and the third for `stderr`. A fourth element can be used to
+specify the `stdio` behavior beyond the standard streams. See
+[stdio](../classes/s.child.ChildProcess.md#stdio) for more information.
+
+**`Default`**
+
+'pipe'
+
 #### Inherited from
 
 [ExecFileSyncOptions](s.child.ExecFileSyncOptions.md).[stdio](s.child.ExecFileSyncOptions.md#stdio)

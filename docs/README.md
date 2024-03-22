@@ -209,7 +209,7 @@ called.
 To exit with a 'failure' code:
 
 ```js
-import { exit } from 'process';
+import { exit } from 'node:process';
 
 exit(1);
 ```
@@ -228,7 +228,7 @@ For instance, the following example illustrates a _misuse_ of the`process.exit()
 truncated and lost:
 
 ```js
-import { exit } from 'process';
+import { exit } from 'node:process';
 
 // This is an example of what *not* to do:
 if (someConditionNotMet()) {
@@ -245,7 +245,7 @@ Rather than calling `process.exit()` directly, the code _should_ set the`process
 scheduling any additional work for the event loop:
 
 ```js
-import process from 'process';
+import process from 'node:process';
 
 // How to properly set the exit code while letting
 // the process exit gracefully.
@@ -270,7 +270,7 @@ v0.1.13
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `code?` | `number` | The exit code. |
+| `code?` | `number` | The exit code. For string type, only integer strings (e.g.,'1') are allowed. |
 
 #### Returns
 
@@ -307,14 +307,14 @@ reflected outside the Node.js process, or (unless explicitly requested)
 to other `Worker` threads.
 In other words, the following example would not work:
 
-```console
-$ node -e 'process.env.foo = "bar"' &#x26;&#x26; echo $foo
+```bash
+node -e 'process.env.foo = "bar"' &#x26;&#x26; echo $foo
 ```
 
 While the following will:
 
 ```js
-import { env } from 'process';
+import { env } from 'node:process';
 
 env.foo = 'bar';
 console.log(env.foo);
@@ -325,7 +325,7 @@ to a string. **This behavior is deprecated.** Future versions of Node.js may
 throw an error when the value is not a string, number, or boolean.
 
 ```js
-import { env } from 'process';
+import { env } from 'node:process';
 
 env.test = null;
 console.log(env.test);
@@ -338,7 +338,7 @@ console.log(env.test);
 Use `delete` to delete a property from `process.env`.
 
 ```js
-import { env } from 'process';
+import { env } from 'node:process';
 
 env.TEST = 1;
 delete env.TEST;
@@ -349,7 +349,7 @@ console.log(env.TEST);
 On Windows operating systems, environment variables are case-insensitive.
 
 ```js
-import { env } from 'process';
+import { env } from 'node:process';
 
 env.TEST = 1;
 console.log(env.test);
@@ -358,10 +358,11 @@ console.log(env.test);
 
 Unless explicitly specified when creating a `Worker` instance,
 each `Worker` thread has its own copy of `process.env`, based on its
-parent thread’s `process.env`, or whatever was specified as the `env` option
+parent thread's `process.env`, or whatever was specified as the `env` option
 to the `Worker` constructor. Changes to `process.env` will not be visible
 across `Worker` threads, and only the main thread can make changes that
-are visible to the operating system or to native add-ons.
+are visible to the operating system or to native add-ons. On Windows, a copy of`process.env` on a `Worker` instance operates in a case-sensitive manner
+unlike the main thread.
 
 **`Since`**
 

@@ -1,28 +1,30 @@
-import { styles } from './styles.mjs';
 import { info } from './info.mjs';
 export async function inspect(argv){
-	const css= styles();
+	const { css, echoHead }= await import("./styles.mjs");
 	const script_name= info("name")[0];
 	if(typeof argv[2]==="undefined"){
+		await echoHead("--inspect <script.(m)js>");
 		echo("%cDebugging nodejsscript",
-			css.h1);
-		echo("%cinternally uses %cnode inspect",
-			css.li, css.code);
-		echo("%csee %chttps://nodejs.org/api/debugger.html",
-			css.li2, css.url);
-		echo("%csee %chttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger",
-			css.li2, css.url);
-		echo("%cin terminal use",
-			css.li);
-		echo("%c%chelp%c for help",
-			css.li2, css.code, css.unset);
-		echo("%c%c.exit%c/%cCtrl-c%c for quit",
-			css.li2, css.code, css.unset, css.code, css.unset);
-		echo("%cfor using Edge/Chrome/Chromium dev tools window",
-			css.li);
-		echo("%csee %chttps://www.builder.io/blog/debug-nodejs",
-			css.li2, css.url);
-		echo("\n%cUsage:",
+			css.T);
+		echo("%cNotes:",
+			css.H);
+		echo("%c%cinternally uses %cnode inspect",
+			css.T, css.li, css.code);
+		echo("%c%csee %chttps://nodejs.org/api/debugger.html",
+			css.T, css.li2, css.url);
+		echo("%c%csee %chttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger",
+			css.T, css.li2, css.url);
+		echo("%c%cin terminal use",
+			css.T, css.li);
+		echo("%c%c%chelp%c for help",
+			css.T, css.li2, css.code, css.unset);
+		echo("%c%c%c.exit%c/%cCtrl-c%c for quit",
+			css.T, css.li2, css.code, css.unset, css.code, css.unset);
+		echo("%c%cfor using Edge/Chrome/Chromium dev tools window",
+			css.T, css.li);
+		echo("%c%csee %chttps://www.builder.io/blog/debug-nodejs",
+			css.T, css.li2, css.url);
+		echo("%cUsage:",
 			css.H);
 		echo(`%c${script_name} --inspect [script path]`,
 			css.T + css.code);

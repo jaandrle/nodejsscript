@@ -18,6 +18,8 @@
 - [killed](s.child.ExecException.md#killed)
 - [code](s.child.ExecException.md#code)
 - [signal](s.child.ExecException.md#signal)
+- [stdout](s.child.ExecException.md#stdout)
+- [stderr](s.child.ExecException.md#stderr)
 - [name](s.child.ExecException.md#name)
 - [message](s.child.ExecException.md#message)
 - [stack](s.child.ExecException.md#stack)
@@ -45,6 +47,18 @@ ___
 ### signal
 
 • `Optional` **signal**: `Signals`
+
+___
+
+### stdout
+
+• `Optional` **stdout**: `string`
+
+___
+
+### stderr
+
+• `Optional` **stderr**: `string`
 
 ___
 

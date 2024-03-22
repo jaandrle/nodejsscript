@@ -62,7 +62,7 @@ async function handleBuildin(candidate){
 	if(["--help", "-h", "--man"].includes(candidate)){
 		const { printCliUsage, printUsage }= await import("./info.mjs");
 		try{
-			const out= "--man"!==candidate ? await printCliUsage() : await printUsage(argv[argv.length-1]);
+			const out= "--man"!==candidate ? await printCliUsage() : await printUsage(argv.slice(2)[0]);
 			return $.exit(out || 0);
 		} catch(e){
 			printError(e);
@@ -80,15 +80,15 @@ async function handleBuildin(candidate){
 	}
 	if(["-e", "--eval"].includes(candidate)){
 		const { runEval }= await import("./runEval.mjs");
-		return runEval(argv, 0);
+		return await runEval(argv, 0);
 	}
 	if(["-p", "--print"].includes(candidate)){
 		const { runEval }= await import("./runEval.mjs");
-		return runEval(argv, 1);
+		return await runEval(argv, 1);
 	}
 	if("--completion"===candidate){
 		const { completion }= await import("./completion.mjs");
-		return completion(argv);
+		return await completion(argv);
 	}
 	if(["-i", "--interactive"].includes(candidate)){
 		const { startRepl }= await import("./repl.mjs");

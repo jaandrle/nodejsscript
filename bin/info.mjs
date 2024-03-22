@@ -3,6 +3,26 @@ import url from "node:url";
 import { join } from "node:path";
 import { file_rc } from './config.mjs';
 export async function printUsage(name){
+	if(!name){
+		const [ n ]= info("name");
+		const { css, echoOption, echoHead }= await import("./styles.mjs");
+		await echoHead("--man <expression>");
+		echo("%cUse to get quick overview of nodejsscript commands and their usage.", css.T);
+		echo("%cUsage%c:", css.H);
+		echo(`%c${n} --man <namespace.>`, css.T);
+		echo(`%c${n} --man [namespace.]<function>`, css.T);
+		echo("%cOption%c:", css.H);
+		echoOption("<namespace.>",
+			"Lists all commands in <namespace>");
+		echoOption("[namespace.]<function>",
+			"Prints usage of <function>");
+		echo("%cExamples%c:", css.H);
+		echo(`%c${n} --man s.`, css.T);
+		echo(`%c${n} --man s.cat`, css.T);
+		echo("%cNote%c:", css.H);
+		echo("%cYou can use this also in REPL with %c.man <expression>", css.T, css.code);
+		return 0;
+	}
 	const docs= s.cat(new URL("../man.md", import.meta.url));
 	if(name.endsWith(".")){
 		const candidates= docs.split("\n")
@@ -26,66 +46,58 @@ function sectionEnd(docs, i_start, name){
 }
 export async function printCliUsage(){
 	const [ n, v, d ]= info("name", "version", "description");
-	const { styles }= await import("./styles.mjs");
-	const css= styles();
-	echo("%c%s%c@%c%s",
-		css.H+css.n, css.unset, css.v, n, v);
-	echo(`%c${d}`,
-		css.T);
-	echo(`%cUsage%c:`,
-		css.H);
-	echo(`%c${n} <script.js|script.mjs>`,
-		css.T);
-	echo(`%c${n} [options] <script.js|script.mjs|expression>`,
-		css.T);
-	echo(`%cDetailed help%c:`,
-		css.H);
-	echo(`%c${n} --completion`,
-		css.T);
-	echo(`%c${n} --inspect`,
-		css.T);
-	echo(`%cOptions%c:`,
-		css.H);
-	echo("%c              <script.js|script.mjs>    run given script file",
-		css.T);
-	echo("%c             --eval, -e <expression>    similar to `node -e …`, evaluates given string",
-		css.T);
-	echo("%c            --print, -p <expression>    similar to `node -p …`, infact (for now?) it wraps argument by `echo` function (splits given string by ';' and wraps last non-empty part)",
-		css.T);
-	echo("%c    --inspect <script.js|script.mjs>    run given script in debug mode, see %c%s --inspect%c for more info",
-		css.T, css.code, css.unset, n);
-	echo("%c                   --interactive, -i    similar to `node -i`, opens REPL, the interactive mode",
-		css.T);
-	echo("%c                        --completion    register TAB completion for %c%s%c and your scripts, see %c%s --completion help%c for more info",
-		css.T, css.n, css.unset, css.code, css.unset, n, n);
-	echo("%c             --global-jsconfig [add]    woraround for type checking of non-package scripts",
-		css.T);
-	echo("%c                  --man <expression>    print quick documentation for given command",
-		css.T);
-	echo(`%c                       --version, -v    print current ${n} version`,
-		css.T);
-	echo("%c                          --help, -h    print this help",
-		css.T);
-	echo("%cExamples%c:",
-		css.H);
-	echo(`%c${n} ./script.js`,
-		css.T);
-	echo(`%c${n} --help`,
-		css.T);
-	echo(`%cls | ${n} -p '$.stdin.text().replaceAll("A", "AAAA")'`,
-		css.T);
-	echo(`%cls | ${n} -p '$.stdin.lines().filter(line=> line[0]==="R").map(line=> \`file: \${line}\`)'`,
-		css.T);
-	echo("%cUsage in scripts%c:",
-		css.H);
-	echo("%cJust start the file with: %c#!/usr/bin/env nodejsscript",
-		css.T, css.code);
-	echo("%c…and make the script file executable.",
-		css.T);
-	echo("%cLocation of the config file%c:",
-		css.H);
-	echo("%c"+file_rc,
-		css.T + css.code);
+	const { css, echoOption }= await import("./styles.mjs");
+	const arg_script= "script.(m)js";
+	echo(`%c${n}%c@%c${v}`, css.H+css.n, css.unset, css.v);
+	echo(`%c${d}`, css.T);
+	echo(`%cUsage%c:`, css.H);
+	echo(`%c${n} <${arg_script}>`, css.T);
+	echo(`%c${n} [options] <${arg_script}|expression>`, css.T);
+	echo(`%cOptions%c:`, css.H);
+	const more= {
+		text: (arg)=> `%c(use without ${arg} for more info)%c`,
+		css: [ css.H, css.unset ],
+	};
+	echoOption(`<${arg_script}>`,
+		"run given script file");
+	echoOption("--eval, -e <expression>",
+		"similar to %cnode -e …%c — evaluates given string "+more.text("expression"),
+		css.code, css.unset, ...more.css);
+	echoOption("--print, -p <expression>",
+		"similar to %cnode -p …%c — evaluates given string "+more.text("expression"),
+		css.code, css.unset, ...more.css);
+	echoOption(`--inspect <${arg_script}>`,
+		"run given script in debug mode "+more.text("script file"), ...more.css);
+	echoOption("--interactive, -i",
+		"similar to %cnode -i%c — opens REPL, the interactive mode",
+		css.code, css.unset);
+	echoOption("--completion <...args>",
+		"register TAB completion for %c%s%c and your scripts "+more.text("args"),
+		css.n, css.unset, ...more.css, n);
+	echoOption("--man <expression>",
+		"print quick usage for given command "+more.text("expression"), ...more.css);
+	echoOption("--global-jsconfig [add] <s>",
+		"woraround for type checking of non-package scripts");
+	echoOption("--version, -v",
+		`print current ${n} version`);
+	echoOption("--help, -h",
+		"print this help");
+	echo(`%cDetailed help ${more.text("any other arguments")}%c:`, css.H, ...more.css);
+	echo(`%c${n} --print`, css.T);
+	echo(`%c${n} --eval`, css.T);
+	echo(`%c${n} --completion`, css.T);
+	echo(`%c${n} --inspect`, css.T);
+	echo(`%c${n} --man`, css.T);
+	echo("%cExamples%c:", css.H);
+	echo(`%c${n} ./script.js`, css.T);
+	echo(`%c${n} --help`, css.T);
+	echo(`%cls | ${n} -p '$.stdin.text().replaceAll("A", "AAAA")'`, css.T);
+	echo(`%cls | ${n} -p '$.stdin.lines().filter(line=> line[0]==="R").map(line=> \`file: \${line}\`)'`, css.T);
+	echo("%cUsage in scripts%c:", css.H);
+	echo("%cJust start the file with: %c#!/usr/bin/env nodejsscript", css.T, css.code);
+	echo("%c…and make the script file executable.", css.T);
+	echo("%cLocation of the config file%c:", css.H);
+	echo("%c"+file_rc, css.T + css.code);
 	$.exit(0);
 }
 export function info(...keys){
