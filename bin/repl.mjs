@@ -71,7 +71,12 @@ export function startRepl(){ return new Promise(async function(){
 		action(expresion){
 			const history= pipe(s.cat, s=> s.split("\n"))(file_repl);
 			if(!expresion){
-				console.log(Object.fromEntries(Object.entries(history)));
+				pipe(
+					Object.entries,
+					//TODO e=> e.map((r)=> (r[0]= Number.parseInt(r[0]) + 1, r)), //because the `history` will be added
+					Object.fromEntries,
+					console.log
+				)(history);
 				return this.displayPrompt();
 			}
 			this.displayPrompt();

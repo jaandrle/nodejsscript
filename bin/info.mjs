@@ -34,7 +34,7 @@ export async function printUsage(name){
 	const i_start= docs.indexOf("### "+name);
 	pipe(
 		d=> i_start===-1 ? (()=> { throw new Error("Not found: "+name) })() : d.slice(i_start, sectionEnd(docs, i_start, name)),
-		d=> d.trim()+"\n\nFor more information, please visit: "+info("homepage"),
+		d=> d.trim()+"\n\nFor more information, please visit: "+homeurl(),
 		d=> console.log(d)
 	)(docs);
 	return 0;
@@ -98,9 +98,12 @@ export async function printCliUsage(){
 	echo("%c…and make the script file executable.", css.T);
 	echo("%cLocation of the config file%c:", css.H);
 	echo("%c"+file_rc, css.T + css.code);
+	echo("%cMore info/docs%c:", css.H);
+	echo("%c"+homeurl(), css.T + css.url);
 	$.exit(0);
 }
 export function info(...keys){
 	const info= s.$("-F").cat(url.fileURLToPath(join(import.meta.url, "../../package.json"))).xargs(JSON.parse);
 	return keys.map(key=> Reflect.get(info, key));
 }
+function homeurl(){ return info("homepage", "version").join("/tree/v"); }
