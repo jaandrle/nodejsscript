@@ -172,7 +172,7 @@ export namespace Dollar{
 	
 	/**
 	 * For backward compatibility, **use `s.read()` instead**.
-	 * @deprecated Use {@link ReadType} instead.
+	 * @deprecated Use {@link s.read} instead.
 	 * */
 	const read: typeof ReadType;
 	

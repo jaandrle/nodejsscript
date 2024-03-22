@@ -41,7 +41,7 @@ $ npm ci
 ```
 There is `npm` task for generating documentation from TypeScript anotations:
 ```bash
-npm run doc
+npm run build
 ```
 
 ## Documentation/examples improvements

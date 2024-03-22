@@ -1,40 +1,14 @@
-nodejsscript
-
+[nodejsscript](../README.md)
 # nodejsscript
-
 ## Table of contents
-
-### Public Functions
-
 - [pipe](README.md#pipe)
 - [fetch](README.md#fetch)
 - [echo](README.md#echo)
-
-### Internal Functions
-
-- [\_\_sade](README.md#__sade)
-- [\_exit](README.md#_exit)
-
-### Interfaces
-
-- [EchoFunction](interfaces/EchoFunction.md)
-
-### Public Namespaces
-
 - [$](modules/.md)
 - [s](modules/s.md)
 
-### Internal Namespaces
-
-- [xdg\_](modules/xdg_.md)
-- [\_\_sade](modules/_sade.md)
-- [\_\_fetch](modules/_fetch.md)
-
-### Properties
-
-- [\_env](README.md#_env)
-
 ## Public Functions
+
 
 ### pipe
 
@@ -78,7 +52,8 @@ ___
 
 ▸ **fetch**(`url`, `init?`): [`Response`](classes/fetch.Response.md)
 
-A wrapper around the [node-fetch](https://www.npmjs.com/package/node-fetch) package.
+The [node-fetch](https://www.npmjs.com/package/node-fetch)
+package can be used in cases when `fetch` is not available natively.
 
 ```js
 // BASIC
@@ -126,7 +101,7 @@ This is mixed function between bash’s `echo` and `console.log`.
 By default, works more like `console.log` with partial supports
 for styling mimic CSS and `console.log` in the web browser. See [`echo.css`](interfaces/EchoFunction.md#type-declaration) (internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)).
 
-The [use](interfaces/EchoFunction.md#use) provides more `echo` way,
+The ['echo.use'](interfaces/EchoFunction.md#use) provides more `echo` way,
 the first argument accepts options string starting with `-`:
 - `-n`: Don’t append **n**ew line
 - `-1`/`-2`: Outputs to `stdout`/`stderr`

@@ -127,7 +127,7 @@ export interface EchoFunction {
  * By default, works more like `console.log` with partial supports
  * for styling mimic CSS and `console.log` in the web browser. See [`echo.css`](interfaces/EchoFunction.md#type-declaration) (internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)).
  * 
- * The {@link EchoFunction.use} provides more `echo` way,
+ * The {@link EchoFunction.use 'echo.use'} provides more `echo` way,
  * the first argument accepts options string starting with `-`:
  * - `-n`: Don’t append **n**ew line
  * - `-1`/`-2`: Outputs to `stdout`/`stderr`

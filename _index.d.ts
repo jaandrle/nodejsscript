@@ -79,7 +79,8 @@ export * as s from './src/shelljs.d';
 
 import * as __fetch from 'node-fetch';
 /**
- * A wrapper around the [node-fetch](https://www.npmjs.com/package/node-fetch) package.
+ * The [node-fetch](https://www.npmjs.com/package/node-fetch)
+ * package can be used in cases when `fetch` is not available natively.
  *
  * ```js
  * // BASIC

@@ -1,43 +1,96 @@
 #!/usr/bin/env -S npx nodejsscript
 /* jshint esversion: 11,-W097, -W040, module: true, node: true, expr: true, undef: true *//* global echo, $, pipe, s, fetch, cyclicLoop */
 $.configAssign({ fatal: true });
-s.run([
-	"npx typedoc",
-	"_index.d.ts",
-	"--readme none",
-	"--defaultCategory 'Internal'",
-	"--categoryOrder 'Public'",
-	"--categoryOrder 'Internal'",
-	"--sort visibility --disableSources"
-].join(" "));
+if(!s.test("-f", "./package.json")){
+	const [ curr ]= $;
+	if(!s.ls().includes(curr.slice(curr.lastIndexOf("/")+1))){
+		echo.use("-2", "Please execute in project root directory.");
+		$.exit(1);
+	}
+	s.cd("..");
+}
+const section= async (name, fn)=> {
+	echo(name);
+	const res= fn();
+	if(res instanceof Promise) await res;
+	echo("%c✓ Done", "color: lightgreen");
+};
 
-echo();
-echo("Generating man pages...");
-const path_man= "man.md";
-// shelljs original
-await fetch("https://github.com/shelljs/shelljs/raw/master/README.md")
-	.then(res=> res.text())
-	.then(pipe(
-		md=> md.slice(md.indexOf("### "), md.indexOf("\n### ShellString(str)")),
-		pipe(
-			cutOut("echo"),
-			cutOut("exec"),
-			cutOut("set"),
-			cutOut("tempdir"),
-			cutOut("exit"),
-		),
-		md=> md.replaceAll("### ", "### s."),
-		md=> s.echo(md).to(path_man)
-	))
-// shelljs from nodejsscript
-mdFromDts("src/shelljs.d.ts").toEnd(path_man);
-// dollar
-mdFromDts("src/$.d.ts").toEnd(path_man);
-// echo
-mdFromDts("src/echo.d.ts").toEnd(path_man);
-// pipe
-mdFromDts("_index.d.ts").toEnd(path_man);
-echo("%c✓ Done", "color: lightgreen");
+await section("Generating documentation from `*.d.ts`...", () => {
+	const tds= s.$().run([
+		"npx typedoc",
+		"_index.d.ts",
+		"--readme none",
+		"--defaultCategory 'Internal'",
+		"--categoryOrder 'Public'",
+		"--categoryOrder 'Internal'",
+		"--sort visibility --disableSources"
+	].join(" "));
+	if(tds.code){
+		echo(tds.stderr);
+		$.exit(tds.code);
+	}
+	if(tds.stderr){
+		const lines= tds.stderr.split("\n");
+		for(let i= 0; i< lines.length; i++){
+			const line= lines[i];
+			if(line.includes("node/events.d.ts") || line.includes("shelljs/index.d.ts")){
+				i+= 3;
+				continue;
+			}
+			if(!line || line.includes("s.child.ChildProcess")){
+				continue;
+			}
+			echo(line);
+		}
+	}
+});
+await section("Cleanup documentation...", ()=> {
+	const start= "## Public Functions";
+	const file= "./docs/README.md";
+	const [ head, docs ]= s.cat(file).split("\n"+start);
+	const head_new= head.split("\n").slice(1)
+		.filter(line=>
+			!line.includes("_")
+			&& !line.includes("EchoFunction")
+			&& !line.includes("###")
+		)
+		.filter(Boolean)
+		.map(line=> line+"\n");
+	s.echo([
+		"[nodejsscript](../README.md)",
+		head_new.join(""),
+		start,
+		docs
+	].join("\n")).to(file);
+});
+
+await section("Generating man pages...", async ()=> {
+	const path_man= "man.md";
+	// shelljs original
+	await fetch("https://github.com/shelljs/shelljs/raw/master/README.md")
+		.then(res=> res.text())
+		.then(pipe(
+			md=> md.slice(md.indexOf("### "), md.indexOf("\n### ShellString(str)")),
+			pipe(
+				cutOut("echo"),
+				cutOut("exec"),
+				cutOut("set"),
+				cutOut("tempdir"),
+				cutOut("exit"),
+			),
+			md=> md.replaceAll("### ", "### s."),
+			md=> s.echo(md).to(path_man)
+		))
+	// shelljs from nodejsscript
+	mdFromDts("src/shelljs.d.ts").toEnd(path_man);
+	// dollar
+	mdFromDts("src/$.d.ts").toEnd(path_man);
+	// echo
+	mdFromDts("src/echo.d.ts").toEnd(path_man);
+	// pipe
+	mdFromDts("_index.d.ts").toEnd(path_man);
+});
 
 function mdFromDts(path){
 	const file= s.cat(path).trim().split("\n");
