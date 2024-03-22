@@ -28,6 +28,17 @@ scripting inside the package. Just install it and use it:
 - [css-in-console - npm](https://www.npmjs.com/package/css-in-console) for styling in console
   (you can use alternative solutions like [chalk - npm](https://www.npmjs.com/package/chalk))
 
+### ShellJS (`shjs`)
+There is non-promoted functionality similar to `nodejsscript` in
+ShellJS library. You can use `shjs` to execute scripts, too.
+
+```js
+#!/usr/bin/env -S npx shjs
+echo(ls());
+```
+…keep in mind that only commonJS modules are supporteda and only
+functions shipped with ShellJS are available.
+
 ### Large scripts or scripts for sharing as a package
 In this case, the npm package should be used instead of the script file.
 Follow for example this guide [Publishing a Node.js CLI tool to npm in less than 15 minutes | HackerNoon](https://hackernoon.com/publishing-a-nodejs-cli-tool-to-npm-in-less-than-15-minutes).
