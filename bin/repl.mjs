@@ -73,7 +73,7 @@ export function startRepl(){ return new Promise(async function(){
 			if(!expresion){
 				pipe(
 					Object.entries,
-					//TODO e=> e.map((r)=> (r[0]= Number.parseInt(r[0]) + 1, r)), //because the `history` will be added
+					e=> e.length && (e[0][0] || "").trim()===".history" ? e : e.map((r)=> (r[0]= Number.parseInt(r[0]) + 1, r)), //because the `.history` will be added
 					Object.fromEntries,
 					console.log
 				)(history);
