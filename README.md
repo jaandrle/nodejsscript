@@ -111,7 +111,7 @@ for(let i= 0; i < 10; i++){
 	echo.use("-R", "%cLoading…", css.spin);
 	s.run`sleep .5`;
 }
-echo.use("-r", "%cDone", css.success);
+echo("%cDone", css.success);
 ```
 
 - prints to console, also supports styling using CSS like syntax
