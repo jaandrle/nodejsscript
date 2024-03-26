@@ -63,8 +63,7 @@ s.echo("Hello World!").to("hello.txt");
 ```js
 // ls.mjs
 $.api()
-.command("ls [folder]")
-.description("list files")
+.command("ls [folder]", "list files")
 .option("-a", "list all files")
 .action((folder, options)=> {
 	if(Object.keys(options).length === 0)
