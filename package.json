@@ -1,6 +1,6 @@
 {
 	"name": "nodejsscript",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "Jan Andrle <andrle.jan@centrum.cz>",
 	"license": "MIT",
 	"description": "A tool for writing better “one–file” scripts",
@@ -27,7 +27,7 @@
 		"index.d.ts",
 		"index.js",
 		"src",
-		"man.md"
+		"tldr.md"
 	],
 	"types": "index.d.ts",
 	"typesVersions": {
