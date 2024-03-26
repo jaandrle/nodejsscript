@@ -4,7 +4,7 @@ import repl from "node:repl";
 
 export function startRepl(){ return new Promise(async function(){
 	const title= (title= "")=> console.log(String.fromCharCode(27) + "]2;%s" + String.fromCharCode(7) + title, title); // \e ASCII escape character (033 → js 0o33), \a ASCII bell character (007 → js 0o7)
-	title(`nodejsscript@v${$.version} — REPL`);
+	title(`nodejsscript@v${$.version} — REPL (strict mode)`);
 	echo("Use `.help` for help, use `_` to reuse last command result.");
 	
 	const r= repl.start({
