@@ -1,41 +1,14 @@
-nodejsscript
-
+[nodejsscript](../README.md)
 # nodejsscript
-
 ## Table of contents
-
-### Public Functions
-
 - [pipe](README.md#pipe)
 - [fetch](README.md#fetch)
-- [cyclicLoop](README.md#cyclicloop)
 - [echo](README.md#echo)
-
-### Internal Functions
-
-- [\_\_sade](README.md#__sade)
-- [\_exit](README.md#_exit)
-
-### Interfaces
-
-- [EchoFunction](interfaces/EchoFunction.md)
-
-### Public Namespaces
-
 - [$](modules/.md)
 - [s](modules/s.md)
 
-### Internal Namespaces
-
-- [xdg\_](modules/xdg_.md)
-- [\_\_sade](modules/_sade.md)
-- [\_\_fetch](modules/_fetch.md)
-
-### Properties
-
-- [\_env](README.md#_env)
-
 ## Public Functions
+
 
 ### pipe
 
@@ -79,7 +52,8 @@ ___
 
 ▸ **fetch**(`url`, `init?`): [`Response`](classes/fetch.Response.md)
 
-A wrapper around the [node-fetch](https://www.npmjs.com/package/node-fetch) package.
+The [node-fetch](https://www.npmjs.com/package/node-fetch)
+package can be used in cases when `fetch` is not available natively.
 
 ```js
 // BASIC
@@ -119,48 +93,6 @@ try{
 
 ___
 
-### cyclicLoop
-
-▸ **cyclicLoop**<`T`\>(`items`): `Generator`<`T`[], `any`, `T`\>
-
-Repeatedly loops through the given chars/strings/….
-Typical usage is to create a spinner (by default):
-
-```js
-import { setTimeout } from "node:timers/promises";
-const spinEnd= spinner(); //output=> ⠋ Waiting…
-setTimeout(10*750).then(spinEnd);
-
-function spinner(message= "Waiting…"){
-	const animation= cyclicLoop();
-	const echoSpin= ()=> echo.use("-R", `${animation.next().value} ${message}`);
-	const id= setInterval(echoSpin, 750);
-	return function(){
-		clearInterval(id);
-		echo.use("-r");
-	};
-}
-```
-…also see [spinner example](../examples/spinner.mjs).
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `items` | `T`[] |
-
-#### Returns
-
-`Generator`<`T`[], `any`, `T`\>
-
-___
-
 ### echo
 
 ▸ **echo**(`message?`, `...optionalParams`): [`ShellString`](modules/s.md#shellstring)
@@ -169,7 +101,7 @@ This is mixed function between bash’s `echo` and `console.log`.
 By default, works more like `console.log` with partial supports
 for styling mimic CSS and `console.log` in the web browser. See [`echo.css`](interfaces/EchoFunction.md#type-declaration) (internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)).
 
-The [use](interfaces/EchoFunction.md#use) provides more `echo` way,
+The ['echo.use'](interfaces/EchoFunction.md#use) provides more `echo` way,
 the first argument accepts options string starting with `-`:
 - `-n`: Don’t append **n**ew line
 - `-1`/`-2`: Outputs to `stdout`/`stderr`
@@ -190,6 +122,8 @@ echo({ count });
 // Prints: { count: 5 }, to stdout
 echo(new Error("Test"));
 // Prints: 'Error: Test', when `config.verbose= false`
+echo("%cRed", "color: red");
+// Prints 'Red' in red
 ```
 ```js
 echo.use("-R", "0%");
@@ -250,7 +184,7 @@ called.
 To exit with a 'failure' code:
 
 ```js
-import { exit } from 'process';
+import { exit } from 'node:process';
 
 exit(1);
 ```
@@ -269,7 +203,7 @@ For instance, the following example illustrates a _misuse_ of the`process.exit()
 truncated and lost:
 
 ```js
-import { exit } from 'process';
+import { exit } from 'node:process';
 
 // This is an example of what *not* to do:
 if (someConditionNotMet()) {
@@ -286,7 +220,7 @@ Rather than calling `process.exit()` directly, the code _should_ set the`process
 scheduling any additional work for the event loop:
 
 ```js
-import process from 'process';
+import process from 'node:process';
 
 // How to properly set the exit code while letting
 // the process exit gracefully.
@@ -311,7 +245,7 @@ v0.1.13
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `code?` | `number` | The exit code. |
+| `code?` | `number` | The exit code. For string type, only integer strings (e.g.,'1') are allowed. |
 
 #### Returns
 
@@ -348,14 +282,14 @@ reflected outside the Node.js process, or (unless explicitly requested)
 to other `Worker` threads.
 In other words, the following example would not work:
 
-```console
-$ node -e 'process.env.foo = "bar"' &#x26;&#x26; echo $foo
+```bash
+node -e 'process.env.foo = "bar"' &#x26;&#x26; echo $foo
 ```
 
 While the following will:
 
 ```js
-import { env } from 'process';
+import { env } from 'node:process';
 
 env.foo = 'bar';
 console.log(env.foo);
@@ -366,7 +300,7 @@ to a string. **This behavior is deprecated.** Future versions of Node.js may
 throw an error when the value is not a string, number, or boolean.
 
 ```js
-import { env } from 'process';
+import { env } from 'node:process';
 
 env.test = null;
 console.log(env.test);
@@ -379,7 +313,7 @@ console.log(env.test);
 Use `delete` to delete a property from `process.env`.
 
 ```js
-import { env } from 'process';
+import { env } from 'node:process';
 
 env.TEST = 1;
 delete env.TEST;
@@ -390,7 +324,7 @@ console.log(env.TEST);
 On Windows operating systems, environment variables are case-insensitive.
 
 ```js
-import { env } from 'process';
+import { env } from 'node:process';
 
 env.TEST = 1;
 console.log(env.test);
@@ -399,10 +333,11 @@ console.log(env.test);
 
 Unless explicitly specified when creating a `Worker` instance,
 each `Worker` thread has its own copy of `process.env`, based on its
-parent thread’s `process.env`, or whatever was specified as the `env` option
+parent thread's `process.env`, or whatever was specified as the `env` option
 to the `Worker` constructor. Changes to `process.env` will not be visible
 across `Worker` threads, and only the main thread can make changes that
-are visible to the operating system or to native add-ons.
+are visible to the operating system or to native add-ons. On Windows, a copy of`process.env` on a `Worker` instance operates in a case-sensitive manner
+unlike the main thread.
 
 **`Since`**
 

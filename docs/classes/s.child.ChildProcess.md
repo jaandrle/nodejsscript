@@ -32,7 +32,9 @@ v2.2.0
 - [on](s.child.ChildProcess.md#on)
 - [listenerCount](s.child.ChildProcess.md#listenercount)
 - [getEventListeners](s.child.ChildProcess.md#geteventlisteners)
+- [getMaxListeners](s.child.ChildProcess.md#getmaxlisteners)
 - [setMaxListeners](s.child.ChildProcess.md#setmaxlisteners)
+- [addAbortListener](s.child.ChildProcess.md#addabortlistener)
 - [kill](s.child.ChildProcess.md#kill)
 - [send](s.child.ChildProcess.md#send)
 - [disconnect](s.child.ChildProcess.md#disconnect)
@@ -44,11 +46,13 @@ v2.2.0
 - [once](s.child.ChildProcess.md#once-1)
 - [prependListener](s.child.ChildProcess.md#prependlistener)
 - [prependOnceListener](s.child.ChildProcess.md#prependoncelistener)
+- [[dispose]](s.child.ChildProcess.md#[dispose])
+- [[captureRejectionSymbol]](s.child.ChildProcess.md#[capturerejectionsymbol])
 - [removeListener](s.child.ChildProcess.md#removelistener)
 - [off](s.child.ChildProcess.md#off)
 - [removeAllListeners](s.child.ChildProcess.md#removealllisteners)
 - [setMaxListeners](s.child.ChildProcess.md#setmaxlisteners-1)
-- [getMaxListeners](s.child.ChildProcess.md#getmaxlisteners)
+- [getMaxListeners](s.child.ChildProcess.md#getmaxlisteners-1)
 - [listeners](s.child.ChildProcess.md#listeners)
 - [rawListeners](s.child.ChildProcess.md#rawlisteners)
 - [listenerCount](s.child.ChildProcess.md#listenercount-1)
@@ -92,31 +96,28 @@ This method is intentionally generic and works with the web platform [EventTarge
 semantics and does not listen to the `'error'` event.
 
 ```js
-const { once, EventEmitter } = require('events');
+import { once, EventEmitter } from 'node:events';
+import process from 'node:process';
 
-async function run() {
-  const ee = new EventEmitter();
+const ee = new EventEmitter();
 
-  process.nextTick(() => {
-    ee.emit('myevent', 42);
-  });
+process.nextTick(() => {
+  ee.emit('myevent', 42);
+});
 
-  const [value] = await once(ee, 'myevent');
-  console.log(value);
+const [value] = await once(ee, 'myevent');
+console.log(value);
 
-  const err = new Error('kaboom');
-  process.nextTick(() => {
-    ee.emit('error', err);
-  });
+const err = new Error('kaboom');
+process.nextTick(() => {
+  ee.emit('error', err);
+});
 
-  try {
-    await once(ee, 'myevent');
-  } catch (err) {
-    console.log('error happened', err);
-  }
+try {
+  await once(ee, 'myevent');
+} catch (err) {
+  console.error('error happened', err);
 }
-
-run();
 ```
 
 The special handling of the `'error'` event is only used when `events.once()`is used to wait for another event. If `events.once()` is used to wait for the
@@ -124,13 +125,13 @@ The special handling of the `'error'` event is only used when `events.once()`is 
 special handling:
 
 ```js
-const { EventEmitter, once } = require('events');
+import { EventEmitter, once } from 'node:events';
 
 const ee = new EventEmitter();
 
 once(ee, 'error')
   .then(([err]) => console.log('ok', err.message))
-  .catch((err) => console.log('error', err.message));
+  .catch((err) => console.error('error', err.message));
 
 ee.emit('error', new Error('boom'));
 
@@ -140,7 +141,7 @@ ee.emit('error', new Error('boom'));
 An `AbortSignal` can be used to cancel waiting for the event:
 
 ```js
-const { EventEmitter, once } = require('events');
+import { EventEmitter, once } from 'node:events';
 
 const ee = new EventEmitter();
 const ac = new AbortController();
@@ -208,25 +209,24 @@ ___
 ▸ `Static` **on**(`emitter`, `eventName`, `options?`): `AsyncIterableIterator`<`any`\>
 
 ```js
-const { on, EventEmitter } = require('events');
+import { on, EventEmitter } from 'node:events';
+import process from 'node:process';
 
-(async () => {
-  const ee = new EventEmitter();
+const ee = new EventEmitter();
 
-  // Emit later on
-  process.nextTick(() => {
-    ee.emit('foo', 'bar');
-    ee.emit('foo', 42);
-  });
+// Emit later on
+process.nextTick(() => {
+  ee.emit('foo', 'bar');
+  ee.emit('foo', 42);
+});
 
-  for await (const event of on(ee, 'foo')) {
-    // The execution of this inner block is synchronous and it
-    // processes one event at a time (even with await). Do not use
-    // if concurrent execution is required.
-    console.log(event); // prints ['bar'] [42]
-  }
-  // Unreachable here
-})();
+for await (const event of on(ee, 'foo')) {
+  // The execution of this inner block is synchronous and it
+  // processes one event at a time (even with await). Do not use
+  // if concurrent execution is required.
+  console.log(event); // prints ['bar'] [42]
+}
+// Unreachable here
 ```
 
 Returns an `AsyncIterator` that iterates `eventName` events. It will throw
@@ -237,7 +237,9 @@ composed of the emitted event arguments.
 An `AbortSignal` can be used to cancel waiting on events:
 
 ```js
-const { on, EventEmitter } = require('events');
+import { on, EventEmitter } from 'node:events';
+import process from 'node:process';
+
 const ac = new AbortController();
 
 (async () => {
@@ -269,7 +271,7 @@ v13.6.0, v12.16.0
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `emitter` | `EventEmitter` | - |
+| `emitter` | `EventEmitter`<`DefaultEventMap`\> | - |
 | `eventName` | `string` | The name of the event being listened for |
 | `options?` | `StaticEventEmitterOptions` | - |
 
@@ -292,7 +294,8 @@ ___
 A class method that returns the number of listeners for the given `eventName`registered on the given `emitter`.
 
 ```js
-const { EventEmitter, listenerCount } = require('events');
+import { EventEmitter, listenerCount } from 'node:events';
+
 const myEmitter = new EventEmitter();
 myEmitter.on('event', () => {});
 myEmitter.on('event', () => {});
@@ -312,7 +315,7 @@ Since v3.2.0 - Use `listenerCount` instead.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `emitter` | `EventEmitter` | The emitter to query |
+| `emitter` | `EventEmitter`<`DefaultEventMap`\> | The emitter to query |
 | `eventName` | `string` \| `symbol` | The event name |
 
 #### Returns
@@ -338,19 +341,19 @@ For `EventTarget`s this is the only way to get the event listeners for the
 event target. This is useful for debugging and diagnostic purposes.
 
 ```js
-const { getEventListeners, EventEmitter } = require('events');
+import { getEventListeners, EventEmitter } from 'node:events';
 
 {
   const ee = new EventEmitter();
   const listener = () => console.log('Events are fun');
   ee.on('foo', listener);
-  getEventListeners(ee, 'foo'); // [listener]
+  console.log(getEventListeners(ee, 'foo')); // [ [Function: listener] ]
 }
 {
   const et = new EventTarget();
   const listener = () => console.log('Events are fun');
   et.addEventListener('foo', listener);
-  getEventListeners(et, 'foo'); // [listener]
+  console.log(getEventListeners(et, 'foo')); // [ [Function: listener] ]
 }
 ```
 
@@ -362,7 +365,7 @@ v15.2.0, v14.17.0
 
 | Name | Type |
 | :------ | :------ |
-| `emitter` | `EventEmitter` \| `_DOMEventTarget` |
+| `emitter` | `EventEmitter`<`DefaultEventMap`\> \| `_DOMEventTarget` |
 | `name` | `string` \| `symbol` |
 
 #### Returns
@@ -375,15 +378,62 @@ EventEmitter.getEventListeners
 
 ___
 
+### getMaxListeners
+
+▸ `Static` **getMaxListeners**(`emitter`): `number`
+
+Returns the currently set max amount of listeners.
+
+For `EventEmitter`s this behaves exactly the same as calling `.getMaxListeners` on
+the emitter.
+
+For `EventTarget`s this is the only way to get the max event listeners for the
+event target. If the number of event handlers on a single EventTarget exceeds
+the max set, the EventTarget will print a warning.
+
+```js
+import { getMaxListeners, setMaxListeners, EventEmitter } from 'node:events';
+
+{
+  const ee = new EventEmitter();
+  console.log(getMaxListeners(ee)); // 10
+  setMaxListeners(11, ee);
+  console.log(getMaxListeners(ee)); // 11
+}
+{
+  const et = new EventTarget();
+  console.log(getMaxListeners(et)); // 10
+  setMaxListeners(11, et);
+  console.log(getMaxListeners(et)); // 11
+}
+```
+
+**`Since`**
+
+v19.9.0
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `emitter` | `EventEmitter`<`DefaultEventMap`\> \| `_DOMEventTarget` |
+
+#### Returns
+
+`number`
+
+#### Inherited from
+
+EventEmitter.getMaxListeners
+
+___
+
 ### setMaxListeners
 
 ▸ `Static` **setMaxListeners**(`n?`, `...eventTargets`): `void`
 
 ```js
-const {
-  setMaxListeners,
-  EventEmitter
-} = require('events');
+import { setMaxListeners, EventEmitter } from 'node:events';
 
 const target = new EventTarget();
 const emitter = new EventEmitter();
@@ -400,7 +450,7 @@ v15.4.0
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `n?` | `number` | A non-negative number. The maximum number of listeners per `EventTarget` event. |
-| `...eventTargets` | (`EventEmitter` \| `_DOMEventTarget`)[] | - |
+| `...eventTargets` | (`EventEmitter`<`DefaultEventMap`\> \| `_DOMEventTarget`)[] | - |
 
 #### Returns
 
@@ -409,6 +459,63 @@ v15.4.0
 #### Inherited from
 
 EventEmitter.setMaxListeners
+
+___
+
+### addAbortListener
+
+▸ `Static` **addAbortListener**(`signal`, `resource`): `Disposable`
+
+Listens once to the `abort` event on the provided `signal`.
+
+Listening to the `abort` event on abort signals is unsafe and may
+lead to resource leaks since another third party with the signal can
+call `e.stopImmediatePropagation()`. Unfortunately Node.js cannot change
+this since it would violate the web standard. Additionally, the original
+API makes it easy to forget to remove listeners.
+
+This API allows safely using `AbortSignal`s in Node.js APIs by solving these
+two issues by listening to the event such that `stopImmediatePropagation` does
+not prevent the listener from running.
+
+Returns a disposable so that it may be unsubscribed from more easily.
+
+```js
+import { addAbortListener } from 'node:events';
+
+function example(signal) {
+  let disposable;
+  try {
+    signal.addEventListener('abort', (e) => e.stopImmediatePropagation());
+    disposable = addAbortListener(signal, (e) => {
+      // Do something when signal is aborted.
+    });
+  } finally {
+    disposable?.[Symbol.dispose]();
+  }
+}
+```
+
+**`Since`**
+
+v20.5.0
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `signal` | `AbortSignal` |
+| `resource` | (`event`: `Event`) => `void` |
+
+#### Returns
+
+`Disposable`
+
+Disposable that removes the `abort` listener.
+
+#### Inherited from
+
+EventEmitter.addAbortListener
 
 ___
 
@@ -421,7 +528,7 @@ argument is given, the process will be sent the `'SIGTERM'` signal. See [`signal
 returns `true` if [`kill(2)`](http://man7.org/linux/man-pages/man2/kill.2.html) succeeds, and `false` otherwise.
 
 ```js
-const { spawn } = require('child_process');
+const { spawn } = require('node:child_process');
 const grep = spawn('grep', ['ssh']);
 
 grep.on('close', (code, signal) => {
@@ -454,7 +561,7 @@ new process in a shell or with the use of the `shell` option of `ChildProcess`:
 
 ```js
 'use strict';
-const { spawn } = require('child_process');
+const { spawn } = require('node:child_process');
 
 const subprocess = spawn(
   'sh',
@@ -464,8 +571,8 @@ const subprocess = spawn(
       console.log(process.pid, 'is alive')
     }, 500);"`,
   ], {
-    stdio: ['inherit', 'inherit', 'inherit']
-  }
+    stdio: ['inherit', 'inherit', 'inherit'],
+  },
 );
 
 setTimeout(() => {
@@ -504,7 +611,7 @@ message might not be the same as what is originally sent.
 For example, in the parent script:
 
 ```js
-const cp = require('child_process');
+const cp = require('node:child_process');
 const n = cp.fork(`${__dirname}/sub.js`);
 
 n.on('message', (m) => {
@@ -558,10 +665,10 @@ The `sendHandle` argument can be used, for instance, to pass the handle of
 a TCP server object to the child process as illustrated in the example below:
 
 ```js
-const subprocess = require('child_process').fork('subprocess.js');
+const subprocess = require('node:child_process').fork('subprocess.js');
 
 // Open up the server object and send the handle.
-const server = require('net').createServer();
+const server = require('node:net').createServer();
 server.on('connection', (socket) => {
   socket.end('handled by parent');
 });
@@ -585,10 +692,9 @@ process.on('message', (m, server) => {
 Once the server is now shared between the parent and child, some connections
 can be handled by the parent and some by the child.
 
-While the example above uses a server created using the `net` module, `dgram`module servers use exactly the same workflow with the exceptions of listening on
-a `'message'` event instead of `'connection'` and using `server.bind()` instead
-of `server.listen()`. This is, however, currently only supported on Unix
-platforms.
+While the example above uses a server created using the `node:net` module,`node:dgram` module servers use exactly the same workflow with the exceptions of
+listening on a `'message'` event instead of `'connection'` and using`server.bind()` instead of `server.listen()`. This is, however, only
+supported on Unix platforms.
 
 #### Example: sending a socket object
 
@@ -597,13 +703,13 @@ socket to the child process. The example below spawns two children that each
 handle connections with "normal" or "special" priority:
 
 ```js
-const { fork } = require('child_process');
+const { fork } = require('node:child_process');
 const normal = fork('subprocess.js', ['normal']);
 const special = fork('subprocess.js', ['special']);
 
 // Open up the server and send sockets to child. Use pauseOnConnect to prevent
 // the sockets from being read before they are sent to the child process.
-const server = require('net').createServer({ pauseOnConnect: true });
+const server = require('node:net').createServer({ pauseOnConnect: true });
 server.on('connection', (socket) => {
 
   // If this is special priority...
@@ -724,11 +830,11 @@ independently of the child, unless there is an established IPC channel between
 the child and the parent.
 
 ```js
-const { spawn } = require('child_process');
+const { spawn } = require('node:child_process');
 
 const subprocess = spawn(process.argv[0], ['child_program.js'], {
   detached: true,
-  stdio: 'ignore'
+  stdio: 'ignore',
 });
 
 subprocess.unref();
@@ -753,11 +859,11 @@ restore the removed reference count for the child process, forcing the parent
 to wait for the child to exit before exiting itself.
 
 ```js
-const { spawn } = require('child_process');
+const { spawn } = require('node:child_process');
 
 const subprocess = spawn(process.argv[0], ['child_program.js'], {
   detached: true,
-  stdio: 'ignore'
+  stdio: 'ignore',
 });
 
 subprocess.unref();
@@ -1522,9 +1628,53 @@ EventEmitter.prependOnceListener
 
 ___
 
+### [dispose]
+
+▸ **[dispose]**(): `void`
+
+Calls [kill](s.child.ChildProcess.md#kill) with `'SIGTERM'`.
+
+**`Since`**
+
+v20.5.0
+
+#### Returns
+
+`void`
+
+___
+
+### [captureRejectionSymbol]
+
+▸ `Optional` **[captureRejectionSymbol]**<`K`\>(`error`, `event`, `...args`): `void`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `K` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `error` | `Error` |
+| `event` | `string` \| `symbol` |
+| `...args` | `AnyRest` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+EventEmitter.\_\_@captureRejectionSymbol@22931
+
+___
+
 ### removeListener
 
-▸ **removeListener**(`eventName`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
+▸ **removeListener**<`K`\>(`eventName`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 Removes the specified `listener` from the listener array for the event named`eventName`.
 
@@ -1547,6 +1697,8 @@ time of emitting are called in order. This implies that any`removeListener()` or
 will not remove them from`emit()` in progress. Subsequent events behave as expected.
 
 ```js
+import { EventEmitter } from 'node:events';
+class MyEmitter extends EventEmitter {}
 const myEmitter = new MyEmitter();
 
 const callbackA = () => {
@@ -1587,6 +1739,7 @@ event (as in the example below), `removeListener()` will remove the most
 recently added instance. In the example the `once('ping')`listener is removed:
 
 ```js
+import { EventEmitter } from 'node:events';
 const ee = new EventEmitter();
 
 function pong() {
@@ -1607,6 +1760,12 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 v0.1.26
 
+#### Type parameters
+
+| Name |
+| :------ |
+| `K` |
+
 #### Parameters
 
 | Name | Type |
@@ -1626,13 +1785,19 @@ ___
 
 ### off
 
-▸ **off**(`eventName`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
+▸ **off**<`K`\>(`eventName`, `listener`): [`ChildProcess`](s.child.ChildProcess.md)
 
 Alias for `emitter.removeListener()`.
 
 **`Since`**
 
 v10.0.0
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `K` |
 
 #### Parameters
 
@@ -1737,7 +1902,7 @@ ___
 
 ### listeners
 
-▸ **listeners**(`eventName`): `Function`[]
+▸ **listeners**<`K`\>(`eventName`): `Function`[]
 
 Returns a copy of the array of listeners for the event named `eventName`.
 
@@ -1752,6 +1917,12 @@ console.log(util.inspect(server.listeners('connection')));
 **`Since`**
 
 v0.1.26
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `K` |
 
 #### Parameters
 
@@ -1771,12 +1942,13 @@ ___
 
 ### rawListeners
 
-▸ **rawListeners**(`eventName`): `Function`[]
+▸ **rawListeners**<`K`\>(`eventName`): `Function`[]
 
 Returns a copy of the array of listeners for the event named `eventName`,
 including any wrappers (such as those created by `.once()`).
 
 ```js
+import { EventEmitter } from 'node:events';
 const emitter = new EventEmitter();
 emitter.once('log', () => console.log('log once'));
 
@@ -1804,6 +1976,12 @@ emitter.emit('log');
 
 v9.4.0
 
+#### Type parameters
+
+| Name |
+| :------ |
+| `K` |
+
 #### Parameters
 
 | Name | Type |
@@ -1822,19 +2000,28 @@ ___
 
 ### listenerCount
 
-▸ **listenerCount**(`eventName`): `number`
+▸ **listenerCount**<`K`\>(`eventName`, `listener?`): `number`
 
-Returns the number of listeners listening to the event named `eventName`.
+Returns the number of listeners listening for the event named `eventName`.
+If `listener` is provided, it will return how many times the listener is found
+in the list of the listeners of the event.
 
 **`Since`**
 
 v3.2.0
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `K` |
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `eventName` | `string` \| `symbol` | The name of the event being listened for |
+| `listener?` | `Function` | The event handler function |
 
 #### Returns
 
@@ -1854,7 +2041,8 @@ Returns an array listing the events for which the emitter has registered
 listeners. The values in the array are strings or `Symbol`s.
 
 ```js
-const EventEmitter = require('events');
+import { EventEmitter } from 'node:events';
+
 const myEE = new EventEmitter();
 myEE.on('foo', () => {});
 myEE.on('bar', () => {});
@@ -1884,13 +2072,14 @@ EventEmitter.eventNames
 
 ▪ `Static` `Readonly` **errorMonitor**: typeof [`errorMonitor`](s.child.ChildProcess.md#errormonitor)
 
-This symbol shall be used to install a listener for only monitoring `'error'`
-events. Listeners installed using this symbol are called before the regular
-`'error'` listeners are called.
+This symbol shall be used to install a listener for only monitoring `'error'`events. Listeners installed using this symbol are called before the regular`'error'` listeners are called.
 
-Installing a listener using this symbol does not change the behavior once an
-`'error'` event is emitted, therefore the process will still crash if no
+Installing a listener using this symbol does not change the behavior once an`'error'` event is emitted. Therefore, the process will still crash if no
 regular `'error'` listener is installed.
+
+**`Since`**
+
+v13.6.0, v12.17.0
 
 #### Inherited from
 
@@ -1902,6 +2091,14 @@ ___
 
 ▪ `Static` `Readonly` **captureRejectionSymbol**: typeof [`captureRejectionSymbol`](s.child.ChildProcess.md#capturerejectionsymbol)
 
+Value: `Symbol.for('nodejs.rejection')`
+
+See how to write a custom `rejection handler`.
+
+**`Since`**
+
+v13.4.0, v12.16.0
+
 #### Inherited from
 
 EventEmitter.captureRejectionSymbol
@@ -1912,7 +2109,13 @@ ___
 
 ▪ `Static` **captureRejections**: `boolean`
 
-Sets or gets the default captureRejection value for all emitters.
+Value: [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type)
+
+Change the default `captureRejections` option on all new `EventEmitter` objects.
+
+**`Since`**
+
+v13.4.0, v12.16.0
 
 #### Inherited from
 
@@ -1923,6 +2126,44 @@ ___
 ### defaultMaxListeners
 
 ▪ `Static` **defaultMaxListeners**: `number`
+
+By default, a maximum of `10` listeners can be registered for any single
+event. This limit can be changed for individual `EventEmitter` instances
+using the `emitter.setMaxListeners(n)` method. To change the default
+for _all_`EventEmitter` instances, the `events.defaultMaxListeners`property can be used. If this value is not a positive number, a `RangeError`is thrown.
+
+Take caution when setting the `events.defaultMaxListeners` because the
+change affects _all_`EventEmitter` instances, including those created before
+the change is made. However, calling `emitter.setMaxListeners(n)` still has
+precedence over `events.defaultMaxListeners`.
+
+This is not a hard limit. The `EventEmitter` instance will allow
+more listeners to be added but will output a trace warning to stderr indicating
+that a "possible EventEmitter memory leak" has been detected. For any single`EventEmitter`, the `emitter.getMaxListeners()` and `emitter.setMaxListeners()`methods can be used to
+temporarily avoid this warning:
+
+```js
+import { EventEmitter } from 'node:events';
+const emitter = new EventEmitter();
+emitter.setMaxListeners(emitter.getMaxListeners() + 1);
+emitter.once('event', () => {
+  // do stuff
+  emitter.setMaxListeners(Math.max(emitter.getMaxListeners() - 1, 0));
+});
+```
+
+The `--trace-warnings` command-line flag can be used to display the
+stack trace for such warnings.
+
+The emitted warning can be inspected with `process.on('warning')` and will
+have the additional `emitter`, `type`, and `count` properties, referring to
+the event emitter instance, the event's name and the number of attached
+listeners, respectively.
+Its `name` property is set to `'MaxListenersExceededWarning'`.
+
+**`Since`**
+
+v0.11.2
 
 #### Inherited from
 
@@ -1945,8 +2186,7 @@ then this will be `null`.
 `subprocess.stdin` is an alias for `subprocess.stdio[0]`. Both properties will
 refer to the same value.
 
-The `subprocess.stdin` property can be `undefined` if the child process could
-not be successfully spawned.
+The `subprocess.stdin` property can be `null` or `undefined`if the child process could not be successfully spawned.
 
 **`Since`**
 
@@ -1967,7 +2207,7 @@ then this will be `null`.
 refer to the same value.
 
 ```js
-const { spawn } = require('child_process');
+const { spawn } = require('node:child_process');
 
 const subprocess = spawn('ls');
 
@@ -1976,8 +2216,7 @@ subprocess.stdout.on('data', (data) => {
 });
 ```
 
-The `subprocess.stdout` property can be `null` if the child process could
-not be successfully spawned.
+The `subprocess.stdout` property can be `null` or `undefined`if the child process could not be successfully spawned.
 
 **`Since`**
 
@@ -1997,8 +2236,7 @@ then this will be `null`.
 `subprocess.stderr` is an alias for `subprocess.stdio[2]`. Both properties will
 refer to the same value.
 
-The `subprocess.stderr` property can be `null` if the child process could
-not be successfully spawned.
+The `subprocess.stderr` property can be `null` or `undefined`if the child process could not be successfully spawned.
 
 **`Since`**
 
@@ -2011,7 +2249,7 @@ ___
 • `Optional` `Readonly` **channel**: `Pipe`
 
 The `subprocess.channel` property is a reference to the child's IPC channel. If
-no IPC channel currently exists, this property is `undefined`.
+no IPC channel exists, this property is `undefined`.
 
 **`Since`**
 
@@ -2021,7 +2259,7 @@ ___
 
 ### stdio
 
-• `Readonly` **stdio**: [`Writable`, `Readable`, `Readable`, `Writable` \| `Readable`, `Writable` \| `Readable`]
+• `Readonly` **stdio**: [`Writable`, `Readable`, `Readable`, `Readable` \| `Writable`, `Readable` \| `Writable`]
 
 A sparse array of pipes to the child process, corresponding with positions in
 the `stdio` option passed to [spawn](../modules/s.child.md#spawn) that have been set
@@ -2033,16 +2271,16 @@ pipe, so only the parent's `subprocess.stdio[1]` is a stream, all other values
 in the array are `null`.
 
 ```js
-const assert = require('assert');
-const fs = require('fs');
-const child_process = require('child_process');
+const assert = require('node:assert');
+const fs = require('node:fs');
+const child_process = require('node:child_process');
 
 const subprocess = child_process.spawn('ls', {
   stdio: [
     0, // Use parent's stdin for child.
     'pipe', // Pipe child's stdout to parent.
     fs.openSync('err.out', 'w'), // Direct child's stderr to a file.
-  ]
+  ],
 });
 
 assert.strictEqual(subprocess.stdio[0], null);
@@ -2087,7 +2325,7 @@ fails to spawn due to errors, then the value is `undefined` and `error` is
 emitted.
 
 ```js
-const { spawn } = require('child_process');
+const { spawn } = require('node:child_process');
 const grep = spawn('grep', ['ssh']);
 
 console.log(`Spawned child pid: ${grep.pid}`);

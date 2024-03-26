@@ -1,19 +1,11 @@
 import { ProcessOutput } from "./Error.js";
 import { spawn } from "node:child_process";
 import assert from "node:assert";
-import { AsyncLocalStorage, createHook } from 'node:async_hooks';
+import { AsyncLocalStorage } from 'node:async_hooks';
 import shelljs from "shelljs";
 const { which, ShellString }= shelljs;
 
-const processCwd= Symbol('processCwd');
 const storage= new AsyncLocalStorage();
-createHook({
-	init: syncCwd,
-	before: syncCwd,
-	promiseResolve: syncCwd,
-	after: syncCwd,
-	destroy: syncCwd,
-}).enable();
 const defaults= getDefaults();
 function getStore(){ return storage.getStore() || defaults; }
 export const process_store= getProcesStore(()=> ({
@@ -35,8 +27,7 @@ export class ProcessPromise extends Promise{
 		if(this.child) return; // The _run() can be called from a few places.
 		const { prerun, command, options, stdio }= process_store.get(this);
 		prerun(); // In case $1.pipe($2), the $2 returned, and on $2._run() invoke $1._run().
-		const { spawn, prefix, shell, [processCwd]: cwd, env }= getStore();
-		if(!Reflect.has(options, "cwd")) options.cwd= cwd;
+		const { spawn, prefix, shell, env }= getStore();
 		if(Reflect.has(options, "pipe")) stdio[0]= "pipe";
 		this.child= spawn(prefix + command,
 			Object.assign({ shell: typeof shell === 'string' ? shell : true, windowsHide: true, env, stdio }, options));
@@ -126,10 +117,6 @@ function getProcesStore(initial){
 			return now;
 		}
 	};
-}function syncCwd() {
-	const cwd= getStore()[processCwd];
-	if(cwd != process.cwd())
-		process.chdir(cwd);
 }
 export function parseDuration(d) {
 	if (typeof d == 'number') {
@@ -147,7 +134,6 @@ export function parseDuration(d) {
 }
 function getDefaults(){
 	const defaults= {
-		[processCwd]: process.cwd(),
 		verbose: true,
 		env: process.env,
 		shell: true,

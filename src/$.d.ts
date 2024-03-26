@@ -5,9 +5,20 @@ import * as __sade from "sade";
 export { __sade };
 import * as xdg_ from "./xdg.d";
 export { xdg_ };
-import { ShellString } from 'shelljs';
+import { read as ReadType } from './shelljs.d';
 
 export namespace Dollar{
+	/* tldr-start
+	 * ### $.version
+	 * */
+	/**
+	 * Holds current nodejsscript version
+	 * */
+	const version: string;
+	/* tldr-end */
+	/* tldr-start
+	 * ### $.isMain(import.meta)
+	 * */
 	/**
 	 * This is small helper function to determine if current script file was launched as main one.
 	 * ```js
@@ -20,10 +31,28 @@ export namespace Dollar{
 	 * //nomain.js
 	 * if($.isMain(import.meta)) echo("This is NOT main script ⇒ never echo");
 	 * ```
+	 * This can be helpful for writing importable scripts.
+	 * It is very similar to [`__name__ == '__main__'`](https://docs.python.org/3/library/__main__.html).
+	 * For this use case, be careful to use `$.exit` correctly (when the script is imported, you probably don't want to use it).
 	 * @category Public
 	 * */
 	function isMain(import_meta: ImportMeta): boolean;
-	
+	/* tldr-end */
+	/* tldr-start
+	 * ### $.is_silent: boolean
+	 *
+	 * Suppresses all command output if `true`, except for `echo()` call.
+	 * ### $.is_verbose: boolean
+	 *
+	 * Will print each executed command to the screen.
+	 * ### $.is_fatal: boolean
+	 *
+	 * If `true`, the script will throw a JavaScript error when any `shell.js` command encounters an error. This is analogous to Bash's `set -e`.
+	 * ### $.glob_options: { is_off: boolean, options: boolean }
+	 *
+	 * + glob: disable filename expansion (globbing), options for `glob.sync()`
+	 * */
+	/* tldr-end */
 	/**
 	 * Suppresses all command output if `true`, except for `echo()` call.
 	 * @default false
@@ -57,6 +86,9 @@ export namespace Dollar{
 		options: IOptions;
 	}
 
+	/* tldr-start
+	 * ### $.configAssign({ verbose?: boolean, fatal?: boolean, silent?: boolean })
+	 * */
 	/**
 	 *  Set multiple options except `glob_options` with one command.
 	 * ```js
@@ -67,7 +99,11 @@ export namespace Dollar{
 	 * @category Public
 	 * */
 	function configAssign(...c: Record<"verbose"|"fatal"|"silent",boolean>[]): void;
+	/* tldr-end */
 
+	/* tldr-start
+	 * ### $.isFIFO(0|1)
+	 * */
 	/**
 	 * Method to check whether script stdin/stdout (0/1) is a first-in-first-out (FIFO) pipe or not.
 	 * ```bash
@@ -77,6 +113,14 @@ export namespace Dollar{
 	 * @category Public
 	 */
 	function isFIFO(stream_id: 0|1): boolean;
+	/* tldr-end */
+	/* tldr-start
+	 * ### $.api([usage])
+	 * ### $.api(usage, true)
+	 * 
+	 * A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
+	 * */
+	/* tldr-end */
 	/**
 	 * A wrapper around the [lukeed/sade: Smooth (CLI) Operator 🎶](https://github.com/lukeed/sade) package.
 	 * In addition to the origin, `$.api()` supports to fill script name from script file name.
@@ -126,47 +170,51 @@ export namespace Dollar{
 	 * */
 	function api(usage: string, is_single?: boolean): __sade.Sade
 	
-	interface ReadOptions{
-		/** Promt mode, value is used as question. It is possible to cobine with other options. */
-		"-p": string;
-		/** Make sence to combine only with `-p` to not show pressed keys (e.g. to prompt password). */
-		"-s": boolean;
-		/** Make sence to combine only with `-p` to provide tab suggestion/completions. */
-		"completions": string[];
-		/** Returns the `stdin` till given needle. */
-		"-d": string;
-		/** Choose given number of chars from `stdin`. */
-		"-n": number;
-	}
 	/**
-	 * This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
-	 * So, the function purpose is reading from `stdin`.
-	 * ```js
-	 * const answer= await $.read({ "-p": "Question" });
-	 * const color= await $.read({ "-p": "Your color", completions: [ "red", "green" ] });
-	 * if($.isFIFO(0)) await $.read().then(echo.bind(null, "E.g. for reading received input:"));
-	 * ```
-	 * @category Public
+	 * For backward compatibility, **use `s.read()` instead**.
+	 * @deprecated Use {@link s.read} instead.
 	 * */
-	function read(options: ReadOptions): Promise<ShellString>;
+	const read: typeof ReadType;
 	
+	/* tldr-start
+	 * ### $.xdg: { home, temp, data, config, cache, root, cwd, main }
+	 *
+	 * Returns the directory/file path based on `$.xdg.<tag>()`.
+	 * ```js
+	 * $.xdg.<tag>`…`
+	 * $.xdg.<tag>("…")
+	 * $.xdg.<tag>()
+	 * ```
+	 * */
+	/* tldr-end */
 	/**
 	 * @category Public
 	 */
 	const xdg: typeof xdg_.xdg;
 
+	/* tldr-start
+	 * ### $.$
+	 * */
 	/**
 	 * Returns the PID of the process. Compare to bash `$$` vs `$.$`.
 	 * @category Public
 	 * @alias process.pid
 	 */
 	const $: typeof process.pid;
+	/* tldr-end */
+	/* tldr-start
+	 * ### $.env
+	 * */
 	/**
 	 * {@link _env}. Compare to bash `$var` vs `$.env['var']`.
 	 * @category Public
 	 * @alias process.env
 	 */
 	const env: typeof _env;
+	/* tldr-end */
+	/* tldr-start
+	 * ### $.stdin: { text, json, lines }
+	 * */
 	/**
 	 * Holding `stdin` when script was executed.
 	 * ```bash
@@ -178,6 +226,7 @@ export namespace Dollar{
 	 * @category Public
 	 */
 	const stdin: STDIN;
+	/* tldr-end */
 	interface STDIN {
 		/**
 		 * Returns stdin as a text.
@@ -195,13 +244,10 @@ export namespace Dollar{
 		 * */
 		lines: <T>(_default: T)=> string[] | T;
 	}
-	/** @alias {@link STDIN.json}`(null)` */
-	const nojq: null | Array<any> | Record<any, any>;
-	/** @alias {@link STDIN.text}`("")` */
-	const nosed: string;
-	/** @alias {@link STDIN.lines}`([])` */
-	const noawk: string[];
 
+	/* tldr-start
+	 * ### $.error(message)
+	 * */
 	/**
 	 * Throws user targeted error
 	 * ```js
@@ -211,9 +257,13 @@ export namespace Dollar{
 	 * @category Public
 	 * */
 	function error(message: string): Error;
+	/* tldr-end */
 
 	const Error: typeof global.Error;
 
+	/* tldr-start
+	 * ### $.exit(code[, ...ignore])
+	 * */
 	/**
 	 * Just an alias for {@link _exit}. Any other argument is ignored, so you can use:
 	 * ```js
@@ -222,7 +272,11 @@ export namespace Dollar{
 	 * @category Public
 	 */
 	function exit(code?: number, ...ignore: any[]): never;
+	/* tldr-end */
 	
+	/* tldr-start
+	 * ### $.hasArgs(...needles)
+	 * */
 	/**
 	 * Returns boolean value that script has been executed with given arguments (`needles`).
 	 * ```js
@@ -231,4 +285,5 @@ export namespace Dollar{
 	 * @category Public
 	 */
 	function hasArgs(...needles: string[]): boolean;
+	/* tldr-end */
 }

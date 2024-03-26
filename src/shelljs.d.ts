@@ -1,8 +1,17 @@
-import { ShellString, ExecOptions, ExecCallback } from "shelljs";
+import { ShellString, ShellArray, ShellReturnValue, ExecOptions, ExecCallback } from "shelljs";
 import child= require('child_process');
 export { child };
 export * from "shelljs";
 
+/* tldr-start
+ * ### s.xargs([options,], cmd[, cmd_args])
+ *
+ * Available options:
+ *
+ * + `-I`: Next parameter represents to be replaced in `cmd_args`.
+ * + `-R`: Raw piped string ⇒ turn off escaping piped string (by default).
+ *
+ * */
 export interface XargsOptions{
 	/** Next parameter represents to be replaced in `cmd_args`. */
 	"-I": string,
@@ -17,6 +26,7 @@ export interface XargsFunction {
 	 * s.run("git branch --show-current").xargs({ "-I": "§" }, s.run, "dep deploy --branch=§");
 	 * ```
 	 * *xarg() by default escapes piped string, this can be off by passing `-R` option.*
+	 * 
 	 * @param options	Defaults to `-I {}`
 	 * @param cmd		ShellJS method from {@link ShellReturnValue}
 	 * @param cmd_args	Arguments for `cmd`
@@ -25,6 +35,11 @@ export interface XargsFunction {
 	<T extends (...args: any[])=> any>(options: XargsOptions, cmd: T, ...cmd_args: Parameters<T>): ReturnType<T>;
 	<T extends (...args: any[])=> any>(cmd: T, ...cmd_args: Parameters<T>): ReturnType<T>;
 }
+/* tldr-end */
+/* tldr-start
+ * ### s.$()
+ * ### s.$(options)
+ * */
 export interface DollarFunction{
 	/**
 	 * Modifies {@link config} for next command in chain. The `$()` runs next command in silent mode:
@@ -45,17 +60,28 @@ export interface DollarFunction{
 	 *
 	 * s.$("-g").rm("*.tx"); //remove only "*.txt" file
 	 * ```
+	 * 
 	 * @param options Options
 	 *	- "-V": verbose
 	 *	- "-S": silent (default)
 	 *	- "-F": fatal
-	 *	- "-g": noglob
+	 *	- "-G": glob (evaluate `*` in paths)
+	 *	- to off option(s) use lower-case letters ("-v" no-verbose, "-s" …, …, **"-g" noglob**)
 	 */
-	(options: "-V"|"-S"|"-F"|"-g"): ShellString;
+	(options: "-V"|"-S"|"-F"|"-g"|"-v"|"-s"|"-f"|"-G"): ShellString;
 	(): ShellString;
 }
+/* tldr-end */
 export const $: DollarFunction;
-
+/**
+ * Use options as for:
+ *
+ * - [`child_process.spawn`](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options)
+ * - [`child_process.execFileSync`](https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback)
+ *
+ * …in addition, use `needle` to replace `::var::` in `command` with actual
+ * `var` value.
+ * */
 export type RunOptions=  ExecOptions & {
 	/**
 	 * Pattern in `command` to be replacced by variables.
@@ -66,36 +92,12 @@ export type RunOptions=  ExecOptions & {
 }
 export interface RunFunction {
 	/**
-	 * Executes the given command synchronously, because of that it does not know whether it will be piped,
-	 * so by default prints the command output. You can off that by prepend `….$().run`.
-	 *
-	 * *Synchronous simple examples*:
-	 * ```js
-	 * s.run("node --version");
-	 * const version= s.$().run("node --version").stdout;
-	 * ```
-	 * *Passing variables*:
-	 * ```js
-	 * const branch= s.$().run("git branch --show-current").stdout;
-	 * s.run("echo ::branch::", { branch });
-	 * ```
-	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
 	 * @return		  Returns an object containing the return code and output as {@link ShellString}.
 	 */
 	(command: string, vars?: {}): ShellString;
-
 	/**
-	 * Executes the given command synchronously, because of that it does not know whether it will be piped,
-	 * so by default prints the command output. You can off that by prepend `….$().run`.
-	 *
-	 * *Passing variables*:
-	 * ```js
-	 * const branch= s.$().run("git branch --show-current").stdout;
-	 * s.run("echo ::branch::", { branch });
-	 * ```
-	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
 	 * @param options Silence and options.
@@ -129,44 +131,53 @@ export declare class ProcessPromise extends Promise<ProcessOutput> {
 }
 export interface RunAsyncFunction {
 	/**
-	 * Executes the given command asynchronously.
-	 * ```js
-	 * s.$().runA("git branch --show-current")
-	 * .then(echo.bind(echo, "success:"))
-	 * .catch(echo.bind(echo, "error:"));
-	 *
-	 * s.$().runA("npm list")
-	 * .pipe(s=> echo(s.grep("types")))
-	 * .catch(echo.bind(echo, "error:"));
-	 *
-	 * const ch= s.$().runA("git branch --show-current");
-	 * ch.child.on("data", echo);
-	 *
-	 * const result_a= await s.$().runA("git branch --show-current");
-	 * echo(result_a.toString());
-	 * ```
-	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
 	 */
 	(command: string, vars: {} | false): ProcessPromise;
 
 	/**
-	 * Executes the given command asynchronously.
-	 * ```js
-	 * const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
-	 * echo(result_b.toString());
-	 * ```
-	 *
 	 * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 	 * @param vars Arguments for `command`.
 	 * @param options Silence and options.
 	 */
 	(command: string, vars: {} | false, options: RunOptions): ProcessPromise;
 }
+/* tldr-start
+ * ### s.run`cmd`
+ * ### s.run(cmd[, vars][, options])
+ * */
 /**
- * Executes the given command synchronously, because of that it does not know whether it will be piped,
- * so by default prints the command output. You can off that by prepend `….$().run`.
+ * You can use this function to run executable commands not listed
+ * in the shelljs (`s` namespace). For example (the simplest one):
+ * ```js
+ * s.run`git branch --show-current`;
+ * ```
+ * …you can also pass variables and function automatically escapes
+ * them.
+ * ```js
+ * const var= "Hello World";
+ * s.run`echo ${var}`;
+ * ```
+ * …alternatively you can use classic function approach:
+ * ```js
+ * s.run("echo ::var::", { var: "Hello World" });
+ * ```
+ * …this way you can also pass additional options:
+ * ```js
+ * s.run("echo 'HI'", null, { cwd: "../" });
+ * s.run("echo ::var::", { var: "Hi" }, { cwd: "../" });
+ * ```
+ * Internally the [`child_process.execFileSync`](https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback)
+ * is used to execute the command, so use any of the options
+ * supported by that function.
+ *
+ * By default the function prints the output of the command
+ * to stdout. You can use `$.is_silent= false` or {@link s.$}:
+ * ```js
+ * const branch= s.$().run`git branch --show-current`.stdout;
+ * echo(branch);
+ * ```
  *
  * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
  * @param vars Arguments for `command`.
@@ -174,21 +185,33 @@ export interface RunAsyncFunction {
  * @return Returns {@link ShellString}.
  */
 export const run: RunFunction;
+/* tldr-end */
+/* tldr-start
+ * ### s.runA`cmd`
+ * ### s.runA(cmd[, vars][, options])
+ * */
 /**
- * Executes the given command asynchronously.
+ * Executes the given command asynchronously, the function arguments
+ * are the same as for {@link s.run} function except that the
+ * [`child_process.spawn`](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options)
+ * is used internally.
  * ```js
- * s.$().runA("git branch --show-current")
- * .pipe(echo.bind(echo, "success:"))
- * .catch(echo.bind(echo, "error:"))
+ * s.runA`git branch --show-current`;
+ * s.runA`echa ${"Hello World"}`;
+ * s.runA("echo ::var::", { var: "Hello World" });
+ * s.runA("echo 'HI'", null, { cwd: "../" });
+ * ```
  *
- * const ch= s.$().runA("git branch --show-current");
- * ch.child.on("data", echo);
- *
+ * The function returns a {@link ProcessPromise} object.
+ * ```js
  * const result_a= await s.$().runA("git branch --show-current");
  * echo(result_a.toString());
  *
  * const result_b= await s.$().runA("git branch --show-::var::", { var: "current" }, { silent: true });
  * echo(result_b.toString());
+ *
+ * const ch= s.$().runA`git branch --show-current`;
+ * ch.child.on("data", echo);
  * ```
  *
  * @param command String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
@@ -197,10 +220,47 @@ export const run: RunFunction;
  * @return Returns {@link ProcessPromise}.
  */
 export const runA: RunAsyncFunction;
+/* tldr-end */
+/* tldr-start
+ * ### s.read()
+ * ### s.read(options)
+ *
+ * Available options:
+ * + `-p`: Promt mode, value is used as question. It is possible to cobine with other options.
+ * + `-s`: Make sence to combine only with `-p` to not show pressed keys (e.g. to prompt password).
+ * + `completions`: Make sence to combine only with `-p` to provide tab suggestion/completions.
+ * + `-d`: Returns the `stdin` till given needle.
+ * + `-n`: Choose given number of chars from `stdin`.
+ * 
+ * */
+export interface ReadOptions{
+	/** Promt mode, value is used as question. It is possible to cobine with other options. */
+	"-p": string;
+	/** Make sence to combine only with `-p` to not show pressed keys (e.g. to prompt password). */
+	"-s": boolean;
+	/** Make sence to combine only with `-p` to provide tab suggestion/completions. */
+	"completions": string[];
+	/** Returns the `stdin` till given needle. */
+	"-d": string;
+	/** Choose given number of chars from `stdin`. */
+	"-n": number;
+}
+/**
+ * This function mimic [`read`](https://phoenixnap.com/kb/bash-read) command.
+ * So, the function purpose is reading from `stdin`.
+ * ```js
+ * const answer= await $.read({ "-p": "Question" });
+ * const color= await $.read({ "-p": "Your color", completions: [ "red", "green" ] });
+ * if($.isFIFO(0)) await $.read().then(echo.bind(null, "E.g. for reading received input:"));
+ * ```
+ * */
+export function read(options: ReadOptions): Promise<ShellString>;
+/* tldr-end */
 
-export interface ShellReturnValue{
+export interface ShellReturnValueNJS extends ShellReturnValue {
 	xargs: XargsFunction
 	$: DollarFunction,
 	run: RunFunction
-	runA: RunAsyncFunction
+	runA: RunAsyncFunction,
+	read: typeof read
 }

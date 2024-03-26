@@ -4,6 +4,12 @@
 
 [s](../modules/s.md).ExecOutputReturnValue
 
+## Hierarchy
+
+- **`ExecOutputReturnValue`**
+
+  ↳ [`ShellReturnValue`](s.ShellReturnValue.md)
+
 ## Table of contents
 
 ### Properties

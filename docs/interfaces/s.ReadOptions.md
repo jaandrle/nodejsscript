@@ -1,18 +1,18 @@
-[nodejsscript](../README.md) / [$](../modules/.md) / ReadOptions
+[nodejsscript](../README.md) / [s](../modules/s.md) / ReadOptions
 
 # Interface: ReadOptions
 
-[$](../modules/.md).ReadOptions
+[s](../modules/s.md).ReadOptions
 
 ## Table of contents
 
 ### Properties
 
-- [-p](.ReadOptions.md#-p)
-- [-s](.ReadOptions.md#-s)
-- [completions](.ReadOptions.md#completions)
-- [-d](.ReadOptions.md#-d)
-- [-n](.ReadOptions.md#-n)
+- [-p](s.ReadOptions.md#-p)
+- [-s](s.ReadOptions.md#-s)
+- [completions](s.ReadOptions.md#completions)
+- [-d](s.ReadOptions.md#-d)
+- [-n](s.ReadOptions.md#-n)
 
 ## Properties
 

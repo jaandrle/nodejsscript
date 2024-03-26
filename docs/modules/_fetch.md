@@ -67,7 +67,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `url` | [`RequestInfo`](_fetch.md#requestinfo) |
+| `url` | `URL` \| [`RequestInfo`](_fetch.md#requestinfo) |
 | `init?` | [`RequestInit`](../interfaces/fetch.RequestInit.md) |
 
 #### Returns

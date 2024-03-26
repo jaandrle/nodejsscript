@@ -24,15 +24,16 @@ export function echo(options, ...messages){
 	if(o.has("2")) target= "stderr";
 	if(!has_options) messages.unshift(options);
 	
-	const output= echoOutput(messages, o, useColors(target));
+	const is_colors= useColors(target);
+	const output= echoOutput(messages, o, is_colors, target==="stdout");
 	if(o.has("S")) return ShellString(output);
-	if(o.has("R")) return rewritableStart({ stream: process[target], output });
+	if(o.has("R") && is_colors) return rewritableStart({ stream: process[target], output });
 	
 	process[target].write(output);
 	return ShellString(output);
 }
-function echoOutput(messages, o, colors){
-	let output= formatWithOptions({ colors: !o.has("c")&&colors, compact: !o.has("P") }, ...messages.map(prepareTexts));
+function echoOutput(messages, o, colors, is_stdout){
+	let output= formatWithOptions({ colors: !o.has("c")&&colors, compact: !o.has("P"), is_stdout }, ...messages.map(prepareTexts));
 	if(!o.has("n")) output+= "\n";
 	return output;
 }
@@ -64,6 +65,7 @@ function rewritableEnd(type= "clear"){
 }
 function prepareTexts(v){
 	if(v instanceof Error && !$.is_verbose) return String(v);
-	if(v instanceof String && v.hasOwnProperty("stdout") && !$.is_verbose) return v.stdout.replace(/\n$/g, "");
+	if(v instanceof String && v.hasOwnProperty("stdout") && !$.is_verbose)
+		return typeof v.stdout!=="string" ? v.stdout : v.stdout.replace(/\n$/g, "");
 	return v;
 }

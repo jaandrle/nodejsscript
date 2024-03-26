@@ -1,9 +1,9 @@
 {
 	"name": "nodejsscript",
-	"version": "0.9.3",
+	"version": "1.0.0",
 	"author": "Jan Andrle <andrle.jan@centrum.cz>",
 	"license": "MIT",
-	"description": "A tool for writing better scripts",
+	"description": "A tool for writing better “one–file” scripts",
 	"homepage": "https://github.com/jaandrle/nodejsscript",
 	"repository": {
 		"type": "git",
@@ -15,17 +15,19 @@
 	"main": "index.js",
 	"type": "module",
 	"bin": {
-		"nodejsscript": "bin/cli.mjs"
+		"nodejsscript": "bin/index.mjs",
+		"njs": "bin/index.mjs"
 	},
 	"exports": {
 		".": "./index.js"
 	},
 	"files": [
-		"bin/cli.mjs",
+		"bin/*.mjs",
 		"_index.d.ts",
 		"index.d.ts",
 		"index.js",
-		"src"
+		"src",
+		"man.md"
 	],
 	"types": "index.d.ts",
 	"typesVersions": {
@@ -36,10 +38,9 @@
 		}
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build:doc": "npx typedoc _index.d.ts --readme none --defaultCategory 'Internal' --categoryOrder 'Public' --categoryOrder 'Internal' --sort visibility --disableSources",
-		"build:lint": "npx jshint **/*.js --show-non-errors",
-		"build": "npm run build:lint && npm run build:doc"
+		"build:doc": "bs/buld:doc.mjs",
+		"build:lint": "bs/buld:lint.mjs",
+		"build": "bs/buld.mjs"
 	},
 	"engines": {
 		"node": ">= 16.0.0"
@@ -59,20 +60,22 @@
 		"maxdepth": 4,
 		"maxcomplexity": 15
 	},
+	"peerDependencies": {
+		"shelljs": "~0.8"
+	},
 	"dependencies": {
-		"@types/sade": "^1.7.4",
-		"@types/shelljs": "^0.8.11",
-		"abort-controller": "^3.0.0",
-		"css-in-console": "^1.0.4",
-		"log-update-async-hook": "^2.0.7",
-		"node-fetch": "^3.3.0",
-		"sade": "^1.8.1",
-		"shell-escape-tag": "^2.0.2",
-		"shelljs": "^0.8.5"
+		"@types/sade": "~1.7",
+		"@types/shelljs": "~0.8",
+		"abort-controller": "~3.0",
+		"css-in-console": "~2.0",
+		"log-update-async-hook": "~2.0",
+		"node-fetch": "~3.3",
+		"sade": "~1.8",
+		"shell-escape-tag": "~2.0"
 	},
 	"devDependencies": {
-		"jshint": "^2.13.6",
-		"typedoc": "^0.23.25",
-		"typedoc-plugin-markdown": "^3.14.0"
+		"jshint": "~2.13",
+		"typedoc": "~0.23",
+		"typedoc-plugin-markdown": "~3.14"
 	}
 }

@@ -24,4 +24,18 @@ export namespace xdg{
 	const root: XdgFunction;
 	const cwd: XdgFunction;
 	const main: XdgFunction;
+
+	/**
+	 * This is helper function to get the globally installed packages.
+	 * ```js
+	 * npm install chrome-remote-interface --location=global
+	 * // script.mjs
+	 * const pkg= await import($.xdg.globalPackage`chrome-remote-interface`);
+	 * // or script.js
+	 * const pkg= require($.xdg.globalPackage`chrome-remote-interface`);
+	 * @throws {Error} Package not found/has no global exports
+	 * ```
+	 * */
+	function globalPackage(...path: XdgPath): string | void;
+	function globalPackage(path: string): string | void;
 }

@@ -2,6 +2,38 @@ import * as s from "shelljs";
 export type Options= `-${string}`;
 import { style } from 'css-in-console';
 export interface EchoFunction {
+	/* tldr-start
+	 * ### echo([as console.log()])
+	 * */
+	/**
+	 * Prints to `stdout` with newline. Multiple arguments can be passed, with the
+	 * first used as the primary message and all additional used as substitution
+	 * values similar to [`printf(3)`](http://man7.org/linux/man-pages/man3/printf.3.html) (the arguments are all passed to `util.format()`).
+	 * Internally uses `console.log`. Stringify inputs except objects and errors in case of `$.is_verbose`.
+	 * Supports basic styling, see {@link css}.
+	 *
+	 * ```js
+	 * const count = 5;
+	 * echo('count: %d', count);
+	 * // Prints: count: 5, to stdout
+	 * echo('count:', count);
+	 * // Prints: count: 5, to stdout
+	 * echo({ count });
+	 * // Prints: { count: 5 }, to stdout
+	 * echo(new Error("Test"));
+	 * // Prints: 'Error: Test', when `config.verbose= false`
+	 * echo("%cRed", "color: red");
+	 * // Prints 'Red' in red
+	 * ```
+	 *
+	 * @param message The text to print.
+	 * @return	   Returns processed string with additional utility methods like .to().
+	 */
+	(message?: any, ...optionalParams: any[]): s.ShellString;
+	/* tldr-end */
+	/* tldr-start
+	 * ### echo.use(options, [as echo()])
+	 * */
 	/**
 	 * Similarly to {@link s.echo}, the first argument accepts options string starting with `-`:
 	 * - `-n`: Don’t append **n**ew line
@@ -23,7 +55,12 @@ export interface EchoFunction {
 	 * @return	   Returns processed string with additional utility methods like .to().
 	 */
 	use(options: Options, message?: any, ...optionalParams: any[]): s.ShellString;
+	/* tldr-end */
 
+	/* tldr-start
+	 * ### echo.css`styles`
+	 * ### echo.css(...styles)
+	 * */
 	/**
 	 * In `echo`, you can use `%c` for styling:
 	 * ```js
@@ -60,6 +97,10 @@ export interface EchoFunction {
 	 * <br>- [Util.format | Node.js v19.1.0 Documentation](https://nodejs.org/api/util.html#utilformatformat-args)
 	 */
 	css: typeof style;
+	/* tldr-end */
+	/* tldr-start
+	 * ### echo.format([as echo()])
+	 * */
 	/**
 	 * A helper method returning formated text as it processed by {@link echo}, but not printed into the console.
 	 * (So infact, it is an alias `echo.use("-S", …);`)
@@ -67,6 +108,10 @@ export interface EchoFunction {
 	 * @return	   Returns processed string with additional utility methods like .to().
 	 * */
 	format(message?: any, ...optionalParams: any[]): s.ShellString;
+	/* tldr-end */
+	/* tldr-start
+	 * ### echo.formatWithOptions([as echo.use()])
+	 * */
 	/**
 	 * A helper method returning formated text as it processed by {@link echo}, but not printed into the console.
 	 * (So infact, it is an alias `echo.use("-S"+…, …);`)
@@ -75,37 +120,14 @@ export interface EchoFunction {
 	 * @return	   Returns processed string with additional utility methods like .to().
 	 * */
 	formatWithOptions(options: Options, message?: any, ...optionalParams: any[]): s.ShellString;
-
-	/**
-	 * Prints to `stdout` with newline. Multiple arguments can be passed, with the
-	 * first used as the primary message and all additional used as substitution
-	 * values similar to [`printf(3)`](http://man7.org/linux/man-pages/man3/printf.3.html) (the arguments are all passed to `util.format()`).
-	 * Internally uses `console.log`. Stringify inputs except objects and errors in case of `$.is_verbose`.
-	 * Supports basic styling, see {@link css}.
-	 *
-	 * ```js
-	 * const count = 5;
-	 * echo('count: %d', count);
-	 * // Prints: count: 5, to stdout
-	 * echo('count:', count);
-	 * // Prints: count: 5, to stdout
-	 * echo({ count });
-	 * // Prints: { count: 5 }, to stdout
-	 * echo(new Error("Test"));
-	 * // Prints: 'Error: Test', when `config.verbose= false`
-	 * ```
-	 *
-	 * @param message The text to print.
-	 * @return	   Returns processed string with additional utility methods like .to().
-	 */
-	(message?: any, ...optionalParams: any[]): s.ShellString;
+	/* tldr-end */
 }
 /**
  * This is mixed function between bash’s `echo` and `console.log`.
  * By default, works more like `console.log` with partial supports
  * for styling mimic CSS and `console.log` in the web browser. See [`echo.css`](interfaces/EchoFunction.md#type-declaration) (internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)).
  * 
- * The {@link EchoFunction.use} provides more `echo` way,
+ * The {@link EchoFunction.use 'echo.use'} provides more `echo` way,
  * the first argument accepts options string starting with `-`:
  * - `-n`: Don’t append **n**ew line
  * - `-1`/`-2`: Outputs to `stdout`/`stderr`
@@ -126,6 +148,8 @@ export interface EchoFunction {
  * // Prints: { count: 5 }, to stdout
  * echo(new Error("Test"));
  * // Prints: 'Error: Test', when `config.verbose= false`
+ * echo("%cRed", "color: red");
+ * // Prints 'Red' in red
  * ```
  * ```js
  * echo.use("-R", "0%");
