@@ -28,30 +28,39 @@ globalThis.cyclicLoop= function*(items){
 ### Aliases
 For shorter [`--eval`/`--print`](./eval_print.md#aliases):
 ```js
-/* --print/--echo aliases */
-Reflect.defineProperty($, "nosed", { get(){ return this.stdin.text(""); }, });
-Reflect.defineProperty($, "nojq", { get(){ return this.stdin.json(null); }, });
-Reflect.defineProperty($, "noawk", { get(){ return this.stdin.lines([]); }, });
+globalThis.my= {
+	get nosed(){ return this.stdin.text(""); },
+	get nojq(){ return this.stdin.json(null); },
+	get noawk(){ return this.stdin.lines([]); },
+};
 ```
 
 So, than you can:
 ```bash
 # instead of
-echo '{"a":"A"}' | nodejsscript -p '$.stdin.json().a'
+echo '{"a":"A"}' | nodejsscript --print '$.stdin.json().a'
 # you can also use
-echo '{"a":"A"}' | nodejsscript -p '$.nojq.a'
+echo '{"a":"A"}' | njs -p 'my.nojq.a'
 ```
 ```bash
 # instead of
-who | nodejsscript -p '$.stdin.text().split(/ +/)[0]'
+who | nodejsscript --print '$.stdin.text().split(/ +/)[0]'
 # you can also use
-who | nodejsscript -p '$.nosed.split(/ +/)[0]'
+who | njs -p 'my.nosed.split(/ +/)[0]'
 ```
 ```bash
 # instead of
-apt list --installed | nodejsscript -p '$.stdin.lines().filter(l=> l.indexOf("libreoffice")!==-1).length'
+apt list --installed | nodejsscript --print '$.stdin.lines().filter(l=> l.indexOf("libreoffice")!==-1).length'
 # you can also use
-apt list --installed | nodejsscript -p '$.noawk.filter(l=> l.indexOf("libreoffice")!==-1).length'
+apt list --installed | njs -p 'my.noawk.filter(l=> l.indexOf("libreoffice")!==-1).length'
+```
+
+*Note*: in case you used pre-v1.0.0 non-promoted API methods
+(`$.nojq`, …), use these aliases instead:
+```js
+Reflect.defineProperty($, "nosed", { get(){ return this.stdin.text(""); }, });
+Reflect.defineProperty($, "nojq", { get(){ return this.stdin.json(null); }, });
+Reflect.defineProperty($, "noawk", { get(){ return this.stdin.lines([]); }, });
 ```
 ## Custom error handler/printer
 You can define your own error handler which can print the error message

@@ -88,8 +88,8 @@ $.api()
   `$0`/`$1`/…) or
 - **`$.api()`: allows to quickly create script cli API, internally uses [sade](https://github.com/lukeed/sade)
   library (compare with [commander](https://github.com/tj/commander.js))**
-- `$.isMain()`: detects if the script is executed as main or if it is imported
-  from another script file
+- `$.isMain(import.meta)`: detects if the script is executed as main or if it
+  is imported from another script file
 - `$.xdg`: provides cross-platform file system access for specific locations
   (home, temp, config, … directory)
 - `$.stdin`: handles standard input when the script is run in shell pipe (can be
