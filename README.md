@@ -361,7 +361,8 @@ npx nodejsscript ./script.mjs
 All function (`shelljs`, `fetch`, …) are registered as global
 namespaces/functions: … **see [Goods](#goods)** or full
 *documentation generated from type definitions (focus on **Public**
-items)*: [**docs/**](./docs/README.md).
+items)*: [**docs/**](./docs/README.md). Conventionally, camelCase names are used for
+functions and snake\_case for variables/constants.
 
 ## Security guidelines
 **`run()`/`runA()` command injection**: this advice applies to
