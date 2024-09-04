@@ -10,7 +10,7 @@
 
 This is mixed function between bash’s `echo` and `console.log`.
 By default, works more like `console.log` with partial supports
-for styling mimic CSS and `console.log` in the web browser. See [`echo.css`](interfaces/EchoFunction.md#type-declaration) (internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)).
+for styling mimic CSS and `console.log` in the web browser. See [echo.css](../interfaces/EchoFunction.md#css) (internally uses [css-in-console - npm](https://www.npmjs.com/package/css-in-console)).
 
 The ['echo.use'](../interfaces/EchoFunction.md#use) provides more `echo` way,
 the first argument accepts options string starting with `-`:
