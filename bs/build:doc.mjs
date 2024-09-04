@@ -20,6 +20,7 @@ await section("Generating documentation from `*.d.ts`...", () => {
 	const tds= s.$("-fS").run([
 		"npx typedoc",
 		"_index.d.ts",
+		"--plugin typedoc-plugin-markdown",
 		"--readme none",
 		"--defaultCategory 'Internal'",
 		"--categoryOrder 'Public'",

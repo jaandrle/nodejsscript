@@ -1,6 +1,6 @@
 {
 	"name": "nodejsscript",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"author": "Jan Andrle <andrle.jan@centrum.cz>",
 	"license": "MIT",
 	"description": "A tool for writing better “one–file” scripts",
@@ -43,7 +43,7 @@
 		"build": "bs/buld.mjs"
 	},
 	"engines": {
-		"node": ">= 16.0.0"
+		"node": ">= 18.0.0"
 	},
 	"keywords": [
 		"cli",
@@ -75,7 +75,7 @@
 	},
 	"devDependencies": {
 		"jshint": "~2.13",
-		"typedoc": "~0.23",
-		"typedoc-plugin-markdown": "~3.14"
+		"typedoc": "~0.26",
+		"typedoc-plugin-markdown": "~4.2"
 	}
 }
