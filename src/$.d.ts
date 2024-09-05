@@ -188,9 +188,24 @@ export namespace Dollar{
 	 * */
 	/* tldr-end */
 	/**
+	 * See {@link xdg_.xdg xdg namespace}.
 	 * @category Public
 	 */
 	const xdg: typeof xdg_.xdg;
+
+	/* tldr-start
+	 * ### $.pathFromURL(import.meta.url)`path`
+	 * */
+	/**
+	 * This is a helper motivated to evaluate relative paths from current script file:
+	 * ```js
+	 * const $path= $.pathFromURL(import.meta.url);
+	 * echo("Relative path: ", $path`../file.txt`);
+	 * ```
+	 * @category Public
+	 * */
+	function pathFromURL(from_url: URL): typeof String.raw | ( (relative: string) => string );
+	/* tldr-end */
 
 	/* tldr-start
 	 * ### $.$

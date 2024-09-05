@@ -731,6 +731,15 @@ $.xdg.<tag>()
 ```
 
 
+### $.pathFromURL(import.meta.url)`path`
+
+This is a helper motivated to evaluate relative paths from current script file:
+```js
+const $path= $.pathFromURL(import.meta.url);
+echo("Relative path: ", $path`../file.txt`);
+```
+
+
 ### $.$
 
 Returns the PID of the process. Compare to bash `$$` vs `$.$`.

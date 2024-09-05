@@ -1,5 +1,5 @@
 #!/usr/bin/env -S npx nodejsscript
-/* jshint esversion: 11,-W097, -W040, module: true, node: true, expr: true, undef: true *//* global echo, $, pipe, s, fetch, cyclicLoop */
+/* jshint esversion: 11,-W097, -W040, module: true, node: true, expr: true, undef: true *//* global echo, $, pipe, s, fetch */
 $.configAssign({ fatal: true });
 if(!s.test("-f", "./package.json")){
 	const [ curr ]= $;
@@ -20,6 +20,7 @@ await section("Generating documentation from `*.d.ts`...", () => {
 	const tds= s.$("-fS").run([
 		"npx typedoc",
 		"_index.d.ts",
+		"--plugin typedoc-plugin-markdown",
 		"--readme none",
 		"--defaultCategory 'Internal'",
 		"--categoryOrder 'Public'",
@@ -81,7 +82,7 @@ await section("Generating tldr pages...", async ()=> {
 			),
 			md=> md.replaceAll("### ", "### s."),
 			md=> s.echo(md).to(path_tldr)
-		))
+		));
 	// shelljs from nodejsscript
 	mdFromDts("src/shelljs.d.ts").toEnd(path_tldr);
 	// dollar

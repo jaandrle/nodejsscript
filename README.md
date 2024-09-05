@@ -25,7 +25,7 @@ pipe( $.xdg.temp, s.mkdir )("foo bar");
 Open ‘▸’ sections for quick overview and/or navigate to link(s) for more detailed
 information and documentation.
 
-<!-- #region --><details> <summary><a href="./docs/modules/s.md">s #shelljs</a> namespace <em>(unix shell-like commands in JavaScript)</em></summary>
+<!-- #region --><details> <summary><a href="./docs/namespaces/s/README.md">s #shelljs</a> namespace <em>(unix shell-like commands in JavaScript)</em></summary>
 
 ```js
 s.ls().forEach(echo); // ShellArray
@@ -41,7 +41,7 @@ and some additional added by nodejsscript. Typically `s.cat`/`s.grep`/…,
 to run other than builtin commands use `s.run`/`s.runA`.
 
 These functions returns `ShellArray`/`ShellString`/`Promise<ShellString>`,
-these types are union types of `string[]`/`string` with [`ShellReturnValueNJS`](./docs/interfaces/s.ShellReturnValueNJS.md).
+these types are union types of `string[]`/`string` with [`ShellReturnValueNJS`](./docs/namespaces/s/interfaces/ShellReturnValueNJS.md).
 In simple terms, you can use it as `string[]`/`string`/`Promise<string>` or
 read the commad exit `code` and `stdout`/`stderr`. If it makes sence, you can
 pipe output to other shelljs commands. Special pipeing is `to`/`toEnd` for
@@ -53,9 +53,9 @@ s.echo("Hello World!").to("hello.txt");
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><a href="./docs/modules/.md">$</a> (
-		<a href="./docs/modules/.md#api">$.api() #sade</a>,
-		<a href="./docs/modules/xdg_.xdg.md">$.xdg</a>,
+<!-- #region --><details> <summary><a href="./docs/namespaces/$/README.md">$</a> (
+		<a href="./docs/namespaces/$/functions/api.md">$.api() #sade</a>,
+		<a href="./docs/namespaces/xdg/namespaces/xdg/README.md">$.xdg</a>,
 		…
 	)
 	namespace <em>(nodejsscript/cli related functions/variables)</em></summary>
@@ -93,11 +93,11 @@ $.api()
   (home, temp, config, … directory)
 - `$.stdin`: handles standard input when the script is run in shell pipe (can be
   helpful for `nodejsscript --eval`/`nodejsscript --print` bellow)
-- …for more see [related section in docs](./docs/modules/.md)
+- …for more see [related section in docs](./docs/namespaces/$/README.md)
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><a href="./docs/README.md#echo">echo() #css-in-console</a> function/namespace</summary>
+<!-- #region --><details> <summary><a href="./docs/functions/echo.md">echo() #css-in-console</a> function/namespace</summary>
 
 ```js
 const css= echo.css`
@@ -118,7 +118,7 @@ echo("%cDone", css.success);
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><a href="./docs/README.md#pipe">pipe()</a> function</summary>
+<!-- #region --><details> <summary><a href="./docs/functions/pipe.md">pipe()</a> function</summary>
 
 ```js
 pipe(

@@ -34,7 +34,7 @@ declare global{
 	 *
 	 * @param url The URL to fetch.
 	 * @param init Request parameters.
-	 * @category Public 
+	 * @category Public
 	 */
-	function fetch(url: string | _.__fetch.Request, init?: _.__fetch.RequestInit): _.__fetch.Response;
+	function fetch(url: string | _.__fetch.Request, init?: _.__fetch.RequestInit): Promise<_.__fetch.Response>;
 }
