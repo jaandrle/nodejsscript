@@ -44,7 +44,7 @@ export function startRepl(){ return new Promise(async function(){
 			const s_= s.$("-vFgs");
 			if((pwd==="." ? s_.pwd().trim() : pwd)!==ls_tmp.pwd){
 				ls_tmp.pwd= pwd;
-				const map= pwd==="." ? l=> `"${l}"` : pwd==="/" ? l=> `"/${l}"` : l=> `"${pwd}/${l}"`;
+				const map= pwd==="." ? l=> `"./${l}"` : pwd==="/" ? l=> `"/${l}"` : l=> `"${pwd}/${l}"`;
 				try {
 					const ls= s_.ls(pwd).filter(l=> l!==pwd);
 					if(ls.length) ls_tmp.ls= ls.concat("..").map(map);
