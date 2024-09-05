@@ -19,6 +19,7 @@ You can also use `$[0]`–`$[n]` for getting nth script argument (compare to bas
 - [configAssign](functions/configAssign.md)
 - [isFIFO](functions/isFIFO.md)
 - [api](functions/api.md)
+- [pathFromURL](functions/pathFromURL.md)
 - [error](functions/error.md)
 - [exit](functions/exit.md)
 - [hasArgs](functions/hasArgs.md)

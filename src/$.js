@@ -49,6 +49,10 @@ export const $= Object.assign([ ...argv.slice(1) ], {
 	exit(code){ return process.exit(code); },
 
 	xdg,
+	pathFromURL(from_url){ return function relative(p, ...pieces){
+		const relative= Array.isArray(p) ? String.raw(p, ...pieces) : p || "";
+		return fileURLToPath(new URL(relative, from_url));
+	}; },
 
 	hasArgs(...needles){ return this.findIndex(a=> needles.indexOf(a)!==-1) !==-1; }
 });
