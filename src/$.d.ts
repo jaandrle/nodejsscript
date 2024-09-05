@@ -188,6 +188,7 @@ export namespace Dollar{
 	 * */
 	/* tldr-end */
 	/**
+	 * See {@link xdg_.xdg xdg namespace}.
 	 * @category Public
 	 */
 	const xdg: typeof xdg_.xdg;
