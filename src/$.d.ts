@@ -110,6 +110,12 @@ export namespace Dollar{
 	 * node pipes.js | … # — test by $.isFIFO(1)
 	 * … | node pipes.js # — test by $.isFIFO(0)
 	 * ```
+	 * …more precisely:
+	 * ```javascript
+	 * import { stdin, stdout } from "node:process";
+	 * echo($.isFIFO(stdin.fd), $.isFIFO(stdout.fd));
+	 * ```
+	 * ⚠️ On Windows it can throw an error (see https://github.com/jaandrle/nodejsscript/issues/42)!
 	 * @category Public
 	 */
 	function isFIFO(stream_id: 0|1): boolean;
@@ -231,13 +237,14 @@ export namespace Dollar{
 	 * ### $.stdin: { text, json, lines }
 	 * */
 	/**
-	 * Holding `stdin` when script was executed.
+	 * Holding `stdin` when script was executed with pipe.
 	 * ```bash
 	 * echo TEST | nodejsscript script.js
 	 * ```
 	 * ```javascript
 	 * echo($.stdin.text());//= "TEST"
 	 * ```
+	 * …but it can be empty in case of platform specific error (see {@link Dollar.isFIFO $.isFIFO}).
 	 * @category Public
 	 */
 	const stdin: STDIN;

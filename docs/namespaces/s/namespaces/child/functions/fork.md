@@ -44,7 +44,7 @@ if (process.argv[2] === 'child') {
     console.log(`Hello from ${process.argv[2]}!`);
   }, 1_000);
 } else {
-  const { fork } = require('node:child_process');
+  import { fork } from 'node:child_process';
   const controller = new AbortController();
   const { signal } = controller;
   const child = fork(__filename, ['child'], { signal });

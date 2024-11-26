@@ -107,7 +107,7 @@ resolve, or rejected when any Promise is rejected.
 
 ##### Parameters
 
-• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>\>
+• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>, `any`, `any`\>
 
 An iterable of Promises.
 
@@ -165,7 +165,7 @@ or rejected.
 
 ##### Parameters
 
-• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>\>
+• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>, `any`, `any`\>
 
 An iterable of Promises.
 
@@ -350,7 +350,7 @@ of the provided Promises resolve or reject.
 
 ##### Parameters
 
-• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>\>
+• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>, `any`, `any`\>
 
 An array of Promises.
 

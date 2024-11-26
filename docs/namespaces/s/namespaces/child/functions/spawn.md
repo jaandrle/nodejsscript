@@ -41,7 +41,7 @@ Example of running `ls -lh /usr`, capturing `stdout`, `stderr`, and the
 exit code:
 
 ```js
-const { spawn } = require('node:child_process');
+import { spawn } from 'node:child_process';
 const ls = spawn('ls', ['-lh', '/usr']);
 
 ls.stdout.on('data', (data) => {
@@ -60,7 +60,7 @@ ls.on('close', (code) => {
 Example: A very elaborate way to run `ps ax | grep ssh`
 
 ```js
-const { spawn } = require('node:child_process');
+import { spawn } from 'node:child_process';
 const ps = spawn('ps', ['ax']);
 const grep = spawn('grep', ['ssh']);
 
@@ -97,7 +97,7 @@ grep.on('close', (code) => {
 Example of checking for failed `spawn`:
 
 ```js
-const { spawn } = require('node:child_process');
+import { spawn } from 'node:child_process';
 const subprocess = spawn('bad_command');
 
 subprocess.on('error', (err) => {
@@ -115,7 +115,7 @@ If the `signal` option is enabled, calling `.abort()` on the corresponding `Abor
 the error passed to the callback will be an `AbortError`:
 
 ```js
-const { spawn } = require('node:child_process');
+import { spawn } from 'node:child_process';
 const controller = new AbortController();
 const { signal } = controller;
 const grep = spawn('grep', ['ssh'], { signal });

@@ -24,6 +24,12 @@ Returns a string containing the given pipeline, or a concatenated string
 containing the pipelines if more than one input stream is given
 (a new line character is introduced between each input).
 
+#### Returns
+
+A string containing the given pipeline, or a concatenated string
+        containing the pipelines if more than one input stream is given
+        (a new line character is introduced between each input).
+
 ***
 
 ### exec
@@ -43,6 +49,11 @@ Silence and synchronous options.
 #### Param
 
 Receives code and output asynchronously.
+
+#### Returns
+
+Returns an object containing the return code and output as string,
+        or if `{async: true}` or a `callback` was passed, a `ChildProcess`.
 
 ***
 
@@ -72,6 +83,10 @@ Available options:
 
 The regular expression to use.
 
+#### Returns
+
+Returns a string containing all lines of the file that match the given `regex_filter`.
+
 ***
 
 ### sed
@@ -93,6 +108,10 @@ The regular expression to use for search.
 #### Param
 
 The replacement.
+
+#### Returns
+
+The new string after replacement.
 
 ***
 

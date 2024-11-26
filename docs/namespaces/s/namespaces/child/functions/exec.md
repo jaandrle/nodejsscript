@@ -16,7 +16,7 @@ directly by the shell and special characters (vary based on [shell](https://en.w
 need to be dealt with accordingly:
 
 ```js
-const { exec } = require('node:child_process');
+import { exec } from 'node:child_process';
 
 exec('"/path/to/test file/test.sh" arg1 arg2');
 // Double quotes are used so that the space in the path is not interpreted as
@@ -42,7 +42,7 @@ stderr output. If `encoding` is `'buffer'`, or an unrecognized character
 encoding, `Buffer` objects will be passed to the callback instead.
 
 ```js
-const { exec } = require('node:child_process');
+import { exec } from 'node:child_process';
 exec('cat *.js missing_file | wc -l', (error, stdout, stderr) => {
   if (error) {
     console.error(`exec error: ${error}`);
@@ -67,8 +67,9 @@ rejected promise is returned, with the same `error` object given in the
 callback, but with two additional properties `stdout` and `stderr`.
 
 ```js
-const util = require('node:util');
-const exec = util.promisify(require('node:child_process').exec);
+import util from 'node:util';
+import child_process from 'node:child_process';
+const exec = util.promisify(child_process.exec);
 
 async function lsExample() {
   const { stdout, stderr } = await exec('ls');
@@ -82,7 +83,7 @@ If the `signal` option is enabled, calling `.abort()` on the corresponding `Abor
 the error passed to the callback will be an `AbortError`:
 
 ```js
-const { exec } = require('node:child_process');
+import { exec } from 'node:child_process';
 const controller = new AbortController();
 const { signal } = controller;
 const child = exec('grep ssh', { signal }, (error) => {

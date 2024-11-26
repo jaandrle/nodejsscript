@@ -186,7 +186,7 @@ then this will be `null`.
 refer to the same value.
 
 ```js
-const { spawn } = require('node:child_process');
+import { spawn } from 'node:child_process';
 
 const subprocess = spawn('ls');
 
@@ -250,9 +250,9 @@ pipe, so only the parent's `subprocess.stdio[1]` is a stream, all other values
 in the array are `null`.
 
 ```js
-const assert = require('node:assert');
-const fs = require('node:fs');
-const child_process = require('node:child_process');
+import assert from 'node:assert';
+import fs from 'node:fs';
+import child_process from 'node:child_process';
 
 const subprocess = child_process.spawn('ls', {
   stdio: [
@@ -304,7 +304,7 @@ fails to spawn due to errors, then the value is `undefined` and `error` is
 emitted.
 
 ```js
-const { spawn } = require('node:child_process');
+import { spawn } from 'node:child_process';
 const grep = spawn('grep', ['ssh']);
 
 console.log(`Spawned child pid: ${grep.pid}`);
@@ -501,7 +501,7 @@ v11.13.0, v10.16.0
 
 #### on(emitter, eventName, options)
 
-> `static` **on**(`emitter`, `eventName`, `options`?): `AsyncIterableIterator`\<`any`[]\>
+> `static` **on**(`emitter`, `eventName`, `options`?): `AsyncIterator`\<`any`[], `any`, `any`\>
 
 ```js
 import { on, EventEmitter } from 'node:events';
@@ -590,7 +590,7 @@ console.log('done'); // prints 'done'
 
 ##### Returns
 
-`AsyncIterableIterator`\<`any`[]\>
+`AsyncIterator`\<`any`[], `any`, `any`\>
 
 An `AsyncIterator` that iterates `eventName` events emitted by the `emitter`
 
@@ -604,7 +604,7 @@ v13.6.0, v12.16.0
 
 #### on(emitter, eventName, options)
 
-> `static` **on**(`emitter`, `eventName`, `options`?): `AsyncIterableIterator`\<`any`[]\>
+> `static` **on**(`emitter`, `eventName`, `options`?): `AsyncIterator`\<`any`[], `any`, `any`\>
 
 ##### Parameters
 
@@ -616,7 +616,7 @@ v13.6.0, v12.16.0
 
 ##### Returns
 
-`AsyncIterableIterator`\<`any`[]\>
+`AsyncIterator`\<`any`[], `any`, `any`\>
 
 ##### Inherited from
 
@@ -786,6 +786,9 @@ A non-negative number. The maximum number of listeners per `EventTarget` event.
 
 • ...**eventTargets?**: (`EventTarget` \| `EventEmitter`\<`DefaultEventMap`\>)[]
 
+Zero or more {EventTarget} or {EventEmitter} instances. If none are specified, `n` is set as the default max for all newly created {EventTarget} and {EventEmitter}
+objects.
+
 #### Returns
 
 `void`
@@ -867,7 +870,7 @@ argument is given, the process will be sent the `'SIGTERM'` signal. See [`signal
 returns `true` if [`kill(2)`](http://man7.org/linux/man-pages/man2/kill.2.html) succeeds, and `false` otherwise.
 
 ```js
-const { spawn } = require('node:child_process');
+import { spawn } from 'node:child_process';
 const grep = spawn('grep', ['ssh']);
 
 grep.on('close', (code, signal) => {
@@ -900,7 +903,7 @@ new process in a shell or with the use of the `shell` option of `ChildProcess`:
 
 ```js
 'use strict';
-const { spawn } = require('node:child_process');
+import { spawn } from 'node:child_process';
 
 const subprocess = spawn(
   'sh',
@@ -950,7 +953,7 @@ message might not be the same as what is originally sent.
 For example, in the parent script:
 
 ```js
-const cp = require('node:child_process');
+import cp from 'node:child_process';
 const n = cp.fork(`${__dirname}/sub.js`);
 
 n.on('message', (m) => {
@@ -1004,10 +1007,12 @@ The `sendHandle` argument can be used, for instance, to pass the handle of
 a TCP server object to the child process as illustrated in the example below:
 
 ```js
-const subprocess = require('node:child_process').fork('subprocess.js');
+import { createServer } from 'node:net';
+import { fork } from 'node:child_process';
+const subprocess = fork('subprocess.js');
 
 // Open up the server object and send the handle.
-const server = require('node:net').createServer();
+const server = createServer();
 server.on('connection', (socket) => {
   socket.end('handled by parent');
 });
@@ -1042,13 +1047,14 @@ socket to the child process. The example below spawns two children that each
 handle connections with "normal" or "special" priority:
 
 ```js
-const { fork } = require('node:child_process');
+import { createServer } from 'node:net';
+import { fork } from 'node:child_process';
 const normal = fork('subprocess.js', ['normal']);
 const special = fork('subprocess.js', ['special']);
 
 // Open up the server and send sockets to child. Use pauseOnConnect to prevent
 // the sockets from being read before they are sent to the child process.
-const server = require('node:net').createServer({ pauseOnConnect: true });
+const server = createServer({ pauseOnConnect: true });
 server.on('connection', (socket) => {
 
   // If this is special priority...
@@ -1173,7 +1179,7 @@ independently of the child, unless there is an established IPC channel between
 the child and the parent.
 
 ```js
-const { spawn } = require('node:child_process');
+import { spawn } from 'node:child_process';
 
 const subprocess = spawn(process.argv[0], ['child_program.js'], {
   detached: true,
@@ -1202,7 +1208,7 @@ restore the removed reference count for the child process, forcing the parent
 to wait for the child to exit before exiting itself.
 
 ```js
-const { spawn } = require('node:child_process');
+import { spawn } from 'node:child_process';
 
 const subprocess = spawn(process.argv[0], ['child_program.js'], {
   detached: true,
