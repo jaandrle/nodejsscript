@@ -120,37 +120,37 @@ In all methods of this interface, header names are matched by case-insensitive b
 
 ### entries()
 
-> **entries**(): `IterableIterator`\<[`string`, `string`]\>
+> **entries**(): `IterableIterator`\<[`string`, `string`], `any`, `any`\>
 
 Returns an iterator allowing to go through all key/value pairs contained in this object.
 
 #### Returns
 
-`IterableIterator`\<[`string`, `string`]\>
+`IterableIterator`\<[`string`, `string`], `any`, `any`\>
 
 ***
 
 ### keys()
 
-> **keys**(): `IterableIterator`\<`string`\>
+> **keys**(): `IterableIterator`\<`string`, `any`, `any`\>
 
 Returns an iterator allowing to go through all keys of the key/value pairs contained in this object.
 
 #### Returns
 
-`IterableIterator`\<`string`\>
+`IterableIterator`\<`string`, `any`, `any`\>
 
 ***
 
 ### values()
 
-> **values**(): `IterableIterator`\<`string`\>
+> **values**(): `IterableIterator`\<`string`, `any`, `any`\>
 
 Returns an iterator allowing to go through all values of the key/value pairs contained in this object.
 
 #### Returns
 
-`IterableIterator`\<`string`\>
+`IterableIterator`\<`string`, `any`, `any`\>
 
 ***
 
@@ -168,8 +168,8 @@ Node-fetch extension
 
 ### \[iterator\]()
 
-> **\[iterator\]**(): `IterableIterator`\<[`string`, `string`]\>
+> **\[iterator\]**(): `IterableIterator`\<[`string`, `string`], `any`, `any`\>
 
 #### Returns
 
-`IterableIterator`\<[`string`, `string`]\>
+`IterableIterator`\<[`string`, `string`], `any`, `any`\>

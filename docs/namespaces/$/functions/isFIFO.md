@@ -13,6 +13,12 @@ Method to check whether script stdin/stdout (0/1) is a first-in-first-out (FIFO)
 node pipes.js | … # — test by $.isFIFO(1)
 … | node pipes.js # — test by $.isFIFO(0)
 ```
+…more precisely:
+```javascript
+import { stdin, stdout } from "node:process";
+echo($.isFIFO(stdin.fd), $.isFIFO(stdout.fd));
+```
+⚠️ On Windows it can throw an error (see https://github.com/jaandrle/nodejsscript/issues/42)!
 
 ## Parameters
 

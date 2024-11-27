@@ -64,9 +64,11 @@ and a reject callback used to reject the promise with a provided reason or error
 
 ### stdin
 
-> `get` **stdin**(): `Writable`
+#### Get Signature
 
-#### Returns
+> **get** **stdin**(): `Writable`
+
+##### Returns
 
 `Writable`
 
@@ -74,9 +76,11 @@ and a reject callback used to reject the promise with a provided reason or error
 
 ### stdout
 
-> `get` **stdout**(): `Readable`
+#### Get Signature
 
-#### Returns
+> **get** **stdout**(): `Readable`
+
+##### Returns
 
 `Readable`
 
@@ -84,9 +88,11 @@ and a reject callback used to reject the promise with a provided reason or error
 
 ### stderr
 
-> `get` **stderr**(): `Readable`
+#### Get Signature
 
-#### Returns
+> **get** **stderr**(): `Readable`
+
+##### Returns
 
 `Readable`
 
@@ -107,7 +113,7 @@ resolve, or rejected when any Promise is rejected.
 
 ##### Parameters
 
-• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>\>
+• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>, `any`, `any`\>
 
 An iterable of Promises.
 
@@ -165,7 +171,7 @@ or rejected.
 
 ##### Parameters
 
-• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>\>
+• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>, `any`, `any`\>
 
 An iterable of Promises.
 
@@ -350,7 +356,7 @@ of the provided Promises resolve or reject.
 
 ##### Parameters
 
-• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>\>
+• **values**: `Iterable`\<`T` \| `PromiseLike`\<`T`\>, `any`, `any`\>
 
 An array of Promises.
 

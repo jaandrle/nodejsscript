@@ -19,7 +19,7 @@ not spawned, behaviors such as I/O redirection and file globbing are not
 supported.
 
 ```js
-const { execFile } = require('node:child_process');
+import { execFile } from 'node:child_process';
 const child = execFile('node', ['--version'], (error, stdout, stderr) => {
   if (error) {
     throw error;
@@ -42,8 +42,9 @@ rejected promise is returned, with the same `error` object given in the
 callback, but with two additional properties `stdout` and `stderr`.
 
 ```js
-const util = require('node:util');
-const execFile = util.promisify(require('node:child_process').execFile);
+import util from 'node:util';
+import child_process from 'node:child_process';
+const execFile = util.promisify(child_process.execFile);
 async function getVersion() {
   const { stdout } = await execFile('node', ['--version']);
   console.log(stdout);
@@ -59,7 +60,7 @@ If the `signal` option is enabled, calling `.abort()` on the corresponding `Abor
 the error passed to the callback will be an `AbortError`:
 
 ```js
-const { execFile } = require('node:child_process');
+import { execFile } from 'node:child_process';
 const controller = new AbortController();
 const { signal } = controller;
 const child = execFile('node', ['--version'], { signal }, (error) => {

@@ -87,7 +87,7 @@ export async function printCliUsage(){
 	echo(`%c${n} --eval`, css.T);
 	echo(`%c${n} --completion`, css.T);
 	echo(`%c${n} --inspect`, css.T);
-	echo(`%c${n} --man`, css.T);
+	echo(`%c${n} --tldr`, css.T);
 	echo("%cExamples%c:", css.H);
 	echo(`%c${n} ./script.js`, css.T);
 	echo(`%c${n} --help`, css.T);

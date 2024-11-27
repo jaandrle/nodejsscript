@@ -93,5 +93,7 @@ export function oneval(){}
 You can use `norc` in environmental variable `NODEJSSCRIPTOPTS`, for example:
 ```bash
 export NODEJSSCRIPTOPTS=norc
+# …
+NODEJSSCRIPTOPTS=norc njs --eval 'console.log("Hello World!")'
 ```
 **The `nodejsscriptrc.mjs` is not processed when called locally (`npx nodejsscript`…).**

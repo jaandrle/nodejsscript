@@ -108,9 +108,11 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 ### stdout
 
-> `get` **stdout**(): `string`
+#### Get Signature
 
-#### Returns
+> **get** **stdout**(): `string`
+
+##### Returns
 
 `string`
 
@@ -118,9 +120,11 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 ### stderr
 
-> `get` **stderr**(): `string`
+#### Get Signature
 
-#### Returns
+> **get** **stderr**(): `string`
+
+##### Returns
 
 `string`
 
@@ -128,9 +132,11 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 ### exitCode
 
-> `get` **exitCode**(): `number`
+#### Get Signature
 
-#### Returns
+> **get** **exitCode**(): `number`
+
+##### Returns
 
 `number`
 
@@ -138,9 +144,11 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 ### signal
 
-> `get` **signal**(): `Signals`
+#### Get Signature
 
-#### Returns
+> **get** **signal**(): `Signals`
+
+##### Returns
 
 `Signals`
 
