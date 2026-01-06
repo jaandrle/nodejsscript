@@ -1,4 +1,4 @@
-[**nodejsscript**](../README.md) • **Docs**
+[**nodejsscript**](../README.md)
 
 ***
 

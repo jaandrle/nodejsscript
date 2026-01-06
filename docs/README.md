@@ -4,9 +4,9 @@
 ## Public
 - [pipe](functions/pipe.md)
 - [fetch](functions/fetch.md)
-- [echo](functions/echo.md)
-- [$](namespaces/$/README.md)
-- [s](namespaces/s/README.md)
+- [echo](variables/echo.md)
+- [$](nodejsscript/namespaces/$/README.md)
+- [s](nodejsscript/namespaces/s/README.md)
 ## Internal
 
 ## Public Functions

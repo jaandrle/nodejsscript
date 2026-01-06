@@ -1,4 +1,4 @@
-[**nodejsscript**](../README.md) • **Docs**
+[**nodejsscript**](../README.md)
 
 ***
 
@@ -6,14 +6,18 @@
 
 # Function: \_\_sade()
 
-> **\_\_sade**(`usage`, `isSingle`?): [`Sade`](../namespaces/sade/interfaces/Sade.md)
+> **\_\_sade**(`usage`, `isSingle?`): [`Sade`](../nodejsscript/namespaces/sade/interfaces/Sade.md)
 
 ## Parameters
 
-• **usage**: `string`
+### usage
 
-• **isSingle?**: `boolean`
+`string`
+
+### isSingle?
+
+`boolean`
 
 ## Returns
 
-[`Sade`](../namespaces/sade/interfaces/Sade.md)
+[`Sade`](../nodejsscript/namespaces/sade/interfaces/Sade.md)

@@ -1,4 +1,4 @@
-[**nodejsscript**](../README.md) • **Docs**
+[**nodejsscript**](../README.md)
 
 ***
 
@@ -6,13 +6,13 @@
 
 # Interface: EchoFunction()
 
-> **EchoFunction**(`message`?, ...`optionalParams`?): [`ShellString`](../namespaces/s/type-aliases/ShellString.md)
+> **EchoFunction**(`message?`, ...`optionalParams?`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
 Prints to `stdout` with newline. Multiple arguments can be passed, with the
 first used as the primary message and all additional used as substitution
 values similar to [`printf(3)`](http://man7.org/linux/man-pages/man3/printf.3.html) (the arguments are all passed to `util.format()`).
 Internally uses `console.log`. Stringify inputs except objects and errors in case of `$.is_verbose`.
-Supports basic styling, see [css](EchoFunction.md#css).
+Supports basic styling, see [css](#css).
 
 ```js
 const count = 5;
@@ -30,15 +30,19 @@ echo("%cRed", "color: red");
 
 ## Parameters
 
-• **message?**: `any`
+### message?
+
+`any`
 
 The text to print.
 
-• ...**optionalParams?**: `any`[]
+### optionalParams?
+
+...`any`[]
 
 ## Returns
 
-[`ShellString`](../namespaces/s/type-aliases/ShellString.md)
+[`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
 Returns processed string with additional utility methods like .to().
 
@@ -46,7 +50,7 @@ Returns processed string with additional utility methods like .to().
 
 ### css()
 
-> **css**: (...`styles`) => `Record`\<`string`, `string`\>(...`styles`) => `Record`\<`string`, `string`\>
+> **css**: \{(...`styles`): `Record`\<`string`, `string`\>; (...`styles`): `Record`\<`string`, `string`\>; \}
 
 In `echo`, you can use `%c` for styling:
 ```js
@@ -67,7 +71,7 @@ const css= echo.css("* { font-weight: bold; }", ".red { color: red; }", ".blue {
 echo("%cRed and bold text", css.red);
 echo("%cBlue and bold text", css.blue);
 ```
-…there is also helpers (see [EchoFunction.format](EchoFunction.md#format) and [EchoFunction.formatWithOptions](EchoFunction.md#formatwithoptions)) to just return finally formated text:
+…there is also helpers (see [EchoFunction.format](#format) and [EchoFunction.formatWithOptions](#formatwithoptions)) to just return finally formated text:
 ```js
 const css= echo.css`
 	* { font-weight: bold; }
@@ -82,7 +86,11 @@ For further information, see:
 <br>- [Styling console output](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output)
 <br>- [Util.format | Node.js v19.1.0 Documentation](https://nodejs.org/api/util.html#utilformatformat-args)
 
-This is helper function to predefine CSS-like rules for being used with log/[formatWithOptions](EchoFunction.md#formatwithoptions)/[format](EchoFunction.md#format)/….
+#### Call Signature
+
+> (...`styles`): `Record`\<`string`, `string`\>
+
+This is helper function to predefine CSS-like rules for being used with log/[formatWithOptions](#formatwithoptions)/[format](#format)/….
 ```js
 const css= style(".red { color: red; }", ".blue { color: blue; }");
 log("%cRed text", css.red);
@@ -99,13 +107,19 @@ log("%cBlue and bold text", css.blue);
 const css= style("@import './file.css'");
 ```
 
-#### Parameters
+##### Parameters
 
-• ...**styles**: (\`.$\{string\}\{ @import "$\{string\}" \}\` \| \`.$\{string\}\{ display: none; \}\` \| \`.$\{string\}\{ display: list-item; \}\` \| \`.$\{string\}\{ color: black; \}\` \| \`.$\{string\}\{ color: blue; \}\` \| \`.$\{string\}\{ color: cyan; \}\` \| \`.$\{string\}\{ color: gray; \}\` \| \`.$\{string\}\{ color: green; \}\` \| \`.$\{string\}\{ color: magenta; \}\` \| \`.$\{string\}\{ color: red; \}\` \| \`.$\{string\}\{ color: white; \}\` \| \`.$\{string\}\{ color: yellow; \}\` \| \`.$\{string\}\{ color: rgb($\{number\} $\{number\} $\{number\}); \}\` \| \`.$\{string\}\{ color: rgb($\{number\}, $\{number\}, $\{number\}); \}\` \| \`.$\{string\}\{ color: lightred; \}\` \| \`.$\{string\}\{ color: lightgreen; \}\` \| \`.$\{string\}\{ color: lightyellow; \}\` \| \`.$\{string\}\{ color: lightblue; \}\` \| \`.$\{string\}\{ color: lightmagenta; \}\` \| \`.$\{string\}\{ color: lightcyan; \}\` \| \`.$\{string\}\{ color: whitesmoke; \}\` \| \`.$\{string\}\{ background: black; \}\` \| \`.$\{string\}\{ background: blue; \}\` \| \`.$\{string\}\{ background: cyan; \}\` \| \`.$\{string\}\{ background: gray; \}\` \| \`.$\{string\}\{ background: green; \}\` \| \`.$\{string\}\{ background: magenta; \}\` \| \`.$\{string\}\{ background: red; \}\` \| \`.$\{string\}\{ background: white; \}\` \| \`.$\{string\}\{ background: yellow; \}\` \| \`.$\{string\}\{ background: rgb($\{number\} $\{number\} $\{number\}); \}\` \| \`.$\{string\}\{ background: rgb($\{number\}, $\{number\}, $\{number\}); \}\` \| \`.$\{string\}\{ background: lightred; \}\` \| \`.$\{string\}\{ background: lightgreen; \}\` \| \`.$\{string\}\{ background: lightyellow; \}\` \| \`.$\{string\}\{ background: lightblue; \}\` \| \`.$\{string\}\{ background: lightmagenta; \}\` \| \`.$\{string\}\{ background: lightcyan; \}\` \| \`.$\{string\}\{ background: whitesmoke; \}\` \| \`.$\{string\}\{ margin-left: $\{number\}; \}\` \| \`.$\{string\}\{ margin-right: $\{number\}; \}\` \| \`.$\{string\}\{ text-decoration: underline \}\` \| \`.$\{string\}\{ text-decoration: line-through \}\` \| \`.$\{string\}\{ list-style-type: $\{string\} \}\` \| \`.$\{string\}\{ unset: all; \}\` \| \`.$\{string\}\{ font-style: italic; \}\` \| \`.$\{string\}\{ font-weight: bold; \}\` \| \`.$\{string\}\{ animation: blink; \}\`)[]
+###### styles
 
-#### Returns
+...(`` `.${string}{ @import "${string}" }` `` \| `` `.${string}{ display: none; }` `` \| `` `.${string}{ display: list-item; }` `` \| `` `.${string}{ color: black; }` `` \| `` `.${string}{ color: red; }` `` \| `` `.${string}{ color: green; }` `` \| `` `.${string}{ color: yellow; }` `` \| `` `.${string}{ color: blue; }` `` \| `` `.${string}{ color: magenta; }` `` \| `` `.${string}{ color: cyan; }` `` \| `` `.${string}{ color: white; }` `` \| `` `.${string}{ color: gray; }` `` \| `` `.${string}{ color: rgb(${number} ${number} ${number}); }` `` \| `` `.${string}{ color: rgb(${number}, ${number}, ${number}); }` `` \| `` `.${string}{ color: lightred; }` `` \| `` `.${string}{ color: lightgreen; }` `` \| `` `.${string}{ color: lightyellow; }` `` \| `` `.${string}{ color: lightblue; }` `` \| `` `.${string}{ color: lightmagenta; }` `` \| `` `.${string}{ color: lightcyan; }` `` \| `` `.${string}{ color: whitesmoke; }` `` \| `` `.${string}{ background: black; }` `` \| `` `.${string}{ background: red; }` `` \| `` `.${string}{ background: green; }` `` \| `` `.${string}{ background: yellow; }` `` \| `` `.${string}{ background: blue; }` `` \| `` `.${string}{ background: magenta; }` `` \| `` `.${string}{ background: cyan; }` `` \| `` `.${string}{ background: white; }` `` \| `` `.${string}{ background: gray; }` `` \| `` `.${string}{ background: rgb(${number} ${number} ${number}); }` `` \| `` `.${string}{ background: rgb(${number}, ${number}, ${number}); }` `` \| `` `.${string}{ background: lightred; }` `` \| `` `.${string}{ background: lightgreen; }` `` \| `` `.${string}{ background: lightyellow; }` `` \| `` `.${string}{ background: lightblue; }` `` \| `` `.${string}{ background: lightmagenta; }` `` \| `` `.${string}{ background: lightcyan; }` `` \| `` `.${string}{ background: whitesmoke; }` `` \| `` `.${string}{ margin-left: ${number}; }` `` \| `` `.${string}{ margin-right: ${number}; }` `` \| `` `.${string}{ text-decoration: underline }` `` \| `` `.${string}{ text-decoration: line-through }` `` \| `` `.${string}{ list-style-type: ${string} }` `` \| `` `.${string}{ unset: all; }` `` \| `` `.${string}{ font-style: italic; }` `` \| `` `.${string}{ font-weight: bold; }` `` \| `` `.${string}{ animation: blink; }` ``)[]
+
+##### Returns
 
 `Record`\<`string`, `string`\>
+
+#### Call Signature
+
+> (...`styles`): `Record`\<`string`, `string`\>
 
 You can use it aslo as template function:
 ```js
@@ -115,11 +129,13 @@ const css= style`
 `;
 ```
 
-#### Parameters
+##### Parameters
 
-• ...**styles**: `cssTemplate`
+###### styles
 
-#### Returns
+...`cssTemplate`
+
+##### Returns
 
 `Record`\<`string`, `string`\>
 
@@ -127,9 +143,9 @@ const css= style`
 
 ### use()
 
-> **use**(`options`, `message`?, ...`optionalParams`?): [`ShellString`](../namespaces/s/type-aliases/ShellString.md)
+> **use**(`options`, `message?`, ...`optionalParams?`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
-Similarly to [s.echo](../namespaces/s/functions/echo.md), the first argument accepts options string starting with `-`:
+Similarly to [s.echo](../nodejsscript/namespaces/s/variables/echo.md), the first argument accepts options string starting with `-`:
 - `-n`: Don’t append **n**ew line
 - `-1`/`-2`: Outputs to `stdout`/`stderr`
 - `-c`: Don’t **c**olorize output (e.g. objects)
@@ -147,19 +163,25 @@ echo.use("-2cP", { a: "A" });
 
 #### Parameters
 
-• **options**: \`-$\{string\}\`
+##### options
+
+`` `-${string}` ``
 
 Available options: `-n`, `-1`/`-2`, `-c`, `-P`, `-R`/`-r`.
 
-• **message?**: `any`
+##### message?
+
+`any`
 
 The text to print.
 
-• ...**optionalParams?**: `any`[]
+##### optionalParams?
+
+...`any`[]
 
 #### Returns
 
-[`ShellString`](../namespaces/s/type-aliases/ShellString.md)
+[`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
 Returns processed string with additional utility methods like .to().
 
@@ -167,22 +189,26 @@ Returns processed string with additional utility methods like .to().
 
 ### format()
 
-> **format**(`message`?, ...`optionalParams`?): [`ShellString`](../namespaces/s/type-aliases/ShellString.md)
+> **format**(`message?`, ...`optionalParams?`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
-A helper method returning formated text as it processed by [echo](../functions/echo.md), but not printed into the console.
+A helper method returning formated text as it processed by [echo](../variables/echo.md), but not printed into the console.
 (So infact, it is an alias `echo.use("-S", …);`)
 
 #### Parameters
 
-• **message?**: `any`
+##### message?
+
+`any`
 
 The text to print.
 
-• ...**optionalParams?**: `any`[]
+##### optionalParams?
+
+...`any`[]
 
 #### Returns
 
-[`ShellString`](../namespaces/s/type-aliases/ShellString.md)
+[`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
 Returns processed string with additional utility methods like .to().
 
@@ -190,25 +216,31 @@ Returns processed string with additional utility methods like .to().
 
 ### formatWithOptions()
 
-> **formatWithOptions**(`options`, `message`?, ...`optionalParams`?): [`ShellString`](../namespaces/s/type-aliases/ShellString.md)
+> **formatWithOptions**(`options`, `message?`, ...`optionalParams?`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
-A helper method returning formated text as it processed by [echo](../functions/echo.md), but not printed into the console.
+A helper method returning formated text as it processed by [echo](../variables/echo.md), but not printed into the console.
 (So infact, it is an alias `echo.use("-S"+…, …);`)
 
 #### Parameters
 
-• **options**: \`-$\{string\}\`
+##### options
+
+`` `-${string}` ``
 
 Available options: `-n`, `-c`, `-P` (these are available, but ignored: `-1`/`-2`, `-R`/`-r`).
 
-• **message?**: `any`
+##### message?
+
+`any`
 
 The text to print.
 
-• ...**optionalParams?**: `any`[]
+##### optionalParams?
+
+...`any`[]
 
 #### Returns
 
-[`ShellString`](../namespaces/s/type-aliases/ShellString.md)
+[`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
 Returns processed string with additional utility methods like .to().

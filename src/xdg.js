@@ -48,7 +48,7 @@ export function globalPackage(pieces, ...vars){
 	if(!exports || typeof require === "function") return resolve(pkg, pkg_subpath ? pkg_subpath : main);
 	const export_name= pkg_subpath ? "./"+pkg_subpath : ".";
 	const export_candidate= exports[export_name];
-	return resolve(pkg, typeof export_candidate==="string" ? export_candidate : export_candidate.import);
+	return resolve(pkg, typeof export_candidate==="string" ? export_candidate : export_candidate.import || export_candidate.default);
 }
 
 function out(folder, pieces, vars){

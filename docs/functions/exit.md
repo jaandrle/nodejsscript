@@ -1,4 +1,4 @@
-[**nodejsscript**](../README.md) • **Docs**
+[**nodejsscript**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Function: \_exit()
 
-> **\_exit**(`code`?): `never`
+> **\_exit**(`code?`): `never`
 
 The `process.exit()` method instructs Node.js to terminate the process
 synchronously with an exit status of `code`. If `code` is omitted, exit uses
@@ -72,9 +72,11 @@ than the current process.
 
 ## Parameters
 
-• **code?**: `string` \| `number`
+### code?
 
 The exit code. For string type, only integer strings (e.g.,'1') are allowed.
+
+`string` | `number`
 
 ## Returns
 

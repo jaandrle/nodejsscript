@@ -1,4 +1,4 @@
-[**nodejsscript**](../README.md) • **Docs**
+[**nodejsscript**](../README.md)
 
 ***
 
@@ -20,15 +20,19 @@ pipe(
 
 ## Parameters
 
-• ...**funs**: `Function`[]
+### funs
+
+...`Function`[]
 
 ## Returns
 
-`Function`
+> (`input`): `any`
 
 ### Parameters
 
-• **input**: `any`
+#### input
+
+`any`
 
 ### Returns
 

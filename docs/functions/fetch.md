@@ -1,4 +1,4 @@
-[**nodejsscript**](../README.md) • **Docs**
+[**nodejsscript**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Function: fetch()
 
-> **fetch**(`url`, `init`?): [`Response`](../namespaces/fetch/classes/Response.md)
+> **fetch**(`url`, `init?`): [`Response`](../nodejsscript/namespaces/fetch/classes/Response.md)
 
 The [node-fetch](https://www.npmjs.com/package/node-fetch)
 package can be used in cases when `fetch` is not available natively.
@@ -38,14 +38,18 @@ try{
 
 ## Parameters
 
-• **url**: `string` \| [`Request`](../namespaces/fetch/classes/Request.md)
+### url
 
 The URL to fetch.
 
-• **init?**: [`RequestInit`](../namespaces/fetch/interfaces/RequestInit.md)
+`string` | [`Request`](../nodejsscript/namespaces/fetch/classes/Request.md)
+
+### init?
+
+[`RequestInit`](../nodejsscript/namespaces/fetch/interfaces/RequestInit.md)
 
 Request parameters.
 
 ## Returns
 
-[`Response`](../namespaces/fetch/classes/Response.md)
+[`Response`](../nodejsscript/namespaces/fetch/classes/Response.md)

@@ -25,7 +25,7 @@ pipe( $.xdg.temp, s.mkdir )("foo bar");
 Open ‘▸’ sections for quick overview and/or navigate to link(s) for more detailed
 information and documentation.
 
-<!-- #region --><details> <summary><a href="./docs/namespaces/s/README.md">s #shelljs</a> namespace <em>(unix shell-like commands in JavaScript)</em></summary>
+<!-- #region --><details> <summary><a href="./docs/nodejsscript/namespaces/s/README.md">s #shelljs</a> namespace <em>(unix shell-like commands in JavaScript)</em></summary>
 
 ```js
 s.ls().forEach(echo); // ShellArray
@@ -41,7 +41,7 @@ and some additional added by nodejsscript. Typically `s.cat`/`s.grep`/…,
 to run other than builtin commands use `s.run`/`s.runA`.
 
 These functions returns `ShellArray`/`ShellString`/`Promise<ShellString>`,
-these types are union types of `string[]`/`string` with [`ShellReturnValueNJS`](./docs/namespaces/s/interfaces/ShellReturnValueNJS.md).
+these types are union types of `string[]`/`string` with [`ShellReturnValueNJS`](./docs/nodejsscript/namespaces/s/interfaces/ShellReturnValueNJS.md).
 In simple terms, you can use it as `string[]`/`string`/`Promise<string>` or
 read the commad exit `code` and `stdout`/`stderr`. If it makes sence, you can
 pipe output to other shelljs commands. Special pipeing is `to`/`toEnd` for
@@ -53,9 +53,9 @@ s.echo("Hello World!").to("hello.txt");
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><a href="./docs/namespaces/$/README.md">$</a> (
-		<a href="./docs/namespaces/$/functions/api.md">$.api() #sade</a>,
-		<a href="./docs/namespaces/xdg/namespaces/xdg/README.md">$.xdg</a>,
+<!-- #region --><details> <summary><a href="./docs/nodejsscript/namespaces/$/README.md">$</a> (
+		<a href="./docs/nodejsscript/namespaces/$/functions/api.md">$.api() #sade</a>,
+		<a href="./docs/nodejsscript/namespaces/xdg/namespaces/xdg/README.md">$.xdg</a>,
 		…
 	)
 	namespace <em>(nodejsscript/cli related functions/variables)</em></summary>
@@ -93,11 +93,11 @@ $.api()
   (home, temp, config, … directory)
 - `$.stdin`: handles standard input when the script is run in shell pipe (can be
   helpful for `nodejsscript --eval`/`nodejsscript --print` bellow)
-- …for more see [related section in docs](./docs/namespaces/$/README.md)
+- …for more see [related section in docs](./docs/nodejsscript/namespaces/$/README.md)
 
 <!-- #endregion -->
 </details>
-<!-- #region --><details> <summary><a href="./docs/functions/echo.md">echo() #css-in-console</a> function/namespace</summary>
+<!-- #region --><details> <summary><a href="./docs/variables/echo.md">echo() #css-in-console</a> function/namespace</summary>
 
 ```js
 const css= echo.css`
@@ -293,9 +293,7 @@ You don’t need this hack if you use `nodejsscript` in your project locally.
 </details>
 
 ## Quick links/info
-- migration from *0.9.\**: see [API changes 0.9 → 1.0](https://github.com/jaandrle/nodejsscript/pull/32)
-- migration from *0.8.\**: see [API changes 0.8 → 0.9](https://github.com/jaandrle/nodejsscript/blob/e9c4d9d/README.md#api-changes-08--09)
-- [migration from `zx`](#migration-from-zx)
+- changelogs and migrations info: see [Release notes](https://github.com/jaandrle/nodejsscript/releases)
 - [**You (may) not need to use `nodejsscript`**](./examples/no-nodejsscript.md)
 - [Ideas (for new features)](https://github.com/jaandrle/nodejsscript/discussions/categories/ideas)
 - Examples: [examples folder](./examples) or [Show And Tell · Discussions](https://github.com/jaandrle/nodejsscript/discussions/categories/show-and-tell)
