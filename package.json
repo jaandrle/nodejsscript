@@ -68,7 +68,7 @@
 	"dependencies": {
 		"@types/shelljs": "~0.10",
 		"abort-controller": "~3.0",
-		"css-in-console": "^2.1.2",
+		"css-in-console": "~2.1",
 		"log-update-async-hook": "~2.0",
 		"node-fetch": "~3.3",
 		"sade": "~1.8",
