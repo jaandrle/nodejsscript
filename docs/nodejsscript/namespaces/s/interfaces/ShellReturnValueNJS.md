@@ -36,7 +36,7 @@
 
 ***
 
-### read()
+### read
 
 > **read**: (`options`) => `Promise`\<[`ShellString`](../type-aliases/ShellString.md)\>
 

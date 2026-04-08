@@ -32,9 +32,9 @@ Available options:
 
 #### mode
 
-The access mode. Can be an octal string or a symbolic mode string.
+`string` \| `number`
 
-`string` | `number`
+The access mode. Can be an octal string or a symbolic mode string.
 
 #### file
 
@@ -65,9 +65,9 @@ Notable exceptions:
 
 #### mode
 
-The access mode. Can be an octal string or a symbolic mode string.
+`string` \| `number`
 
-`string` | `number`
+The access mode. Can be an octal string or a symbolic mode string.
 
 #### file
 

@@ -4,7 +4,7 @@
 
 [nodejsscript](../../../../README.md) / [s](../README.md) / ExecCallback
 
-# Type Alias: ExecCallback()
+# Type Alias: ExecCallback
 
 > **ExecCallback** = (`code`, `stdout`, `stderr`) => `any`
 

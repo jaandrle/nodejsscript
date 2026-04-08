@@ -14,7 +14,7 @@
 
 #### options
 
-[`TouchOptionsLiteral`](../type-aliases/TouchOptionsLiteral.md) | [`TouchOptionsArray`](TouchOptionsArray.md)
+[`TouchOptionsLiteral`](../type-aliases/TouchOptionsLiteral.md) \| [`TouchOptionsArray`](TouchOptionsArray.md)
 
 #### files
 
@@ -32,7 +32,7 @@
 
 #### options
 
-[`TouchOptionsLiteral`](../type-aliases/TouchOptionsLiteral.md) | [`TouchOptionsArray`](TouchOptionsArray.md)
+[`TouchOptionsLiteral`](../type-aliases/TouchOptionsLiteral.md) \| [`TouchOptionsArray`](TouchOptionsArray.md)
 
 #### files
 

@@ -8,7 +8,7 @@
 
 ## Properties
 
-### text()
+### text
 
 > **text**: \<`T`\>(`_default`) => `string` \| `T`
 
@@ -34,7 +34,7 @@ Default value when no stdin.
 
 ***
 
-### json()
+### json
 
 > **json**: \<`T`\>(`_default`) => `string` \| `T`
 
@@ -60,7 +60,7 @@ Default value when no stdin.
 
 ***
 
-### lines()
+### lines
 
 > **lines**: \<`T`\>(`_default`) => `string`[] \| `T`
 

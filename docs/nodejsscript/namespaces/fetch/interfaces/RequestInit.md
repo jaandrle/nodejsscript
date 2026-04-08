@@ -10,7 +10,7 @@
 
 ### body?
 
-> `optional` **body**: [`BodyInit`](../type-aliases/BodyInit.md)
+> `optional` **body?**: [`BodyInit`](../type-aliases/BodyInit.md)
 
 A BodyInit object or null to set request's body.
 
@@ -18,7 +18,7 @@ A BodyInit object or null to set request's body.
 
 ### headers?
 
-> `optional` **headers**: [`HeadersInit`](../type-aliases/HeadersInit.md)
+> `optional` **headers?**: [`HeadersInit`](../type-aliases/HeadersInit.md)
 
 A Headers object, an object literal, or an array of two-item arrays to set request's headers.
 
@@ -26,7 +26,7 @@ A Headers object, an object literal, or an array of two-item arrays to set reque
 
 ### method?
 
-> `optional` **method**: `string`
+> `optional` **method?**: `string`
 
 A string to set request's method.
 
@@ -34,7 +34,7 @@ A string to set request's method.
 
 ### redirect?
 
-> `optional` **redirect**: [`RequestRedirect`](../type-aliases/RequestRedirect.md)
+> `optional` **redirect?**: [`RequestRedirect`](../type-aliases/RequestRedirect.md)
 
 A string indicating whether request follows redirects, results in an error upon encountering a redirect, or returns the redirect (in an opaque fashion). Sets request's redirect.
 
@@ -42,7 +42,7 @@ A string indicating whether request follows redirects, results in an error upon 
 
 ### signal?
 
-> `optional` **signal**: `AbortSignal`
+> `optional` **signal?**: `AbortSignal`
 
 An AbortSignal to set request's signal.
 
@@ -50,7 +50,7 @@ An AbortSignal to set request's signal.
 
 ### referrer?
 
-> `optional` **referrer**: `string`
+> `optional` **referrer?**: `string`
 
 A string whose value is a same-origin URL, "about:client", or the empty string, to set request’s referrer.
 
@@ -58,7 +58,7 @@ A string whose value is a same-origin URL, "about:client", or the empty string, 
 
 ### referrerPolicy?
 
-> `optional` **referrerPolicy**: [`ReferrerPolicy`](../type-aliases/ReferrerPolicy.md)
+> `optional` **referrerPolicy?**: [`ReferrerPolicy`](../type-aliases/ReferrerPolicy.md)
 
 A referrer policy to set request’s referrerPolicy.
 
@@ -66,58 +66,58 @@ A referrer policy to set request’s referrerPolicy.
 
 ### agent?
 
-> `optional` **agent**: `boolean` \| `Agent` \| (`parsedUrl`) => `boolean` \| `Agent`
+> `optional` **agent?**: `boolean` \| `Agent` \| ((`parsedUrl`) => `boolean` \| `Agent`)
 
 ***
 
 ### compress?
 
-> `optional` **compress**: `boolean`
+> `optional` **compress?**: `boolean`
 
 ***
 
 ### counter?
 
-> `optional` **counter**: `number`
+> `optional` **counter?**: `number`
 
 ***
 
 ### follow?
 
-> `optional` **follow**: `number`
+> `optional` **follow?**: `number`
 
 ***
 
 ### hostname?
 
-> `optional` **hostname**: `string`
+> `optional` **hostname?**: `string`
 
 ***
 
 ### port?
 
-> `optional` **port**: `number`
+> `optional` **port?**: `number`
 
 ***
 
 ### protocol?
 
-> `optional` **protocol**: `string`
+> `optional` **protocol?**: `string`
 
 ***
 
 ### size?
 
-> `optional` **size**: `number`
+> `optional` **size?**: `number`
 
 ***
 
 ### highWaterMark?
 
-> `optional` **highWaterMark**: `number`
+> `optional` **highWaterMark?**: `number`
 
 ***
 
 ### insecureHTTPParser?
 
-> `optional` **insecureHTTPParser**: `boolean`
+> `optional` **insecureHTTPParser?**: `boolean`

@@ -74,9 +74,9 @@ than the current process.
 
 ### code?
 
-The exit code. For string type, only integer strings (e.g.,'1') are allowed.
+`string` \| `number`
 
-`string` | `number`
+The exit code. For string type, only integer strings (e.g.,'1') are allowed.
 
 ## Returns
 

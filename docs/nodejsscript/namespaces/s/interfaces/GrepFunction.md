@@ -26,9 +26,9 @@ Available options:
 
 #### regex\_filter
 
-The regular expression to use.
+`string` \| `RegExp`
 
-`string` | `RegExp`
+The regular expression to use.
 
 #### files
 
@@ -54,7 +54,7 @@ Returns a string containing all lines of the file that match the given regex_fil
 
 #### regex\_filter
 
-`string` | `RegExp`
+`string` \| `RegExp`
 
 #### files
 
@@ -75,9 +75,9 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 #### regex\_filter
 
-The regular expression to use.
+`string` \| `RegExp`
 
-`string` | `RegExp`
+The regular expression to use.
 
 #### files
 
@@ -99,7 +99,7 @@ Returns a string containing all lines of the file that match the given `regex_fi
 
 #### regex\_filter
 
-`string` | `RegExp`
+`string` \| `RegExp`
 
 #### files
 

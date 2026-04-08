@@ -19,13 +19,13 @@
 
 ### shell?
 
-> `optional` **shell**: `string` \| `boolean`
+> `optional` **shell?**: `string` \| `boolean`
 
 ***
 
 ### input?
 
-> `optional` **input**: `string` \| `ArrayBufferView`\<`ArrayBufferLike`\>
+> `optional` **input?**: `string` \| `ArrayBufferView`\<`ArrayBufferLike`\>
 
 #### Inherited from
 
@@ -35,7 +35,7 @@
 
 ### stdio?
 
-> `optional` **stdio**: [`StdioOptions`](../type-aliases/StdioOptions.md)
+> `optional` **stdio?**: [`StdioOptions`](../type-aliases/StdioOptions.md)
 
 Can be set to 'pipe', 'inherit, or 'ignore', or an array of these strings.
 If passed as an array, the first element is used for `stdin`, the second for
@@ -57,7 +57,7 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### killSignal?
 
-> `optional` **killSignal**: `number` \| `Signals`
+> `optional` **killSignal?**: `number` \| `Signals`
 
 #### Inherited from
 
@@ -67,7 +67,7 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### maxBuffer?
 
-> `optional` **maxBuffer**: `number`
+> `optional` **maxBuffer?**: `number`
 
 #### Inherited from
 
@@ -77,7 +77,7 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### encoding?
 
-> `optional` **encoding**: `"buffer"` \| `BufferEncoding`
+> `optional` **encoding?**: `"buffer"` \| `BufferEncoding`
 
 #### Inherited from
 
@@ -87,7 +87,7 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### windowsHide?
 
-> `optional` **windowsHide**: `boolean`
+> `optional` **windowsHide?**: `boolean`
 
 #### Default
 
@@ -103,7 +103,7 @@ false
 
 ### timeout?
 
-> `optional` **timeout**: `number`
+> `optional` **timeout?**: `number`
 
 #### Default
 
@@ -119,7 +119,7 @@ false
 
 ### uid?
 
-> `optional` **uid**: `number`
+> `optional` **uid?**: `number`
 
 #### Inherited from
 
@@ -129,7 +129,7 @@ false
 
 ### gid?
 
-> `optional` **gid**: `number`
+> `optional` **gid?**: `number`
 
 #### Inherited from
 
@@ -139,7 +139,7 @@ false
 
 ### cwd?
 
-> `optional` **cwd**: `string` \| `URL`
+> `optional` **cwd?**: `string` \| `URL`
 
 #### Inherited from
 
@@ -149,7 +149,7 @@ false
 
 ### env?
 
-> `optional` **env**: `ProcessEnv`
+> `optional` **env?**: `ProcessEnv`
 
 #### Inherited from
 

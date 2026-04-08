@@ -50,7 +50,7 @@ and a reject callback used to reject the promise with a provided reason or error
 
 ### child?
 
-> `optional` **child**: [`ChildProcess`](../../../../child_process/classes/ChildProcess.md)
+> `optional` **child?**: [`ChildProcess`](../../../../child_process/classes/ChildProcess.md)
 
 ***
 
@@ -135,7 +135,7 @@ A new Promise.
 
 #### Call Signature
 
-> `static` **all**\<`T`\>(`values`): `Promise`\<\{ -readonly \[P in string \| number \| symbol\]: Awaited\<T\[P\<P\>\]\> \}\>
+> `static` **all**\<`T`\>(`values`): `Promise`\<\{ -readonly \[P in string \| number \| symbol\]: Awaited\<T\[P\]\> \}\>
 
 Creates a Promise that is resolved with an array of results when all of the provided Promises
 resolve, or rejected when any Promise is rejected.
@@ -156,7 +156,7 @@ An array of Promises.
 
 ##### Returns
 
-`Promise`\<\{ -readonly \[P in string \| number \| symbol\]: Awaited\<T\[P\<P\>\]\> \}\>
+`Promise`\<\{ -readonly \[P in string \| number \| symbol\]: Awaited\<T\[P\]\> \}\>
 
 A new Promise.
 
@@ -328,9 +328,9 @@ Creates a new resolved promise for the provided value.
 
 ###### value
 
-A promise.
+`T` \| `PromiseLike`\<`T`\>
 
-`T` | `PromiseLike`\<`T`\>
+A promise.
 
 ##### Returns
 
@@ -348,7 +348,7 @@ A promise whose internal state matches the provided promise.
 
 #### Call Signature
 
-> `static` **allSettled**\<`T`\>(`values`): `Promise`\<\{ -readonly \[P in string \| number \| symbol\]: PromiseSettledResult\<Awaited\<T\[P\<P\>\]\>\> \}\>
+> `static` **allSettled**\<`T`\>(`values`): `Promise`\<\{ -readonly \[P in string \| number \| symbol\]: PromiseSettledResult\<Awaited\<T\[P\]\>\> \}\>
 
 Creates a Promise that is resolved with an array of results when all
 of the provided Promises resolve or reject.
@@ -369,7 +369,7 @@ An array of Promises.
 
 ##### Returns
 
-`Promise`\<\{ -readonly \[P in string \| number \| symbol\]: PromiseSettledResult\<Awaited\<T\[P\<P\>\]\>\> \}\>
+`Promise`\<\{ -readonly \[P in string \| number \| symbol\]: PromiseSettledResult\<Awaited\<T\[P\]\>\> \}\>
 
 A new Promise.
 
@@ -452,7 +452,7 @@ A new Promise.
 
 ##### dest
 
-`Writable` | `ProcessPromise` | (`s`) => `any`
+`Writable` \| `ProcessPromise` \| ((`s`) => `any`)
 
 #### Returns
 

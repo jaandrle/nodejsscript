@@ -10,10 +10,10 @@
 
 ### -d?
 
-> `optional` **-d**: `string`
+> `optional` **-d?**: `string`
 
 ***
 
 ### -r?
 
-> `optional` **-r**: `string`
+> `optional` **-r?**: `string`
