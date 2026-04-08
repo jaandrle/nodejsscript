@@ -4,7 +4,7 @@
 
 [nodejsscript](../../../../README.md) / [xdg\_](../README.md) / XdgFunctionRoot
 
-# Type Alias: XdgFunctionRoot()
+# Type Alias: XdgFunctionRoot
 
 > **XdgFunctionRoot** = () => `string`
 

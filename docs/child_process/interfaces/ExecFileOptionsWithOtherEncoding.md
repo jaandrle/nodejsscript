@@ -18,7 +18,7 @@ Use `ExecFileOptions` instead.
 
 ### ~~maxBuffer?~~
 
-> `optional` **maxBuffer**: `number`
+> `optional` **maxBuffer?**: `number`
 
 #### Inherited from
 
@@ -28,7 +28,7 @@ Use `ExecFileOptions` instead.
 
 ### ~~killSignal?~~
 
-> `optional` **killSignal**: `number` \| `Signals`
+> `optional` **killSignal?**: `number` \| `Signals`
 
 #### Inherited from
 
@@ -38,7 +38,7 @@ Use `ExecFileOptions` instead.
 
 ### ~~windowsVerbatimArguments?~~
 
-> `optional` **windowsVerbatimArguments**: `boolean`
+> `optional` **windowsVerbatimArguments?**: `boolean`
 
 #### Inherited from
 
@@ -48,7 +48,7 @@ Use `ExecFileOptions` instead.
 
 ### ~~shell?~~
 
-> `optional` **shell**: `string` \| `boolean`
+> `optional` **shell?**: `string` \| `boolean`
 
 #### Inherited from
 
@@ -58,7 +58,7 @@ Use `ExecFileOptions` instead.
 
 ### ~~signal?~~
 
-> `optional` **signal**: `AbortSignal`
+> `optional` **signal?**: `AbortSignal`
 
 #### Inherited from
 
@@ -68,7 +68,7 @@ Use `ExecFileOptions` instead.
 
 ### ~~encoding?~~
 
-> `optional` **encoding**: `string`
+> `optional` **encoding?**: `string`
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ Use `ExecFileOptions` instead.
 
 ### ~~windowsHide?~~
 
-> `optional` **windowsHide**: `boolean`
+> `optional` **windowsHide?**: `boolean`
 
 #### Default
 
@@ -94,7 +94,7 @@ false
 
 ### ~~timeout?~~
 
-> `optional` **timeout**: `number`
+> `optional` **timeout?**: `number`
 
 #### Default
 
@@ -110,7 +110,7 @@ false
 
 ### ~~uid?~~
 
-> `optional` **uid**: `number`
+> `optional` **uid?**: `number`
 
 #### Inherited from
 
@@ -120,7 +120,7 @@ false
 
 ### ~~gid?~~
 
-> `optional` **gid**: `number`
+> `optional` **gid?**: `number`
 
 #### Inherited from
 
@@ -130,7 +130,7 @@ false
 
 ### ~~cwd?~~
 
-> `optional` **cwd**: `string` \| `URL`
+> `optional` **cwd?**: `string` \| `URL`
 
 #### Inherited from
 
@@ -140,7 +140,7 @@ false
 
 ### ~~env?~~
 
-> `optional` **env**: `ProcessEnv`
+> `optional` **env?**: `ProcessEnv`
 
 #### Inherited from
 

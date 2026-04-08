@@ -14,7 +14,7 @@
 
 ### silent?
 
-> `optional` **silent**: `boolean`
+> `optional` **silent?**: `boolean`
 
 Do not echo program output to the console.
 
@@ -28,7 +28,7 @@ false
 
 ### fatal?
 
-> `optional` **fatal**: `boolean`
+> `optional` **fatal?**: `boolean`
 
 Exit when command return code is non-zero.
 
@@ -42,7 +42,7 @@ false
 
 ### async?
 
-> `optional` **async**: `boolean`
+> `optional` **async?**: `boolean`
 
 Asynchronous execution.
 
@@ -58,7 +58,7 @@ false
 
 ### encoding?
 
-> `optional` **encoding**: `string`
+> `optional` **encoding?**: `string`
 
 Character encoding to use.
 
@@ -79,7 +79,7 @@ and what is written to `stdout` and `stderr` when not in silent mode
 
 ### shell?
 
-> `optional` **shell**: `string`
+> `optional` **shell?**: `string`
 
 #### Inherited from
 
@@ -89,7 +89,7 @@ and what is written to `stdout` and `stderr` when not in silent mode
 
 ### signal?
 
-> `optional` **signal**: `AbortSignal`
+> `optional` **signal?**: `AbortSignal`
 
 #### Inherited from
 
@@ -99,7 +99,7 @@ and what is written to `stdout` and `stderr` when not in silent mode
 
 ### maxBuffer?
 
-> `optional` **maxBuffer**: `number`
+> `optional` **maxBuffer?**: `number`
 
 #### Inherited from
 
@@ -109,7 +109,7 @@ and what is written to `stdout` and `stderr` when not in silent mode
 
 ### killSignal?
 
-> `optional` **killSignal**: `number` \| `Signals`
+> `optional` **killSignal?**: `number` \| `Signals`
 
 #### Inherited from
 
@@ -119,7 +119,7 @@ and what is written to `stdout` and `stderr` when not in silent mode
 
 ### windowsHide?
 
-> `optional` **windowsHide**: `boolean`
+> `optional` **windowsHide?**: `boolean`
 
 #### Default
 
@@ -135,7 +135,7 @@ false
 
 ### timeout?
 
-> `optional` **timeout**: `number`
+> `optional` **timeout?**: `number`
 
 #### Default
 
@@ -151,7 +151,7 @@ false
 
 ### uid?
 
-> `optional` **uid**: `number`
+> `optional` **uid?**: `number`
 
 #### Inherited from
 
@@ -161,7 +161,7 @@ false
 
 ### gid?
 
-> `optional` **gid**: `number`
+> `optional` **gid?**: `number`
 
 #### Inherited from
 
@@ -171,7 +171,7 @@ false
 
 ### cwd?
 
-> `optional` **cwd**: `string` \| `URL`
+> `optional` **cwd?**: `string` \| `URL`
 
 #### Inherited from
 
@@ -181,7 +181,7 @@ false
 
 ### env?
 
-> `optional` **env**: `ProcessEnv`
+> `optional` **env?**: `ProcessEnv`
 
 #### Inherited from
 

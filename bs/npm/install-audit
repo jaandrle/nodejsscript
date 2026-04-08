@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+npx npq install "$1" --dry-run

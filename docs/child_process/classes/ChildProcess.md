@@ -116,7 +116,7 @@ v0.1.90
 
 ### channel?
 
-> `readonly` `optional` **channel**: [`Control`](../interfaces/Control.md)
+> `readonly` `optional` **channel?**: [`Control`](../interfaces/Control.md)
 
 The `subprocess.channel` property is a reference to the child's IPC channel. If
 no IPC channel exists, this property is `undefined`.
@@ -188,7 +188,7 @@ v0.5.10
 
 ### pid?
 
-> `readonly` `optional` **pid**: `number`
+> `readonly` `optional` **pid?**: `number`
 
 Returns the process identifier (PID) of the child process. If the child process
 fails to spawn due to errors, then the value is `undefined` and `error` is
@@ -328,7 +328,7 @@ setTimeout(() => {
 
 ##### signal?
 
-`number` | `Signals`
+`number` \| `Signals`
 
 #### Returns
 
@@ -1025,7 +1025,7 @@ Alias for `emitter.on(eventName, listener)`.
 
 ###### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ###### listener
 
@@ -1165,7 +1165,7 @@ myEmitter.emit('event', 1, 2, 3, 4, 5);
 
 ###### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ###### args
 
@@ -1239,9 +1239,9 @@ in the list of the listeners of the event.
 
 ###### eventName
 
-The name of the event being listened for
+`string` \| `symbol`
 
-`string` | `symbol`
+The name of the event being listened for
 
 ###### listener?
 
@@ -1321,7 +1321,7 @@ console.log(util.inspect(server.listeners('connection')));
 
 ###### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ##### Returns
 
@@ -1383,7 +1383,7 @@ Alias for `emitter.removeListener()`.
 
 ###### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ###### listener
 
@@ -1507,9 +1507,9 @@ myEE.emit('foo');
 
 ###### eventName
 
-The name of the event.
+`string` \| `symbol`
 
-`string` | `symbol`
+The name of the event.
 
 ###### listener
 
@@ -1629,9 +1629,9 @@ myEE.emit('foo');
 
 ###### eventName
 
-The name of the event.
+`string` \| `symbol`
 
-`string` | `symbol`
+The name of the event.
 
 ###### listener
 
@@ -1727,9 +1727,9 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 ###### eventName
 
-The name of the event.
+`string` \| `symbol`
 
-`string` | `symbol`
+The name of the event.
 
 ###### listener
 
@@ -1821,9 +1821,9 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 ###### eventName
 
-The name of the event.
+`string` \| `symbol`
 
-`string` | `symbol`
+The name of the event.
 
 ###### listener
 
@@ -1939,7 +1939,7 @@ emitter.emit('log');
 
 ###### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ##### Returns
 
@@ -2009,7 +2009,7 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 ###### eventName?
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ##### Returns
 
@@ -2235,7 +2235,7 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 ###### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ###### listener
 
@@ -2381,7 +2381,7 @@ class MyClass extends EventEmitter {
 
 ##### event
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ##### args
 

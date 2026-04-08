@@ -26,14 +26,4 @@ pipe(
 
 ## Returns
 
-> (`input`): `any`
-
-### Parameters
-
-#### input
-
-`any`
-
-### Returns
-
-`any`
+(`input`) => `any`

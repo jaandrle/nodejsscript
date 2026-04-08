@@ -20,31 +20,31 @@
 
 ### maxBuffer?
 
-> `optional` **maxBuffer**: `number`
+> `optional` **maxBuffer?**: `number`
 
 ***
 
 ### killSignal?
 
-> `optional` **killSignal**: `number` \| `Signals`
+> `optional` **killSignal?**: `number` \| `Signals`
 
 ***
 
 ### windowsVerbatimArguments?
 
-> `optional` **windowsVerbatimArguments**: `boolean`
+> `optional` **windowsVerbatimArguments?**: `boolean`
 
 ***
 
 ### shell?
 
-> `optional` **shell**: `string` \| `boolean`
+> `optional` **shell?**: `string` \| `boolean`
 
 ***
 
 ### signal?
 
-> `optional` **signal**: `AbortSignal`
+> `optional` **signal?**: `AbortSignal`
 
 #### Overrides
 
@@ -54,13 +54,13 @@
 
 ### encoding?
 
-> `optional` **encoding**: `string`
+> `optional` **encoding?**: `string`
 
 ***
 
 ### windowsHide?
 
-> `optional` **windowsHide**: `boolean`
+> `optional` **windowsHide?**: `boolean`
 
 #### Default
 
@@ -76,7 +76,7 @@ false
 
 ### timeout?
 
-> `optional` **timeout**: `number`
+> `optional` **timeout?**: `number`
 
 #### Default
 
@@ -92,7 +92,7 @@ false
 
 ### uid?
 
-> `optional` **uid**: `number`
+> `optional` **uid?**: `number`
 
 #### Inherited from
 
@@ -102,7 +102,7 @@ false
 
 ### gid?
 
-> `optional` **gid**: `number`
+> `optional` **gid?**: `number`
 
 #### Inherited from
 
@@ -112,7 +112,7 @@ false
 
 ### cwd?
 
-> `optional` **cwd**: `string` \| `URL`
+> `optional` **cwd?**: `string` \| `URL`
 
 #### Inherited from
 
@@ -122,7 +122,7 @@ false
 
 ### env?
 
-> `optional` **env**: `ProcessEnv`
+> `optional` **env?**: `ProcessEnv`
 
 #### Inherited from
 

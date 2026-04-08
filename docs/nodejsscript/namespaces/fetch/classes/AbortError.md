@@ -86,7 +86,7 @@ not capture any frames.
 
 ### stack?
 
-> `optional` **stack**: `string`
+> `optional` **stack?**: `string`
 
 #### Inherited from
 

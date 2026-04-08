@@ -40,9 +40,9 @@ try{
 
 ### url
 
-The URL to fetch.
+`string` \| [`Request`](../nodejsscript/namespaces/fetch/classes/Request.md)
 
-`string` | [`Request`](../nodejsscript/namespaces/fetch/classes/Request.md)
+The URL to fetch.
 
 ### init?
 

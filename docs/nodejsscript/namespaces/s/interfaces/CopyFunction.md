@@ -28,9 +28,9 @@ Available options:
 
 #### source
 
-The source.
+`string` \| `string`[]
 
-`string` | `string`[]
+The source.
 
 #### dest
 
@@ -54,9 +54,9 @@ Copies files. The wildcard `*` is accepted.
 
 #### source
 
-The source.
+`string` \| `string`[]
 
-`string` | `string`[]
+The source.
 
 #### dest
 

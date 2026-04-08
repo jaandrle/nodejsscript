@@ -12,4 +12,4 @@
 
 ### code?
 
-> `optional` **code**: `string` \| `number` \| `null`
+> `optional` **code?**: `string` \| `number` \| `null`

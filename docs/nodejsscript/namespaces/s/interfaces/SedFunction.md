@@ -24,9 +24,9 @@ Available options:
 
 #### searchRegex
 
-The regular expression to use for search.
+`string` \| `RegExp`
 
-`string` | `RegExp`
+The regular expression to use for search.
 
 #### replacement
 
@@ -58,7 +58,7 @@ The new string after replacement.
 
 #### searchRegex
 
-`string` | `RegExp`
+`string` \| `RegExp`
 
 #### replacement
 
@@ -83,9 +83,9 @@ on the input using the given search regex and replacement string or function.
 
 #### searchRegex
 
-The regular expression to use for search.
+`string` \| `RegExp`
 
-`string` | `RegExp`
+The regular expression to use for search.
 
 #### replacement
 
@@ -113,7 +113,7 @@ The new string after replacement.
 
 #### searchRegex
 
-`string` | `RegExp`
+`string` \| `RegExp`
 
 #### replacement
 

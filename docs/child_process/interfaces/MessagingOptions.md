@@ -19,7 +19,7 @@
 
 ### serialization?
 
-> `optional` **serialization**: [`SerializationType`](../type-aliases/SerializationType.md)
+> `optional` **serialization?**: [`SerializationType`](../type-aliases/SerializationType.md)
 
 Specify the kind of serialization used for sending messages between processes.
 
@@ -33,7 +33,7 @@ Specify the kind of serialization used for sending messages between processes.
 
 ### killSignal?
 
-> `optional` **killSignal**: `number` \| `Signals`
+> `optional` **killSignal?**: `number` \| `Signals`
 
 The signal value to be used when the spawned process will be killed by the abort signal.
 
@@ -47,7 +47,7 @@ The signal value to be used when the spawned process will be killed by the abort
 
 ### timeout?
 
-> `optional` **timeout**: `number`
+> `optional` **timeout?**: `number`
 
 In milliseconds the maximum amount of time the process is allowed to run.
 
@@ -55,7 +55,7 @@ In milliseconds the maximum amount of time the process is allowed to run.
 
 ### signal?
 
-> `optional` **signal**: `AbortSignal`
+> `optional` **signal?**: `AbortSignal`
 
 #### Inherited from
 

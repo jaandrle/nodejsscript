@@ -14,25 +14,25 @@
 
 ### execPath?
 
-> `optional` **execPath**: `string`
+> `optional` **execPath?**: `string`
 
 ***
 
 ### execArgv?
 
-> `optional` **execArgv**: `string`[]
+> `optional` **execArgv?**: `string`[]
 
 ***
 
 ### silent?
 
-> `optional` **silent**: `boolean`
+> `optional` **silent?**: `boolean`
 
 ***
 
 ### stdio?
 
-> `optional` **stdio**: [`StdioOptions`](../type-aliases/StdioOptions.md)
+> `optional` **stdio?**: [`StdioOptions`](../type-aliases/StdioOptions.md)
 
 Can be set to 'pipe', 'inherit', 'overlapped', or 'ignore', or an array of these strings.
 If passed as an array, the first element is used for `stdin`, the second for
@@ -50,19 +50,19 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### detached?
 
-> `optional` **detached**: `boolean`
+> `optional` **detached?**: `boolean`
 
 ***
 
 ### windowsVerbatimArguments?
 
-> `optional` **windowsVerbatimArguments**: `boolean`
+> `optional` **windowsVerbatimArguments?**: `boolean`
 
 ***
 
 ### uid?
 
-> `optional` **uid**: `number`
+> `optional` **uid?**: `number`
 
 #### Inherited from
 
@@ -72,7 +72,7 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### gid?
 
-> `optional` **gid**: `number`
+> `optional` **gid?**: `number`
 
 #### Inherited from
 
@@ -82,7 +82,7 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### cwd?
 
-> `optional` **cwd**: `string` \| `URL`
+> `optional` **cwd?**: `string` \| `URL`
 
 #### Inherited from
 
@@ -92,7 +92,7 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### env?
 
-> `optional` **env**: `ProcessEnv`
+> `optional` **env?**: `ProcessEnv`
 
 #### Inherited from
 
@@ -102,7 +102,7 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### serialization?
 
-> `optional` **serialization**: [`SerializationType`](../type-aliases/SerializationType.md)
+> `optional` **serialization?**: [`SerializationType`](../type-aliases/SerializationType.md)
 
 Specify the kind of serialization used for sending messages between processes.
 
@@ -120,7 +120,7 @@ Specify the kind of serialization used for sending messages between processes.
 
 ### killSignal?
 
-> `optional` **killSignal**: `number` \| `Signals`
+> `optional` **killSignal?**: `number` \| `Signals`
 
 The signal value to be used when the spawned process will be killed by the abort signal.
 
@@ -138,7 +138,7 @@ The signal value to be used when the spawned process will be killed by the abort
 
 ### timeout?
 
-> `optional` **timeout**: `number`
+> `optional` **timeout?**: `number`
 
 In milliseconds the maximum amount of time the process is allowed to run.
 
@@ -150,7 +150,7 @@ In milliseconds the maximum amount of time the process is allowed to run.
 
 ### signal?
 
-> `optional` **signal**: `AbortSignal`
+> `optional` **signal?**: `AbortSignal`
 
 #### Inherited from
 

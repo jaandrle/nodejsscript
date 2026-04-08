@@ -14,37 +14,37 @@
 
 ### cmd?
 
-> `optional` **cmd**: `string`
+> `optional` **cmd?**: `string`
 
 ***
 
 ### killed?
 
-> `optional` **killed**: `boolean`
+> `optional` **killed?**: `boolean`
 
 ***
 
 ### code?
 
-> `optional` **code**: `number`
+> `optional` **code?**: `number`
 
 ***
 
 ### signal?
 
-> `optional` **signal**: `Signals`
+> `optional` **signal?**: `Signals`
 
 ***
 
 ### stdout?
 
-> `optional` **stdout**: `string`
+> `optional` **stdout?**: `string`
 
 ***
 
 ### stderr?
 
-> `optional` **stderr**: `string`
+> `optional` **stderr?**: `string`
 
 ***
 
@@ -70,7 +70,7 @@
 
 ### stack?
 
-> `optional` **stack**: `string`
+> `optional` **stack?**: `string`
 
 #### Inherited from
 

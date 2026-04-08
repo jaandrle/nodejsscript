@@ -24,7 +24,7 @@ echo($.isFIFO(stdin.fd), $.isFIFO(stdout.fd));
 
 ### stream\_id
 
-`0` | `1`
+`0` \| `1`
 
 ## Returns
 

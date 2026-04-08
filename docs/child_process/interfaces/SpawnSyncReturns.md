@@ -52,4 +52,4 @@
 
 ### error?
 
-> `optional` **error**: `Error`
+> `optional` **error?**: `Error`

@@ -48,7 +48,7 @@ Alias for `emitter.on(eventName, listener)`.
 
 ##### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ##### listener
 
@@ -121,7 +121,7 @@ myEmitter.emit('event', 1, 2, 3, 4, 5);
 
 ##### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ##### args
 
@@ -216,9 +216,9 @@ in the list of the listeners of the event.
 
 ##### eventName
 
-The name of the event being listened for
+`string` \| `symbol`
 
-`string` | `symbol`
+The name of the event being listened for
 
 ##### listener?
 
@@ -264,7 +264,7 @@ console.log(util.inspect(server.listeners('connection')));
 
 ##### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 #### Returns
 
@@ -296,7 +296,7 @@ Alias for `emitter.removeListener()`.
 
 ##### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ##### listener
 
@@ -359,9 +359,9 @@ myEE.emit('foo');
 
 ##### eventName
 
-The name of the event.
+`string` \| `symbol`
 
-`string` | `symbol`
+The name of the event.
 
 ##### listener
 
@@ -423,9 +423,9 @@ myEE.emit('foo');
 
 ##### eventName
 
-The name of the event.
+`string` \| `symbol`
 
-`string` | `symbol`
+The name of the event.
 
 ##### listener
 
@@ -475,9 +475,9 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 ##### eventName
 
-The name of the event.
+`string` \| `symbol`
 
-`string` | `symbol`
+The name of the event.
 
 ##### listener
 
@@ -525,9 +525,9 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 ##### eventName
 
-The name of the event.
+`string` \| `symbol`
 
-`string` | `symbol`
+The name of the event.
 
 ##### listener
 
@@ -591,7 +591,7 @@ emitter.emit('log');
 
 ##### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 #### Returns
 
@@ -629,7 +629,7 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 ##### eventName?
 
-`string` | `symbol`
+`string` \| `symbol`
 
 #### Returns
 
@@ -743,7 +743,7 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 ##### eventName
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ##### listener
 
@@ -832,7 +832,7 @@ class MyClass extends EventEmitter {
 
 ##### event
 
-`string` | `symbol`
+`string` \| `symbol`
 
 ##### args
 

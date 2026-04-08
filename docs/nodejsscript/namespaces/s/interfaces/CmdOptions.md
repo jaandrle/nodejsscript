@@ -10,7 +10,7 @@
 
 ### cwd?
 
-> `optional` **cwd**: `string`
+> `optional` **cwd?**: `string`
 
 Change the current working directory only for this `cmd()` invocation.
 
@@ -24,7 +24,7 @@ process.cwd()
 
 ### maxBuffer?
 
-> `optional` **maxBuffer**: `number`
+> `optional` **maxBuffer?**: `number`
 
 Raise or decrease the default buffer size for stdout/stderr.
 
@@ -38,7 +38,7 @@ Raise or decrease the default buffer size for stdout/stderr.
 
 ### timeout?
 
-> `optional` **timeout**: `number`
+> `optional` **timeout?**: `number`
 
 Change the default timeout.
 

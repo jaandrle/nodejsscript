@@ -59,9 +59,9 @@ if (process.argv[2] === 'child') {
 
 #### modulePath
 
-The module to run in the child.
+`string` \| `URL`
 
-`string` | `URL`
+The module to run in the child.
 
 #### options?
 
@@ -128,9 +128,9 @@ if (process.argv[2] === 'child') {
 
 #### modulePath
 
-The module to run in the child.
+`string` \| `URL`
 
-`string` | `URL`
+The module to run in the child.
 
 #### args?
 

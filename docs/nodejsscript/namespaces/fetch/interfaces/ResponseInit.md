@@ -10,16 +10,16 @@
 
 ### headers?
 
-> `optional` **headers**: [`HeadersInit`](../type-aliases/HeadersInit.md)
+> `optional` **headers?**: [`HeadersInit`](../type-aliases/HeadersInit.md)
 
 ***
 
 ### status?
 
-> `optional` **status**: `number`
+> `optional` **status?**: `number`
 
 ***
 
 ### statusText?
 
-> `optional` **statusText**: `string`
+> `optional` **statusText?**: `string`
