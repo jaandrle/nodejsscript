@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+npx lockfile-lint --path package.json

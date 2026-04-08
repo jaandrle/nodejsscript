@@ -33,14 +33,14 @@ s.$("-g").rm("*.tx"); //remove only "*.txt" file
 
 #### options
 
+`"-f"` \| `"-S"` \| `"-V"` \| `"-F"` \| `"-g"` \| `"-v"` \| `"-s"` \| `"-G"`
+
 Options
 	- "-V": verbose
 	- "-S": silent (default)
 	- "-F": fatal
 	- "-G": glob (evaluate `*` in paths)
 	- to off option(s) use lower-case letters ("-v" no-verbose, "-s" …, …, **"-g" noglob**)
-
-`"-f"` | `"-S"` | `"-V"` | `"-F"` | `"-g"` | `"-v"` | `"-s"` | `"-G"`
 
 ### Returns
 

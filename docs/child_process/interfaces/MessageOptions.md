@@ -10,4 +10,4 @@
 
 ### keepOpen?
 
-> `optional` **keepOpen**: `boolean`
+> `optional` **keepOpen?**: `boolean`

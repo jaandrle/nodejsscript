@@ -24,9 +24,9 @@ Available options:
 
 #### source
 
-The source.
+`string` \| `string`[]
 
-`string` | `string`[]
+The source.
 
 #### dest
 
@@ -50,9 +50,9 @@ Moves files. The wildcard `*` is accepted.
 
 #### source
 
-The source.
+`string` \| `string`[]
 
-`string` | `string`[]
+The source.
 
 #### dest
 

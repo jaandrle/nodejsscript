@@ -6,7 +6,7 @@
 
 # Function: pathFromURL()
 
-> **pathFromURL**(`from_url`): (`template`, ...`substitutions`) => `string` \| (`relative`) => `string`
+> **pathFromURL**(`from_url`): ((`template`, ...`substitutions`) => `string`) \| ((`relative`) => `string`)
 
 This is a helper motivated to evaluate relative paths from current script file:
 ```js
@@ -22,6 +22,8 @@ echo("Relative path: ", $path`../file.txt`);
 
 ## Returns
 
+### Function
+
 (`template`, ...`substitutions`) => `string`
 
 String.raw is usually used as a tag function of a Tagged Template String. When called as
@@ -30,34 +32,28 @@ parameter will contain the substitution values. It can also be called directly, 
 to interleave strings and values from your own tag function, and in this case the only thing
 it needs from the first argument is the raw property.
 
-## Parameters
+#### Parameters
 
-### template
+##### template
 
 A well-formed template string call site representation.
 
-#### raw
+###### raw
 
 readonly `string`[] \| `ArrayLike`\<`string`\>
 
-### substitutions
+##### substitutions
 
 ...`any`[]
 
 A set of substitution values.
 
-## Returns
+#### Returns
 
 `string`
+
+***
+
+### Function
 
 (`relative`) => `string`
-
-## Parameters
-
-### relative
-
-`string`
-
-## Returns
-
-`string`

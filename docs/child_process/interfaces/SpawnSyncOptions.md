@@ -19,25 +19,25 @@
 
 ### input?
 
-> `optional` **input**: `string` \| `ArrayBufferView`\<`ArrayBufferLike`\>
+> `optional` **input?**: `string` \| `ArrayBufferView`\<`ArrayBufferLike`\>
 
 ***
 
 ### maxBuffer?
 
-> `optional` **maxBuffer**: `number`
+> `optional` **maxBuffer?**: `number`
 
 ***
 
 ### encoding?
 
-> `optional` **encoding**: `"buffer"` \| `BufferEncoding`
+> `optional` **encoding?**: `"buffer"` \| `BufferEncoding`
 
 ***
 
 ### argv0?
 
-> `optional` **argv0**: `string`
+> `optional` **argv0?**: `string`
 
 #### Inherited from
 
@@ -47,7 +47,7 @@
 
 ### stdio?
 
-> `optional` **stdio**: [`StdioOptions`](../type-aliases/StdioOptions.md)
+> `optional` **stdio?**: [`StdioOptions`](../type-aliases/StdioOptions.md)
 
 Can be set to 'pipe', 'inherit', 'overlapped', or 'ignore', or an array of these strings.
 If passed as an array, the first element is used for `stdin`, the second for
@@ -69,7 +69,7 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### shell?
 
-> `optional` **shell**: `string` \| `boolean`
+> `optional` **shell?**: `string` \| `boolean`
 
 #### Inherited from
 
@@ -79,7 +79,7 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### windowsVerbatimArguments?
 
-> `optional` **windowsVerbatimArguments**: `boolean`
+> `optional` **windowsVerbatimArguments?**: `boolean`
 
 #### Inherited from
 
@@ -89,7 +89,7 @@ specify the `stdio` behavior beyond the standard streams. See
 
 ### windowsHide?
 
-> `optional` **windowsHide**: `boolean`
+> `optional` **windowsHide?**: `boolean`
 
 #### Default
 
@@ -105,7 +105,7 @@ false
 
 ### timeout?
 
-> `optional` **timeout**: `number`
+> `optional` **timeout?**: `number`
 
 #### Default
 
@@ -121,7 +121,7 @@ false
 
 ### uid?
 
-> `optional` **uid**: `number`
+> `optional` **uid?**: `number`
 
 #### Inherited from
 
@@ -131,7 +131,7 @@ false
 
 ### gid?
 
-> `optional` **gid**: `number`
+> `optional` **gid?**: `number`
 
 #### Inherited from
 
@@ -141,7 +141,7 @@ false
 
 ### cwd?
 
-> `optional` **cwd**: `string` \| `URL`
+> `optional` **cwd?**: `string` \| `URL`
 
 #### Inherited from
 
@@ -151,7 +151,7 @@ false
 
 ### env?
 
-> `optional` **env**: `ProcessEnv`
+> `optional` **env?**: `ProcessEnv`
 
 #### Inherited from
 
@@ -161,7 +161,7 @@ false
 
 ### serialization?
 
-> `optional` **serialization**: [`SerializationType`](../type-aliases/SerializationType.md)
+> `optional` **serialization?**: [`SerializationType`](../type-aliases/SerializationType.md)
 
 Specify the kind of serialization used for sending messages between processes.
 
@@ -179,7 +179,7 @@ Specify the kind of serialization used for sending messages between processes.
 
 ### killSignal?
 
-> `optional` **killSignal**: `number` \| `Signals`
+> `optional` **killSignal?**: `number` \| `Signals`
 
 The signal value to be used when the spawned process will be killed by the abort signal.
 
@@ -197,7 +197,7 @@ The signal value to be used when the spawned process will be killed by the abort
 
 ### signal?
 
-> `optional` **signal**: `AbortSignal`
+> `optional` **signal?**: `AbortSignal`
 
 #### Inherited from
 

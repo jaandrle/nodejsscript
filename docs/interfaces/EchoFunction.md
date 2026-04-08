@@ -6,7 +6,7 @@
 
 # Interface: EchoFunction()
 
-> **EchoFunction**(`message?`, ...`optionalParams?`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
+> **EchoFunction**(`message?`, ...`optionalParams`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
 Prints to `stdout` with newline. Multiple arguments can be passed, with the
 first used as the primary message and all additional used as substitution
@@ -36,7 +36,7 @@ echo("%cRed", "color: red");
 
 The text to print.
 
-### optionalParams?
+### optionalParams
 
 ...`any`[]
 
@@ -48,7 +48,7 @@ Returns processed string with additional utility methods like .to().
 
 ## Public
 
-### css()
+### css
 
 > **css**: \{(...`styles`): `Record`\<`string`, `string`\>; (...`styles`): `Record`\<`string`, `string`\>; \}
 
@@ -143,7 +143,7 @@ const css= style`
 
 ### use()
 
-> **use**(`options`, `message?`, ...`optionalParams?`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
+> **use**(`options`, `message?`, ...`optionalParams`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
 Similarly to [s.echo](../nodejsscript/namespaces/s/variables/echo.md), the first argument accepts options string starting with `-`:
 - `-n`: Don’t append **n**ew line
@@ -175,7 +175,7 @@ Available options: `-n`, `-1`/`-2`, `-c`, `-P`, `-R`/`-r`.
 
 The text to print.
 
-##### optionalParams?
+##### optionalParams
 
 ...`any`[]
 
@@ -189,7 +189,7 @@ Returns processed string with additional utility methods like .to().
 
 ### format()
 
-> **format**(`message?`, ...`optionalParams?`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
+> **format**(`message?`, ...`optionalParams`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
 A helper method returning formated text as it processed by [echo](../variables/echo.md), but not printed into the console.
 (So infact, it is an alias `echo.use("-S", …);`)
@@ -202,7 +202,7 @@ A helper method returning formated text as it processed by [echo](../variables/e
 
 The text to print.
 
-##### optionalParams?
+##### optionalParams
 
 ...`any`[]
 
@@ -216,7 +216,7 @@ Returns processed string with additional utility methods like .to().
 
 ### formatWithOptions()
 
-> **formatWithOptions**(`options`, `message?`, ...`optionalParams?`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
+> **formatWithOptions**(`options`, `message?`, ...`optionalParams`): [`ShellString`](../nodejsscript/namespaces/s/type-aliases/ShellString.md)
 
 A helper method returning formated text as it processed by [echo](../variables/echo.md), but not printed into the console.
 (So infact, it is an alias `echo.use("-S"+…, …);`)
@@ -235,7 +235,7 @@ Available options: `-n`, `-c`, `-P` (these are available, but ignored: `-1`/`-2`
 
 The text to print.
 
-##### optionalParams?
+##### optionalParams
 
 ...`any`[]
 

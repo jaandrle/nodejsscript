@@ -20,7 +20,7 @@ Use options as for:
 
 ### needle?
 
-> `optional` **needle**: `RegExp`
+> `optional` **needle?**: `RegExp`
 
 Pattern in `command` to be replacced by variables.
 

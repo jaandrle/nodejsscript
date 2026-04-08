@@ -4,7 +4,7 @@
 
 [nodejsscript](../../../../README.md) / [\_\_sade](../README.md) / Handler
 
-# Type Alias: Handler()
+# Type Alias: Handler
 
 > **Handler** = (...`args`) => `any`
 

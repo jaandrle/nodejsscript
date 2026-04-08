@@ -12,7 +12,7 @@
 
 ### url
 
-`URL` | [`RequestInfo`](../type-aliases/RequestInfo.md)
+`URL` \| [`RequestInfo`](../type-aliases/RequestInfo.md)
 
 ### init?
 

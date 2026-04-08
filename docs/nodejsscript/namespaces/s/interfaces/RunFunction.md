@@ -42,9 +42,9 @@ String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/
 
 #### vars
 
-Arguments for `command`.
+`false` \| \{ \}
 
-`false` | \{ \}
+Arguments for `command`.
 
 #### options
 

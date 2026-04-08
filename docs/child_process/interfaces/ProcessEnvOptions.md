@@ -15,22 +15,22 @@
 
 ### uid?
 
-> `optional` **uid**: `number`
+> `optional` **uid?**: `number`
 
 ***
 
 ### gid?
 
-> `optional` **gid**: `number`
+> `optional` **gid?**: `number`
 
 ***
 
 ### cwd?
 
-> `optional` **cwd**: `string` \| `URL`
+> `optional` **cwd?**: `string` \| `URL`
 
 ***
 
 ### env?
 
-> `optional` **env**: `ProcessEnv`
+> `optional` **env?**: `ProcessEnv`

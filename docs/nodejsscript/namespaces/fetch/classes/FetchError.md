@@ -78,13 +78,13 @@ not capture any frames.
 
 ### code?
 
-> `optional` **code**: `string`
+> `optional` **code?**: `string`
 
 ***
 
 ### errno?
 
-> `optional` **errno**: `string`
+> `optional` **errno?**: `string`
 
 ***
 
@@ -106,7 +106,7 @@ not capture any frames.
 
 ### stack?
 
-> `optional` **stack**: `string`
+> `optional` **stack?**: `string`
 
 #### Inherited from
 

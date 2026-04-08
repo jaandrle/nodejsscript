@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+npx npm-check-updates --interactive --format group --cooldown 7
