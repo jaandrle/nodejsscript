@@ -153,6 +153,10 @@ nodejsscript -p '$.stdin.json()' Object.entries 'e=> e.filter(([_,v])=> Array.is
 
 - *similar to `node --eval`/`node --print`*
 - you can use less verbose syntax `njs -e`/`njs -p`
+- for `--print`, you can add definitions before the printed expression:
+  `njs -p 'const x=5; x+5'` (prints `10`)
+- extra function arguments (for `pipe()`) can be ended with `--`: the rest is
+  passed to the script as `$[1]`/`$[2]`/… arguments
 
 <!-- #endregion -->
 </details>
