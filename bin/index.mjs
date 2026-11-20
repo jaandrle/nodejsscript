@@ -36,7 +36,10 @@ process.on('uncaughtException', printError);
 	$.is_local= argv[1].includes("node_modules"); //TODO: rm/doc
 	argv[1]= filepath;
 	$.length= 0;
-	$.push(...argv.slice(1));
+	if(is_tmp)
+		$.push(argv[1], ...argv.slice(Math.max(argv.indexOf("--")+1, 2)));
+	else
+		$.push(...argv.slice(1));
 	await $.stdin[key_stdin]();
 	try{
 		if(!s.$("-F").test("-f", filepath)) $.error(`File '${candidate}' not found.`);
