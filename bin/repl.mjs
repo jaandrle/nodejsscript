@@ -31,6 +31,8 @@ export function startRepl(){ return new Promise(async function(){
 	const completer= r.completer.bind(r);
 	const ls_tmp= { pwd: "", ls: [] };
 	r.completer= function(line, callback){
+		const { is_silent, is_verbose }= $;
+		$.configAssign({ silent: true, verbose: false });
 		completer.call(null, line, function(err, [ completions= [], line_ ]) {
 			if(err) return callback(err, [ completions, line_ ]);
 			let pwd= ".";
@@ -39,8 +41,6 @@ export function startRepl(){ return new Promise(async function(){
 				pwd= line.slice(line.lastIndexOf('"')+1, line.lastIndexOf("/"));
 				if(!pwd) pwd= "/";
 			}
-			const { is_verbose }= $;
-			$.is_verbose= false;
 			const s_= s.$("-vFgs");
 			if((pwd==="." ? s_.pwd().trim() : pwd)!==ls_tmp.pwd){
 				ls_tmp.pwd= pwd;
@@ -53,7 +53,7 @@ export function startRepl(){ return new Promise(async function(){
 					ls_tmp.ls= [];
 				}
 			}
-			$.is_verbose= is_verbose;
+			$.configAssign({ silent: is_silent, verbose: is_verbose });
 			const { ls }= ls_tmp;
 			let todo= [];
 			if((new RegExp(is_open_function+"$")).test(line)){
