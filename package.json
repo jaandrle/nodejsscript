@@ -1,6 +1,6 @@
 {
 	"name": "nodejsscript",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"author": "Jan Andrle <andrle.jan@centrum.cz>",
 	"license": "MIT",
 	"description": "A tool for writing better “one–file” scripts",
@@ -68,7 +68,7 @@
 	"dependencies": {
 		"@types/shelljs": "~0.10",
 		"abort-controller": "~3.0",
-		"css-in-console": "^2.1.2",
+		"css-in-console": "~2.1",
 		"log-update-async-hook": "~2.0",
 		"node-fetch": "~3.3",
 		"sade": "~1.8",
