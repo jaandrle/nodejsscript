@@ -12,6 +12,8 @@ Returns array of all files (however deep) in the given paths.
 
 ## Param
 
+**path**
+
 The path(s) to search.
 
 ## Returns

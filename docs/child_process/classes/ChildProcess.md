@@ -1267,7 +1267,7 @@ v3.2.0
 
 #### Call Signature
 
-> **listeners**\<`E`\>(`eventName`): (...`args`) => `void`[]
+> **listeners**\<`E`\>(`eventName`): ((...`args`) => `void`)[]
 
 Returns a copy of the array of listeners for the event named `eventName`.
 
@@ -1293,7 +1293,7 @@ console.log(util.inspect(server.listeners('connection')));
 
 ##### Returns
 
-(...`args`) => `void`[]
+((...`args`) => `void`)[]
 
 ##### Since
 
@@ -1305,7 +1305,7 @@ v0.1.26
 
 #### Call Signature
 
-> **listeners**(`eventName`): (...`args`) => `void`[]
+> **listeners**(`eventName`): ((...`args`) => `void`)[]
 
 Returns a copy of the array of listeners for the event named `eventName`.
 
@@ -1325,7 +1325,7 @@ console.log(util.inspect(server.listeners('connection')));
 
 ##### Returns
 
-(...`args`) => `void`[]
+((...`args`) => `void`)[]
 
 ##### Since
 
@@ -1849,7 +1849,7 @@ v6.0.0
 
 #### Call Signature
 
-> **rawListeners**\<`E`\>(`eventName`): (...`args`) => `void`[]
+> **rawListeners**\<`E`\>(`eventName`): ((...`args`) => `void`)[]
 
 Returns a copy of the array of listeners for the event named `eventName`,
 including any wrappers (such as those created by `.once()`).
@@ -1893,7 +1893,7 @@ emitter.emit('log');
 
 ##### Returns
 
-(...`args`) => `void`[]
+((...`args`) => `void`)[]
 
 ##### Since
 
@@ -1905,7 +1905,7 @@ v9.4.0
 
 #### Call Signature
 
-> **rawListeners**(`eventName`): (...`args`) => `void`[]
+> **rawListeners**(`eventName`): ((...`args`) => `void`)[]
 
 Returns a copy of the array of listeners for the event named `eventName`,
 including any wrappers (such as those created by `.once()`).
@@ -1943,7 +1943,7 @@ emitter.emit('log');
 
 ##### Returns
 
-(...`args`) => `void`[]
+((...`args`) => `void`)[]
 
 ##### Since
 

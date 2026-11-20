@@ -12,6 +12,8 @@ Filter adjacent matching lines from input.
 
 ## Param
 
+**options**
+
 Available options:
        - `-i`: Ignore case while comparing
        - `-c`: Prefix lines by the number of occurrences

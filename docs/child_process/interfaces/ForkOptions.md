@@ -8,7 +8,9 @@
 
 ## Extends
 
-- [`ProcessEnvOptions`](ProcessEnvOptions.md).[`MessagingOptions`](MessagingOptions.md).`Abortable`
+- [`ProcessEnvOptions`](ProcessEnvOptions.md)
+- [`MessagingOptions`](MessagingOptions.md)
+- `Abortable`
 
 ## Properties
 

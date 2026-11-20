@@ -12,13 +12,19 @@ Executes the given command.
 
 ## Param
 
+**command**
+
 The command to execute.
 
 ## Param
 
+**options**
+
 Silence and synchronous options.
 
 ## Param
+
+**callback**
 
 Receives code and output asynchronously.
 

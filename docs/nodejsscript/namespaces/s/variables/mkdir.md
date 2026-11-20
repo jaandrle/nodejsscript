@@ -12,10 +12,14 @@ Creates directories.
 
 ## Param
 
+**options**
+
 Available options:
        - `-p`: full paths, will create intermediate dirs if necessary
 
 ## Param
+
+**dir**
 
 The directories to create.
 

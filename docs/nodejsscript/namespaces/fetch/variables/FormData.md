@@ -6,7 +6,7 @@
 
 # Variable: FormData
 
-> `const` **FormData**: \{(): `FormData`; `prototype`: `FormData`; \}
+> `const` **FormData**: \{new (): `FormData`; `prototype`: `FormData`; \}
 
 ## Type Declaration
 

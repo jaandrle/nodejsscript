@@ -13,12 +13,16 @@ With no arguments, `pushd` exchanges the top two directories.
 
 ## Param
 
+**options**
+
 Available options:
        - `-n`: Suppresses the normal change of directory when adding directories
                to the stack, so that only the stack is manipulated
        - `-q`: Suppresses output to the console.
 
 ## Param
+
+**dir**
 
 Makes the current working directory be the top of the stack,
                and then executes the equivalent of `cd dir`.
