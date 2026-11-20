@@ -8,7 +8,8 @@
 
 ## Extends
 
-- [`CommonOptions`](CommonOptions.md).`Abortable`
+- [`CommonOptions`](CommonOptions.md)
+- `Abortable`
 
 ## Extended by
 

@@ -19,6 +19,8 @@ Notable exceptions:
 
 ## Param
 
+**options**
+
 Available options:
        - `-v`: output a diagnostic for every file processed
        - `-c`: like -v but report only when a change is made
@@ -26,9 +28,13 @@ Available options:
 
 ## Param
 
+**mode**
+
 The access mode. Can be an octal string or a symbolic mode string.
 
 ## Param
+
+**file**
 
 The file to use.
 

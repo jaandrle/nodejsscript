@@ -10,7 +10,7 @@
 
 ### close
 
-> **close**: \[`number`, `Signals`\]
+> **close**: \[`code`: `number`, `signal`: `Signals`\]
 
 ***
 
@@ -22,19 +22,19 @@
 
 ### error
 
-> **error**: \[`Error`\]
+> **error**: \[`err`: `Error`\]
 
 ***
 
 ### exit
 
-> **exit**: \[`number`, `Signals`\]
+> **exit**: \[`code`: `number`, `signal`: `Signals`\]
 
 ***
 
 ### message
 
-> **message**: \[[`Serializable`](../type-aliases/Serializable.md), [`SendHandle`](../type-aliases/SendHandle.md)\]
+> **message**: \[`message`: [`Serializable`](../type-aliases/Serializable.md), `sendHandle`: [`SendHandle`](../type-aliases/SendHandle.md)\]
 
 ***
 

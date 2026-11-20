@@ -14,6 +14,8 @@ is introduced between each file).
 
 ## Param
 
+**files**
+
 Files to use. Wildcard `*` accepted.
 
 ## Returns

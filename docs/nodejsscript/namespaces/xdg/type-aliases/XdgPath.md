@@ -6,4 +6,4 @@
 
 # Type Alias: XdgPath
 
-> **XdgPath** = \[`TemplateStringsArray`, `string`[]\]
+> **XdgPath** = \[`path`: `TemplateStringsArray`, `path_vars`: `string`[]\]

@@ -12,11 +12,15 @@ Prints string to stdout, and returns string with additional utility methods like
 
 ## Param
 
+**options**
+
 Available options:
        - `-e`: interpret backslash escapes (default)
        - `-n`: remove trailing newline from output
 
 ## Param
+
+**text**
 
 The text to print.
 

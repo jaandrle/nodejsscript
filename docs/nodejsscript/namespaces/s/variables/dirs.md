@@ -12,6 +12,8 @@ Displays the list of currently remembered directories.
 
 ## Param
 
+**options**
+
 Available options:
        - `-c`: Clears the directory stack by deleting all of the elements.
        - `-N`: Displays the Nth directory (counting from the right of the list

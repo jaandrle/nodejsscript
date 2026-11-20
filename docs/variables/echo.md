@@ -50,6 +50,8 @@ echo("Hi").to("./test.txt");
 
 ## Param
 
+**message**
+
 The text to print.
 
 ## Returns

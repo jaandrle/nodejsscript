@@ -8,7 +8,9 @@
 
 ## Extends
 
-- [`CommonOptions`](CommonOptions.md).[`MessagingOptions`](MessagingOptions.md).`Abortable`
+- [`CommonOptions`](CommonOptions.md)
+- [`MessagingOptions`](MessagingOptions.md)
+- `Abortable`
 
 ## Extended by
 

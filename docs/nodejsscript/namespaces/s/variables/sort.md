@@ -13,6 +13,8 @@ Sorting multiple files mixes their content (just as unix sort does).
 
 ## Param
 
+**options**
+
 Available options:
        - `-r`: Reverse the results
        - `-n`: Compare according to numerical value

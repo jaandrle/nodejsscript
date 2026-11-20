@@ -12,6 +12,8 @@ Copies files. The wildcard `*` is accepted.
 
 ## Param
 
+**options**
+
 Available options:
        - `-f`: force (default behavior)
        - `-n`: no-clobber
@@ -22,9 +24,13 @@ Available options:
 
 ## Param
 
+**source**
+
 The source.
 
 ## Param
+
+**dest**
 
 The destination.
 

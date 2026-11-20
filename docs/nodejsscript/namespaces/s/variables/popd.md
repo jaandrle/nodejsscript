@@ -16,12 +16,16 @@ i.e., `popd` is equivalent to `popd +0`. Returns an array of paths in the stack.
 
 ## Param
 
+**options**
+
 Available options:
        - `-n`: Suppresses the normal change of directory when removing directories
                from the stack, so that only the stack is manipulated
        - `-q`: Suppresses output to the console.
 
 ## Param
+
+**dir**
 
 You can only use -N and +N.
 

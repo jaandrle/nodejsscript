@@ -23,9 +23,13 @@ the node builtin `child_process.execFile()` instead.
 
 ## Param
 
+**arg1**
+
 Command to run.
 
 ## Param
+
+**args**
 
 Any number of arguments of arguments. If the last argument given
 	           is an object, it will be created as a `CmdOptions` object.

@@ -40,13 +40,19 @@ Executes the given command.
 
 #### Param
 
+**command**
+
 The command to execute.
 
 #### Param
 
+**options**
+
 Silence and synchronous options.
 
 #### Param
+
+**callback**
 
 Receives code and output asynchronously.
 
@@ -74,12 +80,16 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 #### Param
 
+**options**
+
 Available options:
        - `-v`: Inverse the sense of the regex and print
                the lines not matching the criteria.
        - `-l`: Print only filenames of matching files
 
 #### Param
+
+**regex\_filter**
 
 The regular expression to use.
 
@@ -98,14 +108,20 @@ on the input using the given search regex and replacement string or function.
 
 #### Param
 
+**options**
+
 Available options:
        - `-i`: Replace contents of 'file' in-place. Note that no backups will be created!
 
 #### Param
 
+**searchRegex**
+
 The regular expression to use for search.
 
 #### Param
+
+**replacement**
 
 The replacement.
 
@@ -122,6 +138,8 @@ The new string after replacement.
 Return the contents of the pipeline, sorted line-by-line.
 
 #### Param
+
+**options**
 
 Available options:
        - `-r`: Reverse the results
@@ -144,6 +162,8 @@ Read the end of a pipeline input.
 Filter adjacent matching lines from input.
 
 #### Param
+
+**options**
 
 Available options:
        - `-i`: Ignore case while comparing

@@ -12,15 +12,21 @@ Links source to dest. Use `-f` to force the link, should dest already exist.
 
 ## Param
 
+**options**
+
 Available options:
        - `-s`: Create a symbolic link, defaults to a hardlink
        - `-f`: Force creation
 
 ## Param
 
+**source**
+
 The source.
 
 ## Param
+
+**dest**
 
 The destination.
 

@@ -12,11 +12,15 @@ Removes files. The wildcard `*` is accepted.
 
 ## Param
 
+**options**
+
 Available options:
        - `-f` (force),
        - `-r`, `-R` (recursive)
 
 ## Param
+
+**files**
 
 Files to remove.
 

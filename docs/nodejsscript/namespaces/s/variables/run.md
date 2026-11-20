@@ -41,13 +41,19 @@ echo(branch);
 
 ## Param
 
+**command**
+
 String of command(s) to be executed. Defined patterns (by default `/::([^:]+)::/g`) will be replaced by actual value.
 
 ## Param
 
+**vars**
+
 Arguments for `command`.
 
 ## Param
+
+**options**
 
 Silence and synchronous options.
 

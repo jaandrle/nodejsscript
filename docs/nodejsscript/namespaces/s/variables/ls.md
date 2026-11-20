@@ -12,6 +12,8 @@ Returns array of files in the given path, or in current directory if no path pro
 
 ## Param
 
+**options**
+
 Available options:
        - `-R`: recursive
        - `-A`: all files (include files beginning with ., except for . and ..)
@@ -21,6 +23,8 @@ Available options:
                `ls -l` output fields. See fs.Stats for more info
 
 ## Param
+
+**paths**
 
 Paths to search.
 

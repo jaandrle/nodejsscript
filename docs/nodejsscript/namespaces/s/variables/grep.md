@@ -13,6 +13,8 @@ of the file that match the given `regex_filter`. Wildcard `*` accepted.
 
 ## Param
 
+**options**
+
 Available options:
        - `-v`: Inverse the sense of the regex and print
                the lines not matching the criteria.
@@ -20,9 +22,13 @@ Available options:
 
 ## Param
 
+**regex\_filter**
+
 The regular expression to use.
 
 ## Param
+
+**files**
 
 The files to process.
 

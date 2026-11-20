@@ -13,18 +13,26 @@ on the input using the given search regex and replacement string or function.
 
 ## Param
 
+**options**
+
 Available options:
        - `-i`: Replace contents of 'file' in-place. Note that no backups will be created!
 
 ## Param
 
+**searchRegex**
+
 The regular expression to use for search.
 
 ## Param
 
+**replacement**
+
 The replacement.
 
 ## Param
+
+**files**
 
 The files to process.
 
